@@ -1,0 +1,142 @@
+
+
+
+/*  Settings for displaying Artilce */
+#article_title {
+    font-size: 300%;
+    text-align: center;
+    line-height: 0;
+}
+
+#article_title img {
+    height: 1ex;
+}
+
+#article_abstract {
+    font-style: italic;
+    text-align: center;
+    padding-bottom: 3ex;
+}
+
+#article {
+    padding-bottom: 4em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+.separator {
+    width: 30%;
+    border-bottom: black solid 1px;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-bottom: 6em;
+}
+
+#layout__panel {
+    position: relative;
+    width: 2%;
+    height: 100%;
+    flex: none;
+    overflow: hidden;
+}
+
+.toolbar-button {
+    border: 0px;    
+    height: 25px;
+    padding: 2px;
+    margin: 3px 0;
+    background-color: white;
+    display: inline-block;
+}
+
+#title-source,
+#abstact-source, 
+.editor_title_and_abstract {
+    width: 100%;
+    background-color: white;
+    scrollbar-width: thin;
+}
+
+#abstact-source {
+    height: 80%;
+}
+
+.title_and_abstract{
+    display: none;
+    width: 100%;
+}
+
+#side_menu {
+    background-color: #C8C8C8;
+    width: 30em;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    /* same possition than .undermain_menu*/
+    top: 29px;
+}
+
+#container-block-result,
+#container-block-source {
+    /* the minus is the size of the top menu */
+    height: calc(100% - 65px);
+    top: 80px;
+    display: inline-block;
+}
+
+/* overwrite upmath.css */
+.ldt pre, .ldt textarea {
+    padding: 0;
+}
+
+#source-block, #result-block, #slider{
+    /* The minus is the size of the .editor_toolbar + #foot + .title_and_abstract */
+    height: calc(100% - 90px);
+}
+
+/* format the text in the editor */
+.ldt.source.full-height {
+    border-top: 1px solid gray;
+}
+
+/* add to upmath.css settings */
+.slider {
+    background-color: white;
+}
+
+#editor_title {
+    height: 20%;
+}
+
+#editor_abstract {
+    height: 80%;
+}
+
+#editor_msg {
+    position: fixed;
+    background-color: white;    
+    width: 100%;
+    left: 0;
+    top: 60px;
+    height: 20px;
+    padding-left: 16px;
+    color: red;
+}
+
+.notfocused {
+    /* display: none; */
+    color: grey;
+}
+
+.focused {
+    /* display: none; */
+    color: black;
+}
+
+/* there is something which setting the padding not 0 on smaller screen 
+    we need to prevent this as the texfiled and the pre is not covering each other 
+*/
+#editor-source {
+        padding: 0px !important;
+}
+
