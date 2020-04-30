@@ -1,0 +1,51 @@
+        <div id="editor_toolbar" class="topmenu menufont" style="display: none;">
+            <div>
+                <div class="toolbar-button" style="display:none"><input type="file" id="fileElem" ></div>
+                
+                <div class="toolbar-button menufont" title={{ _("Close tollbar") }} onclick='show_mainmenus("choicemenu")'>T</div>
+                
+                <div title={{ _('Upload file') }} class="toolbar-button fontawsome fas fa-file-upload" onclick="upload_source()"></div>
+                
+                <div class="toolbar-button fontawsome fas fa-file-download" title={{ _("Download result") }} onclick="download_result()" ></div>
+                
+                {% if article_id != -2 %}
+                <!-- save work -->
+                <div class="toolbar-button fontawsome fas fa-save fontawsome" title={{ _("Save") }} onclick="save_article()"></div>
+                {% endif %}
+                <!-- focuse mode -->
+                <div class="toolbar-button fontawsome fab fa-markdown fontawsome" title={{ _("Syntax highlighting") }} onclick="focusemode_on()"></div>
+                
+                <!-- hide the right side (the preview) -->
+                <div class="toolbar-button fontawsome far fa-arrow-alt-circle-right " title={{ _("Hide preview") }}  onclick="hide_result()"></div>
+                <!-- hide title -->
+                <div  class="toolbar-button fontawsome far fa-arrow-alt-circle-down" title={{ _("Show title and abstract") }} onclick="show_title()"></div>
+                <!-- heading -->
+                <div  class="toolbar-button fontawsome fas fa-heading" title={{ _("Head") }}  onclick='editorToolbarAction("heading")'></div> 
+                <!-- italic -->
+                <div  class="toolbar-button fontawsome fas fa-italic" title={{ _("Italic") }}  onclick='editorToolbarAction("italic")'></div>
+                <!-- Strong -->
+                <div  class="toolbar-button fontawsome fas fa-bold"  title={{ _("Strong") }} onclick='editorToolbarAction("strong")'>
+                </div>
+                <!-- picture -->
+                <div  class="toolbar-button fontawsome far fa-image"  title={{ _("Picture") }} onclick='editorToolbarAction("picture")'></div>   
+                <!-- link -->
+                <div class="toolbar-button fontawsome fas fa-link"  title={{ _("Link") }} onclick='editorToolbarAction("link")'></div>                
+                <!-- list -->
+                <div class="toolbar-button fontawsome fas fa-list"  title={{ _("List") }} onclick='editorToolbarAction("list")'></div>
+                <!-- numbered list -->
+                <div class="toolbar-button fontawsome fas fa-list-ol" title={{ _("Numbered list") }} onclick='editorToolbarAction("numbered_list")'></div>
+                <!-- endnote -->
+                <div class="toolbar-button fontawsome fas fa-superscript"  title={{ _("Endnote") }} onclick='editorToolbarAction("footnote", "Endnotes")'></div>
+                <!-- table -->
+                <div class="toolbar-button fontawsome fas fa-th-large"  title={{ _("Table") }} onclick='editorToolbarAction("table")'>
+                </div>
+                
+                <!-- code -->
+                <div class="toolbar-button fontawsome fas fa-code"  title={{ _("Code") }} onclick='editorToolbarAction("code")'></div>
+                <!-- math -->
+                <div class="toolbar-button menufont" title="LaTeX" onclick='editorToolbarAction("latex")'>Σ</div>          
+            </div>
+            <div>
+                <div class="toolbar-button fontawsome fas fa-bars"  title={{ _("Show side menu") }} aria-label={{ _("Show side menu") }} onclick="show_side_menu()"></div>
+            </div>
+        </div> <!-- editor_toolbar -->

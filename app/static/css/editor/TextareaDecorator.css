@@ -1,0 +1,79 @@
+/**
+ * TextareaDecorator.css
+ * written by Colin Kuebler 2012
+ * Updated by Roman Parpalak, 2019.
+ * Part of LDT, dual licensed under GPLv3 and MIT
+ * Provides styles for rendering a textarea on top of a pre with scrollbars
+ */
+
+/* settings you can play with */
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ldt, .ldt label.ldt-label {
+	padding: 4px;
+}
+
+.ldt, .ldt pre, .ldt textarea {
+	font-size: 14px;
+	/* resize algorithm depends on a monospaced font */
+	font-family: monospace;
+	color: black;
+}
+
+.ldt textarea {
+	/* fallback for browsers without rgba */
+	color: transparent !important;
+	/* make sure the alpha is low enough so it doesn't block the output layer */
+	color: rgba(0,0,0,.3) !important;
+}
+
+/* settings you shouldn't play with unless you have a good reason */
+
+.ldt {
+	overflow: auto;
+	position: relative;
+}
+
+.ldt pre {
+	-moz-padding-start: 1px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	/* Chrome may treat spaces differently for textarea and for inline elements. */
+	/* Try contenteditable when this deprecated property stops working. */
+	-webkit-user-modify: read-write-plaintext-only;
+}
+
+.ldt label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: inline;
+	cursor: text;
+}
+
+.ldt textarea {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	display: block;
+	outline: none;
+	resize: none;
+	min-width: 100%;
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	/* IE doesn't support rgba texarea, so use vendor specific alpha filter */
+	filter: alpha(opacity = 30);
+}
+

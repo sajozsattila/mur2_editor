@@ -1,0 +1,88 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Domine';
+  line-height: 1.88;
+  letter-spacing: 0;
+  font-size: 16px;
+}
+
+body {
+    background-color: cadetblue;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+.topmenu{
+    padding: 16px;
+    display: flex;    
+    justify-content: space-between;
+    
+    display: -webkit-flex ; /* for 9 > Safari */
+    -webkit-justify-content: space-between;
+
+    justify-content: -webkit-space-between;/* for Safari */
+    
+    position: fixed;
+    background-color: white;    
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 65px;
+    
+}
+
+a, a:link, #mur2menu a:visited  {
+    text-decoration: none;
+    color: #000;
+}
+
+
+#mur2menu a, #mur2menu a:link, #mur2menu a:visited  {
+    padding-right: 2em    
+}
+
+.menufont {
+    font-size: 18px;
+    font-family: 'Josefin Sans';
+    font-weight: 600;
+}
+
+#foot {
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    padding-top: 1ex;
+    height: 30px;
+}
+
+#user_profile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#user_profil_overview {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+
+#avator {
+    width: 10em;
+    padding: 16px;
+}
+
+#profile_overview {
+    width: calc(100% - 10em);
+}
+
+.fontawsome {
+    font-family: FontAwesome;
+}
+

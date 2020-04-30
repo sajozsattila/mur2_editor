@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block header %} 
+    {% include 'editor_header.html' %}
+
+    <!-- set some mur2 atrtriput which we will use later to send data to the server -->
+    <meta name="article_id" content='{{ article_id }}'>
+    <meta name="texttype" content="article">
+    
+
+{% endblock %}
+
+    
+{% block content %}    
+    <!-- choice between the two type of menu -->
+    <div id="choicemenu" class="topmenu menufont">
+        <!-- show editor toolbar -->
+        <div class="toolbar-button menufont" title={{ _("Tollbar") }} onclick='show_mainmenus("editor_toolbar")' >T</div> 
+        <!-- show mur2 menu -->
+        <div class="toolbar-button menufont" title={{ _("Menu") }} onclick='show_mainmenus("mur2menu")' >M</div> 
+    </div>
+    {% include 'editor_toolbar.html' %}
+    <div id="editor_msg" ></div>
+    <div class="container full-height topmenu" id="container-block">   
+        <div class="editor_title_and_abstract">
+            <div class="half-width source_side full-height">
+                <div class="title_and_abstract menufont" id="editor_title" style="display: none;">
+                    Title: <textarea id="title-source" oninput="update_title()"></textarea>
+                </div>
+                <div class="title_and_abstract menufont" id="editor_abstract" style="display: none;">
+                    Abstract: <br />
+                    <textarea id="abstact-source" onselect="window.selectedTextarea=this" oninput="update_abstract()"></textarea>
+                </div>
+            </div>
+            <div class="half-width result_side">
+                <div class="title_and_abstract" id="article_title" style="display: none;"></div>
+                <div class="title_and_abstract" id="article_abstract" style="display: none;"></div>
+            </div>
+        </div> <!-- editor_title_and_abstract -->
+        <!-- main text -->
+        <div class="half-width full-height source-wrap source_side" id="source-block">
+            <textarea id="editor-source" class="source full-height" 
+                          onclick="window.selectedTextarea=this" onselect="window.selectedTextarea=this">
+            </textarea>
+        </div>
+        <div class="slider full-height" id="slider"></div>
+        <!-- result -->
+        <div class="half-width full-height result_side" id="result-block"> 
+                <div class="result-html full-height"></div>
+                <pre class="result-src full-height"><code class="result-src-content"></code></pre>
+        </div> <!--result-block --> 
+      <div id="foot"> © 2020 μr² {{ _("editor, based on Roman Parpalak's <a href='https://upmath.me/'>Upmath</a>") }} </div>  
+    </div> <!-- container-block -->
+
+    <!-- side menu -->
+    <div id="side_menu" style="display:none">
+        <button class="toolbar-button" title="Show side menu" aria-label="Show side menu" onclick="show_side_menu()"                >
+            <div class="fas fa-times"></div>
+        </button>
+        <div class="header-item demo-control">
+            <div class="full-width">{{ _("Preview format") }}</div>
+            <div class="full-width">
+                    <input class="control-input" id="id_html" type="radio" name="source_type" checked="checked" >
+                    <label class="control-item" for="id_html" title="Example of rendered HTML" data-result-as="html">
+                        {{ _("preview") }}
+                    </label>
+                    <input class="control-input" id="id_src" type="radio" name="source_type" >
+                    <label class="control-item" for="id_src" title="HTML with img-equations" data-result-as="src" >
+                        html
+                    </label>                    
+                    <input class="control-input" id="id_htmltex" type="radio" name="source_type" >
+                    <label class="control-item" for="id_htmltex" title="HTML with raw LaTeX equations" data-result-as="htmltex" >
+                        html-tex
+                    </label>            
+                    <input class="control-input" id="id_md" type="radio" name="source_type" >
+                    <label class="control-item" for="id_md" title="Markdown with img-equations" data-result-as="md" >
+                        md
+                    </label>
+                    <input class="control-input" id="id_habr" type="radio" name="source_type" >
+                    <label class="control-item" for="id_habr" title="A kind of HTML markup for habr.com" data-result-as="habr" >
+                        H
+                    </label>                                        
+            <div>
+        </div>
+        <div  class="full-width">
+            <div class="full-width">{{ _("Export") }}</div>
+            <div class="full-width">
+                <div class="fab fa-wordpress-simple toolbar-button"  title="Export to Wordpress.com" onclick="wordpress_on_fly()">
+                </div>
+                <div class="toolbar-button fas fa-times"  title="Clear cokkies" onclick='clear_cookies("wpc")'>
+                </div>
+         </div>
+         <div  class="full-width">
+             <div class="toolbar-button fas fa-question-circle" onclick='markdown_cheat()'>{{ _("Markdown cheat sheet") }}</div>
+         <div>
+    </div> <!-- side_menu -->
+
+
+    <!-- set the markdown editor contents -->
+    <script>
+        (function () {
+            try {
+                var data = localStorage.getItem("editor_content");
+                var data_abstract = localStorage.getItem("abstract_content");
+            }
+            catch (e) {}
+            // the document is basically the all webpage
+            // seting the content of the <div id=editor-source></div>
+            document.getElementById('editor-source').value = '{{ article_markdown }}'  ;
+            document.getElementById('title-source').value = '{{ article_title }}'  ;
+            document.getElementById('abstact-source').value = '{{ article_abstract }}'  ;
+        }());
+        if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
+            textareas = document.getElementsByTagName('textarea');
+            for(var i = 0; i < textareas.length; i++){
+                textareas[i].style['padding-left'] = '13px';
+                textareas[i].style['padding-right'] = '13px';
+            }
+        }
+    </script>
+    <!-- scripts -->
+    <script src="/static/js/editor/markdown-it.min.js"></script>
+    <script src="/static/js/editor/markdown-it-sub.min.js"></script>
+    <script src="/static/js/editor/markdown-it-sup.min.js"></script>
+    <script src="/static/js/editor/FileSaver.js"></script>
+    <script src="/static/js/editor/draggabilly.pkgd.js"></script>
+    <script src="/static/js/editor/TextareaDecorator.js"></script>
+    <script src="/static/js/highlight.js/highlight.pack.js"></script>
+    <script src="/static/js/editor/utils.js"></script>
+    <script src="/static/js/editor/markdown-it-s2-tex.js"></script>
+    <script src="/static/js/editor/parser.js"></script>
+    <script src="/static/js/editor/editor.js"></script>
+    <script src="/static/js/mur2_editor.js"></script>
+
+{% endblock %}
