@@ -133,6 +133,10 @@
     color: black;
 }
 
+.result-as-mdp .result-src {
+    display: block;
+}
+
 /* there is something which setting the padding not 0 on smaller screen 
     we need to prevent this as the texfiled and the pre is not covering each other 
 */

@@ -2,7 +2,7 @@
  * Markdown and LaTeX Editor
  *
  * (c) Roman Parpalak, 2016-2018
- * changed by Attila Zsolt sajo 2020
+ * changed by Sajo, Zsolt Attila 2020
  * 
  */
 
@@ -37,7 +37,9 @@ var parserCollection = null;
 			'result-as-htmltex',
 			'result-as-habr',
 			'result-as-src',
-			'result-as-debug'
+			'result-as-debug',
+            'result-as-md',
+            'result-as-mdp'
 		].forEach(function (className) {
 			if (eNode.classList) {
 				eNode.classList.remove(className);
@@ -92,8 +94,8 @@ var parserCollection = null;
 
 		var _mdMdAndImages = markdownit('zero')
 			.use(markdownitS2Tex)
-		;
-
+		;     
+            
 		/**
 		 * Detects if the paragraph contains the only formula.
 		 * Parser gives the class 'tex-block' to such formulas.
@@ -322,9 +324,12 @@ var parserCollection = null;
 			else if (_view === 'md') {
 				domSetHighlightedContent('result-src-content', _mdMdAndImages.renderInline(source), 'html');
 			}
-			else { /*_view === 'src'*/
-				domSetHighlightedContent('result-src-content', _mdHtmlAndImages.render(source), 'html');
-			}
+			else if ( _view === 'mdp' ) {
+                console.log("inside");
+				domSetHighlightedContent('result-src-content', source, 'none');
+			} else {
+                domSetHighlightedContent('result-src-content', _mdHtmlAndImages.render(source), 'html');
+            }
 
 			updateCallback(source);
 		};
@@ -342,6 +347,10 @@ var parserCollection = null;
 
 			if (_view === 'md') {
 				return _mdMdAndImages.renderInline(source);
+			}
+            
+            if (_view === 'mdp') {
+				return source;
 			}
 
 			return _mdHtmlAndImages.render(source);
@@ -363,7 +372,11 @@ var parserCollection = null;
 
 	function domSetHighlightedContent(className, content, lang) {
 		var eNode = document.getElementsByClassName(className)[0];
-		if (window.hljs) {
+        // for source without any formating
+        if ( lang === 'none' ) {
+            console.log("none", eNode);
+            eNode.innerHTML = content;
+        } else if (window.hljs) {
 			eNode.innerHTML = window.hljs.highlight(lang, content).value;
 		}
 		else {
