@@ -335,7 +335,7 @@ function save_article() {
 };
 
 function download_result() {
-
+    // should be good to set the type more inteligently
     var blob = new Blob([parserCollection.getDisplayedResult()], {
         type: 'text/html;charset=utf-8'
     });
