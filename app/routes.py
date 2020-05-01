@@ -290,18 +290,12 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
-        current_user.wpcom_user = form.wpcom_user.data
-        current_user.wpcom_pass = form.wpcom_pass.data
-        current_user.wpcom_address = form.wpcom_address.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-        form.wpcom_user.data = current_user.wpcom_user
-        form.wpcom_pass.data = current_user.wpcom_pass
-        form.wpcom_address.data = current_user.wpcom_address
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
 
