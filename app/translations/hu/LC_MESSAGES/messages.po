@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 21:08+0000\n"
+"POT-Creation-Date: 2020-05-02 21:47+0000\n"
 "PO-Revision-Date: 2020-04-29 20:54+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -36,89 +36,107 @@ msgstr ""
 
 #: app/templates/base.html:32
 msgid "Logout"
+msgstr "Kijelentkezés"
+
+#: app/templates/editor.html:9 app/templates/editor_toolbar.html:38
+msgid "Endnote"
+msgstr "Lábjegyzet"
+
+#: app/templates/editor.html:19
+msgid "Tollbar"
 msgstr ""
 
-#: app/templates/editor.html:52
+#: app/templates/editor.html:21
+msgid "Menu"
+msgstr ""
+
+#: app/templates/editor.html:53
 msgid "editor, based on Roman Parpalak's <a href='https://upmath.me/'>Upmath</a>"
-msgstr "szerkesztő,  Roman Parpalak  <a href='https://upmath.me/'>Upmath</a> kódja alapján"
+msgstr ""
+"szerkesztő,  Roman Parpalak  <a href='https://upmath.me/'>Upmath</a> "
+"kódja alapján"
 
-#: app/templates/editor.html:61
+#: app/templates/editor.html:62
 msgid "Preview format"
-msgstr ""
+msgstr "Előnézet formátuma"
 
-#: app/templates/editor.html:65
+#: app/templates/editor.html:66
 msgid "preview"
-msgstr ""
+msgstr "Előnézet"
 
-#: app/templates/editor.html:86
+#: app/templates/editor.html:91
 msgid "Export"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:4
+#: app/templates/editor.html:101
+msgid "Markdown cheat sheet"
+msgstr ""
+
+#: app/templates/editor_toolbar.html:5
 msgid "Close tollbar"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:8
+#: app/templates/editor_toolbar.html:7
 msgid "Upload file"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:12
+#: app/templates/editor_toolbar.html:9
 msgid "Download result"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:18
+#: app/templates/editor_toolbar.html:13
 msgid "Save"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:24
+#: app/templates/editor_toolbar.html:16
+msgid "Syntax highlighting"
+msgstr ""
+
+#: app/templates/editor_toolbar.html:19
 msgid "Hide preview"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:28
+#: app/templates/editor_toolbar.html:21
 msgid "Show title and abstract"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:33
+#: app/templates/editor_toolbar.html:23
 msgid "Head"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:38
+#: app/templates/editor_toolbar.html:25
 msgid "Italic"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:43
+#: app/templates/editor_toolbar.html:27
 msgid "Strong"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:48
+#: app/templates/editor_toolbar.html:30
 msgid "Picture"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:53
+#: app/templates/editor_toolbar.html:32
 msgid "Link"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:58
+#: app/templates/editor_toolbar.html:34
 msgid "List"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:62
+#: app/templates/editor_toolbar.html:36
 msgid "Numbered list"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:65
-msgid "Endnote"
-msgstr ""
-
-#: app/templates/editor_toolbar.html:70
+#: app/templates/editor_toolbar.html:40
 msgid "Table"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:75
+#: app/templates/editor_toolbar.html:44
 msgid "Code"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:87
+#: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
 msgstr ""
 
