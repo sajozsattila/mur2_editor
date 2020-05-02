@@ -6,6 +6,7 @@
     <!-- set some mur2 atrtriput which we will use later to send data to the server -->
     <meta name="article_id" content='{{ article_id }}'>
     <meta name="texttype" content="article">
+    <meta name="endnotetext" content={{ _("Endnote") }}>
     
 
 {% endblock %}
@@ -93,9 +94,12 @@
                 </div>
                 <div class="toolbar-button fas fa-times"  title="Clear cokkies" onclick='clear_cookies("wpc")'>
                 </div>
-         </div>
+            </div>
+            <!-- 
+            <div class="full-width">
+                <div class="toolbar-button fas fa-file-pdf" title="Generate PDF" onclick="generate_pdf()"></div>
          <div  class="full-width">
-             <div class="toolbar-button fas fa-question-circle" onclick='markdown_cheat()'>{{ _("Markdown cheat sheet") }}</div>
+             <div class="toolbar-button fas fa-question-circle" onclick='markdown_cheat()'>{{ _("Markdown cheat sheet") }}</div> --> 
          <div>
     </div> <!-- side_menu -->
 
@@ -132,6 +136,8 @@
     <script src="/static/js/highlight.js/highlight.pack.js"></script>
     <script src="/static/js/editor/utils.js"></script>
     <script src="/static/js/editor/markdown-it-s2-tex.js"></script>
+    <script src="/static/js/editor/markdown-it-footnote.js"></script>
+    <script src="/static/js/editor/markdown-it-ins.js"></script>
     <script src="/static/js/editor/parser.js"></script>
     <script src="/static/js/editor/editor.js"></script>
     <script src="/static/js/mur2_editor.js"></script>

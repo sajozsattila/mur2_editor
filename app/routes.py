@@ -321,6 +321,22 @@ import requests
 import datetime
 import json
 import re
+import string
+import random
+import os
+# for pandoc
+import subprocess
+from subprocess import Popen, PIPE
+from subprocess import check_output
+def run_os_command(command):
+    stdout = check_output(command).decode('utf-8')
+    return stdout
+def  make_pandoc_md(mdtxt, endnote):
+            # make some change on the markdown to work with pandoc
+            # change $$ if it is in line
+            mdtxt = mdtxt.replace('$$', '$' )
+            
+            return mdtxt
 @app.route('/export_data', methods=['POST'])
 def exportdata():
     if request.method == 'POST':
@@ -409,7 +425,40 @@ def exportdata():
                     else:
                         print(json.loads(r.content))
                         return "unknow error", r.status_code
-                                          
+        elif destination == 'pdf': 
+            # read the data which was sent from the editor.js
+            mdtxt = request.files['mdfile'].read()
+            # some encoding 
+            mdtxt = mdtxt.decode('utf-8')
+            article_title = (request.form['article_title'])
+            article_abstract = (request.form['article_abstract']) 
+            endnotetext = (request.form['endnotetext']) 
+
+            article_abstract = make_pandoc_md(article_abstract, endnotetext)
+            mdtxt = make_pandoc_md(mdtxt, endnotetext)
+            # save to file
+            #  # generate random string for dir
+            letters = string.ascii_letters
+            dirname = '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
+            os.mkdir(dirname)
+            mdname = dirname+'pdf.md'
+            file = open(mdname, 'w')
+            file.write(mdtxt)
+            file.close()
+            
+
+            # make latex
+            result = run_os_command(['/usr/bin/pandoc', mdname, '-f', 'markdown', '-t',  'latex', '-s', '-o', dirname+'test.tex'])
+            # open latex file
+            file = open(dirname+'test.tex', "r") 
+            latexfile = file.read() 
+            file.close()
+            
+            # download images
+            
+            
+            
+            print(result)
             
     # return a OK json 
     return jsonify(result="OK")            

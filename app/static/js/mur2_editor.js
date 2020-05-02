@@ -73,55 +73,7 @@ function editorToolbarAction(action, endnote) {
         re = /\n/g;
         wrap = "1. " + text.replace(re, "\n1\. ")
     } else if (action === "footnote") {
-        // random string to identifile footnode
-        let r = Math.random().toString(36).substring(7);
-
-        // replace the selection with footnode
-        var alltext = field.value.substring(0, start) +
-            "<a href=\"#myfootnotea_" + r + "\" name=\"myfootnotes_" + r + "\"><sup>1</sup></a>" +
-            field.value.substring(end) + "\n\n<sup id=\"myfootnotea_" + r + "\">[1](#myfootnotes_" + r + ")</sup> -- " + text + "\n";
-        // iterate over the all text and recalculate the footnode numbers
-        re = /<a href=\"#myfootnotea_\w+\" name=\"myfootnotes_\w+\"><sup>\d+<\/sup><\/a>/g;
-        var jelek = alltext.match(re);
-        re2 = /\n\n<sup id=\"myfootnotea_\w+\">\[\d+\]\(\#myfootnotes_\w+\)<\/sup> -- .+\n/g;
-        var jegyzetek = alltext.match(re2);
-        let ii = 0;
-        var found = null;
-        console.log("jelek: "+jelek+":"+jegyzetek);
-        // iterate over the jelek and recualulate they number
-        for (i = 0; i < jelek.length; i++) {
-            
-            // iterate over the jegyzet and replace they number;
-            // the jel id
-            re = / href=\"#myfootnotea_\w+\" /g;
-            var id = jelek[i].match(re);
-            id = id[0].replace(" href=\"#myfootnotea_", "").replace("\"", "").trim();
-            // found the matching text
-            ii = 0;
-            for (; ii < jegyzetek.length; ii++) {
-                re = new RegExp("myfootnotea_" + id, "g");
-                found = jegyzetek[ii].match(re);
-                if (found !== null) {
-                    console.log("found")
-                    break;
-                }
-
-            }
-            // halvest the nore in the footnode
-            re = /\n\n<sup id=\"myfootnotea_\w+\">\[\d+\]\(\#myfootnotes_\w+\)<\/sup> -- /g
-            var jegyzettext = jegyzetek[ii].replace(re, '')
-            // replace text in the alltext 
-            alltext = alltext.replace(jelek[i], "<a href=\"#myfootnotea_" + id + "\" name=\"myfootnotes_" + id + "\"><sup>" + (i + 1) + "</sup></a>");
-            // if first we put there a Footnote text
-            if ( i === 0) {
-                // delete if there was previously
-                alltext = alltext.replace("\n# "+endnote+"\n", '');
-                // add new
-                alltext = alltext + "\n# "+endnote+"\n"
-            }
-            alltext = alltext.replace(jegyzetek[ii], '') + "\n\n<sup id=\"myfootnotea_" + id + "\">[" + (i + 1) + "](#myfootnotes_" + id + ")</sup> -- " + jegyzettext;
-        }
-        wrap = alltext;
+        wrap = '^['+text+'] '
     }
 
 
@@ -132,8 +84,6 @@ function editorToolbarAction(action, endnote) {
             field.value.substring(0, start) +
             wrap1 + text.trim() + wrap2 +
             field.value.substring(end);
-    } else if (action === "footnote") {
-        window.selectedTextarea.value = wrap
     } else {
         // new areas
         window.selectedTextarea.value =
@@ -390,4 +340,21 @@ function focusemode_on() {
     } else {
         focusmode_switch = 0;
     }
+}
+
+
+function generate_pdf() {
+    var article_title = document.getElementById('title-source').value;
+    var article_abstract = document.getElementById('abstact-source').value;
+    var mddata = new Blob([parserCollection.getSource()], {type: 'text/markdown;charset=utf-8'});
+    var endnotetext = document.querySelector('meta[name="endnotetext"]').content
+    var fd = new FormData();
+    fd.append("destination", "pdf");
+    fd.append("mdfile", mddata, "article_text.md");
+    fd.append('article_title', article_title);
+    fd.append('article_abstract', article_abstract);
+    fd.append('endnotetext', endnotetext);
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/export_data', true);
+    xhr.send(fd)
 }
