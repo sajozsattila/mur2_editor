@@ -324,6 +324,7 @@ import re
 import string
 import random
 import os
+from flask import make_response, send_file
 # for pandoc
 import subprocess
 from subprocess import Popen, PIPE
@@ -331,12 +332,45 @@ from subprocess import check_output
 def run_os_command(command):
     stdout = check_output(command).decode('utf-8')
     return stdout
-def  make_pandoc_md(mdtxt, endnote):
+def  make_pandoc_md(mdtxt):
             # make some change on the markdown to work with pandoc
             # change $$ if it is in line
-            mdtxt = mdtxt.replace('$$', '$' )
+            points = []
+            for m in re.finditer(r'\$\$([^\$]+?)\$\$',  mdtxt):
+                points.append( (m.start(), m.end()) )
+            for m in reversed(points):
+                mdtxt = mdtxt[:m[0]] + ' $' + mdtxt[m[0]:m[1]+1].replace('$$', '').strip() + '$ '+  mdtxt[m[1]+1:]
+            
             
             return mdtxt
+def make_latex(mdtxt, title, abstract):
+            mdtxt = make_pandoc_md(mdtxt)
+            title = make_pandoc_md(title)
+            abstract = make_pandoc_md(abstract)
+    
+            # save to file
+            #  # generate random string for dir
+            letters = string.ascii_letters
+            dirname = '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
+            os.mkdir(dirname)
+            mdname = dirname+'pdf.md'
+            file = open(mdname, 'w')
+            file.write(mdtxt)
+            file.close()
+            
+
+            # make latex
+            # '--filter',  'pandoc-xnos', # https://github.com/tomduck/pandoc-eqnos 
+            result = run_os_command(['/usr/bin/pandoc', 
+                                     mdname, 
+                                     '-M', 'title='+title,
+                                     '-M', 'abstract='+abstract,
+                                     '-f', 'markdown', 
+                                     '-t',  'latex', 
+                                     '-s',                                      
+                                     '-o', dirname+'mur2.tex'])
+            return dirname
+    
 @app.route('/export_data', methods=['POST'])
 def exportdata():
     if request.method == 'POST':
@@ -434,31 +468,39 @@ def exportdata():
             article_abstract = (request.form['article_abstract']) 
             endnotetext = (request.form['endnotetext']) 
 
-            article_abstract = make_pandoc_md(article_abstract, endnotetext)
-            mdtxt = make_pandoc_md(mdtxt, endnotetext)
-            # save to file
-            #  # generate random string for dir
-            letters = string.ascii_letters
-            dirname = '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
-            os.mkdir(dirname)
-            mdname = dirname+'pdf.md'
-            file = open(mdname, 'w')
-            file.write(mdtxt)
-            file.close()
+            # dirname = make_latex(mdtxt, article_title, article_abstract)
+            mdtxt = make_pandoc_md(mdtxt)
+            article_title = make_pandoc_md(article_title)
+            article_abstract = make_pandoc_md(article_abstract)
             
+            dirname = make_latex(mdtxt, article_title, article_abstract)
+            
+            # make pdf
+            result = run_os_command(['/usr/bin/pandoc', 
+                                     dirname + 'mur2.tex', 
+                                     '-M', 'title='+article_title+'',
+                                     '-M', 'abstract='+article_abstract+'',
+                                     '-f', 'latex', 
+                                     '-t',  'context', 
+                                     '-s', 
+                                     '-o', dirname + 'mur2.pdf'])
+            return send_file(os.path.join(dirname, 'mur2.pdf'))
 
-            # make latex
-            result = run_os_command(['/usr/bin/pandoc', mdname, '-f', 'markdown', '-t',  'latex', '-s', '-o', dirname+'test.tex'])
-            # open latex file
-            file = open(dirname+'test.tex', "r") 
-            latexfile = file.read() 
-            file.close()
             
-            # download images
+        elif destination == 'latex': 
+            # read the data which was sent from the editor.js
+            mdtxt = request.files['mdfile'].read()
+            # some encoding 
+            mdtxt = mdtxt.decode('utf-8')
+            article_title = (request.form['article_title'])
+            article_abstract = (request.form['article_abstract']) 
             
+            dirname = make_latex(mdtxt, article_title, article_abstract)
+
+            # clear up tmp files
+            # ???
             
-            
-            print(result)
+            return send_file(os.path.join(dirname, 'mur2.tex'))
             
     # return a OK json 
     return jsonify(result="OK")            

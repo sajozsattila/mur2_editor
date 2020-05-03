@@ -4,15 +4,17 @@ function hide_result() {
     var x = document.getElementsByClassName("result_side");
     var i;
     for (i = 0; i < x.length; i++) {
-        if (x[i].style.display === "none") {
-            x[i].style.display = "inline-block";
-            x[i].style.width = "calc(50% - 3px)";
-            y[i].style.width = "calc(50% - 3px)";
-            y[i].style.padding = "16px";
+        if (x[i].classList.contains('hideitem')) {
+            x[i].classList.remove('hideitem');
+            x[i].classList.add('displayitem');
+            x[i].classList.add('halfsize');
+            y[i].classList.remove('fullsize');
+            y[i].classList.add('halfsize');
         } else {
-            x[i].style.display = "none";
-            y[i].style.width = "calc(100% - 6px)";
-            y[i].style.padding = "16px 25%";
+            x[i].classList.add('hideitem');
+            x[i].classList.remove('displayitem');
+            y[i].classList.add('fullsize');
+            y[i].classList.remove('halfsize');
         }
     }
 }
@@ -96,6 +98,7 @@ function editorToolbarAction(action, endnote) {
 }
 
 // render a text to Latex, not highlighting and any other things
+// used in the Abstract and the Title
 function latex_renderer(input_field) {
     // from editor.js
     var defaults = {
@@ -123,7 +126,6 @@ function latex_renderer(input_field) {
         .use(markdownitSub)
         .use(markdownitSup);
 
-    console.log(_mdPreview.render(input_field.value));
     return _mdPreview.render(input_field.value);
 }
 
@@ -343,18 +345,53 @@ function focusemode_on() {
 }
 
 
-function generate_pdf() {
+async function generate_from_md(destination) {
     var article_title = document.getElementById('title-source').value;
     var article_abstract = document.getElementById('abstact-source').value;
     var mddata = new Blob([parserCollection.getSource()], {type: 'text/markdown;charset=utf-8'});
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
     var fd = new FormData();
-    fd.append("destination", "pdf");
+    
+    var msgbox = document.getElementById("editor_msg")
+    msgbox.innerHTML = "Working";
+    msgbox.style.color = "green";
+    
+    fd.append("destination", destination);
     fd.append("mdfile", mddata, "article_text.md");
     fd.append('article_title', article_title);
     fd.append('article_abstract', article_abstract);
     fd.append('endnotetext', endnotetext);
     var xhr = new XMLHttpRequest();
+    /* need to receive file back */
+    xhr.responseType = 'blob';
     xhr.open('post', '/export_data', true);
     xhr.send(fd)
+    
+    xhr.onload = function() {
+        if (xhr.status != 200) { // analyze HTTP status of the response
+            
+            msgbox.style.color = "red";
+            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response  ;
+            
+        } else { // save the result   
+            var blob = this.response;
+            var contentDispo = this.getResponseHeader('Content-Disposition');
+            if ( destination === "latex" ) {
+                saveAs(blob, 'mur2.tex');                       
+            } else {                
+                saveAs(blob, 'mur2.pdf');                
+            }
+        }
+        
+    };
+    
+    if (xhr.status != 200) {
+        await sleep(5000);
+        // clear msg
+        msgbox.innerHTML = "";
+    } else {
+        msgbox.innerHTML = "";
+    }
+    
+    
 }
