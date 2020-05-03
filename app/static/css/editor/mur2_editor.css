@@ -124,13 +124,26 @@
 }
 
 .notfocused {
-    /* display: none; */
     color: grey;
 }
 
 .focused {
-    /* display: none; */
     color: black;
+}
+
+/* used for showin and hidding preview */
+.halfsize {
+    width: calc(50% - 3px);
+}
+.fullsize {
+    width: calc(100% - 6px);
+    padding: 16px 25%;
+}
+.displayitem {
+    display: inline-block;
+}
+.hideitem {
+    display: none;
 }
 
 .result-as-mdp .result-src {
@@ -144,6 +157,7 @@
         padding: 0px !important;
 }
 
+/* formating the result */
 #result-block code {
     padding: 2px 4px;
 font-size: 90%;
@@ -153,7 +167,6 @@ border-radius: 4px;
 }
 
 #result-block pre {
-    display: block;
 padding: 9.5px;
 margin: 0 0 10px;
 font-size: 13px;
@@ -168,11 +181,130 @@ border: 1px solid #ccc;
 #result-block table {
     margin-bottom: 20px;
     border-collapse: collapse;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
-
+#result-block thead {
+    border-bottom: 1px solid #ccc;
+}
 #result-block tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
 #result-block a {
     color: #428bca;
+}
+
+/* screen depending settings */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	/* Chrome hack for the caret color. Works also in FF. */
+	.ldt textarea {
+		color: #000 !important;
+		-webkit-text-fill-color: rgba(0, 0, 0, 0.2);
+	}
+
+	.ldt textarea::-webkit-input-placeholder {
+		text-shadow: none;
+		-webkit-text-fill-color: initial;
+	}
+}
+
+/* like iPad on long side */
+@media screen and (max-width: 950px) {
+	.result-src,
+	.result-html {
+		padding-left: 16px;
+	}
+    .fullsize {
+        width: calc(100% - 6px);
+        padding: 16px ;
+    }
+    
+    #foot {
+		display: none;
+	}
+	.slider { display: none; }
+}
+
+@media screen and (max-width: 874px) {
+	div.header {font-size: 15px;}
+}
+@media screen and (max-width: 639px) {
+	.ldt pre, .ldt textarea, textarea.source,
+	.result-src,
+	.result-html,
+	div.header {
+		padding-left: 12px;
+		padding-right: 12px;
+		}
+
+	div.header {font-size: 14px;}
+	h1.title {
+		width: 120px;
+		height: 30px;
+		background-size: contain;
+		top: 0;
+	}
+}
+@media screen and (max-width: 459px) {
+	.ldt pre, .ldt textarea, textarea.source,
+	.result-src,
+	.result-html,
+	div.header {
+		padding-left: 12px;
+		padding-right: 12px;
+		}
+
+	div.header {font-size: 14px;}
+	h1.title {
+		width: 28px;
+		height: 30px;
+		background-size: auto 90%, auto;
+		background-position: 0 50%, 200% 0;
+		left: -4px;
+	}
+	.header .toolbar-button, .demo-control .control-item {
+		padding: 0 1px;
+	}
+}
+
+
+/* like iPhone */
+@media screen and (max-width: 599px) {
+	.ldt pre, .ldt textarea, textarea.source,
+	.result-src,
+	.result-html,
+	div.header {
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	#foot {
+		display: none;
+	}
+    .fullsize {
+        width: calc(100% - 6px);
+        padding: 16px ;
+    }
+
+	#source-block {
+		z-index: 1;
+	}
+
+	#container-block-source #source-block,
+	#container-block-result #result-block {
+		z-index: 10;
+	}
+
+	#container-block-source #result-block,
+	#container-block-result #source-block {
+		background: #999;
+		opacity: 0.6;
+	}
+
+	#container-block-source #result-block .toolbar,
+	#container-block-source #result-block .demo-control,
+	#container-block-result #source-block .toolbar {
+		display: none;
+	}
 }
