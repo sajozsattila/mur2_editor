@@ -336,7 +336,8 @@ def  make_pandoc_md(mdtxt):
             # make some change on the markdown to work with pandoc
             # change $$ if it is in line
             points = []
-            for m in re.finditer(r'\$\$([^\$]+?)\$\$',  mdtxt):
+            for m in re.finditer(r'(?:(?<=(?: |\w))\$\$([^\n\$]+?)\$\$)|(?:\$\$([^\n\$]+?)\$\$(?=(?: |\w)))',  mdtxt):
+                print(m.start(),  m.end(),  m.group(0))
                 points.append( (m.start(), m.end()) )
             for m in reversed(points):
                 mdtxt = mdtxt[:m[0]] + ' $' + mdtxt[m[0]:m[1]+1].replace('$$', '').strip() + '$ '+  mdtxt[m[1]+1:]
