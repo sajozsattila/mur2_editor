@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-02 21:47+0000\n"
+"POT-Creation-Date: 2020-05-04 09:37+0000\n"
 "PO-Revision-Date: 2020-04-29 20:54+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: app/templates/base.html:31
 msgid "Media"
-msgstr ""
+msgstr "Média"
 
 #: app/templates/base.html:32
 msgid "Logout"
@@ -43,22 +43,20 @@ msgid "Endnote"
 msgstr "Lábjegyzet"
 
 #: app/templates/editor.html:19
-msgid "Tollbar"
+msgid "Toolbar"
 msgstr ""
 
 #: app/templates/editor.html:21
 msgid "Menu"
-msgstr ""
+msgstr "Menű"
 
 #: app/templates/editor.html:53
-msgid "editor, based on Roman Parpalak's <a href='https://upmath.me/'>Upmath</a>"
-msgstr ""
-"szerkesztő,  Roman Parpalak  <a href='https://upmath.me/'>Upmath</a> "
-"kódja alapján"
+msgid "editor"
+msgstr "szerkesztő"
 
 #: app/templates/editor.html:62
 msgid "Preview format"
-msgstr "Előnézet formátuma"
+msgstr "Előnézeti formátuma"
 
 #: app/templates/editor.html:66
 msgid "preview"
@@ -66,80 +64,94 @@ msgstr "Előnézet"
 
 #: app/templates/editor.html:91
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
-#: app/templates/editor.html:101
+#: app/templates/editor.html:95
+msgid "Clear cokkies"
+msgstr "Sütik törlése"
+
+#: app/templates/editor.html:99
+msgid "Generate pdf"
+msgstr "Pdf készítése"
+
+#: app/templates/editor.html:102
+msgid "Generate LaTeX"
+msgstr "LaTeX készítése"
+
+#: app/templates/editor.html:108
+msgid "Help"
+msgstr "Segítség"
+
+#: app/templates/editor.html:110
 msgid "Markdown cheat sheet"
-msgstr ""
+msgstr "Markdown példák"
 
 #: app/templates/editor_toolbar.html:5
-msgid "Close tollbar"
+msgid "Close toolbar"
 msgstr ""
 
 #: app/templates/editor_toolbar.html:7
 msgid "Upload file"
-msgstr ""
+msgstr "Fájl feltöltése"
 
 #: app/templates/editor_toolbar.html:9
 msgid "Download result"
-msgstr ""
+msgstr "Előnézet letöltése"
 
 #: app/templates/editor_toolbar.html:13
 msgid "Save"
-msgstr ""
+msgstr "Mentés"
 
 #: app/templates/editor_toolbar.html:16
 msgid "Syntax highlighting"
-msgstr ""
+msgstr "Szintax kiemelés"
 
 #: app/templates/editor_toolbar.html:19
 msgid "Hide preview"
-msgstr ""
+msgstr "Előnézet elrejtése"
 
 #: app/templates/editor_toolbar.html:21
 msgid "Show title and abstract"
-msgstr ""
+msgstr "Cím és absztrakt megjelenítése"
 
 #: app/templates/editor_toolbar.html:23
 msgid "Head"
-msgstr ""
+msgstr "Címsor"
 
 #: app/templates/editor_toolbar.html:25
 msgid "Italic"
-msgstr ""
+msgstr "Dölt"
 
 #: app/templates/editor_toolbar.html:27
 msgid "Strong"
-msgstr ""
+msgstr "Kövér"
 
 #: app/templates/editor_toolbar.html:30
 msgid "Picture"
-msgstr ""
+msgstr "Kép"
 
 #: app/templates/editor_toolbar.html:32
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: app/templates/editor_toolbar.html:34
 msgid "List"
-msgstr ""
+msgstr "Felsorolás"
 
 #: app/templates/editor_toolbar.html:36
 msgid "Numbered list"
-msgstr ""
+msgstr "Számozott felsorolás"
 
 #: app/templates/editor_toolbar.html:40
 msgid "Table"
-msgstr ""
+msgstr "Táblázat"
 
 #: app/templates/editor_toolbar.html:44
 msgid "Code"
-msgstr ""
+msgstr "Kód"
 
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
-msgstr ""
+msgstr "Oldal menű megjelenítése"
 
-#~ msgid "editor, based on Roman Parpalak's"
-#~ msgstr " szerkesztő, Roman Parpalak "
 

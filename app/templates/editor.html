@@ -16,7 +16,7 @@
     <!-- choice between the two type of menu -->
     <div id="choicemenu" class="topmenu menufont">
         <!-- show editor toolbar -->
-        <div class="toolbar-button menufont" title={{ _("Tollbar") }} onclick='show_mainmenus("editor_toolbar")' >T</div> 
+        <div class="toolbar-button menufont" title={{ _("Toolbar") }} onclick='show_mainmenus("editor_toolbar")' >T</div> 
         <!-- show mur2 menu -->
         <div class="toolbar-button menufont" title={{ _("Menu") }} onclick='show_mainmenus("mur2menu")' >M</div> 
     </div>
@@ -26,10 +26,10 @@
         <div class="editor_title_and_abstract">
             <div class="half-width source_side full-height">
                 <div class="title_and_abstract menufont" id="editor_title" style="display: none;">
-                    Title: <textarea id="title-source" oninput="update_title()"></textarea>
+                    {{ _(Title) }}: <textarea id="title-source" oninput="update_title()"></textarea>
                 </div>
                 <div class="title_and_abstract menufont" id="editor_abstract" style="display: none;">
-                    Abstract: <br />
+                    {{ _(Abstract) }}: <br />
                     <textarea id="abstact-source" onselect="window.selectedTextarea=this" oninput="update_abstract()"></textarea>
                 </div>
             </div>
