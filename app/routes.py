@@ -481,7 +481,8 @@ def exportdata():
                                      '-M', 'title='+article_title+'',
                                      '-M', 'abstract='+article_abstract+'',
                                      '-f', 'latex', 
-                                     '-t',  'context', 
+                                     '-V',  'CJKmainfont=Noto Serif CJK SC', 
+                                     '--pdf-engine=xelatex',
                                      '-s', 
                                      '-o', dirname + 'mur2.pdf'])
             return send_file(os.path.join(dirname, 'mur2.pdf'))
