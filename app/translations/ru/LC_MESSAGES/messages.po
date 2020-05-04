@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-02 21:47+0000\n"
+"POT-Creation-Date: 2020-05-04 09:37+0000\n"
 "PO-Revision-Date: 2020-04-29 20:56+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -44,7 +44,7 @@ msgid "Endnote"
 msgstr ""
 
 #: app/templates/editor.html:19
-msgid "Tollbar"
+msgid "Toolbar"
 msgstr ""
 
 #: app/templates/editor.html:21
@@ -52,7 +52,7 @@ msgid "Menu"
 msgstr ""
 
 #: app/templates/editor.html:53
-msgid "editor, based on Roman Parpalak's <a href='https://upmath.me/'>Upmath</a>"
+msgid "editor"
 msgstr ""
 
 #: app/templates/editor.html:62
@@ -67,12 +67,28 @@ msgstr ""
 msgid "Export"
 msgstr ""
 
-#: app/templates/editor.html:101
+#: app/templates/editor.html:95
+msgid "Clear cokkies"
+msgstr ""
+
+#: app/templates/editor.html:99
+msgid "Generate pdf"
+msgstr ""
+
+#: app/templates/editor.html:102
+msgid "Generate LaTeX"
+msgstr ""
+
+#: app/templates/editor.html:108
+msgid "Help"
+msgstr ""
+
+#: app/templates/editor.html:110
 msgid "Markdown cheat sheet"
 msgstr ""
 
 #: app/templates/editor_toolbar.html:5
-msgid "Close tollbar"
+msgid "Close toolbar"
 msgstr ""
 
 #: app/templates/editor_toolbar.html:7
@@ -138,7 +154,3 @@ msgstr ""
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
 msgstr ""
-
-#~ msgid "editor, based on Roman Parpalak's"
-#~ msgstr ""
-
