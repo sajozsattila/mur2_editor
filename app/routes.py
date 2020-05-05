@@ -112,7 +112,7 @@ from flask import Markup
 @login_required
 def editor(articleid):
     # this is a hack as Javascript can access this 
-    mur2language = request.accept_languages.split(",")[0]
+    mur2language = str(request.accept_languages).split(",")[0]
     # the article
     article = Article(title="", abstract='', markdown='', html="")
     # if it is not a new article
