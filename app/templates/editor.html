@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %} 
-    {% include 'editor_header.html' %}
-
-    <!-- set some mur2 atrtriput which we will use later to send data to the server -->
-    <meta name="article_id" content='{{ article_id }}'>
-    <meta name="texttype" content="article">
-    <meta name="endnotetext" content={{ _("Endnote") }}>
-    
+    {% include 'editor_header.html' %}    
 
 {% endblock %}
 
