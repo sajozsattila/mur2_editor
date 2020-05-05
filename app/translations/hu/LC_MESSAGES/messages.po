@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 09:37+0000\n"
-"PO-Revision-Date: 2020-04-29 20:54+0000\n"
+"POT-Creation-Date: 2020-05-05 03:32+0000\n"
+"PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
 "Language-Team: hu <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: app/templates/base.html:26
 msgid "Home"
-msgstr ""
+msgstr "Kezdőlap"
 
 #: app/templates/base.html:28
 msgid "Login"
@@ -28,7 +28,7 @@ msgstr "Bejelentkezés"
 
 #: app/templates/base.html:30
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: app/templates/base.html:31
 msgid "Media"
@@ -40,15 +40,23 @@ msgstr "Kijelentkezés"
 
 #: app/templates/editor.html:9 app/templates/editor_toolbar.html:38
 msgid "Endnote"
-msgstr "Lábjegyzet"
+msgstr "Végjegyzet"
 
 #: app/templates/editor.html:19
 msgid "Toolbar"
-msgstr ""
+msgstr "Eszköztár"
 
 #: app/templates/editor.html:21
 msgid "Menu"
 msgstr "Menű"
+
+#: app/templates/editor.html:29
+msgid "Title"
+msgstr "Cím"
+
+#: app/templates/editor.html:32
+msgid "Abstract"
+msgstr "Kivonat"
 
 #: app/templates/editor.html:53
 msgid "editor"
@@ -56,15 +64,15 @@ msgstr "szerkesztő"
 
 #: app/templates/editor.html:62
 msgid "Preview format"
-msgstr "Előnézeti formátuma"
+msgstr "Előnézeti formátum"
 
 #: app/templates/editor.html:66
 msgid "preview"
-msgstr "Előnézet"
+msgstr "előnézet"
 
 #: app/templates/editor.html:91
 msgid "Export"
-msgstr "Export"
+msgstr "Exportálás"
 
 #: app/templates/editor.html:95
 msgid "Clear cokkies"
@@ -84,19 +92,19 @@ msgstr "Segítség"
 
 #: app/templates/editor.html:110
 msgid "Markdown cheat sheet"
-msgstr "Markdown példák"
+msgstr "Markdown összefoglaló"
 
 #: app/templates/editor_toolbar.html:5
 msgid "Close toolbar"
-msgstr ""
+msgstr "Eszköztár bezárása"
 
 #: app/templates/editor_toolbar.html:7
 msgid "Upload file"
-msgstr "Fájl feltöltése"
+msgstr "Fájl feltöltés"
 
 #: app/templates/editor_toolbar.html:9
 msgid "Download result"
-msgstr "Előnézet letöltése"
+msgstr "Eredmény letötlése"
 
 #: app/templates/editor_toolbar.html:13
 msgid "Save"
@@ -104,7 +112,7 @@ msgstr "Mentés"
 
 #: app/templates/editor_toolbar.html:16
 msgid "Syntax highlighting"
-msgstr "Szintax kiemelés"
+msgstr "Szintakszis kiemelés"
 
 #: app/templates/editor_toolbar.html:19
 msgid "Hide preview"
@@ -112,11 +120,11 @@ msgstr "Előnézet elrejtése"
 
 #: app/templates/editor_toolbar.html:21
 msgid "Show title and abstract"
-msgstr "Cím és absztrakt megjelenítése"
+msgstr "Cím és kivonat megjelenítése"
 
 #: app/templates/editor_toolbar.html:23
 msgid "Head"
-msgstr "Címsor"
+msgstr "Cimsor"
 
 #: app/templates/editor_toolbar.html:25
 msgid "Italic"
@@ -132,15 +140,15 @@ msgstr "Kép"
 
 #: app/templates/editor_toolbar.html:32
 msgid "Link"
-msgstr "Link"
+msgstr "Hivatkozás"
 
 #: app/templates/editor_toolbar.html:34
 msgid "List"
-msgstr "Felsorolás"
+msgstr "Lista"
 
 #: app/templates/editor_toolbar.html:36
 msgid "Numbered list"
-msgstr "Számozott felsorolás"
+msgstr "Számozott lista"
 
 #: app/templates/editor_toolbar.html:40
 msgid "Table"
@@ -152,6 +160,5 @@ msgstr "Kód"
 
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
-msgstr "Oldal menű megjelenítése"
-
+msgstr "Oldalmenű megnyítása"
 
