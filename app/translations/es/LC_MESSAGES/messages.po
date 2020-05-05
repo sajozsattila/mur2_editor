@@ -20,148 +20,146 @@ msgstr ""
 
 #: app/templates/base.html:26
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: app/templates/base.html:28
 msgid "Login"
-msgstr ""
+msgstr "Iniciar sesión"
 
 #: app/templates/base.html:30
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #: app/templates/base.html:31
 msgid "Media"
-msgstr ""
+msgstr "Archivos multimedia"
 
 #: app/templates/base.html:32
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #: app/templates/editor.html:13
 msgid "Toolbar"
-msgstr ""
+msgstr "Barra de herramientas"
 
 #: app/templates/editor.html:15
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 #: app/templates/editor.html:23
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: app/templates/editor.html:26
 msgid "Abstract"
-msgstr ""
+msgstr "Resumen"
 
 #: app/templates/editor.html:47
 msgid "editor"
-msgstr ""
+msgstr "editor"
 
 #: app/templates/editor.html:56
 msgid "Preview format"
-msgstr ""
+msgstr "Formato de vista previa"
 
 #: app/templates/editor.html:60
 msgid "preview"
-msgstr ""
+msgstr "Vista previa"
 
 #: app/templates/editor.html:85
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: app/templates/editor.html:89
 msgid "Clear cookies"
-msgstr ""
+msgstr "Borrar cookies"
 
 #: app/templates/editor.html:93
 msgid "Generate pdf"
-msgstr ""
+msgstr "Generar pdf"
 
 #: app/templates/editor.html:96
 msgid "Generate LaTeX"
-msgstr ""
+msgstr "Generar LaTeX"
 
 #: app/templates/editor.html:102
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: app/templates/editor.html:104
 msgid "Markdown cheat sheet"
-msgstr ""
+msgstr "Guía de referencia rápida"
 
 #: app/templates/editor_header.html:18 app/templates/editor_toolbar.html:38
 msgid "Endnote"
-msgstr ""
+msgstr "Nota"
 
 #: app/templates/editor_toolbar.html:5
 msgid "Close toolbar"
-msgstr ""
+msgstr "Cerrar la barra de herramientas"
 
 #: app/templates/editor_toolbar.html:7
 msgid "Upload file"
-msgstr ""
+msgstr "Subir archivo"
 
 #: app/templates/editor_toolbar.html:9
 msgid "Download result"
-msgstr ""
+msgstr "Resultado de la descarga"
 
 #: app/templates/editor_toolbar.html:13
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: app/templates/editor_toolbar.html:16
 msgid "Syntax highlighting"
-msgstr ""
+msgstr "Coloración sintáctica"
 
 #: app/templates/editor_toolbar.html:19
 msgid "Hide preview"
-msgstr ""
+msgstr "Ocultar vista previa"
 
 #: app/templates/editor_toolbar.html:21
 msgid "Show title and abstract"
-msgstr ""
+msgstr "Mostrar título y resumen"
 
 #: app/templates/editor_toolbar.html:23
 msgid "Head"
-msgstr ""
+msgstr "Encabezamiento"
 
 #: app/templates/editor_toolbar.html:25
 msgid "Italic"
-msgstr ""
+msgstr "Cursiva"
 
 #: app/templates/editor_toolbar.html:27
 msgid "Strong"
-msgstr ""
+msgstr "Negrita"
 
 #: app/templates/editor_toolbar.html:30
 msgid "Picture"
-msgstr ""
+msgstr "Imagen"
 
 #: app/templates/editor_toolbar.html:32
 msgid "Link"
-msgstr ""
+msgstr "Enlace"
 
 #: app/templates/editor_toolbar.html:34
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: app/templates/editor_toolbar.html:36
 msgid "Numbered list"
-msgstr ""
+msgstr "Lista numerada"
 
 #: app/templates/editor_toolbar.html:40
 msgid "Table"
-msgstr ""
+msgstr "Tabla"
 
 #: app/templates/editor_toolbar.html:44
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
-msgstr ""
+msgstr "Mostrar menú lateral"
 
-#~ msgid "Clear cokkies"
-#~ msgstr ""
 
