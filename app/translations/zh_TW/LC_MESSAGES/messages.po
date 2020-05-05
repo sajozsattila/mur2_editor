@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-05 03:32+0000\n"
+"POT-Creation-Date: 2020-05-05 19:09+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -38,60 +38,60 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/templates/editor.html:9 app/templates/editor_toolbar.html:38
-msgid "Endnote"
-msgstr ""
-
-#: app/templates/editor.html:19
+#: app/templates/editor.html:13
 msgid "Toolbar"
 msgstr ""
 
-#: app/templates/editor.html:21
+#: app/templates/editor.html:15
 msgid "Menu"
 msgstr ""
 
-#: app/templates/editor.html:29
+#: app/templates/editor.html:23
 msgid "Title"
 msgstr ""
 
-#: app/templates/editor.html:32
+#: app/templates/editor.html:26
 msgid "Abstract"
 msgstr ""
 
-#: app/templates/editor.html:53
+#: app/templates/editor.html:47
 msgid "editor"
 msgstr ""
 
-#: app/templates/editor.html:62
+#: app/templates/editor.html:56
 msgid "Preview format"
 msgstr ""
 
-#: app/templates/editor.html:66
+#: app/templates/editor.html:60
 msgid "preview"
 msgstr ""
 
-#: app/templates/editor.html:91
+#: app/templates/editor.html:85
 msgid "Export"
 msgstr ""
 
-#: app/templates/editor.html:95
-msgid "Clear cokkies"
+#: app/templates/editor.html:89
+msgid "Clear cookies"
 msgstr ""
 
-#: app/templates/editor.html:99
+#: app/templates/editor.html:93
 msgid "Generate pdf"
 msgstr ""
 
-#: app/templates/editor.html:102
+#: app/templates/editor.html:96
 msgid "Generate LaTeX"
 msgstr ""
 
-#: app/templates/editor.html:108
+#: app/templates/editor.html:102
 msgid "Help"
 msgstr ""
 
-#: app/templates/editor.html:110
+#: app/templates/editor.html:104
 msgid "Markdown cheat sheet"
+msgstr ""
+
+#: app/templates/editor_header.html:18 app/templates/editor_toolbar.html:38
+msgid "Endnote"
 msgstr ""
 
 #: app/templates/editor_toolbar.html:5
@@ -161,4 +161,7 @@ msgstr ""
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
 msgstr ""
+
+#~ msgid "Clear cokkies"
+#~ msgstr ""
 
