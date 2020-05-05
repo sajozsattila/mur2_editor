@@ -1,33 +1,43 @@
 
+# Overview 
 
+The aim of this project to provide a lightweight editor for long-form journalist and academic writers. An editor which help them to concentrate on the *most important* part of the publication: *the text*.  
 
-## Editor
+Most of the part of the editor is written in Javascript and it works in browsers, except math equations and specific export file generation. The editor stores your text in the browser to prevent the loss of your work in case of software or hardware failures. It is also secure as your work store on your computer.   
 
-This is a lightweight online [Markdown](https://en.wikipedia.org/wiki/Markdown) editor with [<img src="http://tex.s2cms.ru/svg/%5CLaTeX%20" alt="\LaTeX " />](https://en.wikipedia.org/wiki/LaTeX) support.  You can try a live version on the [<img src="http://tex.s2cms.ru/svg/%5Cmu%20r%5E2" alt="\mu r^2" /> project webpage](http://mur2.co.uk/editor). 
+## Text formating
+The text formatting is based on the Markdown syntax with a focus of academic usability. So footnotes^[like this] and math equations and diagrams are supported. You can insert inline; like this: $$\mu r ^2$$; and block math code also: 
 
-The aim is an editor which can be used to write structural documents which able to handle LaTeX math formula and endnotes. Also, one which can be used to generate other output: pdf, LaTeX and direct export to different blog engines. So far the [Wordpress.com](https://wordpress.com) export is supported with cookies.
+$$ \text{Euler's identity: } e^{i \pi } + 1 = 0 $$
 
-We tried to make a minimalist design which helps to concentrate on the writing:
+## Export formating
+You can export your work in:
++ PDF
++ HTML
++ direct import to Wordpress.com
++ $$\LaTeX$$
 
-<img src="http://mur2.co.uk/_uploads/photos/attila/mur1.png" width="1000" height="200" />
+## Internationalization and Localization 
 
-However, if you want you can use more more rich visualisation. On the left top side, click on the ![kep](http://mur2.co.uk/_uploads/photos/attila/mur2_toolbar_bottom.png),  you can open up the editor toolbar:
+The internationalisation is important for us, which is supported on multiple levels. The generated $$\LaTeX$$ and PDF documents are fully localised based on your browser language settings. There is also some level of localisation support in the generated HTML. 
 
-![<img src="http://tex.s2cms.ru/svg/%20%5Cmu%20r%5E2%20" alt=" \mu r^2 " /> toolbar](http://mur2.co.uk/_uploads/photos/attila/mur2_toolbar.png)
+## Title and Abstract 
+The editor has separated fields for the title and abstract. With this, the formated text can match with the academical standards and also help to correctly set up the fields in a direct blog publishing. 
 
-Here you can switch in live preview and Markdown syntax highlighting also:
+# Editor screen 
 
-![<img src="http://tex.s2cms.ru/svg/%20%5Cmu%20r%5E2%20" alt=" \mu r^2 " /> preview](http://mur2.co.uk/_uploads/photos/attila/mur2_preview.png)
+There is two possible usage o the editor: Focus mode and Preview mode. 
 
-You can save your work locally on a different format and also it is possible to export directly in a Wordpress.com. 
+## Focus mode
+In Focus mode, every possible distraction is switched off and just the current sentence is highlighted: 
 
-The core of the editor is written in Javascript and based on Roman Parpalak's [Upmath](https://upmath.me/) code, however, as you can see we add plenty of new functionality. As it is Javascript it is working on the client-side mainly, the only exception is the <img src="http://tex.s2cms.ru/svg/%5CLaTeX%20" alt="\LaTeX " /> rendering, which is happening on Parpalak [iUpmath](https://i.upmath.me/) server.<a href="#myfootnotea_ka8k8" name="myfootnotes_ka8k8"><sup>1</sup></a>  
+![Focus mode](http://mur2.co.uk/_uploads/photos/attila/mur2_focuse_mode.png "Focus mode")
 
+## Preview mode
+In preview mode you have a live HTML view on the right side of the screen, with Markdown highlighting on the input field:
 
-# <img src="http://mur2.co.uk/static/images/Mur2_logo_gfsartemisia_it.png" width="90" height="80" />
+![Preview mode](http://mur2.co.uk/_uploads/photos/attila/mur2_preview.png "preview mode")
 
-This editor is part of the <img src="http://tex.s2cms.ru/svg/%20%5Cmu%20r%5E2%20" alt=" \mu r^2 " /> project. 
-# Endnotes
+There is also a WYSIWYG style toolbar which provides very handy formatting buttons and shortcuts:
+![Toolbar](http://mur2.co.uk/_uploads/photos/attila/mur2_toolbar.png "toolbar")
 
-
-<sup id="myfootnotea_ka8k8">[1](#myfootnotes_ka8k8)</sup> -- We are planning to move this rendering to our server, in the near future.

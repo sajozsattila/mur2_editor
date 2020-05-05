@@ -222,17 +222,35 @@ test.. test... test..... test?..... test!....
 
 #  Internationalization and Localization 
 
-The  Internationalization and Localization important for us, so you can use any UTF-8 characters, like:
+The  Internationalization and Localization important for us and it is happening on multiple levels. 
+
+## Input
+
+The preview and HTML rendering is UTF-8 based, so you can type any character:
 
 《水滸傳》，是以白話文寫成的章回小說，列為中國古典四大文學名著之一，六才子書之一。其內容講述北宋山東梁山泊以宋江為首的梁山好漢，由被逼落草，發展壯大，直至受到朝廷招安，東征西討的歷程。
 
-Part of the Localization the title of the Footnote should be set depending on your language browser settings (if we have a translation to your language if not just ask and we will make :-)
+## Editor frontend
 
-The internationalization a wide task, so we always looking for help. 
+We constantly working on Internationalization of the editor menu and other settings, like the label of the footnote in the preview. 
+If we miss something drop us an email, and we include. 
+
+## Generated export
+
+The HTML standard is improving with the time, but honestly, it is still far from the real typography standard. This is why we like to use LaTeX. There is where the bellow tasks are handled:
++ Loading the language-specific hyphenation patterns and other typographical conventions. Babel provides basic line breaking for CJK scripts, as well as non-standard hyphenation, like “ff” → “ff-f”, repeated hyphens, and ranked rules.
++ Setting the script and language tags of the current font, if possible. 
++ Translating document labels (like “chapter”, “figure”, “bibliography”).
++ Formatting dates according to language-specific conventions.
++ Formatting numbers for languages that have their own numbering system.
+
+The localization set by the user browser Accept-Language. 
+
+The $$\mu r^2 $$ use LaTeX to generate the Pdf output, so this settings are same in both format.
 
 # Different preview format and saving you work
 
-There are multiple preview format which you can use on the left side. To switch between them click on the <span class="fas fa-bars"></span> in the toolbar menu right side. It will open up the side menu:
+There is multiple preview format which you can use on the left side. To switch between them click on the <span class="fas fa-bars"></span> in the toolbar menu right side. It will open up the side menu:
 
 There in the *Preview* section you can switch between the supported formats. They are:
 
