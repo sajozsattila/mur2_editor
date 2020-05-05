@@ -111,6 +111,9 @@ from flask import Markup
 @app.route('/edit/<articleid>')
 @login_required
 def editor(articleid):
+    # this is a hack as Javascript can access this 
+    mur2language = request.accept_languages.split(",")[0]
+    # the article
     article = Article(title="", abstract='', markdown='', html="")
     # if it is not a new article
     if int(articleid) != -1:
@@ -135,17 +138,20 @@ def editor(articleid):
                            article_markdown=Markup(article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_title = Markup(article.title.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'"))
-                           , article_id = articleid)
+                           , article_id = articleid, language=mur2language)
 
 # markdown editor without login
 @app.route('/editor', methods=['GET', 'POST'])
 def free_editor():
+    # this is a hack as Javascript can access this 
+    mur2language = str(request.accept_languages).split(",")[0]
+    # the article
     article = Article(title="", abstract='', markdown='', html="")
     return render_template('editor.html', 
                            article_markdown=Markup(article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_title = Markup(article.title.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'"))
-                           , article_id = -2)
+                           , article_id = -2, language=mur2language)
 
 
 # save markdown for article
@@ -344,7 +350,7 @@ def  make_pandoc_md(mdtxt):
             
             
             return mdtxt
-def make_latex(mdtxt, title, abstract):
+def make_latex(mdtxt, title, abstract, language):
             mdtxt = make_pandoc_md(mdtxt)
             title = make_pandoc_md(title)
             abstract = make_pandoc_md(abstract)
@@ -368,6 +374,8 @@ def make_latex(mdtxt, title, abstract):
                                      '-M', 'abstract='+abstract,
                                      '-f', 'markdown', 
                                      '-t',  'latex', 
+                                     '-V', 'lang='+language,
+                                     '-V',  'CJKmainfont=Noto Serif CJK SC',
                                      '-s',                                      
                                      '-o', dirname+'mur2.tex'])
             return dirname
@@ -468,13 +476,14 @@ def exportdata():
             article_title = (request.form['article_title'])
             article_abstract = (request.form['article_abstract']) 
             endnotetext = (request.form['endnotetext']) 
+            language = (request.form['language']) 
 
             # dirname = make_latex(mdtxt, article_title, article_abstract)
             mdtxt = make_pandoc_md(mdtxt)
             article_title = make_pandoc_md(article_title)
             article_abstract = make_pandoc_md(article_abstract)
             
-            dirname = make_latex(mdtxt, article_title, article_abstract)
+            dirname = make_latex(mdtxt, article_title, article_abstract, language)
             
             # make pdf
             result = run_os_command(['/usr/bin/pandoc', 
@@ -483,6 +492,7 @@ def exportdata():
                                      '-M', 'abstract='+article_abstract+'',
                                      '-f', 'latex', 
                                      '-V',  'CJKmainfont=Noto Serif CJK SC', 
+                                     '-V', 'lang='+language,
                                      '--pdf-engine=xelatex',
                                      '-s', 
                                      '-o', dirname + 'mur2.pdf'])
@@ -497,7 +507,7 @@ def exportdata():
             article_title = (request.form['article_title'])
             article_abstract = (request.form['article_abstract']) 
             
-            dirname = make_latex(mdtxt, article_title, article_abstract)
+            dirname = make_latex(mdtxt, article_title, article_abstract, language)
 
             # clear up tmp files
             # ???

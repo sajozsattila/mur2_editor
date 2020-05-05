@@ -350,6 +350,7 @@ async function generate_from_md(destination) {
     var article_abstract = document.getElementById('abstact-source').value;
     var mddata = new Blob([parserCollection.getSource()], {type: 'text/markdown;charset=utf-8'});
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
+    var language = document.querySelector('meta[name="mur2language"]').content
     var fd = new FormData();
     
     var msgbox = document.getElementById("editor_msg")
@@ -361,6 +362,7 @@ async function generate_from_md(destination) {
     fd.append('article_title', article_title);
     fd.append('article_abstract', article_abstract);
     fd.append('endnotetext', endnotetext);
+    fd.append('language', language);
     var xhr = new XMLHttpRequest();
     /* need to receive file back */
     xhr.responseType = 'blob';
