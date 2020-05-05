@@ -20,145 +20,145 @@ msgstr ""
 
 #: app/templates/base.html:26
 msgid "Home"
-msgstr ""
+msgstr "主页"
 
 #: app/templates/base.html:28
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
 #: app/templates/base.html:30
 msgid "Profile"
-msgstr ""
+msgstr "用户资料"
 
 #: app/templates/base.html:31
 msgid "Media"
-msgstr ""
+msgstr "媒体"
 
 #: app/templates/base.html:32
 msgid "Logout"
-msgstr ""
+msgstr "退出"
 
 #: app/templates/editor.html:9 app/templates/editor_toolbar.html:38
 msgid "Endnote"
-msgstr ""
+msgstr "尾注"
 
 #: app/templates/editor.html:19
 msgid "Toolbar"
-msgstr ""
+msgstr "工具栏"
 
 #: app/templates/editor.html:21
 msgid "Menu"
-msgstr ""
+msgstr "菜单"
 
 #: app/templates/editor.html:29
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #: app/templates/editor.html:32
 msgid "Abstract"
-msgstr ""
+msgstr "摘要"
 
 #: app/templates/editor.html:53
 msgid "editor"
-msgstr ""
+msgstr "编辑"
 
 #: app/templates/editor.html:62
 msgid "Preview format"
-msgstr ""
+msgstr "预览格式"
 
 #: app/templates/editor.html:66
 msgid "preview"
-msgstr ""
+msgstr "预览"
 
 #: app/templates/editor.html:91
 msgid "Export"
-msgstr ""
+msgstr "输出"
 
 #: app/templates/editor.html:95
 msgid "Clear cokkies"
-msgstr ""
+msgstr "删除插件"
 
 #: app/templates/editor.html:99
 msgid "Generate pdf"
-msgstr ""
+msgstr "生成PDF"
 
 #: app/templates/editor.html:102
 msgid "Generate LaTeX"
-msgstr ""
+msgstr "生成LaTex"
 
 #: app/templates/editor.html:108
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: app/templates/editor.html:110
 msgid "Markdown cheat sheet"
-msgstr ""
+msgstr "速查表"
 
 #: app/templates/editor_toolbar.html:5
 msgid "Close toolbar"
-msgstr ""
+msgstr "关闭工具栏"
 
 #: app/templates/editor_toolbar.html:7
 msgid "Upload file"
-msgstr ""
+msgstr "上传文件"
 
 #: app/templates/editor_toolbar.html:9
 msgid "Download result"
-msgstr ""
+msgstr "下载文件"
 
 #: app/templates/editor_toolbar.html:13
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: app/templates/editor_toolbar.html:16
 msgid "Syntax highlighting"
-msgstr ""
+msgstr "语法凸显"
 
 #: app/templates/editor_toolbar.html:19
 msgid "Hide preview"
-msgstr ""
+msgstr "隐藏预览"
 
 #: app/templates/editor_toolbar.html:21
 msgid "Show title and abstract"
-msgstr ""
+msgstr "显示标题和摘要"
 
 #: app/templates/editor_toolbar.html:23
 msgid "Head"
-msgstr ""
+msgstr "文件头"
 
 #: app/templates/editor_toolbar.html:25
 msgid "Italic"
-msgstr ""
+msgstr "斜体"
 
 #: app/templates/editor_toolbar.html:27
 msgid "Strong"
-msgstr ""
+msgstr "黑体"
 
 #: app/templates/editor_toolbar.html:30
 msgid "Picture"
-msgstr ""
+msgstr "图片"
 
 #: app/templates/editor_toolbar.html:32
 msgid "Link"
-msgstr ""
+msgstr "链接"
 
 #: app/templates/editor_toolbar.html:34
 msgid "List"
-msgstr ""
+msgstr "列表"
 
 #: app/templates/editor_toolbar.html:36
 msgid "Numbered list"
-msgstr ""
+msgstr "标号列表"
 
 #: app/templates/editor_toolbar.html:40
 msgid "Table"
-msgstr ""
+msgstr "桌面"
 
 #: app/templates/editor_toolbar.html:44
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
-msgstr ""
+msgstr "显示侧菜单"
 
