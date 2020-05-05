@@ -147,8 +147,12 @@ def free_editor():
     mur2language = str(request.accept_languages).split(",")[0]
     # the article
     article = Article(title="", abstract='', markdown='', html="")
+    # fix the article content to a demo text 
+    with current_app.open_resource("static/demo.md", 'r') as file:  
+        demo = file.read() 
+
     return render_template('editor.html', 
-                           article_markdown=Markup(article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
+                           article_markdown=Markup(demo.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_title = Markup(article.title.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'"))
                            , article_id = -2, language=mur2language)
