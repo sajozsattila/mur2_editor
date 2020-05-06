@@ -134,11 +134,18 @@ def editor(articleid):
             flash('You can not edit this article')
             return redirect(url_for('reader', article_id=article.id) )
     
+    wordpresslogin = False
+    if 'mur2_wpc_accesstoken' in request.cookies:
+        wordpresslogin = True
+    
     return render_template('editor.html', 
                            article_markdown=Markup(article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_title = Markup(article.title.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
-                           article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'"))
-                           , article_id = articleid, language=mur2language)
+                           article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")), 
+                           article_id = articleid, 
+                           language=mur2language,
+                           wordpresslogin = wordpresslogin
+                          )
 
 # markdown editor without login
 @app.route('/editor', methods=['GET', 'POST'])
@@ -150,12 +157,20 @@ def free_editor():
     # fix the article content to a demo text 
     with current_app.open_resource("static/demo.md", 'r') as file:  
         demo = file.read() 
+    
+    wordpresslogin = False
+    if 'mur2_wpc_accesstoken' in request.cookies:
+        wordpresslogin = True
+        
 
     return render_template('editor.html', 
                            article_markdown=Markup(demo.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
                            article_title = Markup(article.title.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")),
-                           article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'"))
-                           , article_id = -2, language=mur2language)
+                           article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8').replace("'", "\\\'")), 
+                           article_id = -2, 
+                           language=mur2language,
+                           wordpresslogin = wordpresslogin
+                          )
 
 
 # save markdown for article
@@ -389,89 +404,18 @@ def exportdata():
     if request.method == 'POST':
         destination = request.form['destination']
         # save to Wordpress.com
-        if destination == 'wp':    
-            # read the data which was sent from the editor.js
-            htmltxt = request.files['htmlfile'].read()
-            # some encoding 
-            htmltxt = htmltxt.decode('utf-8')
-            # replace the local images addres to Mur2 addresses
-            htmltxt = re.sub('<img src="/','<img src="'+current_app.config['SELF_ADDRESS']+'/',htmltxt)
-            
-            article_title = (request.form['article_title'])
-            article_abstract = (request.form['article_abstract']) 
+        if destination == 'wp':   
             article_id = (request.form['article_id'])
-            # wpc settings
-            wpc_username = request.form['wpc_username']
-            wpc_password = request.form['wpc_password']
-            wpc_home = request.form['wpc_home']
-            
-            # save to Wordpress.com
-            s = requests.Session()
-            # authentication    
-            s = requests.Session()
-            authaddress = "https://public-api.wordpress.com/oauth2/token"
-            authentication = {
-                'client_id': current_app.config['APP_WORDPRESSCOM_ID'],
-                'client_secret': current_app.config['APP_WORDPRESSCOM_PASSWORD'],
-                'grant_type': 'password',
-                'username': wpc_username,
-                'password': wpc_password 
-            }
-            r = s.post(authaddress, authentication)
-            
-            if r.status_code < 200 and r.status_code > 299:
-                if 'error_description' in msg.keys():
-                    return json.loads(r.content)['error_description'], r.status_code
-                else:
-                    print(json.loads(r.content))
-                    return "unknow error", r.status_code
-                
-            access_token = json.loads(r.content)['access_token']
+            wpcom_id = (request.form['wpcom_id'])
 
-            # publish the Article
-            # https://developer.wordpress.org/rest-api/reference/posts/#create-a-post
-            wprestapiurl = "https://public-api.wordpress.com/wp/v2/sites/"
-            url = wprestapiurl+wpc_home
-            post = {'date': datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
-                    'title': article_title,
-                    'status': 'private',
-                    'content': htmltxt,
-                    'excerpt': article_abstract,
-                    'format': 'standard'
-                   }
-            headers = {'Authorization': 'Bearer ' + access_token}
-            
-            # check it is a new article or we aready published
             if article_id != "-2" :
                 a =  Article.query.filter_by(id=article_id).first_or_404()
+                # new article
                 if a.wpcom_id is None:           
-                    print("uj")
-                    # new article
-                    r = s.post(url + '/posts', headers=headers, json=post)
-
-                    # update DB
-                    print(json.loads(r.content))
-                    a.wpcom_id = json.loads(r.content)['id']
+                    print("uj")                    
+                    a.wpcom_id = wpcom_id
                     db.session.commit()
-                else:
-                    # new article
-                    print("update")
-                    r = s.post(url + '/posts/'+str(a.wpcom_id), headers=headers, json=post)
-            else:
-                # publish withour login
-                r = s.post(url + '/posts', headers=headers, json=post)
-                print(r.status_code)
-                if r.status_code >= 200 and r.status_code <= 299:
-                    return jsonify({"result":"OK", "address": json.loads(r.content)['link']})  
-                else:
-                    msg = json.loads(r.content)
-                    if 'error_description' in msg.keys():
-                        return msg['error_description'], r.status_code
-                    elif "message" in msg.keys():
-                        return msg['message'], r.status_code
-                    else:
-                        print(json.loads(r.content))
-                        return "unknow error", r.status_code
+            
         elif destination == 'pdf': 
             # read the data which was sent from the editor.js
             mdtxt = request.files['mdfile'].read()

@@ -136,7 +136,6 @@ function TextareaDecorator(textarea, parser) {
         }
 
         // add in modified nodes
-        console.log(firstDiff+":"+lastDiffNew);
         for (var insertionPt = nodes[firstDiff] || null; firstDiff <= lastDiffNew; firstDiff++) {
             var span = document.createElement("span");
             token = tokens[firstDiff];
