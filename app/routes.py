@@ -404,9 +404,11 @@ def exportdata():
     if request.method == 'POST':
         destination = request.form['destination']
         # save to Wordpress.com
-        if destination == 'wp':   
+        if destination == 'wp':  
+            print("hello")
             article_id = (request.form['article_id'])
             wpcom_id = (request.form['wpcom_id'])
+            print("hello",article_id, wpcom_id  )
 
             if article_id != "-2" :
                 a =  Article.query.filter_by(id=article_id).first_or_404()
