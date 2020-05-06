@@ -300,38 +300,64 @@ function upload_source() {
     // Fire click on file input
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
-
-/* comit in Wordpress.com by cokkies */
-function wordpress_on_fly() {
     
-    username = checkCookie("wpc_username", "Wordpress.com username");
-    password = checkCookie("wpc_password", "Wordpress.com username");
-    address = checkCookie("wpc_home", "Wordpress.com sitename");
+
+/* commit in Wordpress.com by cokkies */
+async function wordpress_on_fly() {
+    var msgbox = document.getElementById("editor_msg")
     
     var texttype = document.querySelector('meta[name="texttype"]').content;
     if (texttype.trim() == 'article') {
+        // get cookies
+        var access_token = getCookie("mur2_wpc_accesstoken");
+        var address = getCookie("mur2_wpc_sideid");
+        if ( access_token === "" ) {
+            msgbox.style.color = "red";
+            msgbox.innerHTML = "Error: You do not loged in in Wordpress.com";
+        };
+    
+        // get the Article data
         var htmldata = new Blob([parserCollection.getDisplayedResult()], {
             type: 'text/html;charset=utf-8'
         });
+        var htmltext = await htmldata.text();    
         var article_title = document.getElementById('title-source').value;
-        var article_abstract = document.getElementById('abstact-source').value;
-        var article_id = document.querySelector('meta[name="article_id"]').content
+        var article_abstract = document.getElementById('abstact-source').value;   
+    
+        // publish in Wordpress.com
         var fd = new FormData();
-        fd.append("htmlfile", htmldata, "article_text.html");
-        fd.append("destination", "wp");
-        fd.append('article_title', article_title);
-        fd.append('article_abstract', article_abstract);
-        fd.append('article_id', article_id);
-        // Wordpress com settings
-        fd.append('wpc_username', username);
-        fd.append('wpc_password', password);
-        fd.append('wpc_home', address);
+        fd.append('title', article_title  );
+        fd.append('status', 'private');
+        fd.append('content',  htmltext );
+        fd.append('excerpt', article_abstract);
+        fd.append('format', 'standard');
+        console.log(htmldata);
+                
         var xhr = new XMLHttpRequest();
+        xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/'+address+'/posts', true);      
+        xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent( access_token ) )
+        xhr.send(fd);
+        xhr.onload = function() {
+            if (xhr.status != 201) { // analyze HTTP status of the response
+                msgbox.style.color = "red";
+                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response  ;
+            } else { 
+                var wc2answer = JSON.parse(xhr.response);
+                msgbox.style.color = "green";
+                msgbox.innerHTML = "Published on " + wc2answer.link  ; 
+            }
+        };
+    
+        // save the wordpressid if it is not an anonimus article    
+        fd = new FormData();    
+        var article_id = document.querySelector('meta[name="article_id"]').content
+        fd.append('article_id', article_id);
+        fd.append("destination", "wp");
+        xhr = new XMLHttpRequest();
         xhr.open('post', '/export_data', true);
         xhr.send(fd);
-        
         alarming(xhr, "Published on Wordpress.com!");
-    };    
+    }
 }
 
 /* make focus mode on last sentence   */

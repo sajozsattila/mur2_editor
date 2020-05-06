@@ -3,7 +3,7 @@ function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   var expires = "expires="+d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=Lax";
 }
 function getCookie(cname) {
   var name = cname + "=";
@@ -39,9 +39,10 @@ function checkCookie(cname, valuename) {
 
 function clear_cookies(cname) {
     if ( cname === "wpc" ) {
-        setCookie('wpc_username', 'value', 0);
-        setCookie('wpc_password', 'value', 0);
-        setCookie('wpc_home', 'value', 0);
+        setCookie('mur2_wpc_accesstoken', 'value', 0);
+        setCookie('mur2_wpc_sideid', 'value', 0);
+        // reload the page to fresh the buttom 
+        window.location.reload(false); 
     }
 }
 

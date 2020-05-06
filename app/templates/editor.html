@@ -83,11 +83,18 @@
         </div>
         <div  class="full-width">
             <div class="full-width">{{ _("Export") }}</div>
-            <div class="full-width">
+            <div class="full-width">                
+                </div>
+            {% if (    wordpresslogin ) %}
                 <div class="fab fa-wordpress-simple toolbar-button"  title="Export to Wordpress.com" onclick="wordpress_on_fly()">
                 </div>
                 <div class="toolbar-button fas fa-times"  title={{ _("Clear cookies") }} onclick='clear_cookies("wpc")'>
                 </div>
+            {% else %}
+                <div>
+                    <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/editor" class="authorize"><img src="//s0.wp.com/i/wpcc-button.png" width="231"></a>
+                </div>            
+            {% endif %}    
             </div>
             <div class="full-width">
                 <div class="toolbar-button fas fa-file-pdf" title={{ _("Generate pdf") }} onclick="generate_from_md('pdf')"></div>                                
@@ -130,6 +137,7 @@
             }
         }
     </script>
+            
     <!-- scripts -->
     <script src="/static/js/editor/markdown-it.min.js"></script>
     <script src="/static/js/editor/markdown-it-sub.min.js"></script>
@@ -145,5 +153,25 @@
     <script src="/static/js/editor/parser.js"></script>
     <script src="/static/js/editor/editor.js"></script>
     <script src="/static/js/mur2_editor.js"></script>
+    <script type="text/javascript">
+        // retrieve the access token from the URL
+        var params = window.location.hash.substr(1),
+            token = params.substr( params.indexOf( 'access_token' ) )
+                   .split( '&' )[0]
+                   .split( '=' )[1],
+            siteID = params.substr( params.indexOf( 'site_id' ) )
+                     .split( '&' )[0]
+                     .split( '=' )[1];
+
+        if ( token && siteID ) {            
+            // save in cookie
+            var value = getCookie("mur2_wpc_accesstoken");
+            if (value == "") {
+                setCookie("mur2_wpc_accesstoken", token, 365);
+                setCookie("mur2_wpc_sideid", siteID, 365);
+                window.location = "http://mur2.co.uk/editor";
+            }
+        }
+    </script>
 
 {% endblock %}
