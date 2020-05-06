@@ -26,6 +26,10 @@ body {
     width: 100%;
 }
 
+.normalfontweight {
+    font-weight: 100;
+}
+
 .topmenu{
     padding: 16px;
     display: flex;    
@@ -52,6 +56,7 @@ a, a:link, #mur2menu a:visited  {
 
 #mur2menu {
     display: flex;
+    font-weight: 600;
 }
 
 #mur2menu a, #mur2menu a:link, #mur2menu a:visited  {
@@ -60,8 +65,7 @@ a, a:link, #mur2menu a:visited  {
 
 .menufont {
     font-size: 18px;
-    font-family: 'Josefin Sans';
-    font-weight: 600;
+    font-family: 'Josefin Sans'; 
 }
 
 #foot {

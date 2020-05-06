@@ -301,6 +301,18 @@ function upload_source() {
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
     
+async function wordpress2(link, id) {
+    // save the wordpressid if it is not an anonimus article    
+        fd = new FormData();    
+        var article_id = document.querySelector('meta[name="article_id"]').content
+        fd.append('article_id', article_id);
+        fd.append("destination", "wp");
+        fd.append("wpcom_id", id)
+        xhr = new XMLHttpRequest();
+        xhr.open('post', '/export_data', true);
+        xhr.send(fd);
+        alarming(xhr, "Published on "+link);
+}
 
 /* commit in Wordpress.com by cokkies */
 async function wordpress_on_fly() {
@@ -315,6 +327,12 @@ async function wordpress_on_fly() {
             msgbox.style.color = "red";
             msgbox.innerHTML = "Error: You do not loged in in Wordpress.com";
         };
+        
+        // if it is not a new article get the id
+        var article_id = document.querySelector('meta[name="article_id"]').content
+        // ???
+        
+        
     
         // get the Article data
         var htmldata = new Blob([parserCollection.getDisplayedResult()], {
@@ -345,18 +363,12 @@ async function wordpress_on_fly() {
                 var wc2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
                 msgbox.innerHTML = "Published on " + wc2answer.link  ; 
+                
+                wordpress2(wc2answer.link, wc2answer.id);
             }
         };
     
-        // save the wordpressid if it is not an anonimus article    
-        fd = new FormData();    
-        var article_id = document.querySelector('meta[name="article_id"]').content
-        fd.append('article_id', article_id);
-        fd.append("destination", "wp");
-        xhr = new XMLHttpRequest();
-        xhr.open('post', '/export_data', true);
-        xhr.send(fd);
-        alarming(xhr, "Published on Wordpress.com!");
+        
     }
 }
 

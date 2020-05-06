@@ -48,7 +48,7 @@
     </div> <!-- container-block -->
 
     <!-- side menu -->
-    <div id="side_menu" style="display:none">
+    <div id="side_menu" class="menufont" style="display:none">
         <button class="toolbar-button" title="Show side menu" aria-label="Show side menu" onclick="show_side_menu()"                >
             <div class="fas fa-times"></div>
         </button>
@@ -56,27 +56,27 @@
             <div class="full-width">{{ _("Preview format") }}</div>
             <div class="full-width">
                     <input class="control-input" id="id_html" type="radio" name="source_type" checked="checked" >
-                    <label class="control-item" for="id_html" title="Example of rendered HTML" data-result-as="html">
+                    <label class="control-item " for="id_html" title="Example of rendered HTML" data-result-as="html">
                         {{ _("preview") }}
                     </label>
                     <input class="control-input" id="id_src" type="radio" name="source_type" >
-                    <label class="control-item" for="id_src" title="HTML with img-equations" data-result-as="src" >
+                    <label class="control-item " for="id_src" title="HTML with img-equations" data-result-as="src" >
                         html
                     </label>                    
                     <input class="control-input" id="id_htmltex" type="radio" name="source_type" >
-                    <label class="control-item" for="id_htmltex" title="HTML with raw LaTeX equations" data-result-as="htmltex" >
+                    <label class="control-item " for="id_htmltex" title="HTML with raw LaTeX equations" data-result-as="htmltex" >
                         html+LaTeX
                     </label>            
                     <input class="control-input" id="id_md" type="radio" name="source_type" >
-                    <label class="control-item" for="id_md" title="Markdown with img-equations" data-result-as="md" >
+                    <label class="control-item " for="id_md" title="Markdown with img-equations" data-result-as="md" >
                         md+img
                     </label>
                     <input class="control-input" id="id_mdp" type="radio" name="source_type" >
-                    <label class="control-item" for="id_mdp" title="Markdown as in input" data-result-as="mdp" >
+                    <label class="control-item " for="id_mdp" title="Markdown as in input" data-result-as="mdp" >
                         md
                     </label>
                     <input class="control-input" id="id_habr" type="radio" name="source_type" >
-                    <label class="control-item" for="id_habr" title="A kind of HTML markup for habr.com" data-result-as="habr" >
+                    <label class="control-item " for="id_habr" title="A kind of HTML markup for habr.com" data-result-as="habr" >
                         H
                     </label>                                        
             <div>
@@ -86,29 +86,30 @@
             <div class="full-width">                
                 </div>
             {% if (    wordpresslogin ) %}
-                <div class="fab fa-wordpress-simple toolbar-button"  title="Export to Wordpress.com" onclick="wordpress_on_fly()">
+                <div class="fab fa-wordpress-simple toolbar-button control-item"  title="Export to Wordpress.com" onclick="wordpress_on_fly()"><span class="menufont normalfontweight"> Publish</span>
                 </div>
-                <div class="toolbar-button fas fa-times"  title={{ _("Clear cookies") }} onclick='clear_cookies("wpc")'>
+                <div class="toolbar-button control-item"  title={{ _("Clear cookies") }} onclick='clear_cookies("wpc")'><span class="menufont normalfontweight">Clear cookies</span>
                 </div>
             {% else %}
                 <div>
-                    <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/editor" class="authorize"><img src="//s0.wp.com/i/wpcc-button.png" width="231"></a>
+                    <a  href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/editor" class="authorize fab fa-wordpress-simple control-item"><span class="menufont"> Connect</span></a>
                 </div>            
             {% endif %}    
             </div>
             <div class="full-width">
-                <div class="toolbar-button fas fa-file-pdf" title={{ _("Generate pdf") }} onclick="generate_from_md('pdf')"></div>                                
+                <div class="fas fa-file-pdf control-item normalfontweight" title={{ _("Generate pdf") }} onclick="generate_from_md('pdf')"><span class="menufont normalfontweight"> PDF</span></div>                                
             </div>
             <div class="full-width">
-                <div class="toolbar-button" title={{ _("Generate LaTeX") }} onclick="generate_from_md('latex')">
-                    <svg height="16.809" viewBox="1872.02 1482.97 29.568 10.0474" width="49.465" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M4.08-6.6c.098-.393.13-.513 1.156-.513.328 0 .415 0 .415-.207 0-.13-.12-.13-.174-.13-.36 0-1.254.032-1.614.032-.327 0-1.124-.033-1.45-.033-.077 0-.208 0-.208.217 0 .12.098.12.305.12.02 0 .228 0 .414.022.196.02.294.032.294.174 0 .043-.01.076-.043.207L1.713-.85c-.11.425-.13.512-.993.512-.185 0-.295 0-.295.218 0 .12.1.12.295.12h5.05c.263 0 .274 0 .34-.185l.86-2.357c.045-.12.045-.142.045-.153 0-.043-.033-.12-.13-.12s-.11.055-.187.23c-.37 1.003-.85 2.247-2.738 2.247H2.935c-.153 0-.175 0-.24-.01-.11-.012-.142-.023-.142-.11 0-.033 0-.055.054-.25L4.08-6.6z" id="g0-76"/><path d="M4.658-6.622c.077-.305.12-.37.25-.403.1-.022.46-.022.688-.022 1.102 0 1.593.043 1.593.894 0 .164-.045.59-.088.873-.01.044-.033.175-.033.207 0 .066.032.142.13.142.12 0 .142-.088.164-.252l.294-1.898c.01-.044.022-.153.022-.185 0-.12-.11-.12-.295-.12H1.33c-.26 0-.272.01-.348.218l-.655 1.92c-.01.022-.065.174-.065.196 0 .065.054.12.13.12.11 0 .12-.055.186-.23.59-1.69.873-1.887 2.487-1.887h.426c.306 0 .306.043.306.13 0 .066-.032.197-.043.23L2.29-.862c-.097.404-.13.524-1.297.524-.393 0-.458 0-.458.207 0 .13.12.13.185.13.295 0 .6-.022.895-.022.305 0 .62-.01.927-.01s.61.01.905.01c.317 0 .644.022.95.022.108 0 .24 0 .24-.218 0-.12-.088-.12-.372-.12-.272 0-.414 0-.698-.022-.316-.033-.403-.065-.403-.24 0-.01 0-.065.043-.23l1.45-5.792z" id="g0-84"/><path d="M5.29-4.484l-.915-2.17c-.033-.088-.055-.13-.055-.142 0-.066.185-.273.644-.317.11-.01.218-.022.218-.207 0-.13-.13-.13-.164-.13-.447 0-.916.032-1.374.032-.273 0-.95-.033-1.222-.033-.066 0-.197 0-.197.217 0 .12.11.12.25.12.656 0 .72.11.82.35L4.582-3.72 2.28-1.244l-.142.12c-.534.58-1.047.753-1.603.786-.142.01-.24.01-.24.218 0 .01 0 .12.14.12.33 0 .69-.033 1.027-.033.403 0 .83.033 1.222.033.065 0 .196 0 .196-.218 0-.11-.11-.12-.13-.12-.1-.01-.437-.033-.437-.338 0-.175.163-.35.294-.49l1.113-1.18.982-1.07 1.102 2.61c.043.12.054.13.054.15 0 .09-.207.274-.633.318-.12.01-.218.022-.218.207 0 .13.12.13.164.13.306 0 1.07-.033 1.375-.033.273 0 .94.033 1.21.033.078 0 .21 0 .21-.207 0-.13-.11-.13-.198-.13-.73-.012-.752-.045-.938-.48C6.403-1.834 5.672-3.536 5.42-4.19c.742-.763 1.887-2.06 2.236-2.366.317-.262.73-.524 1.386-.557.14-.01.24-.01.24-.218 0-.012 0-.12-.142-.12-.327 0-.687.032-1.026.032-.403 0-.818-.033-1.21-.033-.066 0-.208 0-.208.217 0 .077.055.11.13.12.1.01.437.033.437.338 0 .153-.12.295-.207.393L5.29-4.484z" id="g0-88"/><path d="M1.484-.85c0 .392-.022.512-.862.512H.36V0h6.295l.458-2.815H6.84c-.273 1.68-.524 2.477-2.4 2.477H2.99c-.514 0-.535-.077-.535-.437v-2.912h.98c1.06 0 1.18.35 1.18 1.276h.272v-2.892h-.272c0 .938-.12 1.277-1.18 1.277h-.98v-2.62c0-.36.02-.435.534-.435h1.406c1.67 0 1.964.6 2.14 2.116h.27l-.304-2.454H.36v.338h.262c.84 0 .862.12.862.513V-.85z" id="g2-69"/><path d="M3.37-5.515c-.038-.104-.062-.176-.198-.176-.143 0-.167.063-.207.175L1.188-.82c-.08.214-.248.557-.9.557V0c.254-.024.676-.024.82-.024.255 0 .494 0 .885.024v-.263c-.35-.008-.558-.167-.558-.4 0-.054 0-.07.04-.166l.374-.995h2.167l.446 1.18c.04.095.04.127.04.143 0 .24-.414.24-.637.24V0c.677-.024.693-.024 1.13-.024.448 0 .59 0 1.053.024v-.263h-.136c-.502 0-.582-.072-.678-.327L3.37-5.515zm-.437.82l.98 2.607H1.945l.988-2.606z" id="g1-65"/></defs><g id="page1"><use x="1872.02" xlink:href="#g0-76" y="1490.67"/><use x="1875.49" xlink:href="#g1-65" y="1488.66"/><use x="1880.2" xlink:href="#g0-84" y="1490.67"/><use x="1886.24" xlink:href="#g2-69" y="1493.02"/><use x="1892.3" xlink:href="#g0-88" y="1490.67"/></g><script type="text/ecmascript">if(window.parent.postMessage)window.parent.postMessage(&quot;2.94525|37.0986|12.60635|&quot;+window.location,&quot;*&quot;);</script></svg>
+                <div class="toolbar-button control-item" title={{ _("Generate LaTeX") }} onclick="generate_from_md('latex')">
+                    <svg style="vertical-align: middle;" height="16.809" viewBox="1872.02 1482.97 29.568 10.0474" width="49.465" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M4.08-6.6c.098-.393.13-.513 1.156-.513.328 0 .415 0 .415-.207 0-.13-.12-.13-.174-.13-.36 0-1.254.032-1.614.032-.327 0-1.124-.033-1.45-.033-.077 0-.208 0-.208.217 0 .12.098.12.305.12.02 0 .228 0 .414.022.196.02.294.032.294.174 0 .043-.01.076-.043.207L1.713-.85c-.11.425-.13.512-.993.512-.185 0-.295 0-.295.218 0 .12.1.12.295.12h5.05c.263 0 .274 0 .34-.185l.86-2.357c.045-.12.045-.142.045-.153 0-.043-.033-.12-.13-.12s-.11.055-.187.23c-.37 1.003-.85 2.247-2.738 2.247H2.935c-.153 0-.175 0-.24-.01-.11-.012-.142-.023-.142-.11 0-.033 0-.055.054-.25L4.08-6.6z" id="g0-76"/><path d="M4.658-6.622c.077-.305.12-.37.25-.403.1-.022.46-.022.688-.022 1.102 0 1.593.043 1.593.894 0 .164-.045.59-.088.873-.01.044-.033.175-.033.207 0 .066.032.142.13.142.12 0 .142-.088.164-.252l.294-1.898c.01-.044.022-.153.022-.185 0-.12-.11-.12-.295-.12H1.33c-.26 0-.272.01-.348.218l-.655 1.92c-.01.022-.065.174-.065.196 0 .065.054.12.13.12.11 0 .12-.055.186-.23.59-1.69.873-1.887 2.487-1.887h.426c.306 0 .306.043.306.13 0 .066-.032.197-.043.23L2.29-.862c-.097.404-.13.524-1.297.524-.393 0-.458 0-.458.207 0 .13.12.13.185.13.295 0 .6-.022.895-.022.305 0 .62-.01.927-.01s.61.01.905.01c.317 0 .644.022.95.022.108 0 .24 0 .24-.218 0-.12-.088-.12-.372-.12-.272 0-.414 0-.698-.022-.316-.033-.403-.065-.403-.24 0-.01 0-.065.043-.23l1.45-5.792z" id="g0-84"/><path d="M5.29-4.484l-.915-2.17c-.033-.088-.055-.13-.055-.142 0-.066.185-.273.644-.317.11-.01.218-.022.218-.207 0-.13-.13-.13-.164-.13-.447 0-.916.032-1.374.032-.273 0-.95-.033-1.222-.033-.066 0-.197 0-.197.217 0 .12.11.12.25.12.656 0 .72.11.82.35L4.582-3.72 2.28-1.244l-.142.12c-.534.58-1.047.753-1.603.786-.142.01-.24.01-.24.218 0 .01 0 .12.14.12.33 0 .69-.033 1.027-.033.403 0 .83.033 1.222.033.065 0 .196 0 .196-.218 0-.11-.11-.12-.13-.12-.1-.01-.437-.033-.437-.338 0-.175.163-.35.294-.49l1.113-1.18.982-1.07 1.102 2.61c.043.12.054.13.054.15 0 .09-.207.274-.633.318-.12.01-.218.022-.218.207 0 .13.12.13.164.13.306 0 1.07-.033 1.375-.033.273 0 .94.033 1.21.033.078 0 .21 0 .21-.207 0-.13-.11-.13-.198-.13-.73-.012-.752-.045-.938-.48C6.403-1.834 5.672-3.536 5.42-4.19c.742-.763 1.887-2.06 2.236-2.366.317-.262.73-.524 1.386-.557.14-.01.24-.01.24-.218 0-.012 0-.12-.142-.12-.327 0-.687.032-1.026.032-.403 0-.818-.033-1.21-.033-.066 0-.208 0-.208.217 0 .077.055.11.13.12.1.01.437.033.437.338 0 .153-.12.295-.207.393L5.29-4.484z" id="g0-88"/><path d="M1.484-.85c0 .392-.022.512-.862.512H.36V0h6.295l.458-2.815H6.84c-.273 1.68-.524 2.477-2.4 2.477H2.99c-.514 0-.535-.077-.535-.437v-2.912h.98c1.06 0 1.18.35 1.18 1.276h.272v-2.892h-.272c0 .938-.12 1.277-1.18 1.277h-.98v-2.62c0-.36.02-.435.534-.435h1.406c1.67 0 1.964.6 2.14 2.116h.27l-.304-2.454H.36v.338h.262c.84 0 .862.12.862.513V-.85z" id="g2-69"/><path d="M3.37-5.515c-.038-.104-.062-.176-.198-.176-.143 0-.167.063-.207.175L1.188-.82c-.08.214-.248.557-.9.557V0c.254-.024.676-.024.82-.024.255 0 .494 0 .885.024v-.263c-.35-.008-.558-.167-.558-.4 0-.054 0-.07.04-.166l.374-.995h2.167l.446 1.18c.04.095.04.127.04.143 0 .24-.414.24-.637.24V0c.677-.024.693-.024 1.13-.024.448 0 .59 0 1.053.024v-.263h-.136c-.502 0-.582-.072-.678-.327L3.37-5.515zm-.437.82l.98 2.607H1.945l.988-2.606z" id="g1-65"/></defs><g id="page1"><use x="1872.02" xlink:href="#g0-76" y="1490.67"/><use x="1875.49" xlink:href="#g1-65" y="1488.66"/><use x="1880.2" xlink:href="#g0-84" y="1490.67"/><use x="1886.24" xlink:href="#g2-69" y="1493.02"/><use x="1892.3" xlink:href="#g0-88" y="1490.67"/></g><script type="text/ecmascript">if(window.parent.postMessage)window.parent.postMessage(&quot;2.94525|37.0986|12.60635|&quot;+window.location,&quot;*&quot;);</script></svg>
                 </div>
             </div>
         </div> <!-- export -->
         <div  class="full-width">
             <div class="full-width">{{ _("Help") }}</div>
             <div  class="full-width">
-                <div class="toolbar-button fas fa-question-circle" onclick='markdown_cheat()'>{{ _("Markdown cheat sheet") }}
+                <div class="toolbar-button fas fa-question-circle control-item" onclick='markdown_cheat()'>
+                    <span class="menufont normalfontweight">{{ _("Markdown cheat sheet") }}</span>
                 </div>  
             </div>
          </div> <!-- help -->
