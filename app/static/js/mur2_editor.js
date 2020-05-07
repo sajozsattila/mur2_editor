@@ -216,7 +216,7 @@ function sleep(ms) {
 }
 async function alarming(xhr, sucessmsg) {
     /* check return value */
-    var msgbox = document.getElementById("editor_msg")
+    var msgbox = document.getElementById("msg")
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
             msgbox.style.color = "red";
@@ -316,7 +316,7 @@ async function wordpress2(link, id) {
 
 /* commit in Wordpress.com by cokkies */
 async function wordpress_on_fly() {
-    var msgbox = document.getElementById("editor_msg")
+    var msgbox = document.getElementById("msg")
     
     var texttype = document.querySelector('meta[name="texttype"]').content;
     if (texttype.trim() == 'article') {
@@ -366,9 +366,15 @@ async function wordpress_on_fly() {
                 
                 wordpress2(wc2answer.link, wc2answer.id);
             }
-        };
-    
+        };  
         
+        // clear msg
+        if (xhr.status != 200) {
+            await sleep(5000);
+        } else  {
+            await sleep(2000);
+        }
+        msgbox.innerHTML = "";
     }
 }
 
@@ -391,7 +397,7 @@ async function generate_from_md(destination) {
     var language = document.querySelector('meta[name="mur2language"]').content
     var fd = new FormData();
     
-    var msgbox = document.getElementById("editor_msg")
+    var msgbox = document.getElementById("msg")
     msgbox.innerHTML = "Working";
     msgbox.style.color = "green";
     
