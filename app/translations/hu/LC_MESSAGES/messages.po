@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:18+0000\n"
+"POT-Creation-Date: 2020-05-07 22:41+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -23,10 +23,10 @@ msgid "Please log in to access this page."
 msgstr "Be kell jelentkezni az oldal megtekintéséhez."
 
 #: app/auth/email.py:12
-msgid "[Microblog] Reset Your Password"
-msgstr ""
+msgid "Reset Your Password"
+msgstr "Jelszó újboli beállítása"
 
-#: app/auth/forms.py:9 app/auth/forms.py:16
+#: app/auth/forms.py:9 app/auth/forms.py:16 app/templates/edit_profile.html:8
 msgid "Username"
 msgstr "Felhasználonév"
 
@@ -76,7 +76,7 @@ msgstr "Graturálunk, őn regisztrált!"
 
 #: app/auth/routes.py:63
 msgid "Check your email for the instructions to reset your password"
-msgstr ""
+msgstr "Levélben elküldük a jelszó újbóli beállításnak lépéseit."
 
 #: app/auth/routes.py:66
 msgid "Reset Password"
@@ -84,7 +84,7 @@ msgstr "Jelszó "
 
 #: app/auth/routes.py:80
 msgid "Your password has been reset."
-msgstr ""
+msgstr "Az új jelszó beállítottuk."
 
 #: app/main/routes.py:89
 msgid "You can not edit this article"
@@ -100,7 +100,7 @@ msgstr "A lehetséges object_type értékek: 'article', 'file' vagy 'user' "
 
 #: app/main/routes.py:233 app/main/routes.py:259
 msgid "User no right to delete this"
-msgstr "Nincs jogosultásga, hogy törlölje ezt a "
+msgstr "Nincs jogosultsága, hogy törlölje ezt a "
 
 #: app/main/routes.py:233
 msgid "Article"
@@ -145,6 +145,14 @@ msgstr "Szerkesztő"
 #: app/templates/base_menu.html:13
 msgid "Logout"
 msgstr "Kijelentkezés"
+
+#: app/templates/edit_profile.html:15
+msgid "About me"
+msgstr "Rólam"
+
+#: app/templates/edit_profile.html:21 app/templates/editor_toolbar.html:13
+msgid "Save"
+msgstr "Mentés"
 
 #: app/templates/edit_profile.html:26
 msgid "Delete user"
@@ -217,10 +225,6 @@ msgstr "Fájl feltöltés"
 #: app/templates/editor_toolbar.html:9
 msgid "Download result"
 msgstr "Eredmény letötlése"
-
-#: app/templates/editor_toolbar.html:13
-msgid "Save"
-msgstr "Mentés"
 
 #: app/templates/editor_toolbar.html:16
 msgid "Syntax highlighting"
@@ -321,4 +325,5 @@ msgstr "Ismeretlen hiba történt"
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
+
 

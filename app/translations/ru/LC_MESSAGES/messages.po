@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:18+0000\n"
+"POT-Creation-Date: 2020-05-07 22:41+0000\n"
 "PO-Revision-Date: 2020-04-29 20:56+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -24,10 +24,10 @@ msgid "Please log in to access this page."
 msgstr ""
 
 #: app/auth/email.py:12
-msgid "[Microblog] Reset Your Password"
+msgid "Reset Your Password"
 msgstr ""
 
-#: app/auth/forms.py:9 app/auth/forms.py:16
+#: app/auth/forms.py:9 app/auth/forms.py:16 app/templates/edit_profile.html:8
 msgid "Username"
 msgstr ""
 
@@ -147,6 +147,14 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+#: app/templates/edit_profile.html:15
+msgid "About me"
+msgstr ""
+
+#: app/templates/edit_profile.html:21 app/templates/editor_toolbar.html:13
+msgid "Save"
+msgstr ""
+
 #: app/templates/edit_profile.html:26
 msgid "Delete user"
 msgstr ""
@@ -217,10 +225,6 @@ msgstr ""
 
 #: app/templates/editor_toolbar.html:9
 msgid "Download result"
-msgstr ""
-
-#: app/templates/editor_toolbar.html:13
-msgid "Save"
 msgstr ""
 
 #: app/templates/editor_toolbar.html:16
@@ -324,5 +328,14 @@ msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr ""
 
 #~ msgid "Clear cokkies"
+#~ msgstr ""
+
+#~ msgid "[Microblog] Reset Your Password"
+#~ msgstr ""
+
+#~ msgid "form.username.label"
+#~ msgstr ""
+
+#~ msgid "form.about_me.label"
 #~ msgstr ""
 
