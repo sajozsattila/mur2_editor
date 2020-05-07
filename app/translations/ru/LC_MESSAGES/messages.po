@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-05 19:09+0000\n"
+"POT-Creation-Date: 2020-05-07 22:18+0000\n"
 "PO-Revision-Date: 2020-04-29 20:56+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,24 +19,136 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/base.html:26
+#: app/__init__.py:26
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/auth/email.py:12
+msgid "[Microblog] Reset Your Password"
+msgstr ""
+
+#: app/auth/forms.py:9 app/auth/forms.py:16
+msgid "Username"
+msgstr ""
+
+#: app/auth/forms.py:10 app/auth/forms.py:18 app/auth/forms.py:41
+msgid "Password"
+msgstr ""
+
+#: app/auth/forms.py:11
+msgid "Remember Me"
+msgstr ""
+
+#: app/auth/forms.py:12 app/auth/routes.py:28
+msgid "Sign In"
+msgstr ""
+
+#: app/auth/forms.py:17 app/auth/forms.py:36
+msgid "Email"
+msgstr ""
+
+#: app/auth/forms.py:20 app/auth/forms.py:43
+msgid "Repeat Password"
+msgstr ""
+
+#: app/auth/forms.py:22 app/auth/routes.py:49
+msgid "Register"
+msgstr ""
+
+#: app/auth/forms.py:27
+msgid "Please use a different username."
+msgstr ""
+
+#: app/auth/forms.py:32
+msgid "Please use a different email address."
+msgstr ""
+
+#: app/auth/forms.py:37 app/auth/forms.py:45
+msgid "Request Password Reset"
+msgstr ""
+
+#: app/auth/routes.py:21
+msgid "Invalid username or password"
+msgstr ""
+
+#: app/auth/routes.py:47
+msgid "Congratulations, you are now a registered user!"
+msgstr ""
+
+#: app/auth/routes.py:63
+msgid "Check your email for the instructions to reset your password"
+msgstr ""
+
+#: app/auth/routes.py:66
+msgid "Reset Password"
+msgstr ""
+
+#: app/auth/routes.py:80
+msgid "Your password has been reset."
+msgstr ""
+
+#: app/main/routes.py:89
+msgid "You can not edit this article"
+msgstr ""
+
+#: app/main/routes.py:209 app/main/routes.py:291
+msgid "Your changes have been saved."
+msgstr ""
+
+#: app/main/routes.py:222
+msgid "Object type should be 'article', 'file' or 'user'!"
+msgstr ""
+
+#: app/main/routes.py:233 app/main/routes.py:259
+msgid "User no right to delete this"
+msgstr ""
+
+#: app/main/routes.py:233
+msgid "Article"
+msgstr ""
+
+#: app/main/routes.py:259
+msgid "File"
+msgstr ""
+
+#: app/main/routes.py:456
+msgid "No more disk space quota for "
+msgstr ""
+
+#: app/templates/article.html:12
+msgid "Delete article"
+msgstr ""
+
+#: app/templates/base.html:30 app/templates/editor.html:46
+msgid "editor"
+msgstr ""
+
+#: app/templates/base_menu.html:4
 msgid "Home"
 msgstr ""
 
-#: app/templates/base.html:28
+#: app/templates/base_menu.html:6
 msgid "Login"
 msgstr ""
 
-#: app/templates/base.html:30
+#: app/templates/base_menu.html:8
 msgid "Profile"
 msgstr ""
 
-#: app/templates/base.html:31
+#: app/templates/base_menu.html:9
 msgid "Media"
 msgstr ""
 
-#: app/templates/base.html:32
+#: app/templates/base_menu.html:11
+msgid "Editor"
+msgstr ""
+
+#: app/templates/base_menu.html:13
 msgid "Logout"
+msgstr ""
+
+#: app/templates/edit_profile.html:26
+msgid "Delete user"
 msgstr ""
 
 #: app/templates/editor.html:13
@@ -47,47 +159,47 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: app/templates/editor.html:23
+#: app/templates/editor.html:22
 msgid "Title"
 msgstr ""
 
-#: app/templates/editor.html:26
+#: app/templates/editor.html:25
 msgid "Abstract"
 msgstr ""
 
-#: app/templates/editor.html:47
-msgid "editor"
-msgstr ""
-
-#: app/templates/editor.html:56
+#: app/templates/editor.html:55
 msgid "Preview format"
 msgstr ""
 
-#: app/templates/editor.html:60
+#: app/templates/editor.html:59
 msgid "preview"
 msgstr ""
 
-#: app/templates/editor.html:85
+#: app/templates/editor.html:84
 msgid "Export"
 msgstr ""
 
-#: app/templates/editor.html:89
+#: app/templates/editor.html:90
 msgid "Clear cookies"
 msgstr ""
 
-#: app/templates/editor.html:93
+#: app/templates/editor.html:94
+msgid "Connect"
+msgstr ""
+
+#: app/templates/editor.html:99
 msgid "Generate pdf"
 msgstr ""
 
-#: app/templates/editor.html:96
+#: app/templates/editor.html:102
 msgid "Generate LaTeX"
 msgstr ""
 
-#: app/templates/editor.html:102
+#: app/templates/editor.html:108
 msgid "Help"
 msgstr ""
 
-#: app/templates/editor.html:104
+#: app/templates/editor.html:111
 msgid "Markdown cheat sheet"
 msgstr ""
 
@@ -161,6 +273,54 @@ msgstr ""
 
 #: app/templates/editor_toolbar.html:49
 msgid "Show side menu"
+msgstr ""
+
+#: app/templates/media.html:10
+msgid "Media files"
+msgstr ""
+
+#: app/templates/media.html:31
+msgid "Delete file"
+msgstr ""
+
+#: app/templates/search.html:4
+msgid "Search Results"
+msgstr ""
+
+#: app/templates/search.html:13
+msgid "Previous results"
+msgstr ""
+
+#: app/templates/search.html:18
+msgid "Next results"
+msgstr ""
+
+#: app/templates/user.html:10
+msgid "Last seen on"
+msgstr ""
+
+#: app/templates/user.html:12
+msgid "Edit your profile"
+msgstr ""
+
+#: app/templates/user.html:17
+msgid "New Article"
+msgstr ""
+
+#: app/templates/errors/404.html:4
+msgid "Not Found"
+msgstr ""
+
+#: app/templates/errors/404.html:5 app/templates/errors/500.html:6
+msgid "Back"
+msgstr ""
+
+#: app/templates/errors/500.html:4
+msgid "An unexpected error has occurred"
+msgstr ""
+
+#: app/templates/errors/500.html:5
+msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr ""
 
 #~ msgid "Clear cokkies"
