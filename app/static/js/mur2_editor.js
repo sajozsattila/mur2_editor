@@ -224,6 +224,12 @@ async function alarming(xhr, sucessmsg) {
         } else { // show the result   
             msgbox.style.color = "green";
             msgbox.innerHTML = sucessmsg;
+            // if new article we redirect to the new page
+            var mur2answer = JSON.parse(xhr.response);
+            console.log(mur2answer);
+            if ( mur2answer.hasOwnProperty('id') ) {
+                window.location.replace("/edit/"+mur2answer.id);
+            }
         }
     };
     
