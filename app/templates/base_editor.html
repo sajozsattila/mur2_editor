@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% if title %}
+           {% if author %}
+        <title>{{ author }}: {{ title }} </title>
+           {% else %}
+        <title>μr²: {{ title }} </title>
+           {% endif %}
+        {% else %}
+        <title>μr²</title>
+        {% endif %}
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Domine|Enriqueta|Frank+Ruhl+Libre:500|Josefin+Sans|Libre+Baskerville|Manuale&display=swap" rel="stylesheet"> 
+        <!-- style -->
+        <link rel="stylesheet" href="/static/css/mur2.css">
+        <!-- Font awesome -->
+        <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>
+        <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
+        {% block header %}{% endblock %}
+    </head>
+    <body class="result-as-html">
+        {% include 'base_menu.html' %}
+        <!-- content -->
+        {% block content %}{% endblock %}
+        <!-- end content -->
+    </body>        
+</html>
