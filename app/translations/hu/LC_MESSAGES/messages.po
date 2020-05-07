@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:41+0000\n"
+"POT-Creation-Date: 2020-05-07 22:52+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -186,6 +186,10 @@ msgstr "előnézet"
 msgid "Export"
 msgstr "Exportálás"
 
+#: app/templates/editor.html:88
+msgid "Publish"
+msgstr "Publikálás"
+
 #: app/templates/editor.html:90
 msgid "Clear cookies"
 msgstr "Sütik törlése"
@@ -325,5 +329,4 @@ msgstr "Ismeretlen hiba történt"
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
-
 

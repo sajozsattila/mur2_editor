@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:41+0000\n"
+"POT-Creation-Date: 2020-05-07 22:52+0000\n"
 "PO-Revision-Date: 2020-05-04 20:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -184,6 +184,10 @@ msgstr ""
 
 #: app/templates/editor.html:84
 msgid "Export"
+msgstr ""
+
+#: app/templates/editor.html:88
+msgid "Publish"
 msgstr ""
 
 #: app/templates/editor.html:90
