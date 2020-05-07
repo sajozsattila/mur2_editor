@@ -128,6 +128,10 @@ a, a:link, #mur2menu a:visited  {
     color: red;
 }
 
+#user_articles tbody tr {
+    vertical-align: middle;
+}
+
 /* for buttoms */
 .open-control {
 		white-space: nowrap;
