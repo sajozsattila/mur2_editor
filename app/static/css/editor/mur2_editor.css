@@ -112,16 +112,7 @@
     height: 80%;
 }
 
-#editor_msg {
-    position: fixed;
-    background-color: white;    
-    width: 100%;
-    left: 0;
-    top: 60px;
-    height: 20px;
-    padding-left: 16px;
-    color: red;
-}
+
 
 .notfocused {
     color: grey;
@@ -133,10 +124,10 @@
 
 /* used for showin and hidding preview */
 .halfsize {
-    width: calc(50% - 3px);
+    width: calc(50%);
 }
 .fullsize {
-    width: calc(100% - 6px);
+    width: calc(100%);
     padding: 16px 25%;
 }
 .displayitem {
@@ -195,6 +186,15 @@ border: 1px solid #ccc;
     color: #428bca;
 }
 
+#article_title_and_abstract {
+    overflow: auto;
+    height: 100%;
+    scrollbar-width: thin;
+    /* this need as we miss the scriollbar there */
+    width: calc( 50% + 6px);
+    
+}
+
 /* screen depending settings */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	/* Chrome hack for the caret color. Works also in FF. */
@@ -209,8 +209,11 @@ border: 1px solid #ccc;
 	}
 }
 
-/* like iPad on long side */
-@media screen and (max-width: 950px) {
+/* like iPad on landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
 	.result-src,
 	.result-html {
 		padding-left: 16px;
@@ -226,51 +229,14 @@ border: 1px solid #ccc;
 	.slider { display: none; }
 }
 
-@media screen and (max-width: 874px) {
-	div.header {font-size: 15px;}
-}
-@media screen and (max-width: 639px) {
-	.ldt pre, .ldt textarea, textarea.source,
-	.result-src,
-	.result-html,
-	div.header {
-		padding-left: 12px;
-		padding-right: 12px;
-		}
-
-	div.header {font-size: 14px;}
-	h1.title {
-		width: 120px;
-		height: 30px;
-		background-size: contain;
-		top: 0;
-	}
-}
-@media screen and (max-width: 459px) {
-	.ldt pre, .ldt textarea, textarea.source,
-	.result-src,
-	.result-html,
-	div.header {
-		padding-left: 12px;
-		padding-right: 12px;
-		}
-
-	div.header {font-size: 14px;}
-	h1.title {
-		width: 28px;
-		height: 30px;
-		background-size: auto 90%, auto;
-		background-position: 0 50%, 200% 0;
-		left: -4px;
-	}
-	.header .toolbar-button, .demo-control .control-item {
-		padding: 0 1px;
-	}
-}
-
-
-/* like iPhone */
-@media screen and (max-width: 599px) {
+/* iPad portait and iPhone */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait),
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)  {
 	.ldt pre, .ldt textarea, textarea.source,
 	.result-src,
 	.result-html,

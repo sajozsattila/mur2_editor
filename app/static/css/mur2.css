@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: cadetblue;
+    scrollbar-color: #c3986a #fce9d1;
+    scrollbar-width: thin;
+}
+
 body,
 button,
 input,
@@ -15,11 +21,6 @@ textarea {
 
 html, body {
     height: 100%;
-}
-
-body {
-    background-color: cadetblue;
-    scrollbar-color: #c3986a #fce9d1;
 }
 
 .full-width {
@@ -76,7 +77,7 @@ a, a:link, #mur2menu a:visited  {
     height: 30px;
 }
 
-#user_profile {
+.main_content {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -85,6 +86,11 @@ a, a:link, #mur2menu a:visited  {
     padding: 16px;
     left: 0;
     background-color: white;
+    width: 100%;
+    justify-content: space-between;
+    display: -webkit-flex;
+    -webkit-justify-content: space-between;
+    height: calc( 100% - 80px );
 }
 
 #user_profil_overview {
@@ -106,10 +112,56 @@ a, a:link, #mur2menu a:visited  {
     font-family: FontAwesome;
 }
 
-.strong {
-    ;
-}
-
 .normalpadding {
     padding: 16px;
 }
+
+
+#msg {
+    position: fixed;
+    background-color: white;    
+    width: 100%;
+    left: 0;
+    top: 60px;
+    height: 20px;
+    padding-left: 16px;
+    color: red;
+}
+
+/* for buttoms */
+.open-control {
+		white-space: nowrap;
+		}
+	.open-control {
+		text-align: center;
+		}
+		.header .toolbar-button,
+		.control-item {
+			display: inline-block;
+			vertical-align: middle;
+			}
+		.header .toolbar-button,
+		 .control-item {
+			background-color: rgba(255, 255, 255, 0.3);
+			background-clip: padding-box;
+			border-color: transparent;
+			border-style: solid;
+			border-width: 9px 1px;
+			height: 48px;
+			min-width: 30px;
+			padding: 0 4px;
+			text-align: center;
+			cursor: pointer;
+			cursor: hand;
+             line-height: inherit;
+			}
+		 .control-item {
+			background-color: rgba(255, 255, 255, 0.15);
+			display: inline-block;
+			}
+		.control-input {
+			display: none;
+			}
+		 .control-input:checked + .control-item {
+			background-color: rgba(255, 255, 255, 0.4);
+			}

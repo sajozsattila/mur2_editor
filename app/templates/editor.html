@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_editor.html" %}
 
 {% block header %} 
     {% include 'editor_header.html' %}    
@@ -15,10 +15,10 @@
         <div class="toolbar-button menufont" title={{ _("Menu") }} onclick='show_mainmenus("mur2menu")' >M</div> 
     </div>
     {% include 'editor_toolbar.html' %}
-    <div id="editor_msg" ></div>
+    <div id="msg" ></div>
     <div class="container full-height topmenu" id="container-block">   
-        <div class="editor_title_and_abstract">
-            <div class="half-width source_side full-height">
+        <div  class="editor_title_and_abstract">
+            <div  class="half-width source_side full-height">
                 <div class="title_and_abstract menufont" id="editor_title" style="display: none;">
                     {{ _("Title") }}: <textarea id="title-source" oninput="update_title()"></textarea>
                 </div>
@@ -27,7 +27,7 @@
                     <textarea id="abstact-source" onselect="window.selectedTextarea=this" oninput="update_abstract()"></textarea>
                 </div>
             </div>
-            <div class="half-width result_side">
+            <div id="article_title_and_abstract" class="half-width result_side">
                 <div class="title_and_abstract" id="article_title" style="display: none;"></div>
                 <div class="title_and_abstract" id="article_abstract" style="display: none;"></div>
             </div>
@@ -86,13 +86,13 @@
             <div class="full-width">                
                 </div>
             {% if (    wordpresslogin ) %}
-                <div class="fab fa-wordpress-simple toolbar-button control-item"  title="Export to Wordpress.com" onclick="wordpress_on_fly()"><span class="menufont normalfontweight"> Publish</span>
+                <div class="toolbar-button control-item fab fa-wordpress-simple "  title="Export to Wordpress.com" onclick="wordpress_on_fly()"><span class="menufont normalfontweight"> Publish</span>
                 </div>
-                <div class="toolbar-button control-item"  title={{ _("Clear cookies") }} onclick='clear_cookies("wpc")'><span class="menufont normalfontweight">Clear cookies</span>
+                <div class="toolbar-button fa control-item"  title={{ _("Clear cookies") }} onclick='clear_cookies("wpc")'><span class="menufont normalfontweight"> {{ _("Clear cookies") }}</span>
                 </div>
             {% else %}
                 <div>
-                    <a  href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/editor" class="authorize fab fa-wordpress-simple control-item"><span class="menufont"> Connect</span></a>
+                    <a  href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/editor" class="authorize fab fa-wordpress-simple control-item"><span class="menufont"> {{ _("Connect") }}</span></a>
                 </div>            
             {% endif %}    
             </div>
