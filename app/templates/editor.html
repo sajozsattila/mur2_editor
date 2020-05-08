@@ -15,7 +15,7 @@
         <div class="toolbar-button menufont" title={{ _("Menu") }} onclick='show_mainmenus("mur2menu")' >M</div> 
     </div>
     {% include 'editor_toolbar.html' %}
-    <div class="container full-height topmenu" id="container-block">   
+    <div id="container-block" class="topmenu container full-height" >   
         <div  class="editor_title_and_abstract">
             <div  class="half-width source_side full-height">
                 <div class="title_and_abstract menufont" id="editor_title" style="display: none;">
@@ -40,8 +40,8 @@
         <div class="slider full-height" id="slider"></div>
         <!-- result -->
         <div class="half-width full-height result_side" id="result-block"> 
-                <div class="result-html full-height"></div>
-                <pre class="result-src full-height"><code class="result-src-content"></code></pre>
+                <div id="result-html" class="result-html full-height"></div> <!-- this show the preview -->
+                <pre id="result-src" class="result-src full-height"><code class="result-src-content"></code></pre> <!-- this show the code preview -->
         </div> <!--result-block --> 
       <div id="foot"> © 2020 μr² {{ _("editor") }} </div>  
     </div> <!-- container-block -->
@@ -85,7 +85,7 @@
             <div class="full-width">                
                 </div>
             {% if (    wordpresslogin ) %}
-                <div class="toolbar-button control-item fab fa-wordpress-simple "  title="Export to Wordpress.com" onclick="wordpress_on_fly()"><span class="menufont normalfontweight"> Publish</span>
+                <div class="toolbar-button control-item fab fa-wordpress-simple "  title="Export to Wordpress.com" onclick="wordpress_on_fly()"><span class="menufont normalfontweight">{{ _("Publish") }}</span>
                 </div>
                 <div class="toolbar-button fa control-item"  title={{ _("Clear cookies") }} onclick='clear_cookies("wpc")'><span class="menufont normalfontweight"> {{ _("Clear cookies") }}</span>
                 </div>

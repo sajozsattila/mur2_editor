@@ -572,15 +572,6 @@ var parserCollection = null;
 
                 parserCollection.switchView(view);
 
-                if (view !== 'preview') {
-                    // Selecting all block content.
-                    var contentBlocks = document.getElementsByClassName('result-src-content');
-                    if (contentBlocks.length) {
-                        setTimeout(function() {
-                            selectText(contentBlocks[0]);
-                        }, 0);
-                    }
-                }
             })
         });
 

@@ -38,7 +38,7 @@ function editorToolbarAction(action, endnote) {
     // if there is selection
     var text = field.value.substring(start, end);
 
-    var wrap = "";
+    var wrap = null;
     if (action === "italic") {
         wrap1 = "*";
         wrap2 = wrap1;
@@ -52,21 +52,27 @@ function editorToolbarAction(action, endnote) {
         wrap1 = "\n```\n";
         wrap2 = wrap1;
     } else if (action === "table") {
-        wrap = "\n|  |  |\n|--|--|\n|  |  |\n";        
+        wrap = "\n|  |  |\n|--|--|\n|  |  |\n";
     } else if (action === "latex") {
         wrap1 = "$$ "
         wrap2 = " $$"
     } else if (action === "link") {
-        if (text) {
-            wrap = "[" + text + "](" + prompt("Please enter URL for the link", "") + ")";
-        } else {
-            wrap = "[link](" + prompt("Please enter URL for the link", "") + ")";
+        var userinput = prompt("Please enter URL for the link", "");
+        if (userinput != null) {
+            if (text) {
+                wrap = "[" + text + "](" + userinput + ")";
+            } else {
+                wrap = "[link](" + userinput + ")";
+            }
         }
     } else if (action === "picture") {
-        if (text) {
-            wrap = "![" + text + "](" + prompt("Please enter URL for picture", "") + ")";
-        } else {
-            wrap = "![kep](" + prompt("Please enter URL for picture", "") + ")";
+        var userinput = prompt("Please enter URL for picture", "");
+        if (userinput != null) {
+            if (text) {
+                wrap = "![" + text + "](" + userinput + ")";
+            } else {
+                wrap = "![kep](" + userinput + ")";
+            }
         }
     } else if (action === "list") {
         re = /\n/g;
@@ -75,29 +81,29 @@ function editorToolbarAction(action, endnote) {
         re = /\n/g;
         wrap = "1. " + text.replace(re, "\n1\. ")
     } else if (action === "footnote") {
-        wrap = '^['+text+'] '
+        wrap = '^[' + text + '] '
     }
-
-
 
     // update the area
-    if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
-        window.selectedTextarea.value =
-            field.value.substring(0, start) +
-            wrap1 + text.trim() + wrap2 +
-            field.value.substring(end);
-    } else {
-        // new areas
-        window.selectedTextarea.value =
-            field.value.substring(0, start) +
-            wrap +
-            field.value.substring(end);
+    if (wrap != null) {
+        if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
+            window.selectedTextarea.value =
+                field.value.substring(0, start) +
+                wrap1 + text.trim() + wrap2 +
+                field.value.substring(end);
+        } else {
+            // new areas
+            window.selectedTextarea.value =
+                field.value.substring(0, start) +
+                wrap +
+                field.value.substring(end);
+        }
+        // fire an update on result filed
+        field.dispatchEvent(event);
     }
-    // fire an update on result filed
-    field.dispatchEvent(event);
 }
 
-// render a text to Latex, not highlighting and any other things
+// render a text to Latex
 // used in the Abstract and the Title
 function latex_renderer(input_field) {
     // from editor.js
@@ -121,19 +127,132 @@ function latex_renderer(input_field) {
     };
     var markdownit = window.markdownit;
 
+    // get what is the current preview format
+    var eNode = document.body;
+    var outputformat = eNode.className.split(' ')[0];
+    // filter for format
+    var result = new Object();
+
+    /* renderes */
     var _mdPreview = markdownit(defaults)
         .use(markdownitS2Tex)
         .use(markdownitSub)
         .use(markdownitSup);
+    var _mdHtmlAndTex = markdownit(defaults)
+        .use(markdownitS2Tex, {
+            noreplace: true
+        })
+        .use(markdownitSub)
+        .use(markdownitSup);
+    var _mdHtmlHabrAndImages = markdownit(defaults)
+        .use(markdownitS2Tex, defaults._habr)
+        .use(markdownitSub)
+        .use(markdownitSup);
+    var _mdHtmlAndImages = markdownit(defaults)
+        .use(markdownitS2Tex)
+        .use(markdownitSub)
+        .use(markdownitSup);
+    var _mdMdAndImages = markdownit('zero')
+        .use(markdownitS2Tex);
+    
 
-    return _mdPreview.render(input_field.value);
+    if (outputformat === 'result-as-html') {
+
+        result['lang'] = 'none';
+        result['text'] = _mdPreview.render(input_field);
+    } else if (outputformat === 'result-as-htmltex') {
+
+        result['lang'] = "html";
+        result['text'] = '<script src="https://tex.s2cms.ru/latex.js"></script>\n' + _mdHtmlAndTex.render(input_field);
+    } else if (outputformat === 'result-as-habr') {
+
+        var html = _mdHtmlHabrAndImages.render(input_field);
+        html = html.replace('<spoiler ', '\n<spoiler ');
+        result['lang'] = "html";
+        result['text'] = html;
+    } else if (outputformat === 'result-as-src') {
+        // HTML code of the rendered data
+
+        result['lang'] = "html";
+        result['text'] = _mdHtmlAndImages.render(input_field);
+    } else if (outputformat === 'result-as-md') {
+        result['lang'] = "html";
+        result['text'] = _mdMdAndImages.renderInline(input_field);
+    } else if (outputformat === 'result-as-mdp') {
+        result['lang'] = "html";
+        result['text'] = input_field;
+    } else {
+        result['lang'] = "md";
+        result['text'] = "else";
+    }
+    return result;
 }
 
+// event listener on preview format update the abstract and title when we change the format
+Array.prototype.forEach.call(document.getElementsByClassName('control-item'), function(eNode, index) {
+    eNode.addEventListener('click', function() {
+        var view = this.getAttribute('data-result-as');
+        if (!view) {
+            return;
+        }
+        // set the body class
+        var eNode = document.body;
+
+        [
+            'result-as-html',
+            'result-as-htmltex',
+            'result-as-habr',
+            'result-as-src',
+            'result-as-debug',
+            'result-as-md',
+            'result-as-mdp'
+        ].forEach(function(className) {
+            if (eNode.classList) {
+                eNode.classList.remove(className);
+            } else {
+                eNode.className = eNode.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        });
+
+        if (eNode.classList) {
+            eNode.classList.add('result-as-' + view);
+        } else {
+            eNode.className += ' ' + 'result-as-' + view;
+        }
+
+        // update abstract and title
+        update_abstract();
+        update_title();
+
+    })
+});
+
+// set the updated context
+function domSetHighlightedContent(className, content, lang) {
+    var eNode = document.getElementById(className);
+    var result = null;
+    // for source without any formating
+    if (lang === 'none') {
+        eNode.innerHTML = content;
+    } else if (window.hljs) {
+        // highlighing 
+        result = window.hljs.highlight(lang, content)
+        eNode.innerHTML = result.value;
+    } else {
+        eNode.textContent = content;
+    }
+    return result;
+}
 // update abstract
 var abstract_text = document.getElementById("abstact-source");
+var abstract_result = null;
 function update_abstract() {
-    document.getElementById("article_abstract").innerHTML = latex_renderer(abstract_text) + "<div class=\"separator\"></div>";
+    var result = latex_renderer('<span id="article_abstract">\n\n' + abstract_text.value + "\n\n</span>\n");
+    abstract_result = domSetHighlightedContent("article_abstract",
+        result.text,
+        result.lang);
 };
+// add event listener in title field
 if (abstract_text.addEventListener) {
     // standards browsers: oninput event
     abstract_text.addEventListener("input", update_abstract());
@@ -144,9 +263,13 @@ if (abstract_text.addEventListener) {
 
 // update title
 var abstract_title = document.getElementById("title-source");
+var title_result = null;
 function update_title() {
-    document.getElementById("article_title").innerHTML = latex_renderer(abstract_title);
+    // in title we remove all line break
+    var result = latex_renderer('<span id="article_title">\n\n' + abstract_title.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n');
+    title_result = domSetHighlightedContent("article_title", result.text, result.lang);
 };
+// add event listener on abstract 
 if (abstract_title.addEventListener) {
     // standards browsers: oninput event
     abstract_title.addEventListener("input", update_title());
@@ -154,6 +277,18 @@ if (abstract_title.addEventListener) {
     // MSIE: detect changes to the 'value' property
     abstract_title.attachEvent("onpropertychange", update_title());
 }
+/* ??? 
+we should review the main something like this 
+need to be see the main use two block a "result-html" and "result-src", just need to update the one which actualli in the result.
+Also need to solve out on the text input filed the highlighing
+and make the text sscoring together, so this class will be bigger than the but the abstract and title, however these can be organised in independent area which make the editor more flexible
+the swich between visible and not visible is happening in the css: basically setting the body class make different switch the display
+
+*/
+
+
+
+
 
 /* hide and show div of the result */
 function show_title() {
@@ -167,41 +302,41 @@ function show_title() {
             x[i].style.display = "none";
             show = false;
         }
-    } 
-    
+    }
+
     if (show) {
         /* set the othe divs size */
-            var y = document.getElementsByClassName("editor_title_and_abstract");
-            y[0].style.height = "300px";
-            /* #source-block, #result-block, .slider */
-            y = document.getElementById("slider");
-            y.style.height = "calc(100% - 360px)";
-            y = document.getElementById("source-block")
-            y.style.height = "calc(100% - 360px)";
-            y = document.getElementById("result-block")
-            y.style.height = "calc(100% - 360px)";
+        var y = document.getElementsByClassName("editor_title_and_abstract");
+        y[0].style.height = "300px";
+        /* #source-block, #result-block, .slider */
+        y = document.getElementById("slider");
+        y.style.height = "calc(100% - 360px)";
+        y = document.getElementById("source-block")
+        y.style.height = "calc(100% - 360px)";
+        y = document.getElementById("result-block")
+        y.style.height = "calc(100% - 360px)";
     } else {
-                                /* set the othe divs size */
-            var y = document.getElementsByClassName("editor_title_and_abstract");
-            y[0].style.height = "30px";
-            /* #source-block, #result-block, .slider */
-            y = document.getElementById("slider");
-            y.style.height = "calc(100% - 90px)";
-            y = document.getElementById("source-block")
-            y.style.height = "calc(100% - 90px)";
-            y = document.getElementById("result-block")
-            y.style.height = "calc(100% - 90px)";
+        /* set the othe divs size */
+        var y = document.getElementsByClassName("editor_title_and_abstract");
+        y[0].style.height = "30px";
+        /* #source-block, #result-block, .slider */
+        y = document.getElementById("slider");
+        y.style.height = "calc(100% - 90px)";
+        y = document.getElementById("source-block")
+        y.style.height = "calc(100% - 90px)";
+        y = document.getElementById("result-block")
+        y.style.height = "calc(100% - 90px)";
     }
-} 
+}
 
 /* show and hide two type of menus 
  * -- showid -- the ID of the element which we want to show
-*/
+ */
 function show_mainmenus(showid) {
     var mainelements = ["editor_toolbar", "mur2menu", "choicemenu"];
     for (i = 0; i < mainelements.length; i++) {
         var x = document.getElementById(mainelements[i]);
-        if ( showid === mainelements[i] ) {
+        if (showid === mainelements[i]) {
             x.style.display = "flex";
             x.style.display = "-webkit-flex";
         } else {
@@ -212,7 +347,7 @@ function show_mainmenus(showid) {
 
 /* function to alarming on the editor page */
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function alarming(xhr, sucessmsg) {
     /* check return value */
@@ -220,25 +355,24 @@ async function alarming(xhr, sucessmsg) {
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
             msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response  ;
+            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
         } else { // show the result   
             msgbox.style.color = "green";
             msgbox.innerHTML = sucessmsg;
             // if new article we redirect to the new page
             var mur2answer = JSON.parse(xhr.response);
-            console.log(mur2answer);
-            if ( mur2answer.hasOwnProperty('id') ) {
-                window.location.replace("/edit/"+mur2answer.id);
+            if (mur2answer.hasOwnProperty('id')) {
+                window.location.replace("/edit/" + mur2answer.id);
             }
         }
     };
-    
+
     if (xhr.status != 200) {
         await sleep(5000);
     } else {
         await sleep(2000);
     }
-    
+
     // clear msg
     msgbox.innerHTML = "";
 }
@@ -292,92 +426,108 @@ function save_article() {
     alarming(xhr, "Saved!");
 };
 
-function download_result() {
+async function download_result() {
     // should be good to set the type more inteligently
-    var blob = new Blob([parserCollection.getDisplayedResult()], {
+    var body = new Blob([parserCollection.getDisplayedResult()], {
         type: 'text/html;charset=utf-8'
     });
+    var bodytext = await body.text();
+    var x = title_result.code;
+    var y = abstract_result.code;
+
+    // get what is the current preview format
+    var eNode = document.body;
+    var outputformat = eNode.className.split(' ')[0];
+
+    // merge title, abstract and text
+    if (outputformat === 'result-as-html' || outputformat === 'result-as-htmltex' || outputformat === 'result-as-habr' || outputformat === 'result-as-src') {
+        var blob = new Blob([x + "\n\n" + y + "\n\n" + bodytext], {
+            type: 'text/html;charset=utf-8'
+        });
+    } else {
+        var blob = new Blob([x + "\n\n" + y + "\n\n" + bodytext], {
+            type: 'text/markdown;charset=utf-8'
+        });
+    }
+
     saveAs(blob, parserCollection.getDisplayedResultFilename());
 };
 
 function upload_source() {
-
     var eNode = document.getElementById('fileElem');
     // Fire click on file input
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
-    
-async function wordpress2(link, id) {
-    // save the wordpressid if it is not an anonimus article    
-        fd = new FormData();    
-        var article_id = document.querySelector('meta[name="article_id"]').content
-        fd.append('article_id', article_id);
-        fd.append("destination", "wp");
-        fd.append("wpcom_id", id)
-        xhr = new XMLHttpRequest();
-        xhr.open('post', '/export_data', true);
-        xhr.send(fd);
-        alarming(xhr, "Published on "+link);
-}
+
 
 /* commit in Wordpress.com by cokkies */
+async function wordpress2(link, id) {
+    // save the wordpressid if it is not an anonimus article    
+    fd = new FormData();
+    var article_id = document.querySelector('meta[name="article_id"]').content
+    fd.append('article_id', article_id);
+    fd.append("destination", "wp");
+    fd.append("wpcom_id", id);
+    fd.append("wpcom_address", link);
+    xhr = new XMLHttpRequest();
+    xhr.open('post', '/export_data', true);
+    xhr.send(fd);
+    alarming(xhr, "Published on " + link);
+}
 async function wordpress_on_fly() {
     var msgbox = document.getElementById("msg")
-    
+
     var texttype = document.querySelector('meta[name="texttype"]').content;
     if (texttype.trim() == 'article') {
         // get cookies
         var access_token = getCookie("mur2_wpc_accesstoken");
         var address = getCookie("mur2_wpc_sideid");
-        if ( access_token === "" ) {
+        if (access_token === "") {
             msgbox.style.color = "red";
             msgbox.innerHTML = "Error: You do not loged in in Wordpress.com";
         };
-        
+
         // if it is not a new article get the id
         var article_id = document.querySelector('meta[name="article_id"]').content
         // ???
-        
-        
-    
+
         // get the Article data
         var htmldata = new Blob([parserCollection.getDisplayedResult()], {
             type: 'text/html;charset=utf-8'
         });
-        var htmltext = await htmldata.text();    
+        var htmltext = await htmldata.text();
         var article_title = document.getElementById('title-source').value;
-        var article_abstract = document.getElementById('abstact-source').value;   
-    
+        var article_abstract = document.getElementById('abstact-source').value;
+
         // publish in Wordpress.com
         var fd = new FormData();
-        fd.append('title', article_title  );
+        fd.append('title', article_title);
         fd.append('status', 'private');
-        fd.append('content',  htmltext );
+        fd.append('content', '<em>'+article_abstract+"</em><hr>"+htmltext);
         fd.append('excerpt', article_abstract);
         fd.append('format', 'standard');
-        console.log(htmldata);
-                
+
         var xhr = new XMLHttpRequest();
-        xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/'+address+'/posts', true);      
-        xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent( access_token ) )
+        xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/posts', true);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token))
         xhr.send(fd);
         xhr.onload = function() {
             if (xhr.status != 201) { // analyze HTTP status of the response
                 msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response  ;
-            } else { 
+                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+            } else {
                 var wc2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
-                msgbox.innerHTML = "Published on " + wc2answer.link  ; 
-                
+                msgbox.innerHTML = "Published on " + wc2answer.link;
+
                 wordpress2(wc2answer.link, wc2answer.id);
             }
-        };  
-        
+        };
+
         // clear msg
         if (xhr.status != 200) {
             await sleep(5000);
-        } else  {
+        } else {
             await sleep(2000);
         }
         msgbox.innerHTML = "";
@@ -386,8 +536,9 @@ async function wordpress_on_fly() {
 
 /* make focus mode on last sentence   */
 var focusmode_switch = 0;
+
 function focusemode_on() {
-    if ( focusmode_switch === 0 ) {
+    if (focusmode_switch === 0) {
         focusmode_switch = 1;
     } else {
         focusmode_switch = 0;
@@ -398,15 +549,17 @@ function focusemode_on() {
 async function generate_from_md(destination) {
     var article_title = document.getElementById('title-source').value;
     var article_abstract = document.getElementById('abstact-source').value;
-    var mddata = new Blob([parserCollection.getSource()], {type: 'text/markdown;charset=utf-8'});
+    var mddata = new Blob([parserCollection.getSource()], {
+        type: 'text/markdown;charset=utf-8'
+    });
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
     var language = document.querySelector('meta[name="mur2language"]').content
     var fd = new FormData();
-    
+
     var msgbox = document.getElementById("msg")
     msgbox.innerHTML = "Working";
     msgbox.style.color = "green";
-    
+
     fd.append("destination", destination);
     fd.append("mdfile", mddata, "article_text.md");
     fd.append('article_title', article_title);
@@ -418,25 +571,25 @@ async function generate_from_md(destination) {
     xhr.responseType = 'blob';
     xhr.open('post', '/export_data', true);
     xhr.send(fd)
-    
+
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
-            
+
             msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response  ;
-            
+            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+
         } else { // save the result   
             var blob = this.response;
             var contentDispo = this.getResponseHeader('Content-Disposition');
-            if ( destination === "latex" ) {
-                saveAs(blob, 'mur2.tex');                       
-            } else {                
-                saveAs(blob, 'mur2.pdf');                
+            if (destination === "latex") {
+                saveAs(blob, 'mur2.tex');
+            } else {
+                saveAs(blob, 'mur2.pdf');
             }
         }
-        
+
     };
-    
+
     if (xhr.status != 200) {
         await sleep(5000);
         // clear msg
@@ -444,6 +597,6 @@ async function generate_from_md(destination) {
     } else {
         msgbox.innerHTML = "";
     }
-    
-    
+
+
 }
