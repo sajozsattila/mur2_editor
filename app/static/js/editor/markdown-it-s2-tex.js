@@ -178,6 +178,7 @@
 		}(location.protocol == "https:" ? "https:" : 'http:')); // support for file: protocol
 
 		md.renderer.rules.math_number = function (tokens, idx) {
+            
 			return '<span style="float:right">' + tokens[idx].content + '</span>';
 		};
 	};

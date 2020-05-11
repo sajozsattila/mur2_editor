@@ -1,112 +1,88 @@
-/* hide and show div of the result */
-function hide_result() {
-    var y = document.getElementsByClassName("source_side");
-    var x = document.getElementsByClassName("result_side");
-    var i;
-    for (i = 0; i < x.length; i++) {
-        if (x[i].classList.contains('hideitem')) {
-            x[i].classList.remove('hideitem');
-            x[i].classList.add('displayitem');
-            x[i].classList.add('halfsize');
-            y[i].classList.remove('fullsize');
-            y[i].classList.add('halfsize');
-        } else {
-            x[i].classList.add('hideitem');
-            x[i].classList.remove('displayitem');
-            y[i].classList.add('fullsize');
-            y[i].classList.remove('halfsize');
-        }
-    }
-}
+// what is the actuall preview type 
+var g_view = 'html';
+// focusmode on?   
+var g_focusmode_switch = false;
+// preview show?
+var g_preview_on = true;
+// which textareai is selected
+var g_selectedTextarea = null;
 
-/* hide and show div of the result */
-function show_side_menu() {
-    var y = document.getElementById("side_menu");
-    if (y.style.display === "none") {
-        y.style.display = "inline-block";
+
+//////////
+// set a DOM content, with highlighting or not 
+//     if 'lang' === 'none' it is setting just the innerHTML
+//////////
+function g_domSetHighlightedContent(idName, content, lang) {
+    var eNode = document.getElementById(idName);
+    var result = null;
+    // for source without any formating
+
+    if (lang === 'none') {
+        eNode.innerHTML = content;
+    } else if (window.hljs) {
+        // highlighing 
+        result = window.hljs.highlight(lang, content)
+        eNode.innerHTML = result.value;
     } else {
-        y.style.display = "none";
+        eNode.textContent = content;
     }
+    return result;
 }
 
-var event = new Event('input');
+/**
+ * Searches start position for text blocks
+ */
+function g_domFindScrollMarks() {
+    var resElements = document.querySelectorAll('#article_main .line'),
+        resElementHeight = [],
+        line,
+        mapSrc = [0],
+        mapResult = [0],
+        i = 0,
+        len = resElements.length;
 
-function editorToolbarAction(action, endnote) {
-    field = window.selectedTextarea;
-    var start = field.selectionStart;
-    var end = field.selectionEnd;
-    // if there is selection
-    var text = field.value.substring(start, end);
-
-    var wrap = null;
-    if (action === "italic") {
-        wrap1 = "*";
-        wrap2 = wrap1;
-    } else if (action === "strong") {
-        wrap1 = "**";
-        wrap2 = wrap1;
-    } else if (action === "heading") {
-        wrap1 = "# ";
-        wrap2 = "\n";
-    } else if (action === "code") {
-        wrap1 = "\n```\n";
-        wrap2 = wrap1;
-    } else if (action === "table") {
-        wrap = "\n|  |  |\n|--|--|\n|  |  |\n";
-    } else if (action === "latex") {
-        wrap1 = "$$ "
-        wrap2 = " $$"
-    } else if (action === "link") {
-        var userinput = prompt("Please enter URL for the link", "");
-        if (userinput != null) {
-            if (text) {
-                wrap = "[" + text + "](" + userinput + ")";
-            } else {
-                wrap = "[link](" + userinput + ")";
-            }
+    for (; i < len; i++) {
+        line = parseInt(resElements[i].getAttribute('data-line'));
+        if (line) {
+            resElementHeight[line] = Math.round(resElements[i].offsetTop);
         }
-    } else if (action === "picture") {
-        var userinput = prompt("Please enter URL for picture", "");
-        if (userinput != null) {
-            if (text) {
-                wrap = "![" + text + "](" + userinput + ")";
-            } else {
-                wrap = "![kep](" + userinput + ")";
-            }
-        }
-    } else if (action === "list") {
-        re = /\n/g;
-        wrap = "- " + text.replace(re, "\n\- ")
-    } else if (action === "numbered_list") {
-        re = /\n/g;
-        wrap = "1. " + text.replace(re, "\n1\. ")
-    } else if (action === "footnote") {
-        wrap = '^[' + text + '] '
     }
 
-    // update the area
-    if (wrap != null) {
-        if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
-            window.selectedTextarea.value =
-                field.value.substring(0, start) +
-                wrap1 + text.trim() + wrap2 +
-                field.value.substring(end);
-        } else {
-            // new areas
-            window.selectedTextarea.value =
-                field.value.substring(0, start) +
-                wrap +
-                field.value.substring(end);
+    var srcElements = document.querySelectorAll('.ldt-pre .block-start');
+
+    len = srcElements.length;
+    line = 0;
+
+    for (i = 0; i < len; i++) {
+        var lineDelta = parseInt(srcElements[i].getAttribute('data-line'));
+        if (lineDelta) {
+            line += lineDelta;
+
+            // We track only lines in both containers
+            if (typeof resElementHeight[line] !== 'undefined') {
+                mapSrc.push(srcElements[i].offsetTop);
+                mapResult.push(resElementHeight[line]);
+            }
         }
-        // fire an update on result filed
-        field.dispatchEvent(event);
     }
+    var srcScrollHeight = document.querySelector('.ldt-pre').scrollHeight,
+        lastSrcElemPos = mapSrc[mapSrc.length - 1],
+        allowedHeight = 5; // workaround for automatic textarea scrolling on entering new source lines
+
+    mapSrc.push(srcScrollHeight - allowedHeight > lastSrcElemPos ? srcScrollHeight - allowedHeight : lastSrcElemPos);
+    mapResult.push(document.querySelector('#article_main').scrollHeight);
+
+    return [mapSrc, mapResult];
 }
 
-// render a text to Latex
-// used in the Abstract and the Title
-function latex_renderer(input_field) {
-    // from editor.js
+function ParserCollection(
+    markdownit,
+    updateCallback,
+    result_destination,
+    result_destination_pre,
+    sourceGetter
+) {
+    /* default for markdown-it */
     var defaults = {
         html: true, // Enable HTML tags in source
         xhtmlOut: false, // Use '/' to close single tags (<br />)
@@ -125,478 +101,703 @@ function latex_renderer(input_field) {
         _highlight: true,
         _strict: false
     };
-    var markdownit = window.markdownit;
+    /* make working inline code highlighting */
+    defaults.highlight = function(str, lang) {
+        var esc = _mdPreview.utils.escapeHtml;
 
-    // get what is the current preview format
-    var eNode = document.body;
-    var outputformat = eNode.className.split(' ')[0];
-    // filter for format
-    var result = new Object();
+        try {
+            if (!defaults._highlight) {
+                throw 'highlighting disabled';
+            }
 
-    /* renderes */
-    var _mdPreview = markdownit(defaults)
+            if (lang && lang !== 'auto' && hljs.getLanguage(lang)) {
+
+                return '<pre class="hljs language-' + esc(lang.toLowerCase()) + '"><code>' +
+                    hljs.highlight(lang, str, true).value +
+                    '</code></pre>';
+
+            } else if (lang === 'auto') {
+
+                var result = hljs.highlightAuto(str);
+
+                return '<pre class="hljs language-' + esc(result.language) + '"><code>' +
+                    result.value +
+                    '</code></pre>';
+            }
+        } catch (__) {
+            /**/
+        }
+
+        return '<pre class="hljs"><code>' + esc(str) + '</code></pre>';
+    };
+    // some globel to make local
+    var domSetHighlightedContent = g_domSetHighlightedContent;
+
+    _mdPreview = markdownit(defaults)
         .use(markdownitS2Tex)
         .use(markdownitSub)
-        .use(markdownitSup);
+        .use(markdownitSup)
+        .use(markdownitFootnote)
+        .use(markdownitIns);
+
+    var _mdHtmlAndImages = markdownit(defaults)
+        .use(markdownitS2Tex)
+        .use(markdownitSub)
+        .use(markdownitSup)
+        .use(markdownitFootnote)
+        .use(markdownitIns);
+
     var _mdHtmlAndTex = markdownit(defaults)
         .use(markdownitS2Tex, {
             noreplace: true
         })
         .use(markdownitSub)
-        .use(markdownitSup);
+        .use(markdownitSup)
+        .use(markdownitFootnote)
+        .use(markdownitIns);
+
     var _mdHtmlHabrAndImages = markdownit(defaults)
         .use(markdownitS2Tex, defaults._habr)
         .use(markdownitSub)
-        .use(markdownitSup);
-    var _mdHtmlAndImages = markdownit(defaults)
-        .use(markdownitS2Tex)
-        .use(markdownitSub)
-        .use(markdownitSup);
+        .use(markdownitSup)
+        .use(markdownitFootnote)
+        .use(markdownitIns);
+
     var _mdMdAndImages = markdownit('zero')
         .use(markdownitS2Tex);
-    
 
-    if (outputformat === 'result-as-html') {
-
-        result['lang'] = 'none';
-        result['text'] = _mdPreview.render(input_field);
-    } else if (outputformat === 'result-as-htmltex') {
-
-        result['lang'] = "html";
-        result['text'] = '<script src="https://tex.s2cms.ru/latex.js"></script>\n' + _mdHtmlAndTex.render(input_field);
-    } else if (outputformat === 'result-as-habr') {
-
-        var html = _mdHtmlHabrAndImages.render(input_field);
-        html = html.replace('<spoiler ', '\n<spoiler ');
-        result['lang'] = "html";
-        result['text'] = html;
-    } else if (outputformat === 'result-as-src') {
-        // HTML code of the rendered data
-
-        result['lang'] = "html";
-        result['text'] = _mdHtmlAndImages.render(input_field);
-    } else if (outputformat === 'result-as-md') {
-        result['lang'] = "html";
-        result['text'] = _mdMdAndImages.renderInline(input_field);
-    } else if (outputformat === 'result-as-mdp') {
-        result['lang'] = "html";
-        result['text'] = input_field;
-    } else {
-        result['lang'] = "md";
-        result['text'] = "else";
+    /* overwite Footnote */
+    var mdsnames = [_mdPreview, _mdHtmlAndImages, _mdHtmlAndTex, _mdHtmlHabrAndImages, _mdMdAndImages];
+    var languageFootnote = document.querySelector('meta[name="endnotetext"]').content
+    for (var i = 0; i < mdsnames.length; i++) {
+        mdsnames[i].renderer.rules.footnote_block_open = () => (
+            '<h4 class="mt-3">' + languageFootnote + '</h4>\n' +
+            '<section class="footnotes">\n' +
+            '<ol class="footnotes-list">\n'
+        );
     }
-    return result;
+
+    /**
+     * Detects if the paragraph contains the only formula.
+     * Parser gives the class 'tex-block' to such formulas.
+     *
+     * @param tokens
+     * @param idx
+     * @returns {boolean}
+     */
+    function hasBlockFormula(tokens, idx) {
+        if (idx >= 0 && tokens[idx] && tokens[idx].children) {
+            for (var i = tokens[idx].children.length; i--;) {
+                if (tokens[idx].children[i].tag === 'tex-block') {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Inject line numbers for sync scroll. Notes:
+     * - We track only headings and paragraphs on first level. That's enough.
+     * - Footnotes content causes jumps. Level limit filter it automatically.
+     *
+     * @param tokens
+     * @param idx
+     * @param options
+     * @param env
+     * @param self
+     */
+    function injectLineNumbersAndCentering(tokens, idx, options, env, self) {
+        var line;
+        if (tokens[idx].map && tokens[idx].level === 0) {
+            line = tokens[idx].map[0];
+            tokens[idx].attrPush(['class', 'line']);
+            tokens[idx].attrPush(['data-line', line + '']);
+        }
+
+        // Hack (maybe it is better to use block renderers?)
+        if (hasBlockFormula(tokens, idx + 1)) {
+            tokens[idx].attrPush(['align', 'center']);
+            tokens[idx].attrPush(['style', 'text-align: center;']);
+        }
+
+        return self.renderToken(tokens, idx, options, env, self);
+    }
+
+    // Habrahabr does not ignore <p> tags and meanwhile uses whitespaces
+    function habrHeading(tokens, idx, options, env, self) {
+        var prefix = "";
+        if (idx > 0 && tokens[idx - 1].type === 'paragraph_close' && !hasBlockFormula(tokens, idx - 2)) {
+            prefix = "\n";
+        }
+
+        return prefix + self.renderToken(tokens, idx, options, env, self);
+    }
+
+    function habrParagraphOpen(tokens, idx, options, env, self) {
+        var prefix = "";
+        if (idx > 0 && tokens[idx - 1].type === 'paragraph_close' && !hasBlockFormula(tokens, idx - 2)) {
+            prefix = "\n";
+        }
+        return prefix; //+ self.renderToken(tokens, idx, options, env, self);
+    }
+
+    function habrParagraphClose(tokens, idx, options, env, self) {
+        var prefix = "\n";
+        return prefix; //+ self.renderToken(tokens, idx, options, env, self);
+    }
+
+    function injectCentering(tokens, idx, options, env, self) {
+        // Hack (maybe it is better to use block renderers?)
+        if (hasBlockFormula(tokens, idx + 1)) {
+            tokens[idx].attrPush(['align', 'center']);
+            tokens[idx].attrPush(['style', 'text-align: center;']);
+        }
+        return self.renderToken(tokens, idx, options, env, self);
+    }
+
+    _mdPreview.renderer.rules.paragraph_open = _mdPreview.renderer.rules.heading_open = injectLineNumbersAndCentering;
+    _mdHtmlAndImages.renderer.rules.paragraph_open = _mdHtmlAndImages.renderer.rules.heading_open = injectCentering;
+
+    _mdHtmlHabrAndImages.renderer.rules.heading_open = habrHeading;
+    _mdHtmlHabrAndImages.renderer.rules.paragraph_open = habrParagraphOpen;
+    _mdHtmlHabrAndImages.renderer.rules.paragraph_close = habrParagraphClose;
+
+    // A copy of Markdown-it original backticks parser.
+    // We want to prevent from parsing dollars inside backticks as TeX delimeters (`$$`).
+    // But we do not want HTML in result.
+    _mdMdAndImages.inline.ruler.before('backticks', 'backticks2', function(state, silent) {
+        var start, max, marker, matchStart, matchEnd, token,
+            pos = state.pos,
+            ch = state.src.charCodeAt(pos);
+        if (ch !== 0x60 /* ` */ ) {
+            return false;
+        }
+
+        start = pos;
+        pos++;
+        max = state.posMax;
+
+        while (pos < max && state.src.charCodeAt(pos) === 0x60 /* ` */ ) {
+            pos++;
+        }
+
+        marker = state.src.slice(start, pos);
+
+        matchStart = matchEnd = pos;
+
+        while ((matchStart = state.src.indexOf('`', matchEnd)) !== -1) {
+            matchEnd = matchStart + 1;
+
+            while (matchEnd < max && state.src.charCodeAt(matchEnd) === 0x60 /* ` */ ) {
+                matchEnd++;
+            }
+
+            if (matchEnd - matchStart === marker.length) {
+                if (!silent) {
+                    token = state.push('backticks2_inline', 'code', 0); // <-- The change
+                    token.markup = marker;
+                    token.content = state.src.slice(pos, matchStart)
+                }
+                state.pos = matchEnd;
+                return true;
+            }
+        }
+
+        if (!silent) {
+            state.pending += marker;
+        }
+        state.pos += marker.length;
+        return true;
+    });
+
+    _mdMdAndImages.renderer.rules.backticks2_inline = function(tokens, idx /*, options, env, slf*/ ) {
+        var token = tokens[idx];
+        return token.markup + token.content + token.markup;
+    };
+
+    // Prevents HTML escaping.
+    _mdMdAndImages.renderer.rules.text = function(tokens, idx /*, options, env */ ) {
+        return tokens[idx].content;
+    };
+
+    /**
+     * Habrahabr hack for numerating formulas
+     */
+    _mdHtmlHabrAndImages.renderer.rules.math_number = function(tokens, idx) {
+        return '<img align="right" src="//tex.s2cms.ru/svg/' + tokens[idx].content + '" />';
+    };
+
+    /**
+     * Habrahabr "source" tag
+     *
+     * @param tokens
+     * @param idx
+     * @param options
+     * @param env
+     * @param self
+     * @returns {string}
+     */
+    _mdHtmlHabrAndImages.renderer.rules.fence = function(tokens, idx, options, env, self) {
+        var token = tokens[idx],
+            info = token.info ? _mdHtmlHabrAndImages.utils.unescapeAll(token.info).trim() : '',
+            langName = '',
+            highlighted;
+
+        if (info) {
+            langName = info.split(/\s+/g)[0];
+            token.attrPush(['lang', langName]);
+        }
+
+        if (options.highlight) {
+            highlighted = options.highlight(token.content, langName) || _mdHtmlHabrAndImages.utils.escapeHtml(token.content);
+        } else {
+            highlighted = _mdHtmlHabrAndImages.utils.escapeHtml(token.content);
+        }
+
+        return '\n<source' + self.renderAttrs(token) + '>' +
+            highlighted +
+            '</source>\n';
+    };
+
+    function getHabraMarkup(source) {
+        var html = _mdHtmlHabrAndImages.render(source);
+
+        html = html.replace('<spoiler ', '\n<spoiler ');
+        return html;
+    }
+
+    this.getSource = sourceGetter,
+        source = null;
+
+    this.updateResult = function(imageLoader) {
+        var _view = g_view;
+
+        source = sourceGetter();
+
+        // Update only active view to avoid slowdowns
+        // (debug & src view with highlighting are a bit slow)
+        switch (_view) {
+            case 'html':
+                imageLoader.reset();
+                domSetHighlightedContent(result_destination, _mdPreview.render(source), 'none');
+                imageLoader.fixDom();
+                break;
+            case 'htmltex':
+                domSetHighlightedContent(result_destination_pre, '<script src="https://tex.s2cms.ru/latex.js"></script>\n' + _mdHtmlAndTex.render(source), 'html');
+                break;
+            case 'habr':
+                domSetHighlightedContent(result_destination_pre, getHabraMarkup(source), 'html');
+                break;
+            case 'md':
+                domSetHighlightedContent(result_destination_pre, _mdMdAndImages.renderInline(source), 'html');
+                break;
+            case 'mdp':
+                domSetHighlightedContent(result_destination_pre, source, 'none');
+                break;
+            case 'src':
+                domSetHighlightedContent(result_destination_pre, _mdHtmlAndImages.render(source), 'html');
+                break;
+        }
+
+        // save the version
+        updateCallback(source);
+    };
+
+    this.getDisplayedResult = function() {
+        var _view = g_view;
+        var source = sourceGetter();
+
+        switch (_view) {
+            case 'habr':
+                return _mdHtmlHabrAndImages.render(source);
+            case 'htmltex':
+                return '<script src="https://tex.s2cms.ru/latex.js"></script>\n' + _mdHtmlAndTex.render(source);
+            case 'md':
+                return _mdMdAndImages.renderInline(source);
+            case 'mdp':
+                return source;
+            default:
+                return _mdHtmlAndImages.render(source);
+        }
+    };
+
+    // return the rendered HMTL with img
+    this.getHtmlImg = function() {
+        var source = sourceGetter();
+        return _mdHtmlAndImages.render(source);
+
+    }
+
 }
 
-// event listener on preview format update the abstract and title when we change the format
-Array.prototype.forEach.call(document.getElementsByClassName('control-item'), function(eNode, index) {
-    eNode.addEventListener('click', function() {
-        var view = this.getAttribute('data-result-as');
-        if (!view) {
+
+
+(function(document, window) {
+    'use strict';
+
+    // globals to make them local 
+    var domFindScrollMarks = g_domFindScrollMarks;
+
+    // get the different element of the data
+    var titleSource = document.getElementById('title-source'),
+        titleResult = document.getElementById('article_title'),
+        abstactSource = document.getElementById('abstact-source'),
+        abstactResult = document.getElementById('article_abstract'),
+        mainSource = document.getElementById('main-source'),
+        mainResult = document.getElementById('article_main');
+
+    var recalcHeight = debounce(function() {
+        decorator.recalcHeight()
+    }, 100);
+
+    var scrollMap = new ScrollMap(domFindScrollMarks);
+
+    var mainCollection = new ParserCollection(
+        window.markdownit,
+        function(source) {
+            // reset lines mapping cache on content update
+            scrollMap.reset();
+            // local save
+            try {
+                localStorage.setItem("mur2_main_content", source);
+            } catch (e) {}
+        },
+        "article_main",
+        "article_main_pre",
+        function domGetSource() {
+            return mainSource.value;
+        }
+    );
+    var titleCollection = new ParserCollection(
+        window.markdownit,
+        function(source) {
+            // local save
+            try {
+                localStorage.setItem("mur2_title_content", source.split("\n").slice(2, -3).join("\n"));
+            } catch (e) {}
+        },
+        "article_title",
+        "article_title",
+        function domGetSource() {
+            return '<span id="article_title">\n\n' + titleSource.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n';
+        }
+    );
+    var abstractCollection = new ParserCollection(
+        window.markdownit,
+        function(source) {
+            // local save
+            try {
+                localStorage.setItem("mur2_abstract_content", source.split("\n").slice(2, -3).join("\n"));
+            } catch (e) {}
+        },
+        "article_abstract",
+        "article_abstract",
+        function domGetSource() {
+            return '<span id="article_abstract">\n\n' + abstactSource.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n';
+        }
+    );
+
+    // creat the Math imageLoaders we need them because of the debounce destroy the this. object in the ParserCollection
+    var mainImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 'm_'),
+        titleImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 't_'),
+        abstractImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 'a_');
+
+    // load first everything
+    mainCollection.updateResult(mainImageLoader);
+    abstractCollection.updateResult(abstractImageLoader);
+    titleCollection.updateResult(titleImageLoader);
+
+
+    // start the decorator we just decorate the main
+    var decorator = new TextareaDecorator(mainSource, mdParser);
+    // .source has been changed after TextareaDecorator call
+    var eNodeSource = document.getElementsByClassName("ldt")[0];
+
+    var syncScroll = new SyncScroll(
+        scrollMap,
+        new Animator(function() {
+            return eNodeSource.scrollTop;
+        }, function(y) {
+            eNodeSource.scrollTop = y;
+        }),
+        new Animator(function() {
+            return mainResult.scrollTop;
+        }, function(y) {
+            mainResult.scrollTop = y;
+        }),
+        eNodeSource,
+        mainResult,
+        document.querySelector('[id^="maintext"]')
+    );
+
+
+    // debonced updates for resource managment
+
+    var updateMain = debounce(mainCollection.updateResult, 300, {
+        maxWait: 3000
+    });
+    var updateTitle = debounce(titleCollection.updateResult, 300, {
+        maxWait: 3000
+    });
+
+    var updateAbstract = debounce(abstractCollection.updateResult, 300, {
+        maxWait: 3000
+    });
+
+    /* Add event listener */
+    // make event delegation for all of the input
+    //   basically we have three texfiled: title, abstract, main
+    //      we can add three event listener, but better one event listener on 
+    //      we can do this by organising them under one parent, and use event delegation
+    let article_input_side = document.querySelector('#article_input_side');
+    article_input_side.addEventListener('input', (event) => {
+        let target = event.target;
+        var preview_on = g_preview_on;
+        // switching depending which textfiled was an input
+        switch (target.id) {
+            case 'title-source':
+                // if we do not show preview no point to update
+                if (preview_on) {
+                    updateTitle(titleImageLoader);
+                }
+                break;
+            case 'abstact-source':
+                if (preview_on) {
+                    updateAbstract(abstractImageLoader);
+                }
+                break;
+            case 'main-source':
+                if (preview_on) {
+                    updateMain(mainImageLoader);
+                }
+                break;
+        }
+    });
+
+    // action to roll on main 
+    mainSource.addEventListener('touchstart', syncScroll.switchScrollToSrc);
+    mainSource.addEventListener('mouseover', syncScroll.switchScrollToSrc);
+    mainResult.addEventListener('touchstart', syncScroll.switchScrollToResult);
+    mainResult.addEventListener('mouseover', syncScroll.switchScrollToResult);
+
+    syncScroll.switchScrollToSrc();
+
+    // slider
+    (function() {
+        var eSlider = document.querySelector('#slider'),
+            dragSlider = new Draggabilly(eSlider, {
+                axis: 'x'
+            }),
+            sourceBlock = document.getElementById('article_input_side'),
+            resultBLock = document.getElementById('article_preview_side'),
+            windowWidth;
+
+        function setWidth(percent) {
+            sourceBlock.style.width = 'calc(' + percent + '% - 3px)';
+            resultBLock.style.width = 'calc(' + (100 - percent) + '% - 3px)';
+
+            scrollMap.reset();
+            recalcHeight();
+        }
+
+        eSlider.addEventListener('dblclick', function() {
+            setWidth(50);
+        });
+
+        dragSlider.on('dragStart', function(event, pointer, moveVector) {
+            windowWidth = window.innerWidth;
+        });
+
+        dragSlider.on('dragMove', function(event, pointer, moveVector) {
+            setWidth(100.0 * pointer.pageX / windowWidth);
+        });
+    })();
+
+    // Need to recalculate line positions on window resize
+    window.addEventListener('resize', function() {
+        scrollMap.reset();
+        recalcHeight();
+    });
+
+    // listener for the toolbar
+    article_input_side.addEventListener('select', (event) => {
+        // switching depending which textfiled was an input
+        let target = event.target;
+        if (target.id === 'title-source' || target.id === 'abstact-source' || target.id === 'main-source') {
+            g_selectedTextarea = target.id;
+        }
+    });
+
+    // uplad the selected area. used for toolbar
+    var inputevent = new Event('input');
+
+    function update() {
+        var selectedTextarea = g_selectedTextarea;
+        if (selectedTextarea === 'main-source') {
+            updateMain(mainImageLoader);
+            // fire inputevent manualy to update highlighted things also
+            mainSource.dispatchEvent(inputevent);
+        } else if (selectedTextarea === 'title-source') {
+            updateTitle(titleImageLoader);
+        } else if (selectedTextarea === 'abstact-source') {
+            updateAbstract(abstractImageLoader);
+        }
+    }
+
+    // file upload event
+    document.getElementById('fileElem').addEventListener('change', function() {
+        // A file has been chosen
+        if (!this.files || !FileReader) {
             return;
         }
-        // set the body class
-        var eNode = document.body;
 
-        [
-            'result-as-html',
-            'result-as-htmltex',
-            'result-as-habr',
-            'result-as-src',
-            'result-as-debug',
-            'result-as-md',
-            'result-as-mdp'
-        ].forEach(function(className) {
-            if (eNode.classList) {
-                eNode.classList.remove(className);
-            } else {
-                eNode.className = eNode.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-            }
-        });
+        var reader = new FileReader(),
+            fileInput = this;
 
-        if (eNode.classList) {
-            eNode.classList.add('result-as-' + view);
-        } else {
-            eNode.className += ' ' + 'result-as-' + view;
-        }
-
-        // update abstract and title
-        update_abstract();
-        update_title();
-
-    })
-});
-
-// set the updated context
-function domSetHighlightedContent(className, content, lang) {
-    var eNode = document.getElementById(className);
-    var result = null;
-    // for source without any formating
-    if (lang === 'none') {
-        eNode.innerHTML = content;
-    } else if (window.hljs) {
-        // highlighing 
-        result = window.hljs.highlight(lang, content)
-        eNode.innerHTML = result.value;
-    } else {
-        eNode.textContent = content;
-    }
-    return result;
-}
-// update abstract
-var abstract_text = document.getElementById("abstact-source");
-var abstract_result = null;
-function update_abstract() {
-    var result = latex_renderer('<span id="article_abstract">\n\n' + abstract_text.value + "\n\n</span>\n");
-    abstract_result = domSetHighlightedContent("article_abstract",
-        result.text,
-        result.lang);
-};
-// add event listener in title field
-if (abstract_text.addEventListener) {
-    // standards browsers: oninput event
-    abstract_text.addEventListener("input", update_abstract());
-} else {
-    // MSIE: detect changes to the 'value' property
-    abstract_text.attachEvent("onpropertychange", update_abstract());
-}
-
-// update title
-var abstract_title = document.getElementById("title-source");
-var title_result = null;
-function update_title() {
-    // in title we remove all line break
-    var result = latex_renderer('<span id="article_title">\n\n' + abstract_title.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n');
-    title_result = domSetHighlightedContent("article_title", result.text, result.lang);
-};
-// add event listener on abstract 
-if (abstract_title.addEventListener) {
-    // standards browsers: oninput event
-    abstract_title.addEventListener("input", update_title());
-} else {
-    // MSIE: detect changes to the 'value' property
-    abstract_title.attachEvent("onpropertychange", update_title());
-}
-/* ??? 
-we should review the main something like this 
-need to be see the main use two block a "result-html" and "result-src", just need to update the one which actualli in the result.
-Also need to solve out on the text input filed the highlighing
-and make the text sscoring together, so this class will be bigger than the but the abstract and title, however these can be organised in independent area which make the editor more flexible
-the swich between visible and not visible is happening in the css: basically setting the body class make different switch the display
-
-*/
-
-
-
-
-
-/* hide and show div of the result */
-function show_title() {
-    var x = document.getElementsByClassName("title_and_abstract");
-    var i;
-    var show = true;
-    for (i = 0; i < x.length; i++) {
-        if (x[i].style.display === "none") {
-            x[i].style.display = "inline-block";
-        } else {
-            x[i].style.display = "none";
-            show = false;
-        }
-    }
-
-    if (show) {
-        /* set the othe divs size */
-        var y = document.getElementsByClassName("editor_title_and_abstract");
-        y[0].style.height = "300px";
-        /* #source-block, #result-block, .slider */
-        y = document.getElementById("slider");
-        y.style.height = "calc(100% - 360px)";
-        y = document.getElementById("source-block")
-        y.style.height = "calc(100% - 360px)";
-        y = document.getElementById("result-block")
-        y.style.height = "calc(100% - 360px)";
-    } else {
-        /* set the othe divs size */
-        var y = document.getElementsByClassName("editor_title_and_abstract");
-        y[0].style.height = "30px";
-        /* #source-block, #result-block, .slider */
-        y = document.getElementById("slider");
-        y.style.height = "calc(100% - 90px)";
-        y = document.getElementById("source-block")
-        y.style.height = "calc(100% - 90px)";
-        y = document.getElementById("result-block")
-        y.style.height = "calc(100% - 90px)";
-    }
-}
-
-/* show and hide two type of menus 
- * -- showid -- the ID of the element which we want to show
- */
-function show_mainmenus(showid) {
-    var mainelements = ["editor_toolbar", "mur2menu", "choicemenu"];
-    for (i = 0; i < mainelements.length; i++) {
-        var x = document.getElementById(mainelements[i]);
-        if (showid === mainelements[i]) {
-            x.style.display = "flex";
-            x.style.display = "-webkit-flex";
-        } else {
-            x.style.display = "none";
-        }
-    }
-}
-
-/* function to alarming on the editor page */
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-async function alarming(xhr, sucessmsg) {
-    /* check return value */
-    var msgbox = document.getElementById("msg")
-    xhr.onload = function() {
-        if (xhr.status != 200) { // analyze HTTP status of the response
-            msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
-        } else { // show the result   
-            msgbox.style.color = "green";
-            msgbox.innerHTML = sucessmsg;
-            // if new article we redirect to the new page
-            var mur2answer = JSON.parse(xhr.response);
-            if (mur2answer.hasOwnProperty('id')) {
-                window.location.replace("/edit/" + mur2answer.id);
-            }
-        }
-    };
-
-    if (xhr.status != 200) {
-        await sleep(5000);
-    } else {
-        await sleep(2000);
-    }
-
-    // clear msg
-    msgbox.innerHTML = "";
-}
-
-/* save Article content */
-function save_article() {
-    // the markdonw article body text
-    var markupdata = new Blob([parserCollection.getSource()], {
-        type: 'text/markdown;charset=utf-8'
-    });
-    var htmldata = new Blob([parserCollection.getDisplayedResult()], {
-        type: 'text/html;charset=utf-8'
-    });
-    // type of the text
-    var texttype = document.querySelector('meta[name="texttype"]').content
-    // transform the Blob to Form as this easier to process for the 
-    var fd = new FormData();
-    // add data to the form, so the Flask server able to receive them		// 
-    // if Article 
-    if (texttype.trim() == 'article') {
-        // the article id
-        var article_id = document.querySelector('meta[name="article_id"]').content
-        // the article abstract and title, later this need to change as they need to be editable
-        var article_title = document.getElementById('title-source').value
-        var article_abstract = document.getElementById('abstact-source').value
-        fd.append("file", markupdata, "article_text.md");
-        fd.append("htmlfile", htmldata, "article_text.html");
-        fd.append('article_id', article_id);
-        fd.append('article_title', article_title);
-        fd.append('article_abstract', article_abstract);
-        // send data
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', '/markdownsave', true);
-    } else { // if review
-        var article_id = document.querySelector('meta[name="review_id"]').content
-        var result = document.getElementById('review_result').value
-        var standby = document.getElementById('review_standby').value
-        var rebel = document.getElementById('review_rebel').value
-        fd.append("file", markupdata, "article_text.md");
-        fd.append("htmlfile", htmldata, "article_text.html");
-        fd.append('review_id', article_id);
-        fd.append('result', result);
-        fd.append('standby', standby);
-        fd.append('rebel', rebel);
-        // send data
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', '/reviewsave', true);
-    }
-    xhr.send(fd);
-
-    alarming(xhr, "Saved!");
-};
-
-async function download_result() {
-    // should be good to set the type more inteligently
-    var body = new Blob([parserCollection.getDisplayedResult()], {
-        type: 'text/html;charset=utf-8'
-    });
-    var bodytext = await body.text();
-    var x = title_result.code;
-    var y = abstract_result.code;
-
-    // get what is the current preview format
-    var eNode = document.body;
-    var outputformat = eNode.className.split(' ')[0];
-
-    // merge title, abstract and text
-    if (outputformat === 'result-as-html' || outputformat === 'result-as-htmltex' || outputformat === 'result-as-habr' || outputformat === 'result-as-src') {
-        var blob = new Blob([x + "\n\n" + y + "\n\n" + bodytext], {
-            type: 'text/html;charset=utf-8'
-        });
-    } else {
-        var blob = new Blob([x + "\n\n" + y + "\n\n" + bodytext], {
-            type: 'text/markdown;charset=utf-8'
-        });
-    }
-
-    saveAs(blob, parserCollection.getDisplayedResultFilename());
-};
-
-function upload_source() {
-    var eNode = document.getElementById('fileElem');
-    // Fire click on file input
-    (eNode.onclick || eNode.click || function() {}).call(eNode);
-};
-
-
-/* commit in Wordpress.com by cokkies */
-async function wordpress2(link, id) {
-    // save the wordpressid if it is not an anonimus article    
-    fd = new FormData();
-    var article_id = document.querySelector('meta[name="article_id"]').content
-    fd.append('article_id', article_id);
-    fd.append("destination", "wp");
-    fd.append("wpcom_id", id);
-    fd.append("wpcom_address", link);
-    xhr = new XMLHttpRequest();
-    xhr.open('post', '/export_data', true);
-    xhr.send(fd);
-    alarming(xhr, "Published on " + link);
-}
-async function wordpress_on_fly() {
-    var msgbox = document.getElementById("msg")
-
-    var texttype = document.querySelector('meta[name="texttype"]').content;
-    if (texttype.trim() == 'article') {
-        // get cookies
-        var access_token = getCookie("mur2_wpc_accesstoken");
-        var address = getCookie("mur2_wpc_sideid");
-        if (access_token === "") {
-            msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: You do not loged in in Wordpress.com";
+        reader.onload = function() {
+            // upload to the main
+            //   this could be more sofisticated and work with the donwloaded files ???
+            mainSource.value = this.result;
+            updateMain(mainImageLoader);
+            mainSource.dispatchEvent(inputevent);
+            fileInput.value = fileInput.defaultValue;
         };
-
-        // if it is not a new article get the id
-        var article_id = document.querySelector('meta[name="article_id"]').content
-        // ???
-
-        // get the Article data
-        var htmldata = new Blob([parserCollection.getDisplayedResult()], {
-            type: 'text/html;charset=utf-8'
-        });
-        var htmltext = await htmldata.text();
-        var article_title = document.getElementById('title-source').value;
-        var article_abstract = document.getElementById('abstact-source').value;
-
-        // publish in Wordpress.com
-        var fd = new FormData();
-        fd.append('title', article_title);
-        fd.append('status', 'private');
-        fd.append('content', '<em>'+article_abstract+"</em><hr>"+htmltext);
-        fd.append('excerpt', article_abstract);
-        fd.append('format', 'standard');
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/posts', true);
-        xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token))
-        xhr.send(fd);
-        xhr.onload = function() {
-            if (xhr.status != 201) { // analyze HTTP status of the response
-                msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
-            } else {
-                var wc2answer = JSON.parse(xhr.response);
-                msgbox.style.color = "green";
-                msgbox.innerHTML = "Published on " + wc2answer.link;
-
-                wordpress2(wc2answer.link, wc2answer.id);
-            }
-        };
-
-        // clear msg
-        if (xhr.status != 200) {
-            await sleep(5000);
-        } else {
-            await sleep(2000);
-        }
-        msgbox.innerHTML = "";
-    }
-}
-
-/* make focus mode on last sentence   */
-var focusmode_switch = 0;
-
-function focusemode_on() {
-    if (focusmode_switch === 0) {
-        focusmode_switch = 1;
-    } else {
-        focusmode_switch = 0;
-    }
-}
-
-
-async function generate_from_md(destination) {
-    var article_title = document.getElementById('title-source').value;
-    var article_abstract = document.getElementById('abstact-source').value;
-    var mddata = new Blob([parserCollection.getSource()], {
-        type: 'text/markdown;charset=utf-8'
+        reader.readAsText(this.files[0]);
     });
-    var endnotetext = document.querySelector('meta[name="endnotetext"]').content
-    var language = document.querySelector('meta[name="mur2language"]').content
-    var fd = new FormData();
 
-    var msgbox = document.getElementById("msg")
-    msgbox.innerHTML = "Working";
-    msgbox.style.color = "green";
-
-    fd.append("destination", destination);
-    fd.append("mdfile", mddata, "article_text.md");
-    fd.append('article_title', article_title);
-    fd.append('article_abstract', article_abstract);
-    fd.append('endnotetext', endnotetext);
-    fd.append('language', language);
-    var xhr = new XMLHttpRequest();
-    /* need to receive file back */
-    xhr.responseType = 'blob';
-    xhr.open('post', '/export_data', true);
-    xhr.send(fd)
-
-    xhr.onload = function() {
-        if (xhr.status != 200) { // analyze HTTP status of the response
-
-            msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
-
-        } else { // save the result   
-            var blob = this.response;
-            var contentDispo = this.getResponseHeader('Content-Disposition');
-            if (destination === "latex") {
-                saveAs(blob, 'mur2.tex');
-            } else {
-                saveAs(blob, 'mur2.pdf');
+    // other event delegator for menu and toolbar
+    let editor_toolbar = document.querySelector('#menu');
+    editor_toolbar.addEventListener('click', (event) => {
+        let target = event.target;
+        // switching depending which textfiled was an input
+        if (target.classList.contains('choice_menu')) {
+            document.getElementById('menu').className = target.id.replace("id_", '');
+        } else if (target.classList.contains('choice_toolbar')) {
+            // the tools
+            switch (target.id) {
+                case 'id_upload':
+                    upload_source();
+                    break;
+                case 'id_download':
+                    download_result([mainCollection, abstractCollection, titleCollection]);
+                    break;
+                case 'id_save':
+                    save_article([mainCollection, abstractCollection, titleCollection]);
+                    break;
+                case 'id_syntax_hl':
+                    focusemode_on();
+                    break;
+                case 'id_hide_preview':
+                    var preview = document.getElementById('article_preview_side');
+                    if (preview.classList.contains('previewoff')) {
+                        preview.classList.remove('previewoff');
+                        g_preview_on = true;
+                        // fire up an update
+                        updateMain(mainImageLoader);
+                        updateTitle(titleImageLoader);
+                        updateAbstract(abstractImageLoader);
+                    } else {
+                        preview.classList.add('previewoff');
+                        g_preview_on = false;
+                    }
+                    break;
+                case 'id_show_title':
+                    var sides = document.querySelectorAll("#article_preview_side, #article_input_side");
+                    for (var i = sides.length; i--;) {
+                        if (sides[i].classList.contains('titleoff')) {
+                            sides[i].classList.remove('titleoff');
+                        } else {
+                            sides[i].classList.add('titleoff');
+                        }
+                    }
+                    break;
+                case 'id_head':
+                    editorToolbarAction("heading");
+                    update();
+                    break;
+                case 'id_italic':
+                    editorToolbarAction("italic");
+                    update();
+                    break;
+                case 'id_strong':
+                    editorToolbarAction("strong");
+                    update();
+                    break;
+                case 'id_picture':
+                    editorToolbarAction("picture");
+                    update();
+                    break;
+                case 'id_link':
+                    editorToolbarAction("link");
+                    update();
+                    break;
+                case 'id_list':
+                    editorToolbarAction("list");
+                    update();
+                    break;
+                case 'id_nlist':
+                    editorToolbarAction("numbered_list");
+                    update();
+                    break;
+                case 'id_footnote':
+                    editorToolbarAction("footnote");
+                    update();
+                    break;
+                case 'id_table':
+                    editorToolbarAction("table");
+                    update();
+                    break;
+                case 'id_code':
+                    editorToolbarAction("code");
+                    update();
+                    break;
+                case 'id_latex':
+                    editorToolbarAction("latex");
+                    update();
+                    break;
+                case 'id_sidemenu':
+                    var preview = document.getElementById('side_menu');
+                    if (preview.classList.contains('hide')) {
+                        preview.classList.remove('hide');
+                    } else {
+                        preview.classList.add('hide');
+                    }
+                    break;
             }
         }
-
-    };
-
-    if (xhr.status != 200) {
-        await sleep(5000);
-        // clear msg
-        msgbox.innerHTML = "";
-    } else {
-        msgbox.innerHTML = "";
-    }
+    });
 
 
-}
+    // event listener to switch the content
+    let side_menu = document.querySelector('#side_menu');
+    side_menu.addEventListener('click', (event) => {
+        let target = event.target;
+        // switching preview 
+        if (target.classList.contains('preview-format')) {
+            var view = target.id.replace("id_", '');
+            document.body.className = "result-as-" + view;
+            g_view = view;
+            updateTitle(titleImageLoader);
+            updateAbstract(abstractImageLoader);
+            updateMain(mainImageLoader);
+        } else if (target.classList.contains('side_menu_control')) {
+            // close sie menu
+            var preview = document.getElementById('side_menu');
+            if (preview.classList.contains('hide')) {
+                preview.classList.remove('hide');
+            } else {
+                preview.classList.add('hide');
+            }
+        } else if (target.id === "id_wpc_publish") {
+            wordpress_on_fly();
+        } else if (target.id === "id_wpc_clear") {
+            clear_cookies("wpc");
+        } else if (target.id === "id_pdf") {
+            generate_from_md('pdf', mainCollection);
+        } else if (target.id === "id_latex") {
+            generate_from_md('latex', mainCollection);
+        }
+
+    });
+})(document, window);

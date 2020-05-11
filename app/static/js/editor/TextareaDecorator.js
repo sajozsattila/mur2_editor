@@ -10,6 +10,8 @@ function TextareaDecorator(textarea, parser) {
     /* INIT */
     var api = this,
         output;
+    
+    var focusmode_switch = g_focusmode_switch;
 
     if (textarea.className !== 'ldt-textarea') {
         // construct editor DOM
@@ -154,10 +156,7 @@ function TextareaDecorator(textarea, parser) {
     api.update = function() {
         var input = textarea.value;
         if (input) {          
-            if ( focusmode_switch === 0 ) {   
-                var differnces = color(input, output, parser);
-                api.recalcHeight();
-            } else {
+            if ( focusmode_switch ) {                   
                 // remove all children
                  while (output.firstChild) {
                      output.removeChild(output.lastChild);
@@ -187,7 +186,10 @@ function TextareaDecorator(textarea, parser) {
                 var notfocused2 = document.createElement("span");
                 notfocused2.className = "notfocused"
                 notfocused2.textContent = notfocused2.innerText  = field.value.substring(coursurpos);
-                output.appendChild(notfocused2);                
+                output.appendChild(notfocused2);      
+            } else {
+                var differnces = color(input, output, parser);
+                api.recalcHeight();          
             }
         } else {
             // clear the display change becasue of possible memory leek

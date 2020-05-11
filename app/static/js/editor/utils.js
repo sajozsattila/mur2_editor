@@ -389,9 +389,10 @@ function ImagePreloader() {
  *
  * @param preloader
  * @param protocol  Needed for support the "file:" protocol.
+ * loaderid -- is a prefix to disting different image loaders
  * @constructor
  */
-function ImageLoader(preloader, protocol) {
+function ImageLoader(preloader, protocol, loaderid) {
 	var curItems = [],  // current formula content
 		prevItems = [], // previous formula content
 		map = {},       // maps formula content to index
@@ -400,6 +401,8 @@ function ImageLoader(preloader, protocol) {
 		placeholderTimer = null,
 		placeholderIndex = null,
 		placeholderUrl = null;
+    
+    this.loaderid = loaderid;
 
 	/**
 	 * Find if user has edited only one formula formula.
@@ -494,8 +497,8 @@ function ImageLoader(preloader, protocol) {
 	 * @param baselineShift
 	 * @param mode One of 'replace', 'fade-in', 'fade-out'
 	 */
-	function insertPicture(index, svg, baselineShift, mode) {
-		var id = 's2tex_' + index,
+	function insertPicture(index, svg, baselineShift, mode, prefix) {
+		var id = prefix+'s2tex_' + index,
 			oldSvgNode = document.getElementById(id),
 			parentNode = oldSvgNode.parentNode,
 			startOpacity = '1', // mode == 'fade-in' ? '0.5' : '1', // sometimes images opacity can be '1' yet. How can one track it?
@@ -533,10 +536,10 @@ function ImageLoader(preloader, protocol) {
 	 * @param formula
 	 * @returns {string}
 	 */
-	this.getHtmlStub = function (formula) {
+	this.getHtmlStub = function (formula, prefix) {
 		curItems[n] = protocol + '//tex.s2cms.ru/svg/' + encodeURIComponent(formula);
 
-		var html = '<span id="s2tex_' + n + '"></span>';
+		var html = '<span id="'+this.loaderid+'s2tex_' + n + '"></span>';
 
 		n++;
 
@@ -555,8 +558,9 @@ function ImageLoader(preloader, protocol) {
 
 		if (placeholderIndex !== null) {
 			var data = preloader.getImageDataFromUrl(placeholderUrl);
+            console.log("data", data);
 			if (data !== null && data.callback === null) {
-				insertPicture(placeholderIndex, data.svg, data.baseline, 'fade-out');
+				insertPicture(placeholderIndex, data.svg, data.baseline, 'fade-out', this.loaderid);
 			}
 		}
 
