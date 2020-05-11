@@ -1,3 +1,10 @@
+/**
+ * Markdown and LaTeX Editor
+ * (c) Sajó, Zsolt Attila 2020
+ * Based on code by Roman Parpalak, 2016-2018 https://github.com/parpalak/upmath.me
+ * 
+ */
+
 // what is the actuall preview type 
 var g_view = 'html';
 // focusmode on?   
@@ -390,10 +397,10 @@ function ParserCollection(
                 domSetHighlightedContent(result_destination_pre, getHabraMarkup(source), 'html');
                 break;
             case 'md':
-                domSetHighlightedContent(result_destination_pre, _mdMdAndImages.renderInline(source), 'html');
+                domSetHighlightedContent(result_destination_pre, _mdMdAndImages.renderInline(source), 'md');
                 break;
             case 'mdp':
-                domSetHighlightedContent(result_destination_pre, source, 'none');
+                domSetHighlightedContent(result_destination_pre, source, 'md');
                 break;
             case 'src':
                 domSetHighlightedContent(result_destination_pre, _mdHtmlAndImages.render(source), 'html');
@@ -661,6 +668,7 @@ function ParserCollection(
             mainSource.value = this.result;
             updateMain(mainImageLoader);
             mainSource.dispatchEvent(inputevent);
+            decorator.update();
             fileInput.value = fileInput.defaultValue;
         };
         reader.readAsText(this.files[0]);
@@ -686,7 +694,11 @@ function ParserCollection(
                     save_article([mainCollection, abstractCollection, titleCollection]);
                     break;
                 case 'id_syntax_hl':
-                    focusemode_on();
+                    if (g_focusmode_switch) {
+                        g_focusmode_switch = false;
+                    } else {
+                        g_focusmode_switch = true;
+                    };
                     break;
                 case 'id_hide_preview':
                     var preview = document.getElementById('article_preview_side');
@@ -790,7 +802,7 @@ function ParserCollection(
                 preview.classList.add('hide');
             }
         } else if (target.id === "id_wpc_publish") {
-            wordpress_on_fly();
+            wordpress_on_fly(titleCollection, abstractCollection,  mainCollection);
         } else if (target.id === "id_wpc_clear") {
             clear_cookies("wpc");
         } else if (target.id === "id_pdf") {

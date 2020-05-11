@@ -1,3 +1,9 @@
+/**
+ * 
+ * (c) Sajó, Zsolt Attila 2020
+ * 
+ */
+
 function upload_source() {
     var eNode = document.getElementById('fileElem');
     // Fire click on file input
@@ -145,6 +151,8 @@ async function alarming(xhr, sucessmsg) {
     msgbox.innerHTML = "";
 }
 
+
+
 /* save Article content */
 async function save_article(blobs ) {
     // the markdonw article body text
@@ -206,15 +214,6 @@ async function save_article(blobs ) {
 
     alarming(xhr, "Saved!");
 };
-// switch on and off focusmode
-function focusemode_on() {
-    if (g_focusmode_switch) {
-        g_focusmode_switch = false;
-    } else {
-        g_focusmode_switch = true;
-    }
-}
-
 
 /* commit in Wordpress.com by cokkies */
 async function wordpress2(link, id) {
@@ -230,7 +229,7 @@ async function wordpress2(link, id) {
     xhr.send(fd);
     alarming(xhr, "Published on " + link);
 }
-async function wordpress_on_fly() {
+async function wordpress_on_fly(titleCollection, abstractCollection,  mainCollection) {
     var msgbox = document.getElementById("msg")
 
     var texttype = document.querySelector('meta[name="texttype"]').content;
@@ -247,19 +246,24 @@ async function wordpress_on_fly() {
         var article_id = document.querySelector('meta[name="article_id"]').content
         // ???
 
-        // get the Article data
-        var htmldata = new Blob([parserCollection.getDisplayedResult()], {
-            type: 'text/html;charset=utf-8'
-        });
-        var htmltext = await htmldata.text();
-        var article_title = document.getElementById('title-source').value;
-        var article_abstract = document.getElementById('abstact-source').value;
+        var body = new Blob([mainCollection.getHtmlImg()], {
+                type: 'text/html;charset=utf-8'
+            });
+        var htmltext = await body.text();
+        var title = new Blob([titleCollection.getHtmlImg()], {
+                type: 'text/html;charset=utf-8'
+            });
+        var article_title = await title.text();
+        var abstract = new Blob([abstractCollection.getHtmlImg()], {
+                type: 'text/html;charset=utf-8'
+            });
+        var article_abstract = await abstract.text();        
 
         // publish in Wordpress.com
         var fd = new FormData();
         fd.append('title', article_title);
         fd.append('status', 'private');
-        fd.append('content', '<em>'+article_abstract+"</em><hr>"+htmltext);
+        fd.append('content', article_abstract+"<hr>"+htmltext);
         fd.append('excerpt', article_abstract);
         fd.append('format', 'standard');
 

@@ -1,0 +1,73 @@
+
+/* Markdown block highlight styles */
+.ldt .header,
+.ldt .header2 {
+	font-weight: bold;
+	color: #268bd2;
+}
+.ldt .quote {
+	background: #fff3ea;
+    color: #93a1a1;
+}
+.ldt .list {
+	background: #f2ffef;
+}
+.ldt .list-mark {
+	font-weight: bold;
+    color: #cb4b16;
+}
+.ldt .fence {
+	background: #eee;
+}
+
+
+/* Markdown inline highlight styles */
+.ldt .sub,
+.ldt .sup {
+	color: goldenrod;
+}
+.ldt .code {
+	background: #eee;
+}
+.ldt .link {
+	color: #fdf6e3;
+}
+.ldt .latex {
+	color: #7ca600;
+}
+.ldt .bold {
+	font-weight: bold;
+}
+.ldt .italic {
+	color: #0dd;
+}
+.ldt .strike {
+	text-decoration: line-through;
+}
+.ldt .latexBlock.keyword {
+	color: blue;
+}
+.ldt .latexBlock.keyword2 {
+	color: #0dd;
+}
+.ldt .latexBlock.keyword3 {
+	color: #8ECA81;
+}
+.ldt .latexBlock.bracket {
+	color: #ff0150;
+}
+.ldt .latexBlock.comment {
+	color: #aaa;
+}
+.ldt .latexBlock.index {
+	color: #f5d4a5;
+}
+.ldt .latexBlock.delimeter {
+	font-weight: bold;
+}
+
+.ldt textarea {
+	/* More opacity for browsers with no "-webkit-text-fill-color" support */
+	color: rgba(0,0,0,0.0) !important; /* hide the bacground text except the caret */
+    caret-color: rgb(255, 0, 0, 1);
+}
