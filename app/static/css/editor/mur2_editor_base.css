@@ -1,0 +1,139 @@
+#horizontal_box {
+    width: 100%;
+    display: flex ;
+    flex-direction: column;
+}
+
+#article_input_side,
+#article_preview_side {
+    display: flex;
+    flex-direction: column;
+    /* this need otherwise the scrollbar is shrink to 0 */
+    width: calc(50% - 6px);
+}
+
+
+/* show or hide "article_main_pre" and "article_main" */
+.result-as-html #article_main_pre {
+    display: none;
+}
+.result-as-html #article_main {
+    display: block;
+}
+.result-as-src #article_main_pre,
+.result-as-htmltex #article_main_pre,
+.result-as-md #article_main_pre,
+.result-as-mdp #article_main_pre,
+.result-as-habr #article_main_pre {
+    display: block;
+}
+.result-as-src #article_main,
+.result-as-htmltex #article_main,
+.result-as-md #article_main,
+.result-as-mdp #article_main,
+.result-as-habr #article_main {
+    display: none;
+}
+
+/* switch between the menus */
+.choicemenu #choicemenu,
+.mur2menu #mur2menu,
+.editor_toolbar #editor_toolbar {
+    display: inline-block;
+}
+.choicemenu #mur2menu,
+.choicemenu #editor_toolbar,
+.mur2menu #choicemenu,
+.mur2menu #editor_toolbar,
+.editor_toolbar #mur2menu,
+.editor_toolbar #choicemenu {
+    display: none;
+}
+
+/* the main objcet of the page */
+/* it is a class as there is multiple type of menu */
+.topmenu {
+    padding: 16px;
+    display: flex;    
+    justify-content: space-between;
+    
+    display: -webkit-flex ; /* for 9 > Safari */
+    -webkit-justify-content: space-between;
+
+    justify-content: -webkit-space-between;/* for Safari */
+    
+    position: fixed;    
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 28px;    
+}
+
+#msg {
+    position: fixed;   
+    width: 100%;
+    left: 0;
+    /* it is the bottom of the .topmenu (margin+padding+height) */
+    top: 60px;
+    height: 20px;
+    padding-left: 16px;
+}
+
+#maintext,
+#container-block-source, 
+#container-block-result {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: fixed; 
+    left: 0;
+    /* the bottom of the #msg */
+    top: 85px;
+    height: calc(100% - 85px) ; 
+    padding-left: 16px;
+    overflow: scroll;    
+}
+
+#side_menu {
+    background-color: #C8C8C8;
+    width: 30em;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    /* same possition than .undermain_menu*/
+    top: 20px;
+}
+
+/* toolbar */
+#editor_toolbar {
+    display: flex;
+    flex-direction: column;
+}
+
+#slider {
+    width: 6px;
+}
+
+#article_main_pre, 
+#article_main {
+    overflow: auto;
+}
+
+/* hide and show preview */
+#article_preview_side.previewoff {
+    display: none;
+}
+
+/* hide title and abstract */
+#article_preview_side.titleoff #article_title,
+#article_preview_side.titleoff #article_abstract,
+#article_preview_side.titleoff #separator,
+#article_input_side.titleoff #title-source,
+#article_input_side.titleoff #abstact-source
+{
+    display:none
+}
+
+#side_menu.hide {
+    display: none
+}

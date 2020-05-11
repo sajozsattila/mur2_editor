@@ -1,53 +1,16 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: cadetblue;
-    scrollbar-color: #c3986a #fce9d1;
-    scrollbar-width: thin;
-}
-
-body,
+    body,
 button,
 input,
 select,
 textarea {
   font-family: 'Domine';
-  line-height: 1.88;
+  line-height: 1.2;      /* was 1.88*/
   letter-spacing: 0;
   font-size: 16px;
 }
 
-html, body {
-    height: 100%;
-}
-
-.full-width {
-    width: 100%;
-}
-
 .normalfontweight {
     font-weight: 100;
-}
-
-.topmenu{
-    padding: 16px;
-    display: flex;    
-    justify-content: space-between;
-    
-    display: -webkit-flex ; /* for 9 > Safari */
-    -webkit-justify-content: space-between;
-
-    justify-content: -webkit-space-between;/* for Safari */
-    
-    position: fixed;
-    background-color: white;    
-    width: 100%;
-    left: 0;
-    top: 0;
-    height: 65px;
-    
 }
 
 a, a:link, #mur2menu a:visited  {
@@ -60,8 +23,15 @@ a, a:link, #mur2menu a:visited  {
     font-weight: 600;
 }
 
-#mur2menu a, #mur2menu a:link, #mur2menu a:visited  {
-    padding-right: 2em    
+#topmenu-left {
+    float: left;   
+    margin: 0 10px;
+}
+
+#topmenu-right {
+    float: right;   
+    margin: 0 10px;
+    cursor: pointer;
 }
 
 .menufont {
@@ -69,103 +39,84 @@ a, a:link, #mur2menu a:visited  {
     font-family: 'Josefin Sans'; 
 }
 
-#foot {
+#submit, .custom-file-upload {
+    background-color: whitesmoke;
+  /*background-clip: padding-box;*/
+    border-color: black;
+    border-style: solid;
+    border-right-width: 2.5px;
+    border-bottom-width: 3px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    height: 25px;
+    min-width: 30px;
+    padding: 0 4px;          
     text-align: center;
-    width: 100%;
-    background-color: white;
-    padding-top: 1ex;
-    height: 30px;
+    cursor: pointer;
+    line-height: 135%;
+}
+
+ /* START OF FLEXBOX CONTROL*/
+.result-as-html {
+  display: flex;  
+  flex-flow: row wrap;
+  /*font-weight: bold;*/
+  text-align: center;
+}
+
+.result-as-html > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+
+.topmenu {
+  text-align: left;
+  background: white;                     /*whitesmoke */
+  justify-content: space-between;
+  display: -webkit-flex ;                 /* for 9 > Safari */
+  justify-content: -webkit-space-between; /* for Safari */
+  
+}
+
+.toolbar-button:hover, a:hover {
+  background: whitesmoke;				/*Was rgba(247,247,247,.5)*/
+  transition: all .15s ease-in-out;
+}
+
+#foot {
+  text-align: center;
+  background: white;
 }
 
 .main_content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 80px;
-    padding: 16px;
-    left: 0;
-    background-color: white;
-    width: 100%;
-    justify-content: space-between;
-    display: -webkit-flex;
-    -webkit-justify-content: space-between;
-    height: calc( 100% - 80px );
+  text-align: left;
+  background: white;
 }
-
-#user_profil_overview {
-    display: flex;
-    flex-direction: row;
-    width: 100%
-}
-
-#avator {
-    width: 10em;
-    padding: 16px;
-}
-
-#profile_overview {
-    width: calc(100% - 10em);
-}
-
-.fontawsome {
-    font-family: FontAwesome;
-}
-
-.normalpadding {
-    padding: 16px;
-}
-
 
 #msg {
-    position: fixed;
-    background-color: white;    
-    width: 100%;
-    left: 0;
-    top: 60px;
-    height: 20px;
-    padding-left: 16px;
-    color: red;
+  background: whitesmoke;
 }
 
-#user_articles tbody tr {
-    vertical-align: middle;
+#msg ul, li {
+  text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: red;
 }
 
-/* for buttoms */
-.open-control {
-		white-space: nowrap;
-		}
-	.open-control {
-		text-align: center;
-		}
-		.header .toolbar-button,
-		.control-item {
-			display: inline-block;
-			vertical-align: middle;
-			}
-		.header .toolbar-button,
-		 .control-item {
-			background-color: rgba(255, 255, 255, 0.3);
-			background-clip: padding-box;
-			border-color: transparent;
-			border-style: solid;
-			border-width: 9px 1px;
-			height: 48px;
-			min-width: 30px;
-			padding: 0 4px;
-			text-align: center;
-			cursor: pointer;
-			cursor: hand;
-             line-height: inherit;
-			}
-		 .control-item {
-			background-color: rgba(255, 255, 255, 0.15);
-			display: inline-block;
-			}
-		.control-input {
-			display: none;
-			}
-		 .control-input:checked + .control-item {
-			background-color: rgba(255, 255, 255, 0.4);
-			}
+@media all and (min-width: 800px) {
+  .main_content { flex: 3 0px; }
+  #msg          { order: 1; } 
+  .main_content { order: 2; }
+  #foot         { order: 4; }
+}
+
+/* File upload custom
+input[type="file"] {
+    display: none;
+} */
+
+body {
+  /*padding: 2em;*/ 
+}
