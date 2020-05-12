@@ -1,3 +1,11 @@
+body, button input, select, textarea {
+  font-family: 'Domine';
+  line-height: 1.88;      /* was 1.88*/
+  letter-spacing: 0;
+  font-size: 16px;
+  font-feature-settings: "liga" 1, "frac" 1, "onum" 1;
+}
+
 #horizontal_box {
     width: 100%;
     display: flex ;
@@ -11,7 +19,15 @@
     flex-direction: column;    
     width: calc(50% - 6px); /* this need otherwise the scrollbar is shrink to 0 */
     /* */
-    padding: 16px;
+}
+
+#article_input_side {
+    padding-left: 1em;
+    padding-right: 0.5em;
+}
+#article_preview_side {
+    padding-left: 0.5em;
+    padding-right: 1em;
 }
 
 
@@ -61,7 +77,6 @@
 /* the main objcet of the page */
 /* it is a class as there is multiple type of menu */
 .topmenu {
-    padding: 16px;
     display: flex;    
     justify-content: space-between;
     
@@ -74,8 +89,11 @@
     width: 100%;
     left: 0;
     top: 0;
-    height: 28px;    
-    /* */
+    height: 4em;    
+    /* */    
+    background-color: black;
+    padding-left: 2em;
+    padding-top: 1em;
 }
 
 #msg {
@@ -83,10 +101,10 @@
     width: 100%;
     left: 0;
     /* it is the bottom of the .topmenu (margin+padding+height) */
-    top: 60px;
-    height: 20px;
-    padding-left: 16px;
+    top: 4em;
+    height: 2em;    
     /* */
+    padding-left: 2em;
 }
 
 #maintext,
@@ -98,23 +116,28 @@
     position: fixed; 
     left: 0;
     /* the bottom of the #msg */
-    top: 85px;
-    height: calc(100% - 112px) ; 
-    padding-left: 16px;
-    overflow: scroll;  
+    top: 6em;
+    height: calc(100% - 8em) ; 
+    padding-left: 1em;  
+    overflow: hidden;
     /* */
-    padding: 16px;
+    padding: 2em;
+    padding-top: 1ex;
+    padding-right: 0;
+
 }
 
 #side_menu {
-    background-color: #C8C8C8;
     width: 30em;
     height: 100%;
     position: fixed;
     right: 0;
     /* same possition than .undermain_menu*/
-    top: 20px;
+    top: 0;
     /* */
+    background-color: #c62641;
+    padding-left: 1em;
+    padding-top: 1em;
 }
 
 #foot {
@@ -122,7 +145,7 @@
     position: fixed; 
     left: 0;
     bottom: 0px;
-    height: 26px;
+    height: 2em;
     /* */
 }
 
@@ -155,12 +178,21 @@
     /* */
 }
 
+#article_input_side.previewoff {
+    /* */
+    width: 100%;
+    padding-right: 20%;
+    padding-left: 20%; 
+}
+
 /* hide title and abstract */
 #article_preview_side.titleoff #article_title,
 #article_preview_side.titleoff #article_abstract,
 #article_preview_side.titleoff #separator,
 #article_input_side.titleoff #title-source,
-#article_input_side.titleoff #abstact-source
+#article_input_side.titleoff #abstact-source,
+#article_input_side.titleoff .title_and_abstract,
+#article_preview_side.titleoff .title_and_abstract 
 {
     display:none;
     /* */
@@ -176,24 +208,50 @@
 }
 
 .control-item {
-    background-color: rgba(255,0,0,.3);
-    vertical-align: middle;
+    /* background-color: rgba(255,0,0,.3); */
     color: #fff;
     background-clip: padding-box;
     border-color: transparent;
     border-style: solid;
     border-width: 9px 1px;
-    height: 48px;
+    height: 2.1em;
     min-width: 30px;
-    line-height: 30px;
     padding: 0 4px;
     text-align: center;
     cursor: pointer;
-    cursor: hand;
     display: inline-block;
     box-sizing: border-box;
+    line-height: 1; /* this is need because of the Font Awesome */
+}
+.control-item:hover {
+    /* */
+    border-bottom: solid white 1px;
 }
 
-div#article_title {
+.result-as-html div#article_title {
+    /* */
     font-size: 4.8rem;
+    line-height: 0.5;
+}
+
+.title_and_abstract {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    overflow: auto;
+    min-height: 30%;
+    /* */
+}
+
+#article_abstract {
+    margin-bottom: 2em;
+    font-style: italic;
+}
+
+.separator {
+    border-bottom: solid gray 1px;
+    margin-left: 30%;
+    margin-right: 30%;
+    height: 1px;
 }
