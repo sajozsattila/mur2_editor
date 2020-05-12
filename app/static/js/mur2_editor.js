@@ -705,8 +705,10 @@ function ParserCollection(
                     break;
                 case 'id_hide_preview':
                     var preview = document.getElementById('article_preview_side');
+                    var input = document.getElementById('article_input_side');
                     if (preview.classList.contains('previewoff')) {
                         preview.classList.remove('previewoff');
+                        input.classList.remove('previewoff');
                         g_preview_on = true;
                         // fire up an update
                         updateMain(mainImageLoader);
@@ -714,6 +716,7 @@ function ParserCollection(
                         updateAbstract(abstractImageLoader);
                     } else {
                         preview.classList.add('previewoff');
+                        input.classList.add('previewoff');
                         g_preview_on = false;
                     }
                     break;
@@ -810,7 +813,7 @@ function ParserCollection(
             clear_cookies("wpc");
         } else if (target.id === "id_pdf") {
             generate_from_md('pdf', mainCollection);
-        } else if (target.id === "id_latex") {
+        } else if (target.id === "id_latex_export") {
             generate_from_md('latex', mainCollection);
         }
 
