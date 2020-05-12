@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="UTF-8">
-      {% if title %}
-      {% if author %}
-      <title>{{ author }}: {{ title }} </title>
-      {% else %}
-      <title>μr²: {{ title }} </title>
-      {% endif %}
-      {% else %}
-      <title>μr²</title>
-      {% endif %}
-      <!-- Google fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Domine|Enriqueta|Frank+Ruhl+Libre:500|Josefin+Sans|Libre+Baskerville|Manuale&display=swap" rel="stylesheet">
-      <!-- Font awesome -->
-      <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>
-      <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
-      <!-- style -->
-      <meta name="endnotetext" content={{ _("Endnote") }}>
-      <link rel="stylesheet" href="/static/css/editor/TextareaDecorator.css">
-      <link rel="stylesheet" href="/static/css/editor/solarized-light.css">
-      <link rel="stylesheet" href="/static/css/editor/mur2_editor_base.css">
-      <link rel="stylesheet" href="/static/css/editor/source_md_highlight.css">
-       
-      <meta name="article_id" content='-2'>
-      <meta name="texttype" content="article">
-      <meta name="mur2language" content='hu'>
-   </head>
-    
-    
-   <body class="result-as-html">
-      <div id="horizontal_box">
+    <head>
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Domine|Enriqueta|Frank+Ruhl+Libre:500|Josefin+Sans|Libre+Baskerville|Manuale&display=swap" rel="stylesheet"> 
+        <!-- Font awesome -->
+        <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>
+        <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
+        <!-- style -->
+        
+        <link rel="preconnect" href="//tex.s2cms.ru" crossorigin> <!-- This make the LaTEx code rendering -->
+
+        <meta name="keywords" content="LaTeX, Markdown, equations, markdown latex online editor, tikz, latex online">
+        <meta name="description" content="Lightweight online editor for long-form journalist and academic writers">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- set some mur2 atrtriput which we will use later to send data to the server -->
+        <meta name="article_id" content='{{ article_id }}'>
+        <meta name="texttype" content="article">
+        <meta name="endnotetext" content={{ _("Endnote") }}>
+        <meta name="mur2language" content='{{ language }}'>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165583882-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'UA-165583882-1');
+        </script>
+
+        <!-- style -->
+        <!-- <link rel="stylesheet" href="/static/css/mur2.css"> -->
+        <link rel="stylesheet" href="/static/css/editor/TextareaDecorator.css">
+        <link rel="stylesheet" href="/static/css/editor/solarized-light.css">
+        <link rel="stylesheet" href="/static/css/editor/mur2_editor_base.css">
+        <link rel="stylesheet" href="/static/css/editor/source_md_highlight.css">
+
+    </head>
+    <body class="result-as-html">
+        <div id="horizontal_box"> <!-- content -->     
          <div id="menu" class="choicemenu">
-             <div id="mur2menu" class="menufont topmenu">
-                 <!-- show editor toolbar -->
-                 <input class="choice_menu" id="id_choicemenu" type="radio" name="source_type" >
-                 <label class="control-item" for="id_choicemenu" title={{ _("Close Menu") }} >M</label>
-             </div><!-- mur2menu -->
+             {% include 'base_menu.html' %}
              
              <div id="choicemenu" class="menufont topmenu">
                  <!-- show editor toolbar -->
@@ -127,9 +131,9 @@
           
       <div id="maintext">
          <div id="article_input_side">
-            <textarea id="title-source"  ></textarea>
-            <textarea id="abstact-source" ></textarea>
-            <textarea id="main-source"  ></textarea>
+            <textarea id="title-source"  maxlength="120"  ></textarea>
+            <textarea id="abstact-source" maxlength="1200" ></textarea>
+            <textarea id="main-source"  spellcheck="false"></textarea>
             <div id="highlight_main" ></div>
          </div>
          <div id="slider"></div>
@@ -140,8 +144,7 @@
             <div id="article_main"></div>
             <pre id="article_main_pre"></pre>
          </div>
-      </div>
-      <!-- maintext -->
+      </div> <!-- maintext -->
       <div id="side_menu" class="menufont hide">
           <div>
               <input class="side_menu_control" id="id_close_side" type="radio" name="source_type" >
@@ -203,21 +206,21 @@
               </div>
           </div>
       </div>
-      </div> <!-- horizontal_box -->
+
       <!-- set the markdown editor contents -->
        <script>
         (function () {
             // load the local files
             try {
-                var data = localStorage.getItem("mur2_main_content");
-                var data_title = localStorage.getItem("mur2_title_content");
-                var data_abstract = localStorage.getItem("mur2_abstract_content");
+                var data = localStorage.getItem({{ "mur2_main_content"+ article_id }});
+                var data_title = localStorage.getItem({{ "mur2_title_content"+ article_id }});
+                var data_abstract = localStorage.getItem({{"mur2_abstract_content"+ article_id }});
             }
             catch (e) {}
-            // the document is basically the all webpage
-            document.getElementById('main-source').value = data || '{{ article_markdown }}'  ;
-            document.getElementById('title-source').value = data_title || '{{ article_title }}'  ;
-            document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'  ;
+            // the document is basically the all editor
+            document.getElementById('main-source').value = data || '{{ article_markdown|e }}'.replace('&lt;', '<')  ;
+            document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace('&lt;', '<')  ;
+            document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace('&lt;', '<')  ;
         }());
         if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
             textareas = document.getElementsByTagName('textarea');
@@ -242,6 +245,29 @@
       <script src="/static/js/editor/parser.js"></script>
       <script src="/static/js/mur2_editor_utils.js"></script>
       <script src="/static/js/mur2_editor.js"></script>
-   </body>
+            <script type="text/javascript">
+        // retrieve the access token from the URL
+        var params = window.location.hash.substr(1),
+            token = params.substr( params.indexOf( 'access_token' ) )
+                   .split( '&' )[0]
+                   .split( '=' )[1],
+            siteID = params.substr( params.indexOf( 'site_id' ) )
+                     .split( '&' )[0]
+                     .split( '=' )[1];
+
+        if ( token && siteID ) {            
+            // save in cookie
+            var value = getCookie("mur2_wpc_accesstoken");
+            if (value == "") {
+                setCookie("mur2_wpc_accesstoken", token, 365);
+                setCookie("mur2_wpc_sideid", siteID, 365);
+                window.location = "http://mur2.co.uk/editor";
+            }
+        }
+    </script>
+          
+            <div id="foot"> © 2020 μr² {{ _("editor") }} </div>
+        </div><!-- horizontal_box -->
+    </body>        
 </html>
 

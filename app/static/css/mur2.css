@@ -1,12 +1,19 @@
-    body,
-button,
-input,
-select,
-textarea {
+body, button input, select, textarea {
   font-family: 'Domine';
   line-height: 1.2;      /* was 1.88*/
   letter-spacing: 0;
   font-size: 16px;
+}
+
+body {
+  display: flex;  
+  flex-flow: row wrap;
+  text-align: left;
+}
+
+body > * {
+  padding: 10px;
+  flex: 1 100%;
 }
 
 .normalfontweight {
@@ -34,39 +41,22 @@ a, a:link, #mur2menu a:visited  {
     cursor: pointer;
 }
 
+input[type=text], input[type=submit], input[type=password] {
+  box-sizing: border-box;
+  background-color: white;
+  border: medium solid whitesmoke;
+  border-radius: 4px;
+  padding: 3px 3px;
+  text-align: left;
+}
+
+input[type=submit], input[type=file] {
+  cursor: pointer;
+}
+
 .menufont {
     font-size: 18px;
     font-family: 'Josefin Sans'; 
-}
-
-#submit, .custom-file-upload {
-    background-color: whitesmoke;
-  /*background-clip: padding-box;*/
-    border-color: black;
-    border-style: solid;
-    border-right-width: 2.5px;
-    border-bottom-width: 3px;
-    border-left-width: 1px;
-    border-top-width: 1px;
-    height: 25px;
-    min-width: 30px;
-    padding: 0 4px;          
-    text-align: center;
-    cursor: pointer;
-    line-height: 135%;
-}
-
- /* START OF FLEXBOX CONTROL*/
-.result-as-html {
-  display: flex;  
-  flex-flow: row wrap;
-  /*font-weight: bold;*/
-  text-align: center;
-}
-
-.result-as-html > * {
-  padding: 10px;
-  flex: 1 100%;
 }
 
 .topmenu {
@@ -78,7 +68,7 @@ a, a:link, #mur2menu a:visited  {
   
 }
 
-.toolbar-button:hover, a:hover {
+.toolbar-button:hover {
   background: whitesmoke;				/*Was rgba(247,247,247,.5)*/
   transition: all .15s ease-in-out;
 }
@@ -116,7 +106,3 @@ a, a:link, #mur2menu a:visited  {
 input[type="file"] {
     display: none;
 } */
-
-body {
-  /*padding: 2em;*/ 
-}
