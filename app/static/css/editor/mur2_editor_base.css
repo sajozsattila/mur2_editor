@@ -2,23 +2,27 @@
     width: 100%;
     display: flex ;
     flex-direction: column;
+    /* */
 }
 
 #article_input_side,
 #article_preview_side {
     display: flex;
-    flex-direction: column;
-    /* this need otherwise the scrollbar is shrink to 0 */
-    width: calc(50% - 6px);
+    flex-direction: column;    
+    width: calc(50% - 6px); /* this need otherwise the scrollbar is shrink to 0 */
+    /* */
+    padding: 16px;
 }
 
 
 /* show or hide "article_main_pre" and "article_main" */
 .result-as-html #article_main_pre {
     display: none;
+    /* */
 }
 .result-as-html #article_main {
     display: block;
+    /* */
 }
 .result-as-src #article_main_pre,
 .result-as-htmltex #article_main_pre,
@@ -26,6 +30,7 @@
 .result-as-mdp #article_main_pre,
 .result-as-habr #article_main_pre {
     display: block;
+    /* */
 }
 .result-as-src #article_main,
 .result-as-htmltex #article_main,
@@ -33,6 +38,7 @@
 .result-as-mdp #article_main,
 .result-as-habr #article_main {
     display: none;
+    /* */
 }
 
 /* switch between the menus */
@@ -40,6 +46,7 @@
 .mur2menu #mur2menu,
 .editor_toolbar #editor_toolbar {
     display: inline-block;
+    /* */
 }
 .choicemenu #mur2menu,
 .choicemenu #editor_toolbar,
@@ -48,6 +55,7 @@
 .editor_toolbar #mur2menu,
 .editor_toolbar #choicemenu {
     display: none;
+    /* */
 }
 
 /* the main objcet of the page */
@@ -67,6 +75,7 @@
     left: 0;
     top: 0;
     height: 28px;    
+    /* */
 }
 
 #msg {
@@ -77,6 +86,7 @@
     top: 60px;
     height: 20px;
     padding-left: 16px;
+    /* */
 }
 
 #maintext,
@@ -91,7 +101,9 @@
     top: 85px;
     height: calc(100% - 112px) ; 
     padding-left: 16px;
-    overflow: scroll;    
+    overflow: scroll;  
+    /* */
+    padding: 16px;
 }
 
 #side_menu {
@@ -102,39 +114,45 @@
     right: 0;
     /* same possition than .undermain_menu*/
     top: 20px;
+    /* */
 }
 
 #foot {
     width: 100%;
     position: fixed; 
     left: 0;
-    /* the bottom of the #msg */
     bottom: 0px;
     height: 26px;
+    /* */
 }
 
 .ldt {
     height: 100%;
+    /* */
 }
 
 /* toolbar */
 #editor_toolbar {
     display: flex;
     flex-direction: column;
+    /* */
 }
 
 #slider {
     width: 6px;
+    /* */
 }
 
 #article_main_pre, 
 #article_main {
     overflow: auto;
+    /* */
 }
 
 /* hide and show preview */
 #article_preview_side.previewoff {
     display: none;
+    /* */
 }
 
 /* hide title and abstract */
@@ -144,10 +162,38 @@
 #article_input_side.titleoff #title-source,
 #article_input_side.titleoff #abstact-source
 {
-    display:none
+    display:none;
+    /* */
 }
 
 #side_menu.hide {
-    display: none
+    display: none;
+    /* */
 }
 
+.control-input {
+    display: none;
+}
+
+.control-item {
+    background-color: rgba(255,0,0,.3);
+    vertical-align: middle;
+    color: #fff;
+    background-clip: padding-box;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 9px 1px;
+    height: 48px;
+    min-width: 30px;
+    line-height: 30px;
+    padding: 0 4px;
+    text-align: center;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+div#article_title {
+    font-size: 4.8rem;
+}

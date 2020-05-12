@@ -461,7 +461,7 @@ function ParserCollection(
 
     var scrollMap = new ScrollMap(domFindScrollMarks);
 
-    console.log("mur2_main_content"+article_id);
+
     var mainCollection = new ParserCollection(
         window.markdownit,
         function(source) {
@@ -496,6 +496,7 @@ function ParserCollection(
         window.markdownit,
         function(source) {
             // local save
+            console.log("js mur2_abstract_content"+article_id);
             try {
                 localStorage.setItem("mur2_abstract_content"+article_id, source.split("\n").slice(2, -3).join("\n"));
             } catch (e) {}

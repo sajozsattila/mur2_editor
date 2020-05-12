@@ -4,6 +4,20 @@
  * 
  */
 
+/**
+ * DOMContentLoaded polyfill
+ *
+ * @param fn
+ */
+function documentReady(fn) {
+	if (document.readyState != 'loading') {
+		fn();
+	}
+	else {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
+}
+
 function upload_source() {
     var eNode = document.getElementById('fileElem');
     // Fire click on file input
