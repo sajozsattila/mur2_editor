@@ -89,7 +89,7 @@
     left: 0;
     /* the bottom of the #msg */
     top: 85px;
-    height: calc(100% - 85px) ; 
+    height: calc(100% - 112px) ; 
     padding-left: 16px;
     overflow: scroll;    
 }
@@ -102,6 +102,19 @@
     right: 0;
     /* same possition than .undermain_menu*/
     top: 20px;
+}
+
+#foot {
+    width: 100%;
+    position: fixed; 
+    left: 0;
+    /* the bottom of the #msg */
+    bottom: 0px;
+    height: 26px;
+}
+
+.ldt {
+    height: 100%;
 }
 
 /* toolbar */

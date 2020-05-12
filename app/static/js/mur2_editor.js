@@ -452,7 +452,8 @@ function ParserCollection(
         abstactSource = document.getElementById('abstact-source'),
         abstactResult = document.getElementById('article_abstract'),
         mainSource = document.getElementById('main-source'),
-        mainResult = document.getElementById('article_main');
+        mainResult = document.getElementById('article_main'),
+        article_id = document.querySelector('meta[name="article_id"]').content;
 
     var recalcHeight = debounce(function() {
         decorator.recalcHeight()
@@ -460,6 +461,7 @@ function ParserCollection(
 
     var scrollMap = new ScrollMap(domFindScrollMarks);
 
+    console.log("mur2_main_content"+article_id);
     var mainCollection = new ParserCollection(
         window.markdownit,
         function(source) {
@@ -467,7 +469,7 @@ function ParserCollection(
             scrollMap.reset();
             // local save
             try {
-                localStorage.setItem("mur2_main_content", source);
+                localStorage.setItem("mur2_main_content"+article_id, source);
             } catch (e) {}
         },
         "article_main",
@@ -481,7 +483,7 @@ function ParserCollection(
         function(source) {
             // local save
             try {
-                localStorage.setItem("mur2_title_content", source.split("\n").slice(2, -3).join("\n"));
+                localStorage.setItem("mur2_title_content"+article_id, source.split("\n").slice(2, -3).join("\n"));
             } catch (e) {}
         },
         "article_title",
@@ -495,7 +497,7 @@ function ParserCollection(
         function(source) {
             // local save
             try {
-                localStorage.setItem("mur2_abstract_content", source.split("\n").slice(2, -3).join("\n"));
+                localStorage.setItem("mur2_abstract_content"+article_id, source.split("\n").slice(2, -3).join("\n"));
             } catch (e) {}
         },
         "article_abstract",
