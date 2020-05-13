@@ -22,7 +22,11 @@ body > * {
 
 a, a:link, #mur2menu a:visited  {
     text-decoration: none;
-    color: #000;
+    color: white;
+}
+
+.control-item {
+ color: white;
 }
 
 #mur2menu {
@@ -60,23 +64,30 @@ input[type=submit], input[type=file] {
 }
 
 .topmenu {
+  display: flex;
+    position: fixed;
   text-align: left;
-  background: white;                     /*whitesmoke */
+  background: black;                     /*whitesmoke */
   justify-content: space-between;
   display: -webkit-flex ;                 /* for 9 > Safari */
   justify-content: -webkit-space-between; /* for Safari */
-  
+  width: 100%;
+  left: 0;
+  top: 0;
+  /*height: 4em;*/ 
+  background-color: black;
+  padding-left: 2em;
+  padding-top: 1em;
 }
 
 .toolbar-button:hover {
-  background: whitesmoke;				/*Was rgba(247,247,247,.5)*/
+  /*background: whitesmoke;                  Was rgba(247,247,247,.5)*/
   transition: all .15s ease-in-out;
 }
 
-#foot {
-  text-align: center;
-  background: white;
-}
+/*#horizontal_box {
+    padding-top: 80px;
+}*/
 
 .main_content {
   text-align: left;
@@ -84,7 +95,7 @@ input[type=submit], input[type=file] {
 }
 
 #msg {
-  background: whitesmoke;
+  background: black;
 }
 
 #msg ul, li {
@@ -93,6 +104,11 @@ input[type=submit], input[type=file] {
   margin: 0;
   padding: 0;
   color: red;
+}
+
+#foot {
+  text-align: center;
+  background: white;
 }
 
 @media all and (min-width: 800px) {
