@@ -10,12 +10,11 @@
  * @param fn
  */
 function documentReady(fn) {
-	if (document.readyState != 'loading') {
-		fn();
-	}
-	else {
-		document.addEventListener('DOMContentLoaded', fn);
-	}
+    if (document.readyState != 'loading') {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
 }
 
 function upload_source() {
@@ -28,11 +27,7 @@ function upload_source() {
 async function download_result(blobs) {
     var result = "";
     for (var b = blobs.length; b--;) {
-        var body = new Blob([blobs[b].getDisplayedResult()], {
-            type: 'text/html;charset=utf-8'
-        });
-        var bodytext = await body.text();
-        console.log(bodytext);
+        var bodytext = blobs[b].getDisplayedResult();
         result += "\n\n" + bodytext;
     }
 
@@ -44,91 +39,106 @@ async function download_result(blobs) {
         var blob = new Blob([result], {
             type: 'text/html; charset=UTF-8'
         });
-        saveAs(blob, outputformat + ".html");
+        var a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = outputformat + ".html";
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click(); //this is probably the key - simulating a click on a download link
+        delete a;
     } else {
         var blob = new Blob([result], {
             type: 'text/markdown; charset=UTF-8'
         });
-        saveAs(blob, outputformat + ".md");
+        var a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = outputformat + ".md";
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click(); //this is probably the key - simulating a click on a download link
+        delete a;
     }
-
-
 };
 
 function editorToolbarAction(action) {
-    var field = document.getElementById(g_selectedTextarea);
-    var start = field.selectionStart;
-    var end = field.selectionEnd;
-    // if there is selection
-    var text = field.value.substring(start, end);
+    if (g_selectedTextarea !== null) {
+        console.log(g_selectedTextarea);
+        var field = document.getElementById(g_selectedTextarea);
+        var start = field.selectionStart;
+        var end = field.selectionEnd;
+        // if there is selection
+        var text = field.value.substring(start, end);
 
-    // is there whitespace in the begining or end
-    var leftWhitespace = text.slice(0, 1).trim() === '' ? ' ' : '';
-    var rightWhitespace = text.slice(-1).trim() === '' ? ' ' : '';
+        // is there whitespace in the begining or end
+        var leftWhitespace = text.slice(0, 1).trim() === '' ? ' ' : '';
+        var rightWhitespace = text.slice(-1).trim() === '' ? ' ' : '';
 
-    var wrap = null;
-    if (action === "italic") {
-        wrap = "*";
-        wrap2 = wrap;
-    } else if (action === "strong") {
-        wrap = "**";
-        wrap2 = wrap;
-    } else if (action === "heading") {
-        wrap = "# ";
-        wrap2 = "\n";
-    } else if (action === "code") {
-        wrap = "\n```\n";
-        wrap2 = wrap;
-    } else if (action === "table") {
-        wrap = "\n|  |  |\n|--|--|\n|  |  |\n";
-    } else if (action === "latex") {
-        wrap = "$$ "
-        wrap2 = " $$"
-    } else if (action === "link") {
-        var userinput = prompt("Please enter URL for the link", "");
-        if (userinput != null) {
-            if (text) {
-                wrap = "[" + text + "](" + userinput + ")";
+        var wrap = null;
+        if (action === "italic") {
+            wrap = "*";
+            wrap2 = wrap;
+        } else if (action === "strong") {
+            wrap = "**";
+            wrap2 = wrap;
+        } else if (action === "heading") {
+            wrap = "# ";
+            wrap2 = "\n";
+        } else if (action === "code") {
+            wrap = "\n```\n";
+            wrap2 = wrap;
+        } else if (action === "table") {
+            wrap = "\n|  |  |\n|--|--|\n|  |  |\n";
+        } else if (action === "latex") {
+            wrap = "$$ "
+            wrap2 = " $$"
+        } else if (action === "link") {
+            var userinput = prompt("Please enter URL for the link", "");
+            if (userinput != null) {
+                if (text) {
+                    wrap = "[" + text + "](" + userinput + ")";
+                } else {
+                    wrap = "[link](" + userinput + ")";
+                }
+            }
+        } else if (action === "picture") {
+            var userinput = prompt("Please enter URL for picture", "");
+            if (userinput != null) {
+                if (text) {
+                    wrap = "![" + text + "](" + userinput + ")";
+                } else {
+                    wrap = "![kep](" + userinput + ")";
+                }
+            }
+        } else if (action === "list") {
+            re = /\n/g;
+            wrap = "- " + text.replace(re, "\n\- ")
+        } else if (action === "numbered_list") {
+            re = /\n/g;
+            wrap = "1. " + text.replace(re, "\n1\. ")
+        } else if (action === "footnote") {
+            wrap = '^[' + text + '] '
+        }
+
+        // update the area
+        if (wrap !== null) {
+
+            if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
+                console.log(action, wrap, wrap2);
+                field.value =
+                    field.value.substring(0, start) +
+                    leftWhitespace + wrap + text.trim() + wrap2 + rightWhitespace +
+                    field.value.substring(end);
             } else {
-                wrap = "[link](" + userinput + ")";
+                console.log(action, wrap);
+                // new areas
+                field.value =
+                    field.value.substring(0, start) +
+                    leftWhitespace + wrap + rightWhitespace +
+                    field.value.substring(end);
             }
         }
-    } else if (action === "picture") {
-        var userinput = prompt("Please enter URL for picture", "");
-        if (userinput != null) {
-            if (text) {
-                wrap = "![" + text + "](" + userinput + ")";
-            } else {
-                wrap = "![kep](" + userinput + ")";
-            }
-        }
-    } else if (action === "list") {
-        re = /\n/g;
-        wrap = "- " + text.replace(re, "\n\- ")
-    } else if (action === "numbered_list") {
-        re = /\n/g;
-        wrap = "1. " + text.replace(re, "\n1\. ")
-    } else if (action === "footnote") {
-        wrap = '^[' + text + '] '
-    }
-
-    // update the area
-    if (wrap !== null) {
-
-        if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
-            console.log(action, wrap, wrap2);
-            field.value =
-                field.value.substring(0, start) +
-                leftWhitespace + wrap + text.trim() + wrap2 + rightWhitespace +
-                field.value.substring(end);
-        } else {
-            console.log(action, wrap);
-            // new areas
-            field.value =
-                field.value.substring(0, start) +
-                leftWhitespace + wrap + rightWhitespace +
-                field.value.substring(end);
-        }
+    } else {
+        alert("no field selected");
     }
 }
 
@@ -168,26 +178,22 @@ async function alarming(xhr, sucessmsg) {
 
 
 /* save Article content */
-async function save_article(blobs ) {
+async function save_article(blobs) {
     // the markdonw article body text
-    var markupdata = new Blob([document.getElementById('main-source').value],
-                               {type: 'text/html; charset=UTF-8'
-        });
-    
+    var markupdata = new Blob([document.getElementById('main-source').value], {
+        type: 'text/html; charset=UTF-8'
+    });
+
     // merge the data of the tilte, abstract and main
     var htmldatatext = "";
     for (var b = blobs.length; b--;) {
-            var body = new Blob([blobs[b].getHtmlImg()], {
-                type: 'text/html;charset=utf-8'
-            });
-            var bodytext = await body.text();
-            console.log(bodytext);
-            htmldatatext += "\n\n" + bodytext;
+        var bodytext = blobs[b].getHtmlImg();
+        htmldatatext += "\n\n" + bodytext;
     }
-    var htmldata = new Blob([result], {
-            type: 'text/html; charset=UTF-8'
-        });
-    
+    var htmldata = new Blob([htmldatatext], {
+        type: 'text/html; charset=UTF-8'
+    });
+
     // type of the text
     var texttype = document.querySelector('meta[name="texttype"]').content.trim()
     // transform the Blob to Form as this easier to process for the 
@@ -195,7 +201,7 @@ async function save_article(blobs ) {
     // add data to the form, so the Flask server able to receive them		// 
     // if Article 
     if (texttype == 'article') {
-        
+
         // the article id
         var article_id = document.querySelector('meta[name="article_id"]').content
         // the article abstract and title, later this need to change as they need to be editable
@@ -243,7 +249,7 @@ async function wordpress2(link, id) {
     xhr.send(fd);
     alarming(xhr, "Published on " + link);
 }
-async function wordpress_on_fly(titleCollection, abstractCollection,  mainCollection) {
+async function wordpress_on_fly(titleCollection, abstractCollection, mainCollection) {
     var msgbox = document.getElementById("msg")
 
     var texttype = document.querySelector('meta[name="texttype"]').content;
@@ -260,24 +266,15 @@ async function wordpress_on_fly(titleCollection, abstractCollection,  mainCollec
         var article_id = document.querySelector('meta[name="article_id"]').content
         // ???
 
-        var body = new Blob([mainCollection.getHtmlImg()], {
-                type: 'text/html;charset=utf-8'
-            });
-        var htmltext = await body.text();
-        var title = new Blob([titleCollection.getHtmlImg()], {
-                type: 'text/html;charset=utf-8'
-            });
-        var article_title = await title.text();
-        var abstract = new Blob([abstractCollection.getHtmlImg()], {
-                type: 'text/html;charset=utf-8'
-            });
-        var article_abstract = await abstract.text();        
+        var htmltext = mainCollection.getHtmlImg();
+        var article_title = titleCollection.getHtmlImg();
+        var article_abstract = abstractCollection.getHtmlImg();
 
         // publish in Wordpress.com
         var fd = new FormData();
         fd.append('title', article_title);
         fd.append('status', 'private');
-        fd.append('content', article_abstract+"<hr>"+htmltext);
+        fd.append('content', article_abstract + "<hr>" + htmltext);
         fd.append('excerpt', article_abstract);
         fd.append('format', 'standard');
 
@@ -341,35 +338,22 @@ async function generate_from_md(destination, mainCollection) {
             msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
 
         } else { // save the result   
-            var blob = this.response;            
-            // var contentDispo = this.getResponseHeader('Content-Disposition');
+            var blob = this.response;
+            window.URL = window.URL || window.webkitURL;
+            var fileURL = window.URL.createObjectURL(blob);
             if (destination === "latex") {
-                // saveAs(blob, 'mur2.tex');                
-                // var bb = new BlobBuilder();
-                console.log(blob);
-            } else {               
-                var fileURL = URL.createObjectURL(blob);
-                /*
-                let newWindow = window.open(fileURL);
-                newWindow.onload = () => {
-                    var blobHtmlElement;
-                    blobHtmlElement = document.createElement('object');
-                    blobHtmlElement.style.position = 'fixed';
-                    blobHtmlElement.style.top = '0';
-                    blobHtmlElement.style.left = '0';
-                    blobHtmlElement.style.bottom = '0';
-                    blobHtmlElement.style.right = '0';
-                    blobHtmlElement.style.width = '100%';
-                    blobHtmlElement.style.height = '100%';
-                    blobHtmlElement.setAttribute('type', 'application/pdf'); 
-                    blobHtmlElement.setAttribute('data', blob);
-                    newWindow.document.title = 'Mur2 document';
-                    newWindow.document.body.appendChild(blobHtmlElement);
-                };
-                */
-                if(navigator.userAgent.indexOf("iPad") != -1){
+                var a = document.createElement('a');
+                a.href = window.URL.createObjectURL(blob);
+                a.download = "mur2.tex";
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click(); //this is probably the key - simulating a click on a download link
+                delete a;
+            } else {
+                if (navigator.userAgent.indexOf("iPad") != -1 || navigator.userAgent.indexOf("Macintosh") != -1) {
+                    // on iPad we open in same window
                     window.location.href = fileURL;
-                } else {                    
+                } else {
                     window.open(fileURL);
                 }
             }
