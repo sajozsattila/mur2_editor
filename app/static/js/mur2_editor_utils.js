@@ -344,9 +344,12 @@ async function generate_from_md(destination, mainCollection) {
             var blob = this.response;            
             // var contentDispo = this.getResponseHeader('Content-Disposition');
             if (destination === "latex") {
-                saveAs(blob, 'mur2.tex');                
+                // saveAs(blob, 'mur2.tex');                
+                // var bb = new BlobBuilder();
+                console.log(blob);
             } else {               
                 var fileURL = URL.createObjectURL(blob);
+                /*
                 let newWindow = window.open(fileURL);
                 newWindow.onload = () => {
                     var blobHtmlElement;
@@ -360,10 +363,15 @@ async function generate_from_md(destination, mainCollection) {
                     blobHtmlElement.style.height = '100%';
                     blobHtmlElement.setAttribute('type', 'application/pdf'); 
                     blobHtmlElement.setAttribute('data', blob);
-                    // newWindow.document.title = 'my custom document title';
-                    // newWindow.document.body.appendChild(blobHtmlElement);
+                    newWindow.document.title = 'Mur2 document';
+                    newWindow.document.body.appendChild(blobHtmlElement);
                 };
-                
+                */
+                if(navigator.userAgent.indexOf("iPad") != -1){
+                    window.location.href = fileURL;
+                } else {                    
+                    window.open(fileURL);
+                }
             }
         }
 
