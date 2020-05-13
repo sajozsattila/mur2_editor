@@ -341,12 +341,29 @@ async function generate_from_md(destination, mainCollection) {
             msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
 
         } else { // save the result   
-            var blob = this.response;
-            var contentDispo = this.getResponseHeader('Content-Disposition');
+            var blob = this.response;            
+            // var contentDispo = this.getResponseHeader('Content-Disposition');
             if (destination === "latex") {
-                saveAs(blob, 'mur2.tex');
-            } else {
-                saveAs(blob, 'mur2.pdf');
+                saveAs(blob, 'mur2.tex');                
+            } else {               
+                var fileURL = URL.createObjectURL(blob);
+                let newWindow = window.open(fileURL);
+                newWindow.onload = () => {
+                    var blobHtmlElement;
+                    blobHtmlElement = document.createElement('object');
+                    blobHtmlElement.style.position = 'fixed';
+                    blobHtmlElement.style.top = '0';
+                    blobHtmlElement.style.left = '0';
+                    blobHtmlElement.style.bottom = '0';
+                    blobHtmlElement.style.right = '0';
+                    blobHtmlElement.style.width = '100%';
+                    blobHtmlElement.style.height = '100%';
+                    blobHtmlElement.setAttribute('type', 'application/pdf'); 
+                    blobHtmlElement.setAttribute('data', blob);
+                    // newWindow.document.title = 'my custom document title';
+                    // newWindow.document.body.appendChild(blobHtmlElement);
+                };
+                
             }
         }
 
