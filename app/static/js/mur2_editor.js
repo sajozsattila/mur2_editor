@@ -374,13 +374,23 @@ function ParserCollection(
         return html;
     }
 
-    this.getSource = sourceGetter,
-        source = null;
+    this.getSource = sourceGetter;
+    var old_source = null;
+        
 
-    this.updateResult = function(imageLoader) {
+    this.updateResult = function(imageLoader, force) {
         var _view = g_view;
 
-        source = sourceGetter();
+        var source = sourceGetter();
+        
+        if ( !force ) {
+            if ( source === old_source ) {
+                console.log("same");
+                return;
+            }
+        }
+        // update old source
+        old_source = source;
 
         // Update only active view to avoid slowdowns
         // (debug & src view with highlighting are a bit slow)
@@ -470,6 +480,7 @@ function ParserCollection(
             // local save
             try {
                 localStorage.setItem("mur2_main_content"+article_id, source);
+                localStorage.setItem("mur2_main_content"+article_id+'_time', +new Date);
             } catch (e) {}
         },
         "article_main",
@@ -484,6 +495,7 @@ function ParserCollection(
             // local save
             try {
                 localStorage.setItem("mur2_title_content"+article_id, source.split("\n").slice(2, -3).join("\n"));
+                localStorage.setItem("mur2_title_content"+article_id+'_time', +new Date);
             } catch (e) {}
         },
         "article_title",
@@ -499,6 +511,7 @@ function ParserCollection(
             console.log("js mur2_abstract_content"+article_id);
             try {
                 localStorage.setItem("mur2_abstract_content"+article_id, source.split("\n").slice(2, -3).join("\n"));
+                localStorage.setItem("mur2_abstract_content"+article_id+'_time', +new Date);
             } catch (e) {}
         },
         "article_abstract",
@@ -514,9 +527,9 @@ function ParserCollection(
         abstractImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 'a_');
 
     // load first everything
-    mainCollection.updateResult(mainImageLoader);
-    abstractCollection.updateResult(abstractImageLoader);
-    titleCollection.updateResult(titleImageLoader);
+    mainCollection.updateResult(mainImageLoader, true);
+    abstractCollection.updateResult(abstractImageLoader, true);
+    titleCollection.updateResult(titleImageLoader, true);
 
 
     // start the decorator we just decorate the main
@@ -564,22 +577,24 @@ function ParserCollection(
     article_input_side.addEventListener('input', (event) => {
         let target = event.target;
         var preview_on = g_preview_on;
+        // mark as selected area
+        g_selectedTextarea = target.id;
         // switching depending which textfiled was an input
         switch (target.id) {
             case 'title-source':
                 // if we do not show preview no point to update
                 if (preview_on) {
-                    updateTitle(titleImageLoader);
+                    updateTitle(titleImageLoader, false);
                 }
                 break;
             case 'abstact-source':
                 if (preview_on) {
-                    updateAbstract(abstractImageLoader);
+                    updateAbstract(abstractImageLoader, false);
                 }
                 break;
             case 'main-source':
                 if (preview_on) {
-                    updateMain(mainImageLoader);
+                    updateMain(mainImageLoader, false);
                 }
                 break;
         }
@@ -631,27 +646,30 @@ function ParserCollection(
     });
 
     // listener for the toolbar
-    article_input_side.addEventListener('select', (event) => {
-        // switching depending which textfiled was an input
-        let target = event.target;
-        if (target.id === 'title-source' || target.id === 'abstact-source' || target.id === 'main-source') {
-            g_selectedTextarea = target.id;
-        }
-    });
+    var activaton = ["select", "click"];
+    for (var i = activaton.length; i--; ) {
+        article_input_side.addEventListener(activaton[i], (event) => {
+            // switching depending which textfiled was an input
+            let target = event.target;
+            if (target.id === 'title-source' || target.id === 'abstact-source' || target.id === 'main-source') {
+                g_selectedTextarea = target.id;
+            }
+        });
+    }
 
     // uplad the selected area. used for toolbar
     var inputevent = new Event('input');
-
+    // this is used for the toolbars
     function update() {
         var selectedTextarea = g_selectedTextarea;
         if (selectedTextarea === 'main-source') {
-            updateMain(mainImageLoader);
+            updateMain(mainImageLoader, false);
             // fire inputevent manualy to update highlighted things also
             mainSource.dispatchEvent(inputevent);
         } else if (selectedTextarea === 'title-source') {
-            updateTitle(titleImageLoader);
+            updateTitle(titleImageLoader, false);
         } else if (selectedTextarea === 'abstact-source') {
-            updateAbstract(abstractImageLoader);
+            updateAbstract(abstractImageLoader, false);
         }
     }
 
@@ -669,7 +687,7 @@ function ParserCollection(
             // upload to the main
             //   this could be more sofisticated and work with the donwloaded files ???
             mainSource.value = this.result;
-            updateMain(mainImageLoader);
+            updateMain(mainImageLoader, true);
             mainSource.dispatchEvent(inputevent);
             decorator.update();
             fileInput.value = fileInput.defaultValue;
@@ -700,8 +718,9 @@ function ParserCollection(
                     if (g_focusmode_switch) {
                         g_focusmode_switch = false;
                     } else {
-                        g_focusmode_switch = true;
+                        g_focusmode_switch = true;                        
                     };
+                    mainSource.dispatchEvent(inputevent);
                     break;
                 case 'id_hide_preview':
                     var preview = document.getElementById('article_preview_side');
@@ -711,12 +730,13 @@ function ParserCollection(
                         input.classList.remove('previewoff');
                         g_preview_on = true;
                         // fire up an update
-                        updateMain(mainImageLoader);
-                        updateTitle(titleImageLoader);
-                        updateAbstract(abstractImageLoader);
+                        updateMain(mainImageLoader, true);
+                        updateTitle(titleImageLoader, true);
+                        updateAbstract(abstractImageLoader, true);
                     } else {
                         preview.classList.add('previewoff');
                         input.classList.add('previewoff');
+                        // switching off update on ParseCollection when it is not showed
                         g_preview_on = false;
                     }
                     break;
@@ -796,9 +816,9 @@ function ParserCollection(
             var view = target.id.replace("id_", '');
             document.body.className = "result-as-" + view;
             g_view = view;
-            updateTitle(titleImageLoader);
-            updateAbstract(abstractImageLoader);
-            updateMain(mainImageLoader);
+            updateTitle(titleImageLoader, true);
+            updateAbstract(abstractImageLoader, true);
+            updateMain(mainImageLoader, true);
         } else if (target.classList.contains('side_menu_control')) {
             // close sie menu
             var preview = document.getElementById('side_menu');

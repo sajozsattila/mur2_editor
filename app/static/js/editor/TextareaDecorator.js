@@ -10,8 +10,6 @@ function TextareaDecorator(textarea, parser) {
     /* INIT */
     var api = this,
         output;
-    
-    var focusmode_switch = g_focusmode_switch;
 
     if (textarea.className !== 'ldt-textarea') {
         // construct editor DOM
@@ -154,6 +152,7 @@ function TextareaDecorator(textarea, parser) {
         api.input.style.height = Math.max(api.output.offsetHeight, 100) + 'px';
     };
     api.update = function() {
+        var focusmode_switch = g_focusmode_switch;
         var input = textarea.value;
         if (input) {          
             if ( focusmode_switch ) {                   
@@ -161,9 +160,10 @@ function TextareaDecorator(textarea, parser) {
                  while (output.firstChild) {
                      output.removeChild(output.lastChild);
                  }
-                // get the current position of the cousor                
-                field = window.selectedTextarea;
+                // get the current position of the cousor      
+                var field = document.getElementById("main-source");
                 var coursurpos = field.selectionStart;
+                console.log(coursurpos);
                 // search for separators before the cursore possition
                 var a = field.value.substring(0, coursurpos);
                 var lastSeparator = Math.max(
@@ -172,20 +172,28 @@ function TextareaDecorator(textarea, parser) {
                     a.lastIndexOf("?"),
                     a.lastIndexOf("\n"),
                 ) + 1 ;
+                var b = field.value.substring(coursurpos);
+                var firstSeparator = Math.min(
+                    b.indexOf("."), 
+                    b.indexOf("!"), 
+                    b.indexOf("?"),
+                    b.indexOf("\n"),
+                ) + 1 ;
                 // the text before the last sentence
                 var notfocused1 = document.createElement("span");
                 notfocused1.textContent = notfocused1.innerText  = a.slice(0, lastSeparator);
                 notfocused1.className = "notfocused";
                 output.appendChild(notfocused1);
-                // the focused sentence
+                // the focused sentence before the cursor
                 var focused = document.createElement("span");
                 focused.className = "focused"
-                focused.textContent = focused.innerText  =  a.slice(lastSeparator, a.length);
+                focused.textContent = focused.innerText  =  a.slice(lastSeparator, a.length) + b.slice(0, firstSeparator);
                 output.appendChild(focused);
+                
                 // the text after the focuse
                 var notfocused2 = document.createElement("span");
                 notfocused2.className = "notfocused"
-                notfocused2.textContent = notfocused2.innerText  = field.value.substring(coursurpos);
+                notfocused2.textContent = notfocused2.innerText  = b.slice(firstSeparator, b.length);
                 output.appendChild(notfocused2);      
             } else {
                 var differnces = color(input, output, parser);
