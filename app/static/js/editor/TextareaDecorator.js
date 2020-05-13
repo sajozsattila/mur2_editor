@@ -163,22 +163,24 @@ function TextareaDecorator(textarea, parser) {
                 // get the current position of the cousor      
                 var field = document.getElementById("main-source");
                 var coursurpos = field.selectionStart;
-                console.log(coursurpos);
                 // search for separators before the cursore possition
-                var a = field.value.substring(0, coursurpos);
-                var lastSeparator = Math.max(
-                    a.lastIndexOf("."), 
-                    a.lastIndexOf("!"), 
-                    a.lastIndexOf("?"),
-                    a.lastIndexOf("\n"),
-                ) + 1 ;
+                var a = field.value.substring(0, coursurpos);              
                 var b = field.value.substring(coursurpos);
-                var firstSeparator = Math.min(
-                    b.indexOf("."), 
-                    b.indexOf("!"), 
-                    b.indexOf("?"),
-                    b.indexOf("\n"),
-                ) + 1 ;
+                var separators = [".", "!","!", "?", "\n", '。' ];
+                var firstSeparator = 10000000;
+                var lastSeparator = -1;
+                for ( var i = separators.length; i--; ) {
+                    var first = b.indexOf(separators[i]) ;                    
+                    if ( first !== -1 && first < firstSeparator ) {
+                        firstSeparator = first;
+                    }
+                    var last = a.lastIndexOf(separators[i]) ;
+                    if ( last > lastSeparator ) {
+                        lastSeparator = last;
+                    }                    
+                }
+                lastSeparator += 1;
+                firstSeparator += 1;
                 // the text before the last sentence
                 var notfocused1 = document.createElement("span");
                 notfocused1.textContent = notfocused1.innerText  = a.slice(0, lastSeparator);

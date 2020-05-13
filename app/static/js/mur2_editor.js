@@ -508,7 +508,6 @@ function ParserCollection(
         window.markdownit,
         function(source) {
             // local save
-            console.log("js mur2_abstract_content"+article_id);
             try {
                 localStorage.setItem("mur2_abstract_content"+article_id, source.split("\n").slice(2, -3).join("\n"));
                 localStorage.setItem("mur2_abstract_content"+article_id+'_time', +new Date);
@@ -653,6 +652,9 @@ function ParserCollection(
             let target = event.target;
             if (target.id === 'title-source' || target.id === 'abstact-source' || target.id === 'main-source') {
                 g_selectedTextarea = target.id;
+                if ( g_focusmode_switch ) {
+                    decorator.update();
+                }
             }
         });
     }
