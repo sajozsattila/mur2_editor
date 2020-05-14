@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:52+0000\n"
+"POT-Creation-Date: 2020-05-14 12:20+0000\n"
 "PO-Revision-Date: 2020-05-04 20:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -20,115 +20,111 @@ msgstr ""
 
 #: app/__init__.py:26
 msgid "Please log in to access this page."
-msgstr ""
+msgstr "请登录查看次页"
 
 #: app/auth/email.py:12
 msgid "Reset Your Password"
-msgstr ""
+msgstr "重置你的密码"
 
 #: app/auth/forms.py:9 app/auth/forms.py:16 app/templates/edit_profile.html:8
 msgid "Username"
-msgstr ""
+msgstr "用户名"
 
 #: app/auth/forms.py:10 app/auth/forms.py:18 app/auth/forms.py:41
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 #: app/auth/forms.py:11
 msgid "Remember Me"
-msgstr ""
+msgstr "记住"
 
-#: app/auth/forms.py:12 app/auth/routes.py:28
+#: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/base_menu.html:6
 msgid "Sign In"
-msgstr ""
+msgstr "登录"
 
 #: app/auth/forms.py:17 app/auth/forms.py:36
 msgid "Email"
-msgstr ""
+msgstr "电邮地址"
 
 #: app/auth/forms.py:20 app/auth/forms.py:43
 msgid "Repeat Password"
-msgstr ""
+msgstr "确定密码"
 
 #: app/auth/forms.py:22 app/auth/routes.py:49
 msgid "Register"
-msgstr ""
+msgstr "注册"
 
 #: app/auth/forms.py:27
 msgid "Please use a different username."
-msgstr ""
+msgstr "请使用别的用户名"
 
 #: app/auth/forms.py:32
 msgid "Please use a different email address."
-msgstr ""
+msgstr "请使用别的电邮地址"
 
 #: app/auth/forms.py:37 app/auth/forms.py:45
 msgid "Request Password Reset"
-msgstr ""
+msgstr "申请密码重置"
 
 #: app/auth/routes.py:21
 msgid "Invalid username or password"
-msgstr ""
+msgstr "无效用户名或密码"
 
 #: app/auth/routes.py:47
 msgid "Congratulations, you are now a registered user!"
-msgstr ""
+msgstr "恭喜，你已成为注册用户"
 
 #: app/auth/routes.py:63
 msgid "Check your email for the instructions to reset your password"
-msgstr ""
+msgstr "请查看电邮以重置你的密码"
 
 #: app/auth/routes.py:66
 msgid "Reset Password"
-msgstr ""
+msgstr "重置密码"
 
 #: app/auth/routes.py:80
 msgid "Your password has been reset."
-msgstr ""
+msgstr "密码已重置"
 
-#: app/main/routes.py:89
+#: app/main/routes.py:91
 msgid "You can not edit this article"
-msgstr ""
+msgstr "你无权编辑此文章"
 
-#: app/main/routes.py:209 app/main/routes.py:291
+#: app/main/routes.py:250 app/main/routes.py:331
 msgid "Your changes have been saved."
-msgstr ""
+msgstr "改变已保存"
 
-#: app/main/routes.py:222
+#: app/main/routes.py:263
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:233 app/main/routes.py:259
+#: app/main/routes.py:274 app/main/routes.py:300
 msgid "User no right to delete this"
-msgstr ""
+msgstr "用户无权删除此文章"
 
-#: app/main/routes.py:233
+#: app/main/routes.py:274
 msgid "Article"
-msgstr ""
+msgstr "文章"
 
-#: app/main/routes.py:259
+#: app/main/routes.py:300
 msgid "File"
-msgstr ""
+msgstr "文件"
 
-#: app/main/routes.py:456
+#: app/main/routes.py:498
 msgid "No more disk space quota for "
-msgstr ""
+msgstr "空间配额不足"
 
 #: app/templates/article.html:12
 msgid "Delete article"
-msgstr ""
+msgstr "删除文章"
 
-#: app/templates/base.html:30 app/templates/editor.html:46
+#: app/templates/base.html:43 app/templates/editor.html:301
 msgid "editor"
 msgstr "编辑"
 
 #: app/templates/base_menu.html:4
 msgid "Home"
 msgstr "主页"
-
-#: app/templates/base_menu.html:6
-msgid "Login"
-msgstr "登录"
 
 #: app/templates/base_menu.html:8
 msgid "Profile"
@@ -140,195 +136,198 @@ msgstr "媒体"
 
 #: app/templates/base_menu.html:11
 msgid "Editor"
-msgstr ""
+msgstr "编辑器"
 
 #: app/templates/base_menu.html:13
-msgid "Logout"
+msgid "Sign out"
 msgstr "退出"
+
+#: app/templates/base_menu.html:31 app/templates/test.html:39
+msgid "Close Menu"
+msgstr "关闭菜单"
 
 #: app/templates/edit_profile.html:15
 msgid "About me"
-msgstr ""
+msgstr "关于我"
 
-#: app/templates/edit_profile.html:21 app/templates/editor_toolbar.html:13
+#: app/templates/edit_profile.html:21 app/templates/editor.html:72
+#: app/templates/test.html:66
 msgid "Save"
 msgstr "保存"
 
 #: app/templates/edit_profile.html:26
 msgid "Delete user"
-msgstr ""
+msgstr "注销用户"
 
-#: app/templates/editor.html:13
-msgid "Toolbar"
-msgstr "工具栏"
-
-#: app/templates/editor.html:15
-msgid "Menu"
-msgstr "菜单"
-
-#: app/templates/editor.html:22
-msgid "Title"
-msgstr "标题"
-
-#: app/templates/editor.html:25
-msgid "Abstract"
-msgstr "摘要"
-
-#: app/templates/editor.html:55
-msgid "Preview format"
-msgstr "预览格式"
-
-#: app/templates/editor.html:59
-msgid "preview"
-msgstr "预览"
-
-#: app/templates/editor.html:84
-msgid "Export"
-msgstr "输出"
-
-#: app/templates/editor.html:88
-msgid "Publish"
-msgstr ""
-
-#: app/templates/editor.html:90
-msgid "Clear cookies"
-msgstr "删除插件"
-
-#: app/templates/editor.html:94
-msgid "Connect"
-msgstr ""
-
-#: app/templates/editor.html:99
-msgid "Generate pdf"
-msgstr "生成PDF"
-
-#: app/templates/editor.html:102
-msgid "Generate LaTeX"
-msgstr "生成LaTex"
-
-#: app/templates/editor.html:108
-msgid "Help"
-msgstr "帮助"
-
-#: app/templates/editor.html:111
-msgid "Markdown cheat sheet"
-msgstr "速查表"
-
-#: app/templates/editor_header.html:18 app/templates/editor_toolbar.html:38
+#: app/templates/editor.html:20 app/templates/test.html:22
 msgid "Endnote"
 msgstr "尾注"
 
-#: app/templates/editor_toolbar.html:5
-msgid "Close toolbar"
+#: app/templates/editor.html:50 app/templates/test.html:45
+msgid "Toolbar"
+msgstr "工具栏"
+
+#: app/templates/editor.html:53 app/templates/test.html:48
+msgid "Menu"
+msgstr "菜单"
+
+#: app/templates/editor.html:60 app/templates/test.html:55
+msgid "Close Toolbar"
 msgstr "关闭工具栏"
 
-#: app/templates/editor_toolbar.html:7
+#: app/templates/editor.html:64 app/templates/test.html:59
 msgid "Upload file"
 msgstr "上传文件"
 
-#: app/templates/editor_toolbar.html:9
+#: app/templates/editor.html:68 app/templates/test.html:63
 msgid "Download result"
 msgstr "下载文件"
 
-#: app/templates/editor_toolbar.html:16
+#: app/templates/editor.html:76 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "语法凸显"
 
-#: app/templates/editor_toolbar.html:19
+#: app/templates/editor.html:79 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "隐藏预览"
 
-#: app/templates/editor_toolbar.html:21
+#: app/templates/editor.html:82 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr "显示标题和摘要"
 
-#: app/templates/editor_toolbar.html:23
+#: app/templates/editor.html:85 app/templates/test.html:78
 msgid "Head"
 msgstr "文件头"
 
-#: app/templates/editor_toolbar.html:25
+#: app/templates/editor.html:88 app/templates/test.html:81
 msgid "Italic"
 msgstr "斜体"
 
-#: app/templates/editor_toolbar.html:27
+#: app/templates/editor.html:91 app/templates/test.html:84
 msgid "Strong"
 msgstr "黑体"
 
-#: app/templates/editor_toolbar.html:30
+#: app/templates/editor.html:94 app/templates/test.html:87
 msgid "Picture"
 msgstr "图片"
 
-#: app/templates/editor_toolbar.html:32
+#: app/templates/editor.html:97 app/templates/test.html:90
 msgid "Link"
 msgstr "链接"
 
-#: app/templates/editor_toolbar.html:34
+#: app/templates/editor.html:100 app/templates/test.html:93
 msgid "List"
 msgstr "列表"
 
-#: app/templates/editor_toolbar.html:36
+#: app/templates/editor.html:103 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "标号列表"
 
-#: app/templates/editor_toolbar.html:40
+#: app/templates/editor.html:106 app/templates/test.html:99
+msgid "Footnote"
+msgstr "注脚"
+
+#: app/templates/editor.html:109 app/templates/test.html:102
 msgid "Table"
 msgstr "桌面"
 
-#: app/templates/editor_toolbar.html:44
+#: app/templates/editor.html:112 app/templates/test.html:105
 msgid "Code"
 msgstr "代码"
 
-#: app/templates/editor_toolbar.html:49
+#: app/templates/editor.html:115 app/templates/test.html:108
+msgid "LaTeX code"
+msgstr "LaTex码"
+
+#: app/templates/editor.html:118 app/templates/test.html:111
 msgid "Show side menu"
 msgstr "显示侧菜单"
 
+#: app/templates/editor.html:160 app/templates/test.html:149
+msgid "Close side menu"
+msgstr "关闭侧菜单"
+
+#: app/templates/editor.html:166 app/templates/test.html:154
+msgid "preview"
+msgstr "预览"
+
+#: app/templates/editor.html:193 app/templates/test.html:181
+msgid "Publish on Wordpress.com"
+msgstr "在Wordpress.com上发布"
+
+#: app/templates/editor.html:194 app/templates/test.html:182
+msgid "Publish"
+msgstr "发布"
+
+#: app/templates/editor.html:197 app/templates/test.html:185
+msgid "Clear Wordpress.com cookies"
+msgstr "清除Worldpress.com上的cookies"
+
+#: app/templates/editor.html:198 app/templates/test.html:186
+msgid "Clear cookies"
+msgstr "删除插件"
+
+#: app/templates/editor.html:203 app/templates/editor.html:204
+#: app/templates/editor.html:208 app/templates/editor.html:209
+#: app/templates/test.html:190 app/templates/test.html:191
+msgid "Connect to Wordpress.com"
+msgstr "连接到Wordpress.com"
+
+#: app/templates/editor.html:216 app/templates/test.html:197
+msgid "Generate pdf"
+msgstr "生成PDF"
+
+#: app/templates/editor.html:221 app/templates/test.html:201
+msgid "Generate LaTeX"
+msgstr "生成LaTex"
+
 #: app/templates/media.html:10
 msgid "Media files"
-msgstr ""
+msgstr "媒体文件"
 
 #: app/templates/media.html:31
 msgid "Delete file"
-msgstr ""
+msgstr "删除文件"
 
 #: app/templates/search.html:4
 msgid "Search Results"
-msgstr ""
+msgstr "搜索结果"
 
 #: app/templates/search.html:13
 msgid "Previous results"
-msgstr ""
+msgstr "上一页"
 
 #: app/templates/search.html:18
 msgid "Next results"
-msgstr ""
+msgstr "下一页"
 
 #: app/templates/user.html:10
 msgid "Last seen on"
-msgstr ""
+msgstr "上次看到"
 
 #: app/templates/user.html:12
 msgid "Edit your profile"
-msgstr ""
+msgstr "编辑你的用户资料"
 
 #: app/templates/user.html:17
 msgid "New Article"
-msgstr ""
+msgstr "新的文章"
 
 #: app/templates/errors/404.html:4
 msgid "Not Found"
-msgstr ""
+msgstr "无结果"
 
 #: app/templates/errors/404.html:5 app/templates/errors/500.html:6
 msgid "Back"
-msgstr ""
+msgstr "后退"
 
 #: app/templates/errors/500.html:4
 msgid "An unexpected error has occurred"
-msgstr ""
+msgstr "未知错误"
 
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr ""
+msgstr "已通知网站管理员。抱歉给您带来的不便"
 
 #~ msgid "[Microblog] Reset Your Password"
 #~ msgstr ""
@@ -338,4 +337,34 @@ msgstr ""
 
 #~ msgid "form.about_me.label"
 #~ msgstr ""
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Logout"
+#~ msgstr "退出"
+
+#~ msgid "Title"
+#~ msgstr "标题"
+
+#~ msgid "Abstract"
+#~ msgstr "摘要"
+
+#~ msgid "Preview format"
+#~ msgstr "预览格式"
+
+#~ msgid "Export"
+#~ msgstr "输出"
+
+#~ msgid "Connect"
+#~ msgstr ""
+
+#~ msgid "Help"
+#~ msgstr "帮助"
+
+#~ msgid "Markdown cheat sheet"
+#~ msgstr "速查表"
+
+#~ msgid "Close toolbar"
+#~ msgstr "关闭工具栏"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:52+0000\n"
+"POT-Creation-Date: 2020-05-14 12:20+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -28,7 +28,7 @@ msgstr "Jelszó újboli beállítása"
 
 #: app/auth/forms.py:9 app/auth/forms.py:16 app/templates/edit_profile.html:8
 msgid "Username"
-msgstr "Felhasználonév"
+msgstr "Felhasználónév"
 
 #: app/auth/forms.py:10 app/auth/forms.py:18 app/auth/forms.py:41
 msgid "Password"
@@ -36,9 +36,9 @@ msgstr "Jelszó"
 
 #: app/auth/forms.py:11
 msgid "Remember Me"
-msgstr "Emlékez rám"
+msgstr "Emlékezz rám"
 
-#: app/auth/forms.py:12 app/auth/routes.py:28
+#: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/base_menu.html:6
 msgid "Sign In"
 msgstr "Bejelentkezés"
 
@@ -56,11 +56,11 @@ msgstr "Regisztráció"
 
 #: app/auth/forms.py:27
 msgid "Please use a different username."
-msgstr "Válaszon másik felhasználónevet!"
+msgstr "Válasszon másik felhasználónevet!"
 
 #: app/auth/forms.py:32
 msgid "Please use a different email address."
-msgstr "Válaszon másik email címet!"
+msgstr "Válasszon másik email címet!"
 
 #: app/auth/forms.py:37 app/auth/forms.py:45
 msgid "Request Password Reset"
@@ -68,7 +68,7 @@ msgstr "Jelszó emlékeztető"
 
 #: app/auth/routes.py:21
 msgid "Invalid username or password"
-msgstr "A felhasznlonév vagy a jelszó nem jó"
+msgstr "A felhasznlónév vagy a jelszó nem jó"
 
 #: app/auth/routes.py:47
 msgid "Congratulations, you are now a registered user!"
@@ -76,7 +76,7 @@ msgstr "Graturálunk, őn regisztrált!"
 
 #: app/auth/routes.py:63
 msgid "Check your email for the instructions to reset your password"
-msgstr "Levélben elküldük a jelszó újbóli beállításnak lépéseit."
+msgstr "Levélben elküldtsük a jelszó újbóli beállításnak lépéseit."
 
 #: app/auth/routes.py:66
 msgid "Reset Password"
@@ -86,31 +86,31 @@ msgstr "Jelszó "
 msgid "Your password has been reset."
 msgstr "Az új jelszó beállítottuk."
 
-#: app/main/routes.py:89
+#: app/main/routes.py:91
 msgid "You can not edit this article"
 msgstr "Nem jogosult a cikk szerkesztésére!"
 
-#: app/main/routes.py:209 app/main/routes.py:291
+#: app/main/routes.py:250 app/main/routes.py:331
 msgid "Your changes have been saved."
 msgstr "A változtatások el lettek mentve."
 
-#: app/main/routes.py:222
+#: app/main/routes.py:263
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr "A lehetséges object_type értékek: 'article', 'file' vagy 'user' "
 
-#: app/main/routes.py:233 app/main/routes.py:259
+#: app/main/routes.py:274 app/main/routes.py:300
 msgid "User no right to delete this"
 msgstr "Nincs jogosultsága, hogy törlölje ezt a "
 
-#: app/main/routes.py:233
+#: app/main/routes.py:274
 msgid "Article"
 msgstr "cikket"
 
-#: app/main/routes.py:259
+#: app/main/routes.py:300
 msgid "File"
 msgstr "fájlt"
 
-#: app/main/routes.py:456
+#: app/main/routes.py:498
 msgid "No more disk space quota for "
 msgstr "Nincs több lemez kvótája az "
 
@@ -118,17 +118,13 @@ msgstr "Nincs több lemez kvótája az "
 msgid "Delete article"
 msgstr "Cikk törlése"
 
-#: app/templates/base.html:30 app/templates/editor.html:46
+#: app/templates/base.html:43 app/templates/editor.html:301
 msgid "editor"
 msgstr "szerkesztő"
 
 #: app/templates/base_menu.html:4
 msgid "Home"
 msgstr "Kezdőlap"
-
-#: app/templates/base_menu.html:6
-msgid "Login"
-msgstr "Bejelentkezés"
 
 #: app/templates/base_menu.html:8
 msgid "Profile"
@@ -143,14 +139,19 @@ msgid "Editor"
 msgstr "Szerkesztő"
 
 #: app/templates/base_menu.html:13
-msgid "Logout"
+msgid "Sign out"
 msgstr "Kijelentkezés"
+
+#: app/templates/base_menu.html:31 app/templates/test.html:39
+msgid "Close Menu"
+msgstr "Menű bezárása"
 
 #: app/templates/edit_profile.html:15
 msgid "About me"
 msgstr "Rólam"
 
-#: app/templates/edit_profile.html:21 app/templates/editor_toolbar.html:13
+#: app/templates/edit_profile.html:21 app/templates/editor.html:72
+#: app/templates/test.html:66
 msgid "Save"
 msgstr "Mentés"
 
@@ -158,129 +159,127 @@ msgstr "Mentés"
 msgid "Delete user"
 msgstr "Felhasználó tőrlése"
 
-#: app/templates/editor.html:13
-msgid "Toolbar"
-msgstr "Eszköztár"
-
-#: app/templates/editor.html:15
-msgid "Menu"
-msgstr "Menű"
-
-#: app/templates/editor.html:22
-msgid "Title"
-msgstr "Cím"
-
-#: app/templates/editor.html:25
-msgid "Abstract"
-msgstr "Kivonat"
-
-#: app/templates/editor.html:55
-msgid "Preview format"
-msgstr "Előnézeti formátum"
-
-#: app/templates/editor.html:59
-msgid "preview"
-msgstr "előnézet"
-
-#: app/templates/editor.html:84
-msgid "Export"
-msgstr "Exportálás"
-
-#: app/templates/editor.html:88
-msgid "Publish"
-msgstr "Publikálás"
-
-#: app/templates/editor.html:90
-msgid "Clear cookies"
-msgstr "Sütik törlése"
-
-#: app/templates/editor.html:94
-msgid "Connect"
-msgstr "Csatlakozás"
-
-#: app/templates/editor.html:99
-msgid "Generate pdf"
-msgstr "Pdf készítése"
-
-#: app/templates/editor.html:102
-msgid "Generate LaTeX"
-msgstr "LaTeX készítése"
-
-#: app/templates/editor.html:108
-msgid "Help"
-msgstr "Segítség"
-
-#: app/templates/editor.html:111
-msgid "Markdown cheat sheet"
-msgstr "Markdown összefoglaló"
-
-#: app/templates/editor_header.html:18 app/templates/editor_toolbar.html:38
+#: app/templates/editor.html:20 app/templates/test.html:22
 msgid "Endnote"
 msgstr "Végjegyzet"
 
-#: app/templates/editor_toolbar.html:5
-msgid "Close toolbar"
+#: app/templates/editor.html:50 app/templates/test.html:45
+msgid "Toolbar"
+msgstr "Eszköztár"
+
+#: app/templates/editor.html:53 app/templates/test.html:48
+msgid "Menu"
+msgstr "Menű"
+
+#: app/templates/editor.html:60 app/templates/test.html:55
+msgid "Close Toolbar"
 msgstr "Eszköztár bezárása"
 
-#: app/templates/editor_toolbar.html:7
+#: app/templates/editor.html:64 app/templates/test.html:59
 msgid "Upload file"
 msgstr "Fájl feltöltés"
 
-#: app/templates/editor_toolbar.html:9
+#: app/templates/editor.html:68 app/templates/test.html:63
 msgid "Download result"
-msgstr "Eredmény letötlése"
+msgstr "Eredmény letöltése"
 
-#: app/templates/editor_toolbar.html:16
+#: app/templates/editor.html:76 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "Szintakszis kiemelés"
 
-#: app/templates/editor_toolbar.html:19
+#: app/templates/editor.html:79 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "Előnézet elrejtése"
 
-#: app/templates/editor_toolbar.html:21
+#: app/templates/editor.html:82 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr "Cím és kivonat megjelenítése"
 
-#: app/templates/editor_toolbar.html:23
+#: app/templates/editor.html:85 app/templates/test.html:78
 msgid "Head"
 msgstr "Cimsor"
 
-#: app/templates/editor_toolbar.html:25
+#: app/templates/editor.html:88 app/templates/test.html:81
 msgid "Italic"
 msgstr "Dölt"
 
-#: app/templates/editor_toolbar.html:27
+#: app/templates/editor.html:91 app/templates/test.html:84
 msgid "Strong"
 msgstr "Kövér"
 
-#: app/templates/editor_toolbar.html:30
+#: app/templates/editor.html:94 app/templates/test.html:87
 msgid "Picture"
 msgstr "Kép"
 
-#: app/templates/editor_toolbar.html:32
+#: app/templates/editor.html:97 app/templates/test.html:90
 msgid "Link"
 msgstr "Hivatkozás"
 
-#: app/templates/editor_toolbar.html:34
+#: app/templates/editor.html:100 app/templates/test.html:93
 msgid "List"
 msgstr "Lista"
 
-#: app/templates/editor_toolbar.html:36
+#: app/templates/editor.html:103 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "Számozott lista"
 
-#: app/templates/editor_toolbar.html:40
+#: app/templates/editor.html:106 app/templates/test.html:99
+msgid "Footnote"
+msgstr "Lábjegyzet"
+
+#: app/templates/editor.html:109 app/templates/test.html:102
 msgid "Table"
 msgstr "Táblázat"
 
-#: app/templates/editor_toolbar.html:44
+#: app/templates/editor.html:112 app/templates/test.html:105
 msgid "Code"
 msgstr "Kód"
 
-#: app/templates/editor_toolbar.html:49
+#: app/templates/editor.html:115 app/templates/test.html:108
+msgid "LaTeX code"
+msgstr "LaTeX kód"
+
+#: app/templates/editor.html:118 app/templates/test.html:111
 msgid "Show side menu"
-msgstr "Oldalmenű megnyítása"
+msgstr "Oldalmenü megnyitása"
+
+#: app/templates/editor.html:160 app/templates/test.html:149
+msgid "Close side menu"
+msgstr "Oldalmenű bezárása"
+
+#: app/templates/editor.html:166 app/templates/test.html:154
+msgid "preview"
+msgstr "előnézet"
+
+#: app/templates/editor.html:193 app/templates/test.html:181
+msgid "Publish on Wordpress.com"
+msgstr "Publikálás a Wordpress.com-on"
+
+#: app/templates/editor.html:194 app/templates/test.html:182
+msgid "Publish"
+msgstr "Publikálás"
+
+#: app/templates/editor.html:197 app/templates/test.html:185
+msgid "Clear Wordpress.com cookies"
+msgstr "Wordpress.com sütik törlése"
+
+#: app/templates/editor.html:198 app/templates/test.html:186
+msgid "Clear cookies"
+msgstr "Sütik törlése"
+
+#: app/templates/editor.html:203 app/templates/editor.html:204
+#: app/templates/editor.html:208 app/templates/editor.html:209
+#: app/templates/test.html:190 app/templates/test.html:191
+msgid "Connect to Wordpress.com"
+msgstr "Csatlakozás a Wordpress.com-hoz"
+
+#: app/templates/editor.html:216 app/templates/test.html:197
+msgid "Generate pdf"
+msgstr "Pdf készítése"
+
+#: app/templates/editor.html:221 app/templates/test.html:201
+msgid "Generate LaTeX"
+msgstr "LaTeX készítése"
 
 #: app/templates/media.html:10
 msgid "Media files"
@@ -329,4 +328,34 @@ msgstr "Ismeretlen hiba történt"
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
+
+#~ msgid "Login"
+#~ msgstr "Bejelentkezés"
+
+#~ msgid "Logout"
+#~ msgstr "Kijelentkezés"
+
+#~ msgid "Title"
+#~ msgstr "Cím"
+
+#~ msgid "Abstract"
+#~ msgstr "Kivonat"
+
+#~ msgid "Preview format"
+#~ msgstr "Előnézeti formátum"
+
+#~ msgid "Export"
+#~ msgstr "Exportálás"
+
+#~ msgid "Connect"
+#~ msgstr "Csatlakozás"
+
+#~ msgid "Help"
+#~ msgstr "Segítség"
+
+#~ msgid "Markdown cheat sheet"
+#~ msgstr "Markdown összefoglaló"
+
+#~ msgid "Close toolbar"
+#~ msgstr "Eszköztár bezárása"
 

@@ -2,7 +2,20 @@
 <html ontouchmove>
     <head>
         <!-- Google fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Domine|Enriqueta|Frank+Ruhl+Libre:500|Josefin+Sans|Libre+Baskerville|Manuale&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
+        <!-- Adobe fonts -->
+        <script>
+            (function(d) {
+                var config = {
+                    kitId: 'qka3mwm',
+                    scriptTimeout: 3000,
+                    async: true
+                },
+                    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+        </script>
+
+        
         <!-- Font awesome -->
         <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>
         <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
@@ -35,9 +48,10 @@
         <link rel="stylesheet" href="/static/css/editor/solarized-light.css">
         <link rel="stylesheet" href="/static/css/editor/mur2_editor_base.css">
         <link rel="stylesheet" href="/static/css/editor/source_md_highlight.css">
+        <link rel="stylesheet" href="/static/css/editor/zh.css">
 
     </head>
-    <body class="result-as-html" >
+    <body class="result-as-html {{ language }}" >
         <div id="horizontal_box"> <!-- content -->     
          <div id="menu" class="choicemenu">
              {% include 'base_menu.html' %}

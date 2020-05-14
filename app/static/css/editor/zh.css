@@ -1,0 +1,49 @@
+/* Simplifized Chinese */
+body.zh,
+body.zh_CN {
+    font-family: source-han-serif-sc, serif;
+    font-size: 18px;
+}
+/* Tradition Chinese */
+body.zh_TW,
+body.zh_HK {
+    font-family: source-han-serif-tc, serif; 
+    font-size: 18px;
+}
+
+body.hu {
+
+}
+
+
+body.de {
+    /* font-family: 'Enriqueta', sans-serif; */
+    /* font-family: 'Frank Ruhl Libre', sans-serif; */
+    /* font-family: 'Crimson Text', sans-serif; */
+    /* font-family: 'Ibarra Real Nova', sans-serif; */
+    /*
+    font-weight: 400;
+    font-size: 16px;
+    */    
+    /* font-family: 'Manuale', sans-serif; */
+    /* font-family: 'Libre Baskerville', sans-serif; */
+    /*  font-family: 'Poly', sans-serif; */
+    /* font-family: 'Bitter', sans-serif; */
+    /* font-family: 'Lora', sans-serif; */
+    /* font-family: 'Merriweather', sans-serif; */
+    /* font-weight: 600; */
+    
+    /* Adobe fonts */
+    /* font-family: lora, sans-serif; */
+
+}
+
+/*
+body.hu h1,
+body.hu h2,
+body.hu h3,
+body.hu h4,
+body.hu h5 {
+    font-family: 'Ibarra Real Nova', sans-serif;
+}
+*/

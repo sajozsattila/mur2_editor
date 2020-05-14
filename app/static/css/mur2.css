@@ -1,8 +1,9 @@
 body, button input, select, textarea {
   font-family: 'Domine';
-  line-height: 1.2;      /* was 1.88*/
-  letter-spacing: 0;
-  font-size: 16px;
+  line-height: 1.2;         /* Was 1.88*/
+  letter-spacing: -0.0125em; /* Was 0   */
+  word-spacing: -0.1em;
+  font-size: 1em;
 }
 
 body {
@@ -12,8 +13,15 @@ body {
 }
 
 body > * {
-  padding: 10px;
+  padding: 0.625em;
   flex: 1 100%;
+}
+
+#maintext {
+  position: fixed;
+  text-align: left;
+  padding-left: 1em;
+  top: 3em;
 }
 
 .normalfontweight {
@@ -35,12 +43,12 @@ a, a:link, #mur2menu a:visited  {
 
 #topmenu-left {
     float: left;   
-    margin: 0 10px;
+    margin: 0 1em;
 }
 
 #topmenu-right {
     float: right;   
-    margin: 0 10px;
+    margin: 0 1em;
     cursor: pointer;
 }
 
@@ -48,8 +56,8 @@ input[type=text], input[type=submit], input[type=password] {
   box-sizing: border-box;
   background-color: white;
   border: medium solid whitesmoke;
-  border-radius: 4px;
-  padding: 3px 3px;
+  border-radius: 0.25em;
+  padding: 0.1875em 0.1875em
   text-align: left;
 }
 
@@ -58,7 +66,7 @@ input[type=submit], input[type=file] {
 }
 
 .menufont {
-    font-size: 18px;
+    font-size: 1.125em;
     font-family: 'Josefin Sans'; 
 }
 
@@ -66,29 +74,26 @@ input[type=submit], input[type=file] {
   display: flex;
   position: fixed;
   text-align: left;
-  background: black;                     /*whitesmoke */
+  background: black;               /* Was whitesmoke */
   justify-content: space-between;
   width: 100%;
   left: 0;
   top: 0;
   /*height: 4em;*/ 
-  padding-left: 2em;
+  padding-left: 1em;
   padding-top: 1em;
 }
 
 .toolbar-button:hover {
-  /*background: whitesmoke;                  Was rgba(247,247,247,.5)*/
+  /* background: whitesmoke;                  Was rgba(247,247,247,.5)*/
   transition: all .15s ease-in-out;
 }
 
-.toolbar-button {
+.toolbar-button, a {
   color: white;
   text-decoration: none;
+  padding-right: 0.5em;
 }
-
-/*#horizontal_box {
-    padding-top: 80px;
-}*/
 
 .main_content {
   text-align: left;
@@ -113,9 +118,9 @@ input[type=submit], input[type=file] {
 }
 
 @media all and (min-width: 800px) {
-  .main_content { flex: 3 0px; }
+  #maintext { flex: 3 0px; }
   #msg          { order: 1; } 
-  .main_content { order: 2; }
+  #maintext { order: 2; }
   #foot         { order: 4; }
 }
 

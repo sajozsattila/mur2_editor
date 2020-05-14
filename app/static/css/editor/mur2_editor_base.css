@@ -1,13 +1,22 @@
 body, button input, select, textarea {
   /* */
-    font-family: 'Domine';
-  line-height: 1.88;      /* was 1.88*/
-  letter-spacing: 0;
-  font-size: 16px;
-  font-feature-settings: "liga" 1, "frac" 1, "onum" 1;
-    scrollbar-color: #c62641 white;
-    
+    font-family: lora, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;      /* was 1.88*/
+    letter-spacing: 0;
+    font-feature-settings: "liga" 1, "frac" 1, "onum" 1;
+    scrollbar-color: #c62641 white;   
 }
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5 {
+    font-family: 'Ibarra Real Nova', serif;
+}
+
 
 #horizontal_box {
     width: 100%;

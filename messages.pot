@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-07 22:52+0000\n"
+"POT-Creation-Date: 2020-05-14 12:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Remember Me"
 msgstr ""
 
-#: app/auth/forms.py:12 app/auth/routes.py:28
+#: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/base_menu.html:6
 msgid "Sign In"
 msgstr ""
 
@@ -85,31 +85,31 @@ msgstr ""
 msgid "Your password has been reset."
 msgstr ""
 
-#: app/main/routes.py:89
+#: app/main/routes.py:91
 msgid "You can not edit this article"
 msgstr ""
 
-#: app/main/routes.py:209 app/main/routes.py:291
+#: app/main/routes.py:250 app/main/routes.py:331
 msgid "Your changes have been saved."
 msgstr ""
 
-#: app/main/routes.py:222
+#: app/main/routes.py:263
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:233 app/main/routes.py:259
+#: app/main/routes.py:274 app/main/routes.py:300
 msgid "User no right to delete this"
 msgstr ""
 
-#: app/main/routes.py:233
+#: app/main/routes.py:274
 msgid "Article"
 msgstr ""
 
-#: app/main/routes.py:259
+#: app/main/routes.py:300
 msgid "File"
 msgstr ""
 
-#: app/main/routes.py:456
+#: app/main/routes.py:498
 msgid "No more disk space quota for "
 msgstr ""
 
@@ -117,16 +117,12 @@ msgstr ""
 msgid "Delete article"
 msgstr ""
 
-#: app/templates/base.html:30 app/templates/editor.html:46
+#: app/templates/base.html:43 app/templates/editor.html:301
 msgid "editor"
 msgstr ""
 
 #: app/templates/base_menu.html:4
 msgid "Home"
-msgstr ""
-
-#: app/templates/base_menu.html:6
-msgid "Login"
 msgstr ""
 
 #: app/templates/base_menu.html:8
@@ -142,14 +138,19 @@ msgid "Editor"
 msgstr ""
 
 #: app/templates/base_menu.html:13
-msgid "Logout"
+msgid "Sign out"
+msgstr ""
+
+#: app/templates/base_menu.html:31 app/templates/test.html:39
+msgid "Close Menu"
 msgstr ""
 
 #: app/templates/edit_profile.html:15
 msgid "About me"
 msgstr ""
 
-#: app/templates/edit_profile.html:21 app/templates/editor_toolbar.html:13
+#: app/templates/edit_profile.html:21 app/templates/editor.html:72
+#: app/templates/test.html:66
 msgid "Save"
 msgstr ""
 
@@ -157,128 +158,126 @@ msgstr ""
 msgid "Delete user"
 msgstr ""
 
-#: app/templates/editor.html:13
-msgid "Toolbar"
-msgstr ""
-
-#: app/templates/editor.html:15
-msgid "Menu"
-msgstr ""
-
-#: app/templates/editor.html:22
-msgid "Title"
-msgstr ""
-
-#: app/templates/editor.html:25
-msgid "Abstract"
-msgstr ""
-
-#: app/templates/editor.html:55
-msgid "Preview format"
-msgstr ""
-
-#: app/templates/editor.html:59
-msgid "preview"
-msgstr ""
-
-#: app/templates/editor.html:84
-msgid "Export"
-msgstr ""
-
-#: app/templates/editor.html:88
-msgid "Publish"
-msgstr ""
-
-#: app/templates/editor.html:90
-msgid "Clear cookies"
-msgstr ""
-
-#: app/templates/editor.html:94
-msgid "Connect"
-msgstr ""
-
-#: app/templates/editor.html:99
-msgid "Generate pdf"
-msgstr ""
-
-#: app/templates/editor.html:102
-msgid "Generate LaTeX"
-msgstr ""
-
-#: app/templates/editor.html:108
-msgid "Help"
-msgstr ""
-
-#: app/templates/editor.html:111
-msgid "Markdown cheat sheet"
-msgstr ""
-
-#: app/templates/editor_header.html:18 app/templates/editor_toolbar.html:38
+#: app/templates/editor.html:20 app/templates/test.html:22
 msgid "Endnote"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:5
-msgid "Close toolbar"
+#: app/templates/editor.html:50 app/templates/test.html:45
+msgid "Toolbar"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:7
+#: app/templates/editor.html:53 app/templates/test.html:48
+msgid "Menu"
+msgstr ""
+
+#: app/templates/editor.html:60 app/templates/test.html:55
+msgid "Close Toolbar"
+msgstr ""
+
+#: app/templates/editor.html:64 app/templates/test.html:59
 msgid "Upload file"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:9
+#: app/templates/editor.html:68 app/templates/test.html:63
 msgid "Download result"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:16
+#: app/templates/editor.html:76 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:19
+#: app/templates/editor.html:79 app/templates/test.html:72
 msgid "Hide preview"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:21
+#: app/templates/editor.html:82 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:23
+#: app/templates/editor.html:85 app/templates/test.html:78
 msgid "Head"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:25
+#: app/templates/editor.html:88 app/templates/test.html:81
 msgid "Italic"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:27
+#: app/templates/editor.html:91 app/templates/test.html:84
 msgid "Strong"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:30
+#: app/templates/editor.html:94 app/templates/test.html:87
 msgid "Picture"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:32
+#: app/templates/editor.html:97 app/templates/test.html:90
 msgid "Link"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:34
+#: app/templates/editor.html:100 app/templates/test.html:93
 msgid "List"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:36
+#: app/templates/editor.html:103 app/templates/test.html:96
 msgid "Numbered list"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:40
+#: app/templates/editor.html:106 app/templates/test.html:99
+msgid "Footnote"
+msgstr ""
+
+#: app/templates/editor.html:109 app/templates/test.html:102
 msgid "Table"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:44
+#: app/templates/editor.html:112 app/templates/test.html:105
 msgid "Code"
 msgstr ""
 
-#: app/templates/editor_toolbar.html:49
+#: app/templates/editor.html:115 app/templates/test.html:108
+msgid "LaTeX code"
+msgstr ""
+
+#: app/templates/editor.html:118 app/templates/test.html:111
 msgid "Show side menu"
+msgstr ""
+
+#: app/templates/editor.html:160 app/templates/test.html:149
+msgid "Close side menu"
+msgstr ""
+
+#: app/templates/editor.html:166 app/templates/test.html:154
+msgid "preview"
+msgstr ""
+
+#: app/templates/editor.html:193 app/templates/test.html:181
+msgid "Publish on Wordpress.com"
+msgstr ""
+
+#: app/templates/editor.html:194 app/templates/test.html:182
+msgid "Publish"
+msgstr ""
+
+#: app/templates/editor.html:197 app/templates/test.html:185
+msgid "Clear Wordpress.com cookies"
+msgstr ""
+
+#: app/templates/editor.html:198 app/templates/test.html:186
+msgid "Clear cookies"
+msgstr ""
+
+#: app/templates/editor.html:203 app/templates/editor.html:204
+#: app/templates/editor.html:208 app/templates/editor.html:209
+#: app/templates/test.html:190 app/templates/test.html:191
+msgid "Connect to Wordpress.com"
+msgstr ""
+
+#: app/templates/editor.html:216 app/templates/test.html:197
+msgid "Generate pdf"
+msgstr ""
+
+#: app/templates/editor.html:221 app/templates/test.html:201
+msgid "Generate LaTeX"
 msgstr ""
 
 #: app/templates/media.html:10
