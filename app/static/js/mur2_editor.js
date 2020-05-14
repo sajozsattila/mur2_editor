@@ -816,7 +816,16 @@ function ParserCollection(
         // switching preview 
         if (target.classList.contains('preview-format')) {
             var view = target.id.replace("id_", '');
-            document.body.className = "result-as-" + view;
+            var bodyelement = document.body;
+            var classlist =  bodyelement.className.split(' ');
+            var oldclass = null;
+            for (var i = classlist.length; i--; ) {
+                if ( /result-as-*/.test(classlist[i]) ) {
+                    oldclass = classlist[i];
+                }
+            }
+            bodyelement.classList.remove(oldclass);
+            bodyelement.classList.add("result-as-" + view);
             g_view = view;
             updateTitle(titleImageLoader, true);
             updateAbstract(abstractImageLoader, true);
