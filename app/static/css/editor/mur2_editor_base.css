@@ -1,11 +1,11 @@
-body, button input, select, textarea {
+body, button input, select {
   /* */
     font-family: lora, sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.4;      /* was 1.88*/
     letter-spacing: 0;
-    font-feature-settings: "liga" 1, "frac" 1, "onum" 1;
+    font-feature-settings: "liga" 1, "frac" 1;
     scrollbar-color: #c62641 white;   
 }
 
@@ -15,6 +15,30 @@ body h3,
 body h4,
 body h5 {
     font-family: 'Ibarra Real Nova', serif;
+}
+body h1 .svg-preview,
+body h2 .svg-preview,
+body h3 .svg-preview,
+body h4 .svg-preview,
+body h5 .svg-preview{
+    height: 1ex;
+    width: auto;    
+}
+
+body h1 {
+    font-size: 2.488em;
+}
+body h2 {
+    font-size: 2.074em;
+}
+body h3 {
+    font-size: 1.728em;
+}
+body h4 {
+    font-size: 1.44em;
+}
+body h5 {
+    font-size: 1.2em;
 }
 
 
@@ -74,7 +98,7 @@ body h5 {
 .choicemenu #choicemenu,
 .mur2menu #mur2menu,
 .editor_toolbar #editor_toolbar {
-    display: inline-block;
+    display: flex;
     /* */
 }
 .choicemenu #mur2menu,
@@ -107,6 +131,7 @@ body h5 {
     background-color: black;
     padding-left: 2em;
     padding-top: 1em;
+    padding-right: 2em;
 }
 
 #msg {
@@ -139,6 +164,16 @@ body h5 {
     padding-right: 0;
 }
 
+#mur2menu {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+#mur2menu a {
+    text-decoration: none;
+}
+
 #side_menu {
     width: 30em;
     height: 100%;
@@ -169,10 +204,17 @@ body h5 {
     /* */
 }
 
-.ldt {
+.ldt-pre,
+textarea {
+    /* */
+    font-family: 'DM Mono', sans-serif !important; 
+    line-height: 1.4; /* this need to be same than in the body */
+}
+
+.ldt{
     height: 100%;
     /* */
-    scrollbar-width: thin;
+    scrollbar-width: thin;    
 }
 
 /* toolbar */
@@ -194,38 +236,99 @@ body h5 {
 }
 
 /* hide and show preview */
-#article_preview_side.previewoff {
+#article_preview_side.previewoff,
+#article_input_side.inputoff {
     display: none;
     /* */
 }
-
-#article_input_side.previewoff {
+#article_input_side.previewoff,
+#article_preview_side.inputoff {
     /* */
     width: 100%;
-    padding-right: 20%;
-    padding-left: 20%; 
+    margin-right: 20%;
+    margin-left: 20%; 
+    scrollbar-width: thin;
+}
+
+#article_preview_side.inputoff {
+    overflow: auto;
+}
+#article_preview_side.inputoff #article_main {
+    overflow: unset;
+}
+
+
+#article_preview_side.inputoff  .title_and_abstract,
+#article_preview_side.inputoff  .title_and_abstract #article_title, 
+#article_preview_side.inputoff  .title_and_abstract #article_abstract {
+    display: flex;
+    min-height: unset;
+    overflow: unset;
+    height: unset;
 }
 
 /* hide title and abstract */
-#article_preview_side.titleoff #article_title,
-#article_preview_side.titleoff #article_abstract,
-#article_preview_side.titleoff #separator,
-#article_input_side.titleoff #title-source,
-#article_input_side.titleoff #abstact-source,
-#article_input_side.titleoff .title_and_abstract,
-#article_preview_side.titleoff .title_and_abstract 
+#article_preview_side #article_title,
+#article_preview_side #article_abstract,
+#article_preview_side #separator,
+#article_input_side #title-source,
+#article_input_side #abstact-source,
+#article_input_side .title_and_abstract,
+#article_preview_side .title_and_abstract 
 {
     display:none;
     /* */
 }
+#article_preview_side.titleon #article_title,
+#article_preview_side.titleon #article_abstract,
+#article_preview_side.titleon #separator,
+#article_input_side.titleon #title-source,
+#article_input_side.titleon #abstact-source,
+#article_input_side.titleon .title_and_abstract,
+#article_preview_side.titleon .title_and_abstract 
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* */
+}
+#article_input_side.titleon #title-source {
+    height: 3.5rem;
+    text-align: center;
+}
+#article_preview_side.titleon .title_and_abstract + #article_main,
+#article_input_side.titleon .title_and_abstract + .ldt {
+    display: none;
+}
+
 
 #side_menu.hide {
     display: none; 
     /* */
 }
+/* color the toolbar bottom */
+#id_hide_preview + .far.fa-arrow-alt-circle-right, 
+#id_hide_input + .far.fa-arrow-alt-circle-left,
+#id_show_title + .far.fa-arrow-alt-circle-down,
+#id_sidemenu.hide + .fas.fa-bars,
+#id_syntax_hl.focusmode + .fab.fa-markdown
+ {
+    /* */
+    color: white;
+}
 
+#id_hide_preview.previewoff + .far.fa-arrow-alt-circle-right, 
+#id_show_title.titleon + .far.fa-arrow-alt-circle-down,
+#id_hide_input.inputoff + .far.fa-arrow-alt-circle-left,
+#id_sidemenu + .fas.fa-bars,
+#id_syntax_hl + .fab.fa-markdown {
+    /* */
+    color: #C62641;
+}
+/* switch off the radio borrom display next to the toolbar bottoms */
 .control-input {
     display: none;
+    /* */
 }
 
 .control-item {
@@ -235,14 +338,15 @@ body h5 {
     border-color: transparent;
     border-style: solid;
     border-width: 9px 1px;
-    height: 2.1em;
-    min-width: 30px;
+    height: 2.1rem;
+    min-width: 1.8rem;
     padding: 0 4px;
     text-align: center;
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
     line-height: 1; /* this is need because of the Font Awesome */
+    /* */
 }
 .control-item:hover {
     /* */
@@ -251,8 +355,14 @@ body h5 {
 
 .result-as-html div#article_title {
     /* */
-    font-size: 4.8rem;
-    line-height: 0.5;
+    font-size: 2.986em;
+    line-height: 1;
+    text-align: center;
+    font-family: 'Ibarra Real Nova', serif;
+}
+.result-as-html div#article_title .svg-preview{
+    height: 1ex;
+    width: auto;    
 }
 
 .title_and_abstract {
@@ -267,15 +377,16 @@ body h5 {
 }
 
 #article_abstract {
-    margin-bottom: 2em;
-    font-style: italic;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .separator {
-    border-bottom: solid gray 1px;
+    border-top: solid gray 1px;
     margin-left: 30%;
     margin-right: 30%;
-    height: 1px;
+    min-height: 1em;
+    margin-bottom: 1em;
 }
 
 .notfocused {
@@ -285,7 +396,6 @@ body h5 {
 
 .focused {
     color: black;
-    font-weight: bolder;
     /* */
 }
 
@@ -302,7 +412,8 @@ body h5 {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
-    #article_input_side.previewoff {
+    #article_input_side.previewoff,
+    #article_preview_side.inputoff {
         /* */
         padding-right: 10%;
         padding-left: 10%; 
@@ -313,7 +424,7 @@ and (orientation : landscape) {
     #maintext,
     #container-block-source, 
     #container-block-result {
-        height: calc(100% - 6em);
+        height: calc(100% - 6rem);
     }
 }
 
@@ -322,7 +433,8 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
-    #article_input_side.previewoff {
+    #article_input_side.previewoff, 
+    #article_preview_side.inputoff {
         /* */
         padding-right: 0;
         padding-left: 0; 
@@ -336,3 +448,6 @@ and (orientation : portrait) {
         height: calc(100% - 6em);
     }
 }
+
+
+

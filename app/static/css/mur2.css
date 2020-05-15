@@ -128,3 +128,15 @@ input[type=submit], input[type=file] {
 input[type="file"] {
     display: none;
 } */
+
+/* hide the M form the top menu 
+   this settings should not be on the editor css
+*/
+#mur2menu #id_choicemenu {
+    display: none;
+    /* */
+}
+#mur2menu #id_choicemenu + .control-item {
+    display: none;
+    /* */
+}

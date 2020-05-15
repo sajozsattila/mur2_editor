@@ -3,6 +3,7 @@
     <head>
         <!-- Google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">       
         <!-- Adobe fonts -->
         <script>
             (function(d) {
@@ -57,15 +58,20 @@
              {% include 'base_menu.html' %}
              
              <div id="choicemenu" class="menufont topmenu">
+                 <div>
                  <!-- show editor toolbar -->
                  <input class="choice_menu control-input" id="id_editor_toolbar" type="radio" name="source_type" >
                  <label class="control-item" for="id_editor_toolbar" title={{ _("Toolbar") }} >T</label>
+                 </div>
+                 <div>
                  <!-- show mur2 menu -->
                  <input class="choice_menu control-input" id="id_mur2menu" type="radio" name="source_type" >
                  <label class="control-item " for="id_mur2menu" title={{ _("Menu") }}  >M</label>
+                 </div>
              </div><!-- choicemenu -->
              
-             <div id="editor_toolbar" class="menufont topmenu">   
+             <div id="editor_toolbar" class="menufont topmenu">  
+                 <div>
                  <div class="toolbar-button" style="display:none"><input type="file" id="fileElem" ></div>
                  <!-- close editor toolbar -->
                  <input class="choice_menu control-input" id="id_choicemenu" type="radio" name="source_type" >
@@ -84,14 +90,17 @@
                  <label class="control-item fontawsome fas fa-save fontawsome" for="id_save" title={{ _("Save") }} ></label>
                  {% endif %}
                  <!-- Syntax highlighting -->
-                 <input class="choice_toolbar control-input" id="id_syntax_hl" type="radio" name="source_type" >
+                 <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
                  <label class="control-item fontawsome fab fa-markdown fontawsome" for="id_syntax_hl" title={{ _("Syntax highlighting") }} ></label>
-                 <!-- Hide preview -->
-                 <input class="choice_toolbar control-input" id="id_hide_preview" type="radio" name="source_type" >
-                 <label class="control-item fontawsome far fa-arrow-alt-circle-right" for="id_hide_preview" title={{ _("Hide preview") }}  ></label>
+                 <!-- Hide input -->
+                 <input class="choice_toolbar control-input" id="id_hide_input" type="radio" name="source_type" >
+                 <label class="control-item fontawsome far fa-arrow-alt-circle-left" for="id_hide_input" title={{ _("Hide input") }}  ></label>
                  <!-- Show title and abstract -->
                  <input class="choice_toolbar control-input" id="id_show_title" type="radio" name="source_type" >
                  <label class="control-item fontawsome far fa-arrow-alt-circle-down" for="id_show_title" title={{ _("Show title and abstract") }} ></label>
+                 <!-- Hide preview -->
+                 <input class="choice_toolbar control-input" id="id_hide_preview" type="radio" name="source_type" >
+                 <label class="control-item fontawsome far fa-arrow-alt-circle-right" for="id_hide_preview" title={{ _("Hide preview") }}  ></label>
                  <!-- Head -->
                  <input class="choice_toolbar control-input" id="id_head" type="radio" name="source_type" >
                  <label class="control-item fontawsome fas fa-heading" for="id_head" title={{ _("Head") }} ></label>
@@ -126,9 +135,10 @@
                  <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
                  <label class="control-item menufont" for="id_latex" title={{ _("LaTeX code") }} >Σ</label>
                  <!-- Show side menu -->
-                 <input class="choice_toolbar control-input" id="id_sidemenu" type="radio" name="source_type" >
+                 <input class="choice_toolbar control-input hide" id="id_sidemenu" type="radio" name="source_type" >
                  <label class="control-item fontawsome fas fa-bars" for="id_sidemenu" title={{ _("Show side menu") }} ></label>
-                                
+                 </div>
+                 <div></div>
              </div> <!-- editor_toolbar -->
           
           </div> <!-- menu -->
@@ -146,16 +156,18 @@
          </div><!-- end msg -->          
           
       <div id="maintext" >
-         <div id="article_input_side">
+         <div id="article_input_side" >
              <div class="title_and_abstract">
+                 <div>{{ _("Title") }}:</div>
                  <textarea id="title-source"  maxlength="120"  ></textarea>
+                 <div>{{ _("Abstract") }}:</div>                 
                  <textarea id="abstact-source" maxlength="1200" ></textarea>
              </div>
             <textarea id="main-source"  spellcheck="false"></textarea>
             <div id="highlight_main" ></div>
          </div>
          <div id="slider"></div>
-         <div id="article_preview_side">
+         <div id="article_preview_side" >
              <div class="title_and_abstract">
                  <div id="article_title"></div>
                  <div id="article_abstract"></div>

@@ -262,6 +262,7 @@ function ImagePreloader() {
 	var data = {},
 		uniqueIndex = 0;
 
+    
 	function ajaxReady() {
 		var svg;
 
@@ -279,13 +280,15 @@ function ImagePreloader() {
 				'</g>' +
 				'</svg>';
 		}
-		setImage(this.responseURL || this.s2Url, svg)
+		setImage(this.responseURL || this.s2Url, svg, this.prefix)
 	}
+    
 
-	function loadImage(url) {
+	function loadImage(url, prefix) {
 		var request = new XMLHttpRequest();
 		request.open('GET', url, true);
 		request.s2Url = url;
+        request.prefix = prefix; // pass prefix to the request
 		request.onload = ajaxReady;
 		request.onerror = function () {
 			// There was a connection error of some sort
@@ -295,17 +298,17 @@ function ImagePreloader() {
 		return request;
 	}
 
-	this.onLoad = function (url, callback) {
+	this.onLoad = function (url, callback, prefix) {
 		if (!data[url]) {
 			data[url] = {
 				svg: null,
 				baseline: null,
-				request: loadImage(url),
+				request: loadImage(url, prefix),
 				callback: callback
 			};
 		}
 		else if (data[url].svg !== null) {
-			callback(url, data[url].svg, data[url].baseline)
+			callback(url, data[url].svg, data[url].baseline, prefix)
 		}
 		// In case of duplicate pictures we skip duplicates (when data[url].svg === null)
 	};
@@ -347,7 +350,7 @@ function ImagePreloader() {
 	 * @param url
 	 * @param svg
 	 */
-	var setImage = function (url, svg) {
+	var setImage = function (url, svg, prefix) {
 		var urlData = data[url];
 		if (!urlData) {
 			return;
@@ -356,6 +359,7 @@ function ImagePreloader() {
 		svg = makeSvgIdsUnique(svg);
 
 		var m = svg.match(/postMessage\((?:&quot;|")([\d\|\.\-eE]*)(?:&quot;|")/); // ["&quot;2.15299|31.42377|11.65223|&quot;", "2.15299|31.42377|11.65223|"]
+        console.log(m);
 		if (m) {
 			var baselineShift = m && m[1] ? m[1].split('|').shift() : 0; // 2.15299
 		}
@@ -365,7 +369,7 @@ function ImagePreloader() {
 			baselineShift = null;
 		}
 
-		urlData.callback(url, svg, baselineShift);
+		urlData.callback(url, svg, baselineShift, prefix);
 
 		urlData.svg = svg;
 		urlData.baseline = baselineShift;
@@ -469,14 +473,14 @@ function ImageLoader(preloader, protocol, loaderid) {
 	 * @param svg
 	 * @param baselineShift
 	 */
-	var callback = function (url, svg, baselineShift) {
+	var callback = function (url, svg, baselineShift, prefix) {
 		var indexes = map[url], i;
 
 		if (indexes && (i = indexes.length)) {
 			for (; i--;) {
 				var index = indexes[i];
 
-				insertPicture(index, svg, baselineShift, index === placeholderIndex ? 'fade-in' : 'replace');
+				insertPicture(index, svg, baselineShift, index === placeholderIndex ? 'fade-in' : 'replace', prefix);
 
 				if (index === placeholderIndex) {
 					// Clear the fade out timer if the new image has just bee
@@ -536,7 +540,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 	 * @param formula
 	 * @returns {string}
 	 */
-	this.getHtmlStub = function (formula, prefix) {
+	this.getHtmlStub = function (formula) {
 		curItems[n] = protocol + '//tex.s2cms.ru/svg/' + encodeURIComponent(formula);
 
 		var html = '<span id="'+this.loaderid+'s2tex_' + n + '"></span>';
@@ -553,7 +557,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 		detectPlaceholderFormula();
 		buildMap();
 		for (var i = n; i--;) {
-			preloader.onLoad(curItems[i], callback);
+			preloader.onLoad(curItems[i], callback, this.loaderid);
 		}
 
 		if (placeholderIndex !== null) {
