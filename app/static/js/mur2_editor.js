@@ -87,7 +87,8 @@ function ParserCollection(
     updateCallback,
     result_destination,
     result_destination_pre,
-    sourceGetter
+    sourceGetter,
+     imageLoader
 ) {
     /* default for markdown-it */
     var defaults = {
@@ -139,8 +140,9 @@ function ParserCollection(
     };
     // some globel to make local
     var domSetHighlightedContent = g_domSetHighlightedContent;
+        var imageLoader = imageLoader;
 
-    _mdPreview = markdownit(defaults)
+    var _mdPreview = markdownit(defaults)
         .use(markdownitS2Tex)
         .use(markdownitSub)
         .use(markdownitSup)
@@ -327,6 +329,14 @@ function ParserCollection(
     _mdMdAndImages.renderer.rules.text = function(tokens, idx /*, options, env */ ) {
         return tokens[idx].content;
     };
+        
+     
+        // Custom image embedding for smooth UX
+		_mdPreview.renderer.rules.math_inline = function (tokens, idx) {
+			return imageLoader.getHtmlStub(tokens[idx].content);
+		};
+        
+        
 
     /**
      * Habrahabr hack for numerating formulas
@@ -471,7 +481,9 @@ function ParserCollection(
 
     var scrollMap = new ScrollMap(domFindScrollMarks);
 
-
+    var iprem = new ImagePreloader();
+    // creat the Math imageLoaders we need them because of the debounce destroy the this. object in the ParserCollection
+    var mainImageLoader = new ImageLoader(iprem, location.protocol === 'https:' ? 'https:' : 'http:', 'm_');    
     var mainCollection = new ParserCollection(
         window.markdownit,
         function(source) {
@@ -487,8 +499,11 @@ function ParserCollection(
         "article_main_pre",
         function domGetSource() {
             return mainSource.value;
-        }
+        },
+        mainImageLoader
     );
+    
+    var titleImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 't_');
     var titleCollection = new ParserCollection(
         window.markdownit,
         function(source) {
@@ -502,8 +517,10 @@ function ParserCollection(
         "article_title",
         function domGetSource() {
             return '<span id="article_title">\n\n' + titleSource.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n';
-        }
+        },
+        titleImageLoader
     );
+    var abstractImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 'a_');
     var abstractCollection = new ParserCollection(
         window.markdownit,
         function(source) {
@@ -517,13 +534,14 @@ function ParserCollection(
         "article_abstract",
         function domGetSource() {
             return '<span id="article_abstract">\n\n' + abstactSource.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n';
-        }
+        },
+        abstractImageLoader
     );
+    
+    console.log(mainCollection);
+    console.log(abstractCollection);
 
-    // creat the Math imageLoaders we need them because of the debounce destroy the this. object in the ParserCollection
-    var mainImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 'm_'),
-        titleImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 't_'),
-        abstractImageLoader = new ImageLoader(new ImagePreloader(), location.protocol === 'https:' ? 'https:' : 'http:', 'a_');
+
 
     // load first everything
     mainCollection.updateResult(mainImageLoader, true);
@@ -717,9 +735,12 @@ function ParserCollection(
                     save_article([mainCollection, abstractCollection, titleCollection]);
                     break;
                 case 'id_syntax_hl':
+                    var menubottom = document.getElementById('id_syntax_hl');
                     if (g_focusmode_switch) {
+                        menubottom.classList.add('focusmode');
                         g_focusmode_switch = false;
                     } else {
+                        menubottom.classList.remove('focusmode');
                         g_focusmode_switch = true;                        
                     };
                     mainSource.dispatchEvent(inputevent);
@@ -727,9 +748,11 @@ function ParserCollection(
                 case 'id_hide_preview':
                     var preview = document.getElementById('article_preview_side');
                     var input = document.getElementById('article_input_side');
+                    var menubottom = document.getElementById('id_hide_preview');
                     if (preview.classList.contains('previewoff')) {
                         preview.classList.remove('previewoff');
                         input.classList.remove('previewoff');
+                        menubottom.classList.remove('previewoff');
                         g_preview_on = true;
                         // fire up an update
                         updateMain(mainImageLoader, true);
@@ -738,17 +761,35 @@ function ParserCollection(
                     } else {
                         preview.classList.add('previewoff');
                         input.classList.add('previewoff');
+                        menubottom.classList.add('previewoff');
                         // switching off update on ParseCollection when it is not showed
                         g_preview_on = false;
                     }
                     break;
+                case 'id_hide_input':
+                    var preview = document.getElementById('article_preview_side');
+                    var input = document.getElementById('article_input_side');
+                    var menubottom = document.getElementById('id_hide_input');
+                    if (input.classList.contains('inputoff')) {
+                        preview.classList.remove('inputoff');
+                        input.classList.remove('inputoff');
+                        menubottom.classList.remove('inputoff');
+                    } else {
+                        preview.classList.add('inputoff');
+                        input.classList.add('inputoff');
+                        menubottom.classList.add('inputoff');
+                    }
+                    break;
                 case 'id_show_title':
                     var sides = document.querySelectorAll("#article_preview_side, #article_input_side");
+                    var menubottom = document.getElementById('id_show_title');
                     for (var i = sides.length; i--;) {
-                        if (sides[i].classList.contains('titleoff')) {
-                            sides[i].classList.remove('titleoff');
+                        if (sides[i].classList.contains('titleon')) {
+                            sides[i].classList.remove('titleon');
+                            menubottom.classList.remove('titleon');
                         } else {
-                            sides[i].classList.add('titleoff');
+                            sides[i].classList.add('titleon');
+                            menubottom.classList.add('titleon');
                         }
                     }
                     break;
@@ -798,10 +839,13 @@ function ParserCollection(
                     break;
                 case 'id_sidemenu':
                     var preview = document.getElementById('side_menu');
+                    var menubottom = document.getElementById('id_sidemenu');
                     if (preview.classList.contains('hide')) {
                         preview.classList.remove('hide');
+                        menubottom.classList.remove('hide');
                     } else {
                         preview.classList.add('hide');
+                         menubottom.classList.add('hide');
                     }
                     break;
             }

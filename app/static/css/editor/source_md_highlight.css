@@ -2,7 +2,6 @@
 /* Markdown block highlight styles */
 .ldt .header,
 .ldt .header2 {
-	font-weight: bold;
 	color: #268bd2;
 }
 .ldt .quote {
