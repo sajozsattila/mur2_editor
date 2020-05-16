@@ -359,7 +359,7 @@ function ImagePreloader() {
 		svg = makeSvgIdsUnique(svg);
 
 		var m = svg.match(/postMessage\((?:&quot;|")([\d\|\.\-eE]*)(?:&quot;|")/); // ["&quot;2.15299|31.42377|11.65223|&quot;", "2.15299|31.42377|11.65223|"]
-        console.log(m);
+
 		if (m) {
 			var baselineShift = m && m[1] ? m[1].split('|').shift() : 0; // 2.15299
 		}
@@ -509,12 +509,13 @@ function ImageLoader(preloader, protocol, loaderid) {
 			finalOpacity = mode == 'fade-out' ? '0.5' : '1',
 			newSvgAttrs = '<svg class="svg-preview" id="' + id + '" ';
 
+        var lheight = svg.match(/ height="[\.\d]+" /g)[0].trim().split("=")[1].replace(/"/g, '')
 		if (baselineShift === null) {
 			// svg has been loaded but something went wrong.
 			newSvgAttrs += 'width="13px" height="13px" ';
 		}
 		else {
-			newSvgAttrs += 'style="vertical-align:' + (-baselineShift) + 'pt; opacity: ' + startOpacity + '" ';
+			newSvgAttrs += 'style="--latex_align: ' + (-baselineShift) + 'pt; --latex_height: '+lheight+'px; vertical-align:' + (-baselineShift) + 'pt; opacity: ' + startOpacity + '" ';
 		}
 
 		// Polyfill for outerHTML

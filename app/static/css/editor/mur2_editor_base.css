@@ -28,17 +28,42 @@ body h5 .svg-preview{
 body h1 {
     font-size: 2.488em;
 }
+.result-as-html h1 .svg-preview{
+    vertical-align: calc( 2.488 * var(--latex_align) ) !important ; 
+    height:  calc( 2.488 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
 body h2 {
     font-size: 2.074em;
+}
+.result-as-html h2 .svg-preview{
+    vertical-align: calc( 2.074 * var(--latex_align) ) !important ; 
+    height:  calc( 2.074 * var(--latex_height) ) !important ;
+    width: auto !important ;    
 }
 body h3 {
     font-size: 1.728em;
 }
+.result-as-html h3 .svg-preview{
+    vertical-align: calc( 1.728 * var(--latex_align) ) !important ; 
+    height:  calc( 1.728 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
 body h4 {
     font-size: 1.44em;
 }
+.result-as-html h4 .svg-preview{
+    vertical-align: calc( 1.44 * var(--latex_align) ) !important ; 
+    height:  calc( 1.44 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
 body h5 {
     font-size: 1.2em;
+}
+.result-as-html h5 .svg-preview{
+    vertical-align: calc( 1.2 * var(--latex_align) ) !important ; 
+    height:  calc( 1.2 * var(--latex_height) ) !important ;
+    width: auto !important ;    
 }
 
 
@@ -307,8 +332,8 @@ textarea {
     /* */
 }
 /* color the toolbar bottom */
-#id_hide_preview + .far.fa-arrow-alt-circle-right, 
 #id_hide_input + .far.fa-arrow-alt-circle-left,
+#id_hide_preview + .far.fa-arrow-alt-circle-right, 
 #id_show_title + .far.fa-arrow-alt-circle-down,
 #id_sidemenu.hide + .fas.fa-bars,
 #id_syntax_hl.focusmode + .fab.fa-markdown
@@ -317,14 +342,15 @@ textarea {
     color: white;
 }
 
+#id_hide_input.inputoff + .far.fa-arrow-alt-circle-left, 
 #id_hide_preview.previewoff + .far.fa-arrow-alt-circle-right, 
-#id_show_title.titleon + .far.fa-arrow-alt-circle-down,
-#id_hide_input.inputoff + .far.fa-arrow-alt-circle-left,
+#id_show_title.titleon + .far.fa-arrow-alt-circle-down, 
 #id_sidemenu + .fas.fa-bars,
 #id_syntax_hl + .fab.fa-markdown {
-    /* */
     color: #C62641;
 }
+
+
 /* switch off the radio borrom display next to the toolbar bottoms */
 .control-input {
     display: none;
@@ -355,14 +381,16 @@ textarea {
 
 .result-as-html div#article_title {
     /* */
+    --size: 2.986;
     font-size: 2.986em;
     line-height: 1;
     text-align: center;
     font-family: 'Ibarra Real Nova', serif;
 }
 .result-as-html div#article_title .svg-preview{
-    height: 1ex;
-    width: auto;    
+    vertical-align: calc( 2.986 * var(--latex_align) ) !important ; 
+    height:  calc( 2.986 * var(--latex_height) ) !important ;
+    width: auto !important ;    
 }
 
 .title_and_abstract {
