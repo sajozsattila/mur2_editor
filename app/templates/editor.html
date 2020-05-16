@@ -93,13 +93,14 @@
                  <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
                  <label class="control-item fontawsome fab fa-markdown fontawsome" for="id_syntax_hl" title={{ _("Syntax highlighting") }} ></label>
                  <!-- Hide input -->
-                 <input class="choice_toolbar control-input" id="id_hide_input" type="radio" name="source_type" >
+                     <input class="choice_toolbar control-input" type="checkbox"   name="source_type" value="0" />
+                 <input class="choice_toolbar control-input" id="id_hide_input" type="checkbox"  value="0" name="source_type" >
                  <label class="control-item fontawsome far fa-arrow-alt-circle-left" for="id_hide_input" title={{ _("Hide input") }}  ></label>
                  <!-- Show title and abstract -->
-                 <input class="choice_toolbar control-input" id="id_show_title" type="radio" name="source_type" >
+                 <input class="choice_toolbar control-input" id="id_show_title" type="checkbox" name="source_type" >
                  <label class="control-item fontawsome far fa-arrow-alt-circle-down" for="id_show_title" title={{ _("Show title and abstract") }} ></label>
                  <!-- Hide preview -->
-                 <input class="choice_toolbar control-input" id="id_hide_preview" type="radio" name="source_type" >
+                 <input class="choice_toolbar control-input" id="id_hide_preview" type="checkbox" name="source_type" >
                  <label class="control-item fontawsome far fa-arrow-alt-circle-right" for="id_hide_preview" title={{ _("Hide preview") }}  ></label>
                  <!-- Head -->
                  <input class="choice_toolbar control-input" id="id_head" type="radio" name="source_type" >
@@ -253,38 +254,33 @@
       <!-- set the markdown editor contents -->
        <script>
         (function () {
-            // load the local files
-            try {
-                // read timestamp
-                var dataTime = parseInt(localStorage.getItem("{{ "mur2_main_content"+article_id+"_time" }}"))/1000;
-                var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id+"_time" }}"))/1000;
-                var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id+"_time" }}"))/1000;
+            if ( {{ article_id }} !== -1 ) {
+                // load the local files
+                try {
+                    // read timestamp
+                    var dataTime = parseInt(localStorage.getItem("{{ "mur2_main_content"+article_id+"_time" }}"))/1000;
+                    var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id+"_time" }}"))/1000;
+                    var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id+"_time" }}"))/1000;
+                    
                 
-                console.log(dataTime + ": " + {{ articleTimestamp }});
-                
-                if ( dataTime > {{ articleTimestamp }} ) {
-                    var data = localStorage.getItem("{{ "mur2_main_content"+article_id }}");
+                    if ( dataTime > {{ articleTimestamp }} ) {
+                        var data = localStorage.getItem("{{ "mur2_main_content"+article_id }}");
+                    }
+                    if ( data_titleTime > {{ articleTimestamp }} ) {
+                        var data_title = localStorage.getItem("{{ "mur2_title_content"+ article_id }}");
+                    }
+                    if ( data_abstractTime > {{ articleTimestamp }} ) {
+                        var data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id }}");
+                    }
                 }
-                if ( data_titleTime > {{ articleTimestamp }} ) {
-                    var data_title = localStorage.getItem("{{ "mur2_title_content"+ article_id }}");
-                }
-                if ( data_abstractTime > {{ articleTimestamp }} ) {
-                    var data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id }}");
-                }
-            }
-            catch (e) {};
+                catch (e) {};
+           }
             // the document is basically the all editor
-            document.getElementById('main-source').value = data || '{{ article_markdown|e }}'.replace('&lt;', '<')  ;
-            document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace('&lt;', '<')  ;
-            document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace('&lt;', '<')  ;
+            document.getElementById('main-source').value = data || '{{ article_markdown }}'.replace(/&lt;/g, '<')  ;
+            document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace(/'&lt;/g, '<')  ;
+            document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace(/&lt;/g, '<')  ;
         }());
-        if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-            textareas = document.getElementsByTagName('textarea');
-            for(var i = 0; i < textareas.length; i++){
-                textareas[i].style['padding-left'] = '13px';
-                textareas[i].style['padding-right'] = '13px';
-            }
-        }
+                  
        </script> 
        
       <script src="/static/js/editor/markdown-it.min.js"></script>

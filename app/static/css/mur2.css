@@ -1,10 +1,22 @@
 body, button input, select, textarea {
-  font-family: 'Domine';
-  line-height: 1.2;         /* Was 1.88*/
-  letter-spacing: -0.0125em; /* Was 0   */
+  /* */
+    font-family: lora, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;      /* was 1.88*/
+    font-feature-settings: "liga" 1, "frac" 1;
+    scrollbar-color: #c62641 white;
+    letter-spacing: -0.0125em;
+    word-spacing: -0.1em;
+}
+
+/* body, button input, select, textarea {
+  font-family: lora, sans-serif; Was Domine
+  line-height: 1.2;              Was 1.88
+  letter-spacing: -0.0125em;     Was 0
   word-spacing: -0.1em;
   font-size: 1em;
-}
+}*/
 
 body {
   display: flex;  
@@ -36,11 +48,6 @@ a, a:link, #mur2menu a:visited  {
  color: white;
 }
 
-#mur2menu {
-    display: flex;
-    font-weight: 600;
-}
-
 #topmenu-left {
     float: left;   
     margin: 0 1em;
@@ -48,7 +55,7 @@ a, a:link, #mur2menu a:visited  {
 
 #topmenu-right {
     float: right;   
-    margin: 0 1em;
+    margin: 1em 1em;
     cursor: pointer;
 }
 
@@ -65,10 +72,10 @@ input[type=submit], input[type=file] {
   cursor: pointer;
 }
 
-.menufont {
+/*.menufont {
     font-size: 1.125em;
     font-family: 'Josefin Sans'; 
-}
+}*/
 
 .topmenu {
   display: flex;
@@ -79,9 +86,11 @@ input[type=submit], input[type=file] {
   width: 100%;
   left: 0;
   top: 0;
-  /*height: 4em;*/ 
-  padding-left: 1em;
-  padding-top: 1em;
+  height: 4em; 
+}
+
+.control-item {
+    color: white;
 }
 
 .toolbar-button:hover {
@@ -90,7 +99,6 @@ input[type=submit], input[type=file] {
 }
 
 .toolbar-button, a {
-  color: white;
   text-decoration: none;
   padding-right: 0.5em;
 }
