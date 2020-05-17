@@ -93,8 +93,7 @@
                  <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
                  <label class="control-item fontawsome fab fa-markdown fontawsome" for="id_syntax_hl" title={{ _("Syntax highlighting") }} ></label>
                  <!-- Hide input -->
-                     <input class="choice_toolbar control-input" type="checkbox"   name="source_type" value="0" />
-                 <input class="choice_toolbar control-input" id="id_hide_input" type="checkbox"  value="0" name="source_type" >
+                 <input class="choice_toolbar control-input" id="id_hide_input" type="checkbox" name="source_type" >
                  <label class="control-item fontawsome far fa-arrow-alt-circle-left" for="id_hide_input" title={{ _("Hide input") }}  ></label>
                  <!-- Show title and abstract -->
                  <input class="choice_toolbar control-input" id="id_show_title" type="checkbox" name="source_type" >
@@ -229,16 +228,36 @@
                       {{ _("Connect to Wordpress.com") }}
                   </label>
                       {% else %}
-                  <input onclick="window.location.href = 'https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/edit/{{ article_id }}';" class="control-input id="id_wpc_connect" type="radio" name="source_type" >
-                  <label class="control-item " " for="id_wpc_connect" title={{ _("Connect to Wordpress.com") }} >
+                 <input onclick="window.location.href = 'https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=http://mur2.co.uk/edit/{{ article_id }}';" class="control-input" id="id_medium2_connect" type="radio" name="source_type" >
+                  <label class="control-item " for="id_wpc_connect" title={{ _("Connect to Wordpress.com") }} >
                       {{ _("Connect to Wordpress.com") }}
-                  </label>
+                  </label>                  
                       {% endif %}
                   {% endif %}    
               </div>
               <div>
+                  {% if ( mediumlogin ) %}                      
+                          <input  id="id_medium_publish" class="control-input" type="radio" name="source_type" >
+                  <label class="control-item " for="id_medium_publish" title={{ _("Publish on Medium.com") }} >
+                      {{ _("Publish on Medium.com") }}
+                  </label>     
+                  <input  id="id_medium_clear" class="control-input" type="radio" name="source_type" >
+                  <label class="control-item " for="id_medium_clear" title={{ _("Clear Medium.com cookies") }} >
+                      {{ _("Clear cookies") }}
+                  </label>
+                  {% else %}                  
+                  <a href="https://medium.com/m/oauth/authorize?client_id=4dd9ea1f3fb8&scope=basicProfile,publishPost&state=valami&response_type=code&redirect_uri=https://mur2.co.uk/editor">{{ _("Connect to Medium.com") }}</a>
+                  
+                  {% endif %}
+              </div>
+          
+              <div>
                   <input id="id_pdf" type="radio" class="control-input" name="source_type" >
                   <label class="control-item fas fa-file-pdf" for="id_pdf" title={{ _("Generate pdf") }} > PDF</label>
+              </div>
+              <div>
+                  <input id="id_epub" type="radio" class="control-input" name="source_type" >
+                  <label class="control-item" for="id_epub" title={{ _("Generate ePUB") }} > ePUB</label>
               </div>
               {% if desktop %}
               <div>          
@@ -317,6 +336,38 @@
             }
         }
     </script>
+            <script>
+                // Medium.com access token
+                var mediumstr = window.location.href.match(/\?.+/);
+                console.log(mediumstr);
+                if ( mediumstr !== null && mediumstr.length > 0 && mediumstr[0].indexOf("code") !== -1 && mediumstr[0].indexOf("state") !== -1  ) {
+                    var code = mediumstr[0].split( '&' )[1].split( '=' )[1];
+                    console.log(code);
+                    if ( code ) {
+                        // get lon time access
+                        var params = "code="+code+"&client_id=4dd9ea1f3fb8&client_secret=58484c63064609c225d78de157c88170d0c40adb&grant_type=authorization_code&redirect_uri=https://mur2.co.uk/editor";
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "https://api.medium.com/v1/tokens", true);
+                        //Send the proper header information along with the request
+                        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        xhr.send(params);
+                        xhr.onload = function() {
+                            if (xhr.status != 200) {
+                                var mediumanswer = JSON.parse(xhr.response);
+                                console.log(mediumanswer);
+                                setCookie("mur2_medium_accesstoken", mediumanswer.access_token, 365);
+                                setCookie("mur2_medium_refresh_token", mediumanswer.refresh_token, 365);
+                                window.location = window.location.href.split("?").slice(0,1);
+                            } else {
+                                console.log(xhr.status);
+                                console.log(xhr.statusText);
+                                console.log(xhr.response);
+                            }
+                        }
+                    }
+                }
+                
+            </script>
           
             <div id="foot"> © 2020 μr² {{ _("editor") }} </div>
         </div><!-- horizontal_box -->

@@ -43,6 +43,11 @@ function clear_cookies(cname) {
         setCookie('mur2_wpc_sideid', 'value', 0);
         // reload the page to fresh the buttom 
         window.location.reload(false); 
+    } else if (cname === "medium") {
+        setCookie('mur2_medium_accesstoken', 'value', 0);
+        setCookie('mur2_medium_refresh_token', 'value', 0);
+        // reload the page to fresh the buttom 
+        window.location.reload(false); 
     }
 }
 
