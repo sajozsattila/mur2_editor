@@ -235,6 +235,39 @@ async function save_article(blobs) {
     alarming(xhr, "Saved!");
 };
 
+async function  medium_on_fly(titleCollection, abstractCollection, mainCollection) {
+    var msgbox = document.getElementById("msg")
+    var access_token = getCookie("mur2_medium_accesstoken");
+    var htmltext = mainCollection.getHtmlImg();
+    var article_title = titleCollection.getHtmlImg().split("\n")[1].slice(3,-6);
+    var article_abstract = abstractCollection.getHtmlImg();
+    var article_id = document.querySelector('meta[name="article_id"]').content
+    
+    
+    var fd = new FormData();
+    fd.append('acceskey', access_token);
+    fd.append('article_id', article_id);
+    fd.append('article_title', article_title);
+    fd.append('article_content', article_abstract + "<hr>" + htmltext);
+    fd.append("destination", "medium");
+    
+    var xhr = new XMLHttpRequest();
+    /* need to receive file back */
+    xhr.open('post', '/export_data', true);
+    xhr.send(fd);
+    xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                msgbox.style.color = "red";
+                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+            } else {
+                var mur2answer = JSON.parse(xhr.response);
+                msgbox.style.color = "green";
+                msgbox.innerHTML = "Published on " + mur2answer.link;
+            }
+    };
+
+}
+
 /* commit in Wordpress.com by cokkies */
 async function wordpress2(link, id) {
     // save the wordpressid if it is not an anonimus article    
@@ -280,7 +313,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
 
         var xhr = new XMLHttpRequest();
         xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/posts', true);
-        xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token))
+        xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token));
         xhr.send(fd);
         xhr.onload = function() {
             if (xhr.status != 201) { // analyze HTTP status of the response
@@ -341,10 +374,14 @@ async function generate_from_md(destination, mainCollection) {
             var blob = this.response;
             window.URL = window.URL || window.webkitURL;
             var fileURL = window.URL.createObjectURL(blob);
-            if (destination === "latex") {
+            if (destination === "latex" || destination === "epub" ) {
                 var a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
-                a.download = "mur2.tex";
+                if (destination === "latex" ) {                    
+                    a.download = "mur2.tex";
+                } else {
+                    a.download = "mur2.epub";
+                }
                 a.style.display = 'none';
                 document.body.appendChild(a);
                 a.click(); //this is probably the key - simulating a click on a download link

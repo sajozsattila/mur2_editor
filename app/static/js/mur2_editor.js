@@ -329,8 +329,7 @@ function ParserCollection(
     _mdMdAndImages.renderer.rules.text = function(tokens, idx /*, options, env */ ) {
         return tokens[idx].content;
     };
-        
-     
+
         // Custom image embedding for smooth UX
 		_mdPreview.renderer.rules.math_inline = function (tokens, idx) {
 			return imageLoader.getHtmlStub(tokens[idx].content);
@@ -884,12 +883,18 @@ function ParserCollection(
             }
         } else if (target.id === "id_wpc_publish") {
             wordpress_on_fly(titleCollection, abstractCollection,  mainCollection);
-        } else if (target.id === "id_wpc_clear") {
+        } else if (target.id === "id_medium_publish") {
+            medium_on_fly(titleCollection, abstractCollection,  mainCollection);
+        }  else if (target.id === "id_wpc_clear") {
             clear_cookies("wpc");
+        }  else if (target.id === "id_medium_clear") {
+            clear_cookies("medium");
         } else if (target.id === "id_pdf") {
             generate_from_md('pdf', mainCollection);
         } else if (target.id === "id_latex_export") {
             generate_from_md('latex', mainCollection);
+        } else if (target.id === "id_epub") {
+            generate_from_md('epub', mainCollection);
         }
 
     });
