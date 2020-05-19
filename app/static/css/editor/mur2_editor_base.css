@@ -15,6 +15,8 @@ body h3,
 body h4,
 body h5 {
     font-family: 'Ibarra Real Nova', serif;
+    position: relative; 
+    top: 0.2em
 }
 body h1 .svg-preview,
 body h2 .svg-preview,
@@ -166,6 +168,7 @@ body h5 {
     /* it is the bottom of the .topmenu (margin+padding+height) */
     top: 4em;
     height: 2em;    
+    overflow: hidden;
     /* */
     padding-left: 2em;
 }
@@ -384,7 +387,7 @@ textarea {
     --size: 2.986;
     font-size: 2.986em;
     line-height: 1;
-    text-align: center;
+    text-align: left;
     font-family: 'Ibarra Real Nova', serif;
 }
 .result-as-html div#article_title .svg-preview{
@@ -406,13 +409,13 @@ textarea {
 
 #article_abstract {
     margin-bottom: 2rem;
-    text-align: center;
+    text-align: left;
 }
 
 .separator {
     border-top: solid gray 1px;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 0%;
+    margin-right: 60%;
     min-height: 1em;
     margin-bottom: 1em;
 }
@@ -436,15 +439,15 @@ textarea {
 }
 
 /* iPad in landscape */
-@media only screen 
+@media only screen
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
     #article_input_side.previewoff,
     #article_preview_side.inputoff {
         /* */
-        padding-right: 10%;
-        padding-left: 10%; 
+        margin-right: 10%;
+        margin-left: 10%; 
     }
     #foot {
         display: none;
@@ -457,15 +460,15 @@ and (orientation : landscape) {
 }
 
 /* iPad  in portrait */
-@media only screen 
+@media only screen
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
     #article_input_side.previewoff, 
     #article_preview_side.inputoff {
         /* */
-        padding-right: 0;
-        padding-left: 0; 
+        margin-right: 0;
+        margin-left: 0; 
     }
     #foot {
         display: none;
