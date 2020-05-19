@@ -720,7 +720,14 @@ function ParserCollection(
         let target = event.target;
         // switching depending which textfiled was an input
         if (target.classList.contains('choice_menu')) {
-            document.getElementById('menu').className = target.id.replace("id_", '');
+            var menutarget = target.id.replace("id_", '');
+            console.log(menutarget);
+            if ( menutarget !== 'choicemenu' ) {
+                document.getElementById('menu').classList.remove('choicemenu');
+                document.getElementById('menu').classList.add(menutarget);
+            } else {
+                document.getElementById('menu').className = 'choicemenu';
+            }
         } else if (target.classList.contains('choice_toolbar')) {
             // the tools
             switch (target.id) {
@@ -835,18 +842,7 @@ function ParserCollection(
                 case 'id_latex':
                     editorToolbarAction("latex");
                     update();
-                    break;
-                case 'id_sidemenu':
-                    var preview = document.getElementById('side_menu');
-                    var menubottom = document.getElementById('id_sidemenu');
-                    if (preview.classList.contains('hide')) {
-                        preview.classList.remove('hide');
-                        menubottom.classList.remove('hide');
-                    } else {
-                        preview.classList.add('hide');
-                         menubottom.classList.add('hide');
-                    }
-                    break;
+                    break;                
             }
         }
     });

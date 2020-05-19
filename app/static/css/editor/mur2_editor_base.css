@@ -9,6 +9,15 @@ body, button input, select {
     scrollbar-color: #c62641 white;   
 }
 
+.normalfont {
+    font-family: lora, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;      /* was 1.88*/
+    letter-spacing: 0;
+    font-feature-settings: "liga" 1, "frac" 1;
+}
+
 body h1,
 body h2,
 body h3,
@@ -121,20 +130,16 @@ body h5 {
     /* */
 }
 
+#side_menu, 
+#editor_toolbar {
+    display: none;
+}
+
 /* switch between the menus */
 .choicemenu #choicemenu,
-.mur2menu #mur2menu,
+.side_menu #side_menu,
 .editor_toolbar #editor_toolbar {
     display: flex;
-    /* */
-}
-.choicemenu #mur2menu,
-.choicemenu #editor_toolbar,
-.mur2menu #choicemenu,
-.mur2menu #editor_toolbar,
-.editor_toolbar #mur2menu,
-.editor_toolbar #choicemenu {
-    display: none;
     /* */
 }
 
@@ -153,11 +158,11 @@ body h5 {
     width: 100%;
     left: 0;
     top: 0;
-    height: 4em;    
+    height: 3.5em;    
     /* */    
     background-color: black;
     padding-left: 2em;
-    padding-top: 1em;
+    padding-top: 0.7em;
     padding-right: 2em;
 }
 
@@ -166,7 +171,7 @@ body h5 {
     width: 100%;
     left: 0;
     /* it is the bottom of the .topmenu (margin+padding+height) */
-    top: 4em;
+    top: 3.5em;
     height: 2em;    
     overflow: hidden;
     /* */
@@ -182,8 +187,8 @@ body h5 {
     position: fixed; 
     left: 0;
     /* the bottom of the #msg */
-    top: 6em;
-    height: calc(100% - 8em) ; 
+    top: 5.5em;
+    height: calc(100% - 5.2em) ; 
     padding-left: 1em;  
     overflow: hidden;
     /* */
@@ -208,13 +213,16 @@ body h5 {
     position: fixed;
     right: 0;
     /* same possition than .undermain_menu*/
-    top: 4em;
-    height: calc(100% - 6em) ;
+    top: 0;
+    height: 100% ;
     overflow: slide;
     /* */
     background-color: #c62641;
-    padding-left: 1em;
-    padding-top: 1em;
+    padding-top: 0.7rem;
+    padding-right: 0.7rem;
+    flex-direction: column;
+    z-index: 20;
+    justify-content: space-between;
 }
 #maintext:hover+#side_menu,
 #container-block-source:hover+#side_menu, 
@@ -222,13 +230,15 @@ body h5 {
     opacity: 0;
 }
 
+#side_top{
+    display: flex;
+    flex-direction: column;
+}
+
 #foot {
     width: 100%;
-    text-align: center;
-    position: fixed; 
-    left: 0;
-    bottom: 0px;
     height: 2em;
+    text-align: left;
     /* */
 }
 
@@ -247,8 +257,7 @@ textarea {
 
 /* toolbar */
 #editor_toolbar {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* */
 }
 
@@ -329,11 +338,6 @@ textarea {
     display: none;
 }
 
-
-#side_menu.hide {
-    display: none; 
-    /* */
-}
 /* color the toolbar bottom */
 #id_hide_input + .far.fa-arrow-alt-circle-left,
 #id_hide_preview + .far.fa-arrow-alt-circle-right, 
@@ -374,7 +378,6 @@ textarea {
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
-    line-height: 1; /* this is need because of the Font Awesome */
     /* */
 }
 .control-item:hover {
@@ -438,6 +441,60 @@ textarea {
 	transition: all 1s;
 }
 
+#preview_format {
+    height: 3.5rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;   
+}
+#preview_format .control-item {
+    height: 100%;
+        
+}
+
+#side_export,
+#mur2menu,
+#preview_format,
+#foot,
+#mcs {
+    padding-left: 1em;
+}
+
+#side_export .control-item {
+    border-width: 0px 1px;
+    height: 1.8rem;
+}
+
+#mur2menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 2.8rem;
+    border-bottom: white solid 1px;
+}
+
+/* search */
+#search {
+    display: none;
+}
+#search input {
+    width: 100%;
+    height: 2em;
+}
+#id_search:checked ~ #search {
+    display: inline-block;
+    width: 100%;
+}
+#id_search:checked + #mur2menutop {
+    display: none;
+}
+#mur2menutop {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
 /* iPad in landscape */
 @media only screen
 and (min-device-width : 768px) 
@@ -448,9 +505,6 @@ and (orientation : landscape) {
         /* */
         margin-right: 10%;
         margin-left: 10%; 
-    }
-    #foot {
-        display: none;
     }
     #maintext,
     #container-block-source, 
@@ -469,9 +523,6 @@ and (orientation : portrait) {
         /* */
         margin-right: 0;
         margin-left: 0; 
-    }
-    #foot {
-        display: none;
     }
     #maintext,
     #container-block-source, 
