@@ -235,11 +235,17 @@ async function save_article(blobs) {
     alarming(xhr, "Saved!");
 };
 
+async function medium_connect() {
+    var access_token = prompt("Please set the Integration tokens", "");
+    setCookie("mur2_medium_accesstoken", access_token, 365);
+    window.location.reload();
+}
+
 async function  medium_on_fly(titleCollection, abstractCollection, mainCollection) {
     var msgbox = document.getElementById("msg")
     var access_token = getCookie("mur2_medium_accesstoken");
     var htmltext = mainCollection.getHtmlImg();
-    var article_title = titleCollection.getHtmlImg().split("\n")[1].slice(3,-6);
+    var article_title = titleCollection.getHtmlImg().split("\n")[1].slice(3,-4);
     var article_abstract = abstractCollection.getHtmlImg();
     var article_id = document.querySelector('meta[name="article_id"]').content
     

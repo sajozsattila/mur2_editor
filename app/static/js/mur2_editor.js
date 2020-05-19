@@ -885,7 +885,9 @@ function ParserCollection(
             wordpress_on_fly(titleCollection, abstractCollection,  mainCollection);
         } else if (target.id === "id_medium_publish") {
             medium_on_fly(titleCollection, abstractCollection,  mainCollection);
-        }  else if (target.id === "id_wpc_clear") {
+        } else if (target.id === "id_medium_connect") {
+            medium_connect();
+        } else if (target.id === "id_wpc_clear") {
             clear_cookies("wpc");
         }  else if (target.id === "id_medium_clear") {
             clear_cookies("medium");

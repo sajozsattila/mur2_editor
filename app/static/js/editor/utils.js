@@ -563,7 +563,6 @@ function ImageLoader(preloader, protocol, loaderid) {
 
 		if (placeholderIndex !== null) {
 			var data = preloader.getImageDataFromUrl(placeholderUrl);
-            console.log("data", data);
 			if (data !== null && data.callback === null) {
 				insertPicture(placeholderIndex, data.svg, data.baseline, 'fade-out', this.loaderid);
 			}
