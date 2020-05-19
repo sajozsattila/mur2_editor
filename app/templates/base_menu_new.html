@@ -1,0 +1,36 @@
+
+            
+            <!-- right side of the mur2 menu -->
+            <div id="mur2menu" class="toolbar-button">
+                <input class="control-input" id="id_search" type="checkbox" name="source_type" >
+                <div id="mur2menutop">
+                <a class="toolbar-button control-item" title={{ _("Editor") }} href="{{ url_for('main.free_editor') }}">{{ _("Editor") }}</a>
+                {% if not current_user.is_anonymous %}
+                <a class="toolbar-button control-item " title={{ _("Media") }} href="{{ url_for('main.media') }}">{{ _("Media") }}</a>
+                <a class="toolbar-button control-item " title={{ _("Profile") }} href="{{ url_for('main.user', username=current_user.username) }}">{{ _("Profile") }}</a>
+                <a class="toolbar-button control-item "  title={{ _("Sign out") }} href="{{ url_for('auth.logout') }}">{{ _("Sign out") }}</a> 
+                {% else %}
+                <a  class="toolbar-button control-item " title={{ _("Sign In") }} href="{{ url_for('auth.login') }}">{{ _("Sign In") }}</a>
+                {% endif %}
+                <a class="toolbar-button control-item  " title={{ _("Home") }} href="{{ url_for('main.root') }}">{{ _("Home") }}                   </a>
+                </div> <!-- mur2menutop -->
+                {% if not current_user.is_anonymous %}
+                {% if g.search_form %}
+                <div id="search"  ><form class="navbar-form navbar-left" method="get"
+                        action="{{ url_for('main.search') }}">
+                    <div class="form-group">
+                        {{ g.search_form.q(size=20, class='form-control',
+                            placeholder=g.search_form.q.label.article) }}
+                    </div>
+                </form>
+                </div>
+                <label class="control-item fas fa-search" for="id_search" title={{ _("Search") }} >
+                </label>
+               {% endif %}
+               {% endif %}
+                <!-- show editor toolbar -->
+                <input class="choice_menu control-input" id="id_choicemenu" type="radio" name="source_type" >
+                <label class="control-item fas fa-bars" for="id_choicemenu" title={{ _("Close Menu") }} ></label>
+            </div>            
+
+       
