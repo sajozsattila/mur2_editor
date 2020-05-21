@@ -3,7 +3,8 @@
     <head>
         <!-- Google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">       
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">    
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&family=Roboto&display=swap" rel="stylesheet">   
         <!-- Adobe fonts -->
         <script>
             (function(d) {
@@ -54,94 +55,7 @@
     </head>
     <body class="result-as-html {{ language }}" >
         <div id="horizontal_box"> <!-- content -->     
-         <div id="menu" class="choicemenu">
-             {% include 'editor_side_menu.html' %}
-             <div id="choicemenu" class="menufont topmenu">
-                 <div>
-                 <!-- show editor toolbar -->
-                 <input class="choice_menu control-input" id="id_editor_toolbar" type="radio" name="source_type" >
-                 <label class="control-item" for="id_editor_toolbar" title="{{ _('Toolbar') }}" >T</label>
-                 </div>
-                 <div>
-                 <!-- show mur2 menu -->
-                 <input class="choice_menu control-input" id="id_side_menu" type="radio" name="source_type" >
-                 <label class="control-item " for="id_side_menu" title="{{ _('Menu') }}"  >M</label>
-                 </div>
-             </div><!-- choicemenu -->
-             
-             <div id="editor_toolbar" class="menufont topmenu">  
-                 <div>
-                 <div class="toolbar-button" style="display:none"><input type="file" id="fileElem" ></div>
-                 <!-- close editor toolbar -->
-                 <input class="choice_menu control-input" id="id_choicemenu" type="radio" name="source_type" >
-                 <label class="control-item" for="id_choicemenu" title="{{ _('Close Toolbar') }}" >T</label>
-                 
-                 <!-- Upload file -->
-                 <input class="choice_toolbar control-input" id="id_upload" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-file-upload" for="id_upload" title="{{ _('Upload file') }}" ></label>
-                 
-                 <!-- Download result -->
-                 <input class="choice_toolbar control-input" id="id_download" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-file-download" for="id_download" title="{{ _('Download result') }}" ></label>        
-                 {% if not current_user.is_anonymous %}
-                 <!-- Save -->
-                 <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-save fontawsome" for="id_save" title="{{ _('Save') }}" ></label>
-                 {% endif %}
-                 <!-- Syntax highlighting -->
-                 <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fab fa-markdown fontawsome" for="id_syntax_hl" title="{{ _('Syntax highlighting') }}" ></label>
-                 <!-- Hide input -->
-                 <input class="choice_toolbar control-input" id="id_hide_input" type="checkbox" name="source_type" >
-                 <label class="control-item fontawsome far fa-arrow-alt-circle-left" for="id_hide_input" title="{{ _('Hide input') }}"  ></label>
-                 <!-- Show title and abstract -->
-                 <input class="choice_toolbar control-input" id="id_show_title" type="checkbox" name="source_type" >
-                 <label class="control-item fontawsome far fa-arrow-alt-circle-down" for="id_show_title" title="{{ _('Show title and abstract') }}" ></label>
-                 <!-- Hide preview -->
-                 <input class="choice_toolbar control-input" id="id_hide_preview" type="checkbox" name="source_type" >
-                 <label class="control-item fontawsome far fa-arrow-alt-circle-right" for="id_hide_preview" title="{{ _('Hide preview') }}"  ></label>
-                 <!-- Head -->
-                 <input class="choice_toolbar control-input" id="id_head" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-heading" for="id_head" title="{{ _('Head') }}" ></label>
-                 <!-- Italic -->
-                 <input class="choice_toolbar control-input" id="id_italic" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-italic" for="id_italic" title="{{ _('Italic') }}" ></label>
-                 <!-- Strong -->
-                 <input class="choice_toolbar control-input" id="id_strong" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-bold" for="id_strong" title="{{ _('Strong') }}" ></label>
-                 <!-- Picture -->
-                 <input class="choice_toolbar control-input" id="id_picture" type="radio" name="source_type" >
-                 <label class="control-item fontawsome far fa-image" for="id_picture" title="{{ _('Picture') }}" ></label>
-                 <!-- Link -->
-                 <input class="choice_toolbar control-input" id="id_link" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-link" for="id_link" title="{{ _('Link') }}" ></label>
-                 <!-- List -->
-                 <input class="choice_toolbar control-input" id="id_list" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-list" for="id_list" title="{{ _('List') }}" ></label>
-                 <!-- Numbered list -->
-                 <input class="choice_toolbar control-input" id="id_nlist" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-list-ol" for="id_nlist" title="{{ _('Numbered list') }}" ></label>
-                 <!-- Endnote -->
-                 <input class="choice_toolbar control-input" id="id_footnote" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-superscript" for="id_footnote" title="{{ _('Footnote') }}" ></label>
-                 <!-- Table -->
-                 <input class="choice_toolbar control-input" id="id_table" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-th-large" for="id_table" title="{{ _('Table') }}" ></label>
-                 <!-- Code -->
-                 <input class="choice_toolbar control-input" id="id_code" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-code" for="id_code" title="{{ _('Code') }}" ></label>
-                 <!-- LaTeX -->
-                 <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
-                 <label class="control-item menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>                      
-              </div>
-              <div>
-                  <!-- Show side menu -->
-                 <input class="choice_toolbar control-input hide" id="id_sidemenu" type="radio" name="source_type" >
-                 <label class="control-item fontawsome fas fa-bars" for="id_sidemenu" title="{{ _('Show side menu') }}" ></label>
-              </div>
-          </div> <!-- editor_toolbar -->
-          
-          </div> <!-- menu -->
+         
           <div id="msg" >
             <!-- print msg -->
             {% with messages = get_flashed_messages() %}
@@ -178,6 +92,95 @@
          </div>
       </div> <!-- maintext -->
       
+     <div id="menu" class="editor_toolbar">
+         
+             {% include 'editor_side_menu.html' %}
+             <div id="choicemenu" class="menufont topmenu">
+                 <div>
+                 <!-- show editor toolbar -->
+                 <input class="choice_menu control-input" id="id_editor_toolbar" type="radio" name="source_type" >
+                 <label class="toolbar" for="id_editor_toolbar" title="{{ _('Toolbar') }}" >T</label>
+                 </div>
+                 <div>
+                 <!-- show mur2 menu -->
+                 <input class="choice_menu control-input" id="id_side_menu" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-bars" for="id_side_menu" title="{{ _('Show side menu') }}"  ></label>
+                 </div>
+             </div><!-- choicemenu -->
+             
+             
+             <div id="editor_toolbar" class="menufont topmenu">  
+                 <div>
+                 <div class="toolbar-button" style="display:none"><input type="file" id="fileElem" ></div>
+                 <!-- close editor toolbar -->
+                 <label class=" toolbar" for="id_editor_toolbar" title="{{ _('Close Toolbar') }}" >T</label>
+                 
+                 <!-- Upload file -->
+                 <input class="choice_toolbar control-input" id="id_upload" type="radio" name="source_type" >
+                 <label class=" fontawsome fas fa-file-upload toolbar" for="id_upload" title="{{ _('Upload file') }}" ></label>
+                 
+                 <!-- Download result -->
+                 <input class="choice_toolbar control-input" id="id_download" type="radio" name="source_type" >
+                 <label class=" fontawsome fas fa-file-download toolbar" for="id_download" title="{{ _('Download result') }}" ></label>        
+                 {% if not current_user.is_anonymous %}
+                 <!-- Save -->
+                 <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-save fontawsome " for="id_save" title="{{ _('Save') }}" ></label>
+                 {% endif %}
+                 <!-- Syntax highlighting -->
+                 <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fab fa-markdown fontawsome " for="id_syntax_hl" title="{{ _('Syntax highlighting') }}" ></label>
+                 <!-- Hide input -->
+                 <input class="choice_toolbar control-input" id="id_hide_input" type="checkbox" name="source_type" >
+                 <label class="toolbar fontawsome far fa-arrow-alt-circle-left " for="id_hide_input" title="{{ _('Hide input') }}"  ></label>
+                 <!-- Show title and abstract -->
+                 <input class="choice_toolbar control-input" id="id_show_title" type="checkbox" name="source_type" >
+                 <label class="toolbar fontawsome far fa-arrow-alt-circle-down toolbar" for="id_show_title" title="{{ _('Show title and abstract') }}" ></label>
+                 <!-- Hide preview -->
+                 <input class="choice_toolbar control-input" id="id_hide_preview" type="checkbox" name="source_type" >
+                 <label class="toolbar fontawsome far fa-arrow-alt-circle-right toolbar" for="id_hide_preview" title="{{ _('Hide preview') }}"  ></label>
+                 <!-- Head -->
+                 <input class="choice_toolbar control-input" id="id_head" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-heading toolbar" for="id_head" title="{{ _('Head') }}" ></label>
+                 <!-- Italic -->
+                 <input class="choice_toolbar control-input" id="id_italic" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-italic toolbar" for="id_italic" title="{{ _('Italic') }}" ></label>
+                 <!-- Strong -->
+                 <input class="choice_toolbar control-input" id="id_strong" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-bold toolbar" for="id_strong" title="{{ _('Strong') }}" ></label>
+                 <!-- Picture -->
+                 <input class="choice_toolbar control-input" id="id_picture" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome far fa-image toolbar" for="id_picture" title="{{ _('Picture') }}" ></label>
+                 <!-- Link -->
+                 <input class="choice_toolbar control-input" id="id_link" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-link " for="id_link" title="{{ _('Link') }}" ></label>
+                 <!-- List -->
+                 <input class="choice_toolbar control-input" id="id_list" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-list " for="id_list" title="{{ _('List') }}" ></label>
+                 <!-- Numbered list -->
+                 <input class="choice_toolbar control-input" id="id_nlist" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-list-ol" for="id_nlist" title="{{ _('Numbered list') }}" ></label>
+                 <!-- Endnote -->
+                 <input class="choice_toolbar control-input" id="id_footnote" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-superscript" for="id_footnote" title="{{ _('Footnote') }}" ></label>
+                 <!-- Table -->
+                 <input class="choice_toolbar control-input" id="id_table" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-th-large" for="id_table" title="{{ _('Table') }}" ></label>
+                 <!-- Code -->
+                 <input class="choice_toolbar control-input" id="id_code" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-code" for="id_code" title="{{ _('Code') }}" ></label>
+                 <!-- LaTeX -->
+                 <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
+                 <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>                      
+              </div>
+              <div>
+                  <!-- Show side menu -->
+                 <label class="toolbar fontawsome fas fa-bars" for="id_side_menu" title="{{ _('Show side menu') }}" ></label>
+              </div>
+          </div> <!-- editor_toolbar -->
+          
+          </div> <!-- menu -->            
+            
       <!-- set the markdown editor contents -->
        <script>
         (function () {

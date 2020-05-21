@@ -1,0 +1,63 @@
+		<div id="markdown_cheat_sheet">
+			<div class="headmarkdowncs"><label class="toolbar fas fa-times" for="id_mcs" title="{{ _('Close Markdown cheatsheet') }}"></label></div>
+			<h3>Headers</h3>
+			<pre># Header 1
+## Header 2
+### Header 3</pre>
+			<h3>Styling</h3>  <span class="inputfont"><p>
+                 <span class="hljs-emphasis"><em>*Emphasize*</em></span>  <span class="hljs-emphasis"><em>_emphasize_</em></span>
+			</p>
+			<p> <span class="hljs-strong"><strong>__Strong__</strong></span>  <span class="hljs-strong"><strong>**Strong**</strong></span>
+			</p>
+			<p><s>~~Mistaken text.~~</s>
+			</p>
+			<p><span class="hljs-quote">&gt; Quoted text.</span>
+			</p>
+			<p>H<sub>~2~</sub>O is a liquid.</p>
+			<p>2<sup>^10^</sup> is 1024.</p>
+			</span>
+			<h3>Lists</h3>
+			<pre>
+    <span class="list-mark  block-start" data-line="3">- </span><span class="list " data-line="3">Item
+        </span><span class="list-mark  block-start" data-line="1">* </span><span class="list " data-line="3">Item
+            + Item</span>
+             
+    <span class="list-mark  block-start" data-line="1">1. </span><span class="list " data-line="2">Item 1
+    </span><span class="list-mark  block-start" data-line="1">1. </span><span class="list " data-line="2">Item 2 </span>   
+    
+    <span class="list-mark  block-start" data-line="2">52. </span><span class="list " data-line="1">Item 52
+    </span><span class="list-mark  block-start" data-line="1">1. </span><span class="list " data-line="4">Item 53</span>
+</pre>
+			<h3>Links</h3>
+			<p >A [link](http://example.com).</p>
+			<p>An image: ![alt](http://example.com &quot;title&quot;)</p>
+			<h3>Code</h3>
+			<p >Some `inline code`.</p> <pre>```python
+# An highlighted block
+print("This is block code");
+```
+</pre>
+			<h3>Tables</h3>
+            <pre >
+Item     | Value
+-------- | -----
+Computer | $1600
+Phone    | $12
+Pipe     | $1
+
+
+| Column 1 | Column 2      |
+|:--------:| -------------:|
+| centered | right-aligned |
+</pre>
+			<h3>Footnotes</h3>
+			<pre >Some text with footnote.^[The footnote]</pre>
+			<h3>LaTeX math</h3>
+			<p >Fundamentally, Euler's identity asserts that $$ e^{i\pi} $$ is equal to −1. But most of time they write as:</p><pre>
+
+$$
+\text{Euler's identity: } e^{i \pi } + 1 = 0
+$$
+             </pre>
+		</div>
+
