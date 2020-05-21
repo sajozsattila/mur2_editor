@@ -15,7 +15,9 @@ body, button input, select {
     font-size: 16px;
     line-height: 1.4;      /* was 1.88*/
     letter-spacing: 0;
-    font-feature-settings: "liga" 1, "frac" 1;
+    font-feature-settings: "liga" 1, "frac" 1;    
+    font-variant: small-caps;
+    letter-spacing: 1px;
 }
 
 body h1,
@@ -118,7 +120,8 @@ body h5 {
 .result-as-md #article_main_pre,
 .result-as-mdp #article_main_pre,
 .result-as-habr #article_main_pre {
-    display: block;
+    /* display: block; */
+    opacity: 1;
     /* */
 }
 .result-as-src #article_main,
@@ -126,7 +129,8 @@ body h5 {
 .result-as-md #article_main,
 .result-as-mdp #article_main,
 .result-as-habr #article_main {
-    display: none;
+    /* display: none; */
+    opacity: 0;
     /* */
 }
 
@@ -163,7 +167,6 @@ body h5 {
     background-color: black;
     padding-left: 2em;
     padding-top: 0.7em;
-    padding-right: 2em;
 }
 
 #msg {
@@ -197,37 +200,47 @@ body h5 {
     padding-right: 0;
 }
 
-#mur2menu {
-    display: flex;
-    flex-direction: row;
-    
-}
-
-#mur2menu a {
-    text-decoration: none;
-}
-
 #side_menu {
-    width: 30em;
+    min-width: 25rem;
+    max-width: 35rem;
     height: 100%;
     position: fixed;
     right: 0;
     /* same possition than .undermain_menu*/
     top: 0;
     height: 100% ;
-    overflow: slide;
     /* */
     background-color: #c62641;
     padding-top: 0.7rem;
+    padding-left: 1rem;
     padding-right: 0.7rem;
     flex-direction: column;
     z-index: 20;
     justify-content: space-between;
+    overflow: auto;
+    scrollbar-width: thin;
+    letter-spacing: 1px;
+    font-variant: small-caps;
 }
-#maintext:hover+#side_menu,
-#container-block-source:hover+#side_menu, 
-#container-block-result:hover+#side_menu {
+
+#mcs,
+#side_export {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+#maintext:hover+#menu #side_menu,
+#container-block-source:hover+#menu #side_menu, 
+#container-block-result:hover+#menu #side_menu {
     opacity: 0;
+}
+/* for slowly disapering something */
+.tran1 {
+    -o-transition: all 1s;
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    transition: all 1s;
 }
 
 #side_top{
@@ -240,6 +253,8 @@ body h5 {
     height: 2em;
     text-align: left;
     /* */
+    font-variant: normal;
+    padding-left: 0.61rem;
 }
 
 .ldt-pre,
@@ -247,6 +262,7 @@ textarea {
     /* */
     font-family: 'DM Mono', sans-serif !important; 
     line-height: 1.4; /* this need to be same than in the body */
+    font-feature-settings: "liga" 0, "frac" 0;
 }
 
 .ldt{
@@ -358,31 +374,56 @@ textarea {
 }
 
 
-/* switch off the radio borrom display next to the toolbar bottoms */
+/* switch off the radio bottom display next to the toolbar bottoms */
 .control-input {
     display: none;
     /* */
 }
 
 .control-item {
-    /* background-color: rgba(255,0,0,.3); */
     color: #fff;
     background-clip: padding-box;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 9px 1px;
-    height: 2.1rem;
-    min-width: 1.8rem;
-    padding: 0 4px;
-    text-align: center;
+    min-width: 1.8em;
+    padding: 0.3rem 2rem 0.3rem 0;
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
     /* */
+    fill: white;
+    text-decoration: none;
+    text-align: left;
+    height: 1.6em;
+    width: max-content;
 }
+
+.toolbar:hover ,
 .control-item:hover {
     /* */
     border-bottom: solid white 1px;
+}
+
+.toolbar {
+    color: #fff;
+    background-clip: padding-box;
+    min-width: 1.8em;
+    padding: 0.3rem ;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    /* */
+    fill: white;
+    text-decoration: none;
+    text-align: center;
+    height: 1.6em;
+    width: max-content;
+}
+
+#choicemenu {
+    background-color: white;
+}
+#choicemenu label {
+    color: black;
+    background-color: white;
 }
 
 .result-as-html div#article_title {
@@ -433,43 +474,24 @@ textarea {
     /* */
 }
 
-/* for slowly disapering something */
-.tran1 {
-	-o-transition: all 1s;
-	-moz-transition: all 1s;
-	-webkit-transition: all 1s;
-	transition: all 1s;
+.sidebarLinks {
+    padding-bottom: 1rem;
+    padding-left: 0.61rem;  
+    display: flex;
+    flex-direction: column;
 }
 
-#preview_format {
-    height: 3.5rem;
-    padding-top: 0.7rem;
-    padding-bottom: 0.7rem;   
-}
-#preview_format .control-item {
-    height: 100%;
-        
-}
-
-#side_export,
-#mur2menu,
-#preview_format,
-#foot,
-#mcs {
-    padding-left: 1em;
+.headsidebar {
+    position: relative;
+    left: -0.61rem;
+    border-left: 1px white solid;
+    border-top: 1px solid white;
+    padding-left: 0.61rem;
 }
 
 #side_export .control-item {
     border-width: 0px 1px;
     height: 1.8rem;
-}
-
-#mur2menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 2.8rem;
-    border-bottom: white solid 1px;
 }
 
 /* search */
@@ -488,11 +510,54 @@ textarea {
     display: none;
 }
 #mur2menutop {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
+    /* */
+    width: calc( 100% + 1rem);
+    height: 2.8rem;
+    border-bottom: solid 1px white;
+    text-align: right;
+    position: relative;
+    left: -1rem;
 }
+#mur2menutop .control-item {
+    padding-right: 0;
+}
+/* markdown cheatsheet */
+#markdown_cheat_sheet {
+    display: none;
+    font-family: 'DM Mono';
+    font-size: 14px;
+    font-variant: normal;
+    padding-left: .61rem;
+}
+#id_mcs:checked ~ #markdown_cheat_sheet {
+    display: block;
+    color: white;
+    opacity: 1;
+}
+#id_mcs:checked ~ #first_menu {
+    display: none;
+}
+#markdown_cheat_sheet h3 {
+    font-family: 'DM Mono', sans-serif !important; 
+    line-height: 1.4; 
+    border-top: solid white 1px;
+    border-left: solid white 1px;
+    padding-left: 0.61rem;
+    position: relative;
+    left: -.61rem;
+    width: calc(100% + .61rem);
+}
+
+#markdown_cheat_sheet pre {
+    font-family: 'DM Mono', sans-serif !important; 
+    line-height: 1.4; 
+}
+.headmarkdowncs {
+    width:100%;
+    height: 1.8rem;
+    text-align: right;    
+}
+
 
 
 /* iPad in landscape */

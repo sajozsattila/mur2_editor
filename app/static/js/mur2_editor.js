@@ -721,12 +721,11 @@ function ParserCollection(
         // switching depending which textfiled was an input
         if (target.classList.contains('choice_menu')) {
             var menutarget = target.id.replace("id_", '');
-            console.log(menutarget);
-            if ( menutarget !== 'choicemenu' ) {
-                document.getElementById('menu').classList.remove('choicemenu');
-                document.getElementById('menu').classList.add(menutarget);
+            var menu = document.getElementById('menu');            
+            if ( menu.classList.contains(menutarget) ) {
+                menu.classList.remove(menutarget);
             } else {
-                document.getElementById('menu').className = 'choicemenu';
+                menu.classList.add(menutarget);
             }
         } else if (target.classList.contains('choice_toolbar')) {
             // the tools
@@ -869,14 +868,6 @@ function ParserCollection(
             updateTitle(titleImageLoader, true);
             updateAbstract(abstractImageLoader, true);
             updateMain(mainImageLoader, true);
-        } else if (target.classList.contains('side_menu_control')) {
-            // close sie menu
-            var preview = document.getElementById('side_menu');
-            if (preview.classList.contains('hide')) {
-                preview.classList.remove('hide');
-            } else {
-                preview.classList.add('hide');
-            }
         } else if (target.id === "id_wpc_publish") {
             wordpress_on_fly(titleCollection, abstractCollection,  mainCollection);
         } else if (target.id === "id_medium_publish") {
