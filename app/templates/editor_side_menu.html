@@ -39,7 +39,7 @@
 						<input class="preview-format control-input" id="id_mdp" type="radio" name="source_type">
 						<label class="control-item " for="id_mdp" title="{{ _('Markdown, same as in the input') }}" data-result-as="mdp">Markdown</label>
 						<input class="preview-format control-input" id="id_md" type="radio" name="source_type">
-						<label class="control-item " for="id_md" title="{{ _('Markdown with imgage equations') }}" data-result-as="md">+ Image</label>
+						<label class="control-item " for="id_md" title="{{ _('Markdown with imgage equations') }}" data-result-as="md">+ {{ _('Image') }}</label>
 					</div>
 					<input class="preview-format control-input" id="id_habr" type="radio" name="source_type">
 					<label class="control-item " for="id_habr" title="{{ _('A kind of HTML markup for habr.com') }}" data-result-as="habr">H</label>
@@ -112,6 +112,8 @@
 		</div><!-- first_menu -->
         {% include 'md_cheatsheet.html' %}
 	</div>	<!-- top -->
-	<div class="control-item" id="foot">© 2020 μr²</div>
+	 <div id="foot"> 
+         <a href="https://mur2.co.uk" class="control-item">© 2020 μr²</a>
+    </div>
 </div>
 <!-- side menu -->

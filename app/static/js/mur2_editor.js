@@ -454,7 +454,6 @@ function ParserCollection(
         return _mdHtmlAndImages.render(source);
 
     }
-
 }
 
 
@@ -737,6 +736,10 @@ function ParserCollection(
                     download_result([mainCollection, abstractCollection, titleCollection]);
                     break;
                 case 'id_save':
+                    // fire up an update
+                    updateMain(mainImageLoader, true);
+                    updateTitle(titleImageLoader, true);
+                    updateAbstract(abstractImageLoader, true);
                     save_article([mainCollection, abstractCollection, titleCollection]);
                     break;
                 case 'id_syntax_hl':
