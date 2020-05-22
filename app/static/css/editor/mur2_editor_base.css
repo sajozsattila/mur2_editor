@@ -120,8 +120,7 @@ body h5 {
 .result-as-md #article_main_pre,
 .result-as-mdp #article_main_pre,
 .result-as-habr #article_main_pre {
-    /* display: block; */
-    opacity: 1;
+    display: block; 
     /* */
 }
 .result-as-src #article_main,
@@ -129,8 +128,7 @@ body h5 {
 .result-as-md #article_main,
 .result-as-mdp #article_main,
 .result-as-habr #article_main {
-    /* display: none; */
-    opacity: 0;
+    display: none;
     /* */
 }
 
@@ -255,6 +253,7 @@ body h5 {
     /* */
     font-variant: normal;
     padding-left: 0.61rem;
+    padding-bottom: 0.61rem;
 }
 
 .ldt-pre,

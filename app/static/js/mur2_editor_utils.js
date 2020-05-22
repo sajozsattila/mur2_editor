@@ -184,15 +184,13 @@ async function save_article(blobs) {
         type: 'text/html; charset=UTF-8'
     });
 
-    // merge the data of the tilte, abstract and main
-    var htmldatatext = "";
-    for (var b = blobs.length; b--;) {
-        var bodytext = blobs[b].getHtmlImg();
-        htmldatatext += "\n\n" + bodytext;
-    }
+    var htmldatatext = document.getElementById('article_main').innerHTML;
     var htmldata = new Blob([htmldatatext], {
         type: 'text/html; charset=UTF-8'
     });
+    var abstractdatatext = document.getElementById('article_abstract').innerHTML;
+    var titledatatext = document.getElementById('article_title').innerHTML;
+    
 
     // type of the text
     var texttype = document.querySelector('meta[name="texttype"]').content.trim()
@@ -209,6 +207,8 @@ async function save_article(blobs) {
         var article_abstract = document.getElementById("abstact-source").value
         fd.append("file", markupdata);
         fd.append("htmlfile", htmldata, "article_text.html");
+        fd.append("article_title_html", titledatatext);
+        fd.append("article_abstract_html", abstractdatatext);
         fd.append('article_id', article_id);
         fd.append('article_title', article_title);
         fd.append('article_abstract', article_abstract);
