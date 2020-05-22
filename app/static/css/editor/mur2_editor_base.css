@@ -489,11 +489,6 @@ textarea {
     padding-left: 0.61rem;
 }
 
-#side_export .control-item {
-    border-width: 0px 1px;
-    height: 1.8rem;
-}
-
 /* search */
 #search {
     display: none;
