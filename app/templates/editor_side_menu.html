@@ -7,13 +7,13 @@
 				<div class='sidebarLinks'>
 					<input class="preview-format control-input" id="id_html" type="radio" name="source_type">
 					<div class="headsidebar">
-						<label class="control-item" for="id_html" title="Example of rendered HTML" data-result-as="html">{{ _("preview") }}</label>
+						<label class="control-item" for="id_html" title="{{ _('Example of rendered HTML') }}" data-result-as="html">{{ _("Preview") }}</label>
 					</div>
 					<div>
 						<input class="preview-format control-input" id="id_src" type="radio" name="source_type">
 						<input class="preview-format control-input" id="id_htmltex" type="radio" name="source_type">
-						<label class="control-item " for="id_src" title="HTML with img-equations" data-result-as="src">html</label>
-						<label class="control-item " for="id_htmltex" title="HTML with raw LaTeX equations" data-result-as="htmltex">+
+						<label class="control-item " for="id_src" title="{{ _('HTML with img-equations') }}" data-result-as="src">Html</label>
+						<label class="control-item " for="id_htmltex" title="{{ _('HTML with raw LaTeX equations') }}" data-result-as="htmltex">+
 							<svg style="vertical-align: middle; fill: white" height="16" viewBox="1872.02 1482.97 29.568 10.0474" width="49.465" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 								<defs>
 									<path d="M4.08-6.6c.098-.393.13-.513 1.156-.513.328 0 .415 0 .415-.207 0-.13-.12-.13-.174-.13-.36 0-1.254.032-1.614.032-.327 0-1.124-.033-1.45-.033-.077 0-.208 0-.208.217 0 .12.098.12.305.12.02 0 .228 0 .414.022.196.02.294.032.294.174 0 .043-.01.076-.043.207L1.713-.85c-.11.425-.13.512-.993.512-.185 0-.295 0-.295.218 0 .12.1.12.295.12h5.05c.263 0 .274 0 .34-.185l.86-2.357c.045-.12.045-.142.045-.153 0-.043-.033-.12-.13-.12s-.11.055-.187.23c-.37 1.003-.85 2.247-2.738 2.247H2.935c-.153 0-.175 0-.24-.01-.11-.012-.142-.023-.142-.11 0-.033 0-.055.054-.25L4.08-6.6z" id="g0-76" />
@@ -37,12 +37,12 @@
 					</div>
 					<div>
 						<input class="preview-format control-input" id="id_mdp" type="radio" name="source_type">
-						<label class="control-item " for="id_mdp" title="Markdown as in input" data-result-as="mdp">md</label>
+						<label class="control-item " for="id_mdp" title="{{ _('Markdown, same as in the input') }}" data-result-as="mdp">Markdown</label>
 						<input class="preview-format control-input" id="id_md" type="radio" name="source_type">
-						<label class="control-item " for="id_md" title="Markdown with img-equations" data-result-as="md">+ img</label>
+						<label class="control-item " for="id_md" title="{{ _('Markdown with imgage equations') }}" data-result-as="md">+ Image</label>
 					</div>
 					<input class="preview-format control-input" id="id_habr" type="radio" name="source_type">
-					<label class="control-item " for="id_habr" title="A kind of HTML markup for habr.com" data-result-as="habr">H</label>
+					<label class="control-item " for="id_habr" title="{{ _('A kind of HTML markup for habr.com') }}" data-result-as="habr">H</label>
 				</div>
 			</div>
 			<div id="side_export">
