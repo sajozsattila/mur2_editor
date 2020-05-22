@@ -60,6 +60,10 @@ body h5 {
     height: 1.6em;
     width: max-content;
 }
+.control-item:hover {
+    /* */
+    border-bottom: solid white 1px;
+}
 
 .topmenu {
     display: flex;    
@@ -188,10 +192,10 @@ body h5 {
     width: calc(80% - 25rem)
 }
 
-.control-item {
+#maintext .control-item {
     color: black;    
 }
-.control-item:hover {
+#maintext .control-item:hover {
     /* */
     border-bottom: solid black 1px;
 }
