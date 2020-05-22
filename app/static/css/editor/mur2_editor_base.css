@@ -489,12 +489,8 @@ textarea {
 }
 
 /* search */
-#search {
-    display: none;
-}
 #search input {
     width: 100%;
-    height: 2em;
 }
 #id_search:checked ~ #search {
     display: inline-block;

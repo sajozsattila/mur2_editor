@@ -15,18 +15,21 @@
                     <a class="toolbar-button control-item "  title={{ _("Sign out") }} href="{{ url_for('auth.logout') }}">{{ _("Sign out") }}</a> 
                     {% else %}
                     <a  class="toolbar-button control-item " title={{ _("Sign In") }} href="{{ url_for('auth.login') }}">{{ _("Sign In") }}</a>
-                    {% endif %}                
+                    {% endif %} 
+                    
+                    {% if not current_user.is_anonymous and g.search_form %}
+                    <div id="search"  >
+                        <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+                            <div class="form-group">
+                                {{ g.search_form.q(size=20, class='form-control',
+                                placeholder=g.search_form.q.label.article) }}
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
                 </div> <!-- mur2menu -->
                 
-                {% if not current_user.is_anonymous and g.search_form %}
-                <div id="search"  >
-                    <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
-                        <div class="form-group">
-                            {{ g.search_form.q(size=20, class='form-control',
-                            placeholder=g.search_form.q.label.article) }}
-                        </div>
-                    </form>
-                </div>
+                
                 <!--
                 <label class="control-item" for="id_search" title={{ _("Search") }} >
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19.7px" height="19.7px" color="white" viewBox="0 0 19.7 19.7" style="enable-background:new 0 0 19.7 19.7;" xml:space="preserve" class="nav-mag">
@@ -38,7 +41,7 @@
                     </svg>
                 </label>
                 -->
-               {% endif %}
+               
                 
                 
             </div>            
