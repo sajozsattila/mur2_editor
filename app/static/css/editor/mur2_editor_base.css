@@ -548,7 +548,14 @@ textarea {
     text-align: right;    
 }
 
+/* 
+*********************************
+* Settings for the preview side 
+*/
 
+#article_main img {
+    max-width: 100%;
+}
 
 /* iPad in landscape */
 @media only screen
