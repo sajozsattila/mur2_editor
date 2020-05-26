@@ -1,150 +1,239 @@
-body, button input, select, textarea {
+body, button input, select {
   /* */
     font-family: lora, sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.4;      /* was 1.88*/
+    letter-spacing: 0;
     font-feature-settings: "liga" 1, "frac" 1;
-    scrollbar-color: #c62641 white;
-    letter-spacing: -0.0125em;
-    word-spacing: -0.1em;
+    scrollbar-color: #c62641 white;   
 }
 
-/* body, button input, select, textarea {
-  font-family: lora, sans-serif; Was Domine
-  line-height: 1.2;              Was 1.88
-  letter-spacing: -0.0125em;     Was 0
-  word-spacing: -0.1em;
-  font-size: 1em;
-}*/
-
-body {
-  display: flex;  
-  flex-flow: row wrap;
-  text-align: left;
+body h1,
+body h2,
+body h3,
+body h4,
+body h5 {
+    font-family: 'Ibarra Real Nova', serif;
+    position: relative; 
+    top: 0.2em
+}
+body h1 {
+    font-size: 2.488em;
+}
+.result-as-html h1 .svg-preview{
+    vertical-align: calc( 2.488 * var(--latex_align) ) !important ; 
+    height:  calc( 2.488 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
+body h2 {
+    font-size: 2.074em;
+}
+.result-as-html h2 .svg-preview{
+    vertical-align: calc( 2.074 * var(--latex_align) ) !important ; 
+    height:  calc( 2.074 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
+body h3 {
+    font-size: 1.728em;
+}
+.result-as-html h3 .svg-preview{
+    vertical-align: calc( 1.728 * var(--latex_align) ) !important ; 
+    height:  calc( 1.728 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
+body h4 {
+    font-size: 1.44em;
+}
+.result-as-html h4 .svg-preview{
+    vertical-align: calc( 1.44 * var(--latex_align) ) !important ; 
+    height:  calc( 1.44 * var(--latex_height) ) !important ;
+    width: auto !important ;    
+}
+body h5 {
+    font-size: 1.2em;
+}
+.result-as-html h5 .svg-preview{
+    vertical-align: calc( 1.2 * var(--latex_align) ) !important ; 
+    height:  calc( 1.2 * var(--latex_height) ) !important ;
+    width: auto !important ;    
 }
 
-body > * {
-  padding: 0.625em;
-  flex: 1 100%;
-}
-
-#maintext {
-  position: fixed;
-  text-align: left;
-  padding-left: 1em;
-  top: 3em;
-}
-
-.normalfontweight {
-    font-weight: 100;
-}
-
-a, a:link, #mur2menu a:visited  {
-    text-decoration: none;
-}
-
-.control-item {
- color: white;
-}
-
-#topmenu-left {
-    float: left;   
-    margin: 0 1em;
-}
-
-#topmenu-right {
-    float: right;   
-    margin: 1em 1em;
-    cursor: pointer;
-}
-
-input[type=text], input[type=submit], input[type=password] {
-  box-sizing: border-box;
-  background-color: white;
-  border: medium solid whitesmoke;
-  border-radius: 0.25em;
-  padding: 0.1875em 0.1875em
-  text-align: left;
-}
-
-input[type=submit], input[type=file] {
-  cursor: pointer;
-}
-
-/*.menufont {
-    font-size: 1.125em;
-    font-family: 'Josefin Sans'; 
-}*/
-
-.topmenu {
-  display: flex;
-  position: fixed;
-  text-align: left;
-  background: black;               /* Was whitesmoke */
-  justify-content: space-between;
-  width: 100%;
-  left: 0;
-  top: 0;
-  height: 4em; 
-}
-
-.control-item {
-    color: white;
-}
-
-.toolbar-button:hover {
-  /* background: whitesmoke;                  Was rgba(247,247,247,.5)*/
-  transition: all .15s ease-in-out;
-}
-
-.toolbar-button, a {
-  text-decoration: none;
-  padding-right: 0.5em;
-}
-
-.main_content {
-  text-align: left;
-  background: white;
+#horizontal_box {
+    width: 100%;
+    display: flex ;
+    flex-direction: column;
+    /* */
 }
 
 #msg {
-  background: whitesmoke;
+    position: fixed;   
+    width: 100%;
+    left: 0;
+    /* it is the bottom of the .topmenu (margin+padding+height) */
+    top: 3.5em;
+    height: 2em;    
+    overflow: hidden;
+    /* */
+    padding-left: 2em;
 }
 
-#msg ul, li {
-  text-align: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: red;
+
+/* switch off the radio bottom display next to the toolbar bottoms */
+.control-input {
+    display: none;
+    /* */
 }
+
+.control-item {
+    color: #fff;
+    background-clip: padding-box;
+    min-width: 1.8em;
+    padding: 0.3rem 2rem 0.3rem 0;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    /* */
+    fill: white;
+    text-decoration: none;
+    text-align: left;
+    height: 1.6em;
+    width: max-content;
+}
+.control-item:hover {
+    /* */
+    border-bottom: solid white 1px;
+}
+
+.topmenu {
+    display: flex;    
+    justify-content: space-between;
+    
+    display: -webkit-flex ; /* for 9 > Safari */
+    -webkit-justify-content: space-between;
+
+    justify-content: -webkit-space-between;/* for Safari */
+    
+    position: fixed;    
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 3.5rem;    
+    /* */    
+    background-color: black;
+    padding-left: 2em;
+    padding-top: 0.7em;
+}
+
+#side_menu {
+    min-width: 25rem;
+    max-width: 35rem;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    /* same possition than .undermain_menu*/
+    top: 0;
+    height: 100% ;
+    /* */
+    background-color: #c62641;
+    padding-top: 0.7rem;
+    padding-left: 1rem;
+    padding-right: 0.7rem;
+    flex-direction: column;
+    z-index: 20;
+    justify-content: space-between;
+    overflow: auto;
+    scrollbar-width: thin;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+}
+
+#maintext {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: fixed; 
+    left: 0;
+    /* the bottom of the #msg */
+    top: 5.5em;
+    height: calc(100% - 5.2em) ; 
+    padding-left: 1em;  
+    overflow: auto;
+    /* */
+    padding: 2em;
+    padding-top: 1ex;
+    padding-right: 0;
+}
+
+/* same as #side_top in editor css */
+#side_top{
+    display: flex;
+    flex-direction: column;
+}
+
+#mur2menutop {
+    /* */
+    width: calc( 100% + 1rem);
+    height: 2.8rem;
+    border-bottom: solid 1px white;
+    text-align: right;
+    position: relative;
+    left: -1rem;
+}
+#mur2menutop .control-item {
+    padding-right: 0;
+}
+
+.sidebarLinks {
+    padding-bottom: 1rem;
+    padding-left: 0.61rem;  
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 #foot {
-  text-align: center;
-  background: white;
-}
-
-@media all and (min-width: 800px) {
-  #maintext { flex: 3 0px; }
-  #msg          { order: 1; } 
-  #maintext { order: 2; }
-  #foot         { order: 4; }
-}
-
-/* File upload custom
-input[type="file"] {
-    display: none;
-} */
-
-/* hide the M form the top menu 
-   this settings should not be on the editor css
-*/
-#mur2menu #id_choicemenu {
-    display: none;
+    width: 100%;
+    height: 2em;
+    text-align: left;
     /* */
+    font-variant: normal;
+    padding-left: 0.61rem;
+    padding-bottom: 0.61rem;
 }
-#mur2menu #id_choicemenu + .control-item {
+#foot a {
+    display: inline-block;
+}
+
+
+/* search */
+#id_search ~ #search {
     display: none;
-    /* */
+}
+#id_search:checked ~ #search {
+    display: flex;
+}
+
+#id_search:checked + #searchopen {
+    display: none;
+}
+
+#search {
+    width: 100%;
+}
+#search:hover {
+    border-bottom: none;
+    
+}
+#search form {
+    margin-right: 2rem;
+    width: 100%;
+}
+#search input {
+    width: 100%;
+}
+#searchclose { 
+    text-align: center;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }

@@ -1,13 +1,4 @@
-body, button input, select {
-  /* */
-    font-family: lora, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.4;      /* was 1.88*/
-    letter-spacing: 0;
-    font-feature-settings: "liga" 1, "frac" 1;
-    scrollbar-color: #c62641 white;   
-}
+
 
 .normalfont {
     font-family: lora, sans-serif;
@@ -20,72 +11,7 @@ body, button input, select {
     letter-spacing: 1px;
 }
 
-body h1,
-body h2,
-body h3,
-body h4,
-body h5 {
-    font-family: 'Ibarra Real Nova', serif;
-    position: relative; 
-    top: 0.2em
-}
-body h1 .svg-preview,
-body h2 .svg-preview,
-body h3 .svg-preview,
-body h4 .svg-preview,
-body h5 .svg-preview{
-    height: 1ex;
-    width: auto;    
-}
 
-body h1 {
-    font-size: 2.488em;
-}
-.result-as-html h1 .svg-preview{
-    vertical-align: calc( 2.488 * var(--latex_align) ) !important ; 
-    height:  calc( 2.488 * var(--latex_height) ) !important ;
-    width: auto !important ;    
-}
-body h2 {
-    font-size: 2.074em;
-}
-.result-as-html h2 .svg-preview{
-    vertical-align: calc( 2.074 * var(--latex_align) ) !important ; 
-    height:  calc( 2.074 * var(--latex_height) ) !important ;
-    width: auto !important ;    
-}
-body h3 {
-    font-size: 1.728em;
-}
-.result-as-html h3 .svg-preview{
-    vertical-align: calc( 1.728 * var(--latex_align) ) !important ; 
-    height:  calc( 1.728 * var(--latex_height) ) !important ;
-    width: auto !important ;    
-}
-body h4 {
-    font-size: 1.44em;
-}
-.result-as-html h4 .svg-preview{
-    vertical-align: calc( 1.44 * var(--latex_align) ) !important ; 
-    height:  calc( 1.44 * var(--latex_height) ) !important ;
-    width: auto !important ;    
-}
-body h5 {
-    font-size: 1.2em;
-}
-.result-as-html h5 .svg-preview{
-    vertical-align: calc( 1.2 * var(--latex_align) ) !important ; 
-    height:  calc( 1.2 * var(--latex_height) ) !important ;
-    width: auto !important ;    
-}
-
-
-#horizontal_box {
-    width: 100%;
-    display: flex ;
-    flex-direction: column;
-    /* */
-}
 
 #article_input_side,
 #article_preview_side {
@@ -165,19 +91,9 @@ body h5 {
     background-color: black;
     padding-left: 2em;
     padding-top: 0.7em;
+    padding-right: 0.7rem;
 }
 
-#msg {
-    position: fixed;   
-    width: 100%;
-    left: 0;
-    /* it is the bottom of the .topmenu (margin+padding+height) */
-    top: 3.5em;
-    height: 2em;    
-    overflow: hidden;
-    /* */
-    padding-left: 2em;
-}
 
 #maintext,
 #container-block-source, 
@@ -191,7 +107,7 @@ body h5 {
     top: 5.5em;
     height: calc(100% - 5.2em) ; 
     padding-left: 1em;  
-    overflow: hidden;
+    overflow: auto;
     /* */
     padding: 2em;
     padding-top: 1ex;
@@ -367,7 +283,7 @@ textarea {
 #id_hide_input.inputoff + .far.fa-arrow-alt-circle-left, 
 #id_hide_preview.previewoff + .far.fa-arrow-alt-circle-right, 
 #id_show_title.titleon + .far.fa-arrow-alt-circle-down, 
-#id_sidemenu + .fas.fa-bars,
+#menu.side_menu #editor_toolbar .fas.fa-bars,
 #id_syntax_hl + .fab.fa-markdown {
     color: #C62641;
 }
@@ -404,7 +320,6 @@ textarea {
 .toolbar {
     color: #fff;
     background-clip: padding-box;
-    min-width: 1.8em;
     padding: 0.3rem ;
     cursor: pointer;
     display: inline-block;
@@ -489,16 +404,37 @@ textarea {
 }
 
 /* search */
+#id_search ~ #search {
+    display: none;
+}
+#id_search:checked ~ #search {
+    display: flex;
+}
+
+#id_search:checked + #searchopen {
+    display: none;
+}
+
+#search {
+    width: 100%;
+}
+#search:hover {
+    border-bottom: none;
+    
+}
+#search form {
+    margin-right: 2rem;
+    width: 100%;
+}
 #search input {
     width: 100%;
 }
-#id_search:checked ~ #search {
-    display: inline-block;
-    width: 100%;
+#searchclose { 
+    text-align: center;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }
-#id_search:checked + #mur2menutop {
-    display: none;
-}
+
+/* top menu */
 #mur2menutop {
     /* */
     width: calc( 100% + 1rem);
@@ -511,6 +447,7 @@ textarea {
 #mur2menutop .control-item {
     padding-right: 0;
 }
+
 /* markdown cheatsheet */
 #markdown_cheat_sheet {
     display: none;
@@ -555,6 +492,11 @@ textarea {
 
 #article_main img {
     max-width: 100%;
+}
+
+#article_main p,
+#article_main li {
+    max-width: 40rem;
 }
 
 /* iPad in landscape */

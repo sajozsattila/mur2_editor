@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html ontouchmove>
+<html lang="{{ language }}">
     <head>
+        <title>μr² {{ _('editor')}}</title>
+        
         <!-- Google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">    
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&family=Roboto&display=swap" rel="stylesheet">   
         <!-- Adobe fonts -->
-        <script>
-            (function(d) {
-                var config = {
-                    kitId: 'qka3mwm',
-                    scriptTimeout: 3000,
-                    async: true
-                },
-                    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-  })(document);
-        </script>
-
+        <link rel="stylesheet" href="https://use.typekit.net/vri2wty.css">
         
         <!-- Font awesome -->
         <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>
@@ -103,7 +95,7 @@
                  </div>
                  <div>
                  <!-- show mur2 menu -->
-                 <input class="choice_menu control-input" id="id_side_menu" type="radio" name="source_type" >
+                 <!--<input class="choice_menu control-input" id="id_side_menu" type="radio" name="source_type" >-->
                  <label class="toolbar fontawsome fas fa-bars" for="id_side_menu" title="{{ _('Show side menu') }}"  ></label>
                  </div>
              </div><!-- choicemenu -->
@@ -227,7 +219,7 @@
       <script src="/static/js/editor/parser.js"></script>
       <script src="/static/js/mur2_editor_utils.js"></script>
       <script src="/static/js/mur2_editor.js"></script>
-            <script type="text/javascript">
+            <script>
         // retrieve the access token from the URL
         var params = window.location.hash.substr(1),
             token = params.substr( params.indexOf( 'access_token' ) )

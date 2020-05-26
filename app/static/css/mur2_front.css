@@ -1,0 +1,59 @@
+
+/**********************************
+ * Aboves are same as in editor css
+ * Below is different
+ */
+
+#side_menu {
+    display: flex;
+    width: 25rem;
+}
+
+.topmenu {
+    height: 2.8rem;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+#mur2menutop .toolbar {
+    opacity: 0;
+}
+
+#maintext {
+    flex-direction: column;
+    padding-left: 20%;
+    width: calc(80% - 25rem)
+}
+
+#maintext .control-item {
+    color: black;    
+}
+#maintext .control-item:hover {
+    /* */
+    border-bottom: solid black 1px;
+}
+
+/* user profile */
+#user_profil_overview {
+    display: flex;
+    flex-direction: row;
+}
+#user_profil_overview h1{
+    top: -1.2rem;
+}
+#avator {
+    height: 10rem;
+    width: 10rem;
+}
+
+#article_title ,
+#article_title p{
+    display: inline;
+}
+td a.control-item {
+    height: unset;
+    fill: black;
+}
+#article_abstract p {
+    padding-left: 1.61rem;
+}
