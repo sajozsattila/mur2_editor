@@ -1,0 +1,18 @@
+body, button input, select {
+  /* */
+    font-family: lora, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5; 
+    letter-spacing: 0;
+    font-feature-settings: "liga" 1, "frac" 1; 
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5 {
+    font-family: 'Ibarra Real Nova', serif;
+    line-height: 1.3; 
+}

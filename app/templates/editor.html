@@ -3,15 +3,7 @@
     <head>
         <title>μr² {{ _('editor')}}</title>
         
-        <!-- Google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">    
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&family=Roboto&display=swap" rel="stylesheet">   
-        <!-- Adobe fonts -->
-        <link rel="stylesheet" href="https://use.typekit.net/vri2wty.css">
-        
-        <!-- Font awesome -->
-        <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>
+
         <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
         <!-- style -->
         
@@ -40,10 +32,12 @@
         <!-- <link rel="stylesheet" href="/static/css/mur2.css"> -->
         <link rel="stylesheet" href="/static/css/editor/TextareaDecorator.css">
         <link rel="stylesheet" href="/static/css/editor/solarized-light.css">
+        <link rel="stylesheet" href="/static/css/mur2.css">
         <link rel="stylesheet" href="/static/css/editor/mur2_editor_base.css">
         <link rel="stylesheet" href="/static/css/editor/source_md_highlight.css">
-        <link rel="stylesheet" href="/static/css/editor/zh.css">
-
+        
+        {% include 'language_selector.html' %}
+        
     </head>
     <body class="result-as-html {{ language }}" >
         <div id="horizontal_box"> <!-- content -->     

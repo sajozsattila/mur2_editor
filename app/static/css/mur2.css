@@ -1,11 +1,6 @@
 body, button input, select {
-  /* */
-    font-family: lora, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.4;      /* was 1.88*/
-    letter-spacing: 0;
-    font-feature-settings: "liga" 1, "frac" 1;
+    /* */
+    color: #333;
     scrollbar-color: #c62641 white;   
 }
 
@@ -14,7 +9,6 @@ body h2,
 body h3,
 body h4,
 body h5 {
-    font-family: 'Ibarra Real Nova', serif;
     position: relative; 
     top: 0.2em
 }
@@ -236,4 +230,25 @@ body h5 {
 #searchclose { 
     text-align: center;
     padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+}
+
+/* 
+*********************************
+* Settings for the preview side 
+*/
+
+#article_main img {
+    max-width: 100%;
+}
+
+#article_main p,
+#article_main li {
+    max-width: 45rem;
+}
+
+#article_main a {
+    background: 0 0;
+    color: #254c79;
+    transition: all .2s;
+    text-decoration: underline;
 }

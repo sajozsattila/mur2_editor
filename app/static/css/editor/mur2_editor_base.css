@@ -72,30 +72,7 @@
 }
 
 /* the main objcet of the page */
-/* it is a class as there is multiple type of menu */
-.topmenu {
-    display: flex;    
-    justify-content: space-between;
-    
-    display: -webkit-flex ; /* for 9 > Safari */
-    -webkit-justify-content: space-between;
 
-    justify-content: -webkit-space-between;/* for Safari */
-    
-    position: fixed;    
-    width: 100%;
-    left: 0;
-    top: 0;
-    height: 3.5em;    
-    /* */    
-    background-color: black;
-    padding-left: 2em;
-    padding-top: 0.7em;
-    padding-right: 0.7rem;
-}
-
-
-#maintext,
 #container-block-source, 
 #container-block-result {
     width: 100%;
@@ -114,28 +91,6 @@
     padding-right: 0;
 }
 
-#side_menu {
-    min-width: 25rem;
-    max-width: 35rem;
-    height: 100%;
-    position: fixed;
-    right: 0;
-    /* same possition than .undermain_menu*/
-    top: 0;
-    height: 100% ;
-    /* */
-    background-color: #c62641;
-    padding-top: 0.7rem;
-    padding-left: 1rem;
-    padding-right: 0.7rem;
-    flex-direction: column;
-    z-index: 20;
-    justify-content: space-between;
-    overflow: auto;
-    scrollbar-width: thin;
-    letter-spacing: 1px;
-    font-variant: small-caps;
-}
 
 #mcs,
 #side_export {
@@ -157,20 +112,6 @@
     transition: all 1s;
 }
 
-#side_top{
-    display: flex;
-    flex-direction: column;
-}
-
-#foot {
-    width: 100%;
-    height: 2em;
-    text-align: left;
-    /* */
-    font-variant: normal;
-    padding-left: 0.61rem;
-    padding-bottom: 0.61rem;
-}
 
 .ldt-pre,
 textarea {
@@ -289,30 +230,7 @@ textarea {
 }
 
 
-/* switch off the radio bottom display next to the toolbar bottoms */
-.control-input {
-    display: none;
-    /* */
-}
-
-.control-item {
-    color: #fff;
-    background-clip: padding-box;
-    min-width: 1.8em;
-    padding: 0.3rem 2rem 0.3rem 0;
-    cursor: pointer;
-    display: inline-block;
-    box-sizing: border-box;
-    /* */
-    fill: white;
-    text-decoration: none;
-    text-align: left;
-    height: 1.6em;
-    width: max-content;
-}
-
-.toolbar:hover ,
-.control-item:hover {
+.toolbar:hover {
     /* */
     border-bottom: solid white 1px;
 }
@@ -388,64 +306,12 @@ textarea {
     /* */
 }
 
-.sidebarLinks {
-    padding-bottom: 1rem;
-    padding-left: 0.61rem;  
-    display: flex;
-    flex-direction: column;
-}
-
 .headsidebar {
     position: relative;
     left: -0.61rem;
     border-left: 1px white solid;
     border-top: 1px solid white;
     padding-left: 0.61rem;
-}
-
-/* search */
-#id_search ~ #search {
-    display: none;
-}
-#id_search:checked ~ #search {
-    display: flex;
-}
-
-#id_search:checked + #searchopen {
-    display: none;
-}
-
-#search {
-    width: 100%;
-}
-#search:hover {
-    border-bottom: none;
-    
-}
-#search form {
-    margin-right: 2rem;
-    width: 100%;
-}
-#search input {
-    width: 100%;
-}
-#searchclose { 
-    text-align: center;
-    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
-}
-
-/* top menu */
-#mur2menutop {
-    /* */
-    width: calc( 100% + 1rem);
-    height: 2.8rem;
-    border-bottom: solid 1px white;
-    text-align: right;
-    position: relative;
-    left: -1rem;
-}
-#mur2menutop .control-item {
-    padding-right: 0;
 }
 
 /* markdown cheatsheet */
@@ -485,19 +351,7 @@ textarea {
     text-align: right;    
 }
 
-/* 
-*********************************
-* Settings for the preview side 
-*/
 
-#article_main img {
-    max-width: 100%;
-}
-
-#article_main p,
-#article_main li {
-    max-width: 40rem;
-}
 
 /* iPad in landscape */
 @media only screen
@@ -534,6 +388,4 @@ and (orientation : portrait) {
         height: calc(100% - 6em);
     }
 }
-
-
 
