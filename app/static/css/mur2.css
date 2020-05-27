@@ -4,16 +4,9 @@ body, button input, select {
     scrollbar-color: #c62641 white;   
 }
 
-body h1,
-body h2,
-body h3,
-body h4,
-body h5 {
-    position: relative; 
-    top: 0.2em
-}
 body h1 {
     font-size: 2.488em;
+    line-height: 3.2rem;
 }
 .result-as-html h1 .svg-preview{
     vertical-align: calc( 2.488 * var(--latex_align) ) !important ; 
@@ -22,6 +15,7 @@ body h1 {
 }
 body h2 {
     font-size: 2.074em;
+    line-height: 2.5275rem;
 }
 .result-as-html h2 .svg-preview{
     vertical-align: calc( 2.074 * var(--latex_align) ) !important ; 
@@ -30,6 +24,7 @@ body h2 {
 }
 body h3 {
     font-size: 1.728em;
+    line-height: 2.5275rem;
 }
 .result-as-html h3 .svg-preview{
     vertical-align: calc( 1.728 * var(--latex_align) ) !important ; 
@@ -38,6 +33,7 @@ body h3 {
 }
 body h4 {
     font-size: 1.44em;
+    line-height: 1.685rem;
 }
 .result-as-html h4 .svg-preview{
     vertical-align: calc( 1.44 * var(--latex_align) ) !important ; 
@@ -46,6 +42,7 @@ body h4 {
 }
 body h5 {
     font-size: 1.2em;
+    line-height: 1.685rem;
 }
 .result-as-html h5 .svg-preview{
     vertical-align: calc( 1.2 * var(--latex_align) ) !important ; 
@@ -150,13 +147,14 @@ body h5 {
     left: 0;
     /* the bottom of the #msg */
     top: 5.5em;
-    height: calc(100% - 5.2em) ; 
+    height: calc(100% - 10.5em) ; 
     padding-left: 1em;  
     overflow: auto;
     /* */
     padding: 2em;
     padding-top: 1ex;
     padding-right: 0;
+    scrollbar-width: thin;
 }
 
 /* same as #side_top in editor css */
@@ -200,6 +198,13 @@ body h5 {
     display: inline-block;
 }
 
+.separator {
+    border-top: solid gray 1px;
+    margin-left: 0%;
+    margin-right: 60%;
+    min-height: calc( 1.685rem - 1px);
+    margin-top: 1.685rem;
+}
 
 /* search */
 #id_search ~ #search {
@@ -239,11 +244,24 @@ body h5 {
 
 #article_main img {
     max-width: 100%;
+    padding-top: 1.685rem;;
+    padding-bottom: 1.685rem;
+}
+
+div#article_abstract, 
+#article_main p,
+#article_main li,
+#article_main h1 {
+    max-width: 41rem;    
 }
 
 #article_main p,
 #article_main li {
-    max-width: 45rem;
+    margin: auto 0;
+}
+
+#article_main p + p {
+    text-indent: 1.685rem;;
 }
 
 #article_main a {
@@ -251,4 +269,29 @@ body h5 {
     color: #254c79;
     transition: all .2s;
     text-decoration: underline;
+}
+
+#article_main blockquote p {
+    hanging-punctuation: first; /* this should wokr with safary only */
+}
+
+/* p after block LaTeX code */
+#article_main p[style] + p {
+    text-indent: 0rem;
+}
+/* block LaTeX codes */
+#article_main p[style] {
+    padding-top: 1.685rem;;
+    padding-bottom: 1.685rem;;
+}
+
+#article_main p + ul, 
+#article_main p + ol {
+    margin-top: 1.685rem;
+    margin-bottom: 1.685rem;
+}
+
+body h1#article_title{
+    font-size: 2.986em;
+    line-height: 5.055rem;
 }

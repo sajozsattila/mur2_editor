@@ -283,18 +283,6 @@ textarea {
     scrollbar-width: thin;
 }
 
-#article_abstract {
-    margin-bottom: 2rem;
-    text-align: left;
-}
-
-.separator {
-    border-top: solid gray 1px;
-    margin-left: 0%;
-    margin-right: 60%;
-    min-height: 1em;
-    margin-bottom: 1em;
-}
 
 .notfocused {
     color: grey;

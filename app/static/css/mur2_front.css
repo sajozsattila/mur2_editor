@@ -22,7 +22,7 @@
 #maintext {
     flex-direction: column;
     padding-left: 20%;
-    width: calc(80% - 25rem)
+    width: calc(80% - 30rem)
 }
 
 #maintext .control-item {
@@ -46,14 +46,23 @@
     width: 10rem;
 }
 
-#article_title ,
-#article_title p{
-    display: inline;
-}
 td a.control-item {
     height: unset;
     fill: black;
 }
-#article_abstract p {
-    padding-left: 1.61rem;
+
+
+#user_articles {
+    display: flex;
+    justify-content: space-between;    
+    display: -webkit-flex ; /* for 9 > Safari */
+    -webkit-justify-content: space-between;   
+    justify-content: -webkit-space-between;/* for Safari */
+    margin-bottom: 1rem;
+}
+#article_action {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 1rem;
 }
