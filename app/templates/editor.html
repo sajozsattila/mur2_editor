@@ -41,19 +41,19 @@
     </head>
     <body class="result-as-html {{ language }}" >
         <div id="horizontal_box"> <!-- content -->     
-         
-          <div id="msg" >
-            <!-- print msg -->
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-               {% for message in messages %}
-               <li>{{ message }}</li>
-               {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-         </div><!-- end msg -->          
+            <input class="choice_menu control-input" id="id_side_menu" type="checkbox" name="source_type" > 
+            <div id="msg" >
+                <!-- print msg -->
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div><!-- end msg -->          
           
       <div id="maintext" >
          <div id="article_input_side" >

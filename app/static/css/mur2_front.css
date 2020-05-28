@@ -21,8 +21,8 @@
 
 #maintext {
     flex-direction: column;
-    padding-left: 20%;
-    width: calc(80% - 30rem)
+    padding-left: 34.315rem;
+    width: calc(100% - 27.5275rem - 34.315rem);
 }
 
 #maintext .control-item {
@@ -65,4 +65,142 @@ td a.control-item {
     flex-direction: column;
 
     margin-left: 1rem;
+}
+
+/*
+ ****************************************
+ * special setting for reader 
+ */
+.main\.reader #side_menu,
+.main\.user #side_menu {  
+    color: #666;
+    background-color: white;
+}
+
+.main\.user #side_menu .control-item,
+.main\.reader #side_menu .control-item {
+    color: #666;
+}
+
+.main\.user #side_menu .control-item:hover,
+.main\.reader #side_menu .control-item:hover {
+    /* */
+    border-bottom: solid #666 1px;
+}
+
+.main\.user #side_menu #mur2menutop,
+.main\.reader #side_menu #mur2menutop {
+    /* */
+    border-bottom: solid 1px #666;
+}
+
+.main\.user #side_menu #side_top,
+.main\.reader #side_menu #side_top {
+    border-left: 1px solid #666;
+}
+
+.main\.user .topmenu,
+.main\.reader .topmenu {
+    border: none;
+}
+
+.main\.user #maintext,
+.main\.reader #maintext {
+    direction: rtl;
+}
+
+.main\.user #article_main, 
+.main\.reader #article_main {
+    direction: ltr;
+}
+
+
+
+/****************************************
+ * Media settings
+ */
+
+/* phones */
+@media only screen 
+and (min-device-width : 300px) 
+and (max-device-width : 767px){ 
+    #maintext {
+        padding-left: 1.685rem;
+        width: calc(100% - 1.685rem - 1.685rem);
+        z-index: 2;
+    }     
+    #side_menu {
+        width: calc(100% - 1.685rem);
+        min-width: calc(100% - 1.685rem);  
+        z-index: 1;
+        font-size: 2rem;
+    }
+    
+    #mur2menutop .toolbar {
+        opacity: 1;        
+    }
+    
+    #mur2menu_link {
+        color: rgba(0,0,0,0) ;
+    }
+    
+    #id_side_menu:checked + #side_menu {
+        z-index: 3;
+    }
+}
+
+/* 5/4 desktop */
+@media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
+    #maintext {
+        padding-left: 15.25rem;
+        width: calc(100% - 17.5275rem - 15.25rem);
+    }     
+    #side_menu {
+        width: 15rem;
+        min-width: 15rem;
+    }    
+}
+
+
+/* iPad in landscape */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    #maintext {
+        padding-left: 3.37rem;
+        width: calc(100% - 17.5275rem - 3.37rem);
+    }     
+    #side_menu {
+        width: 15rem;
+        min-width: 15rem;
+    }    
+    
+}
+
+/* iPad  in portrait */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    #maintext {
+        padding-left: 1.685rem;
+        width: calc(100% - 17.5275rem - 1.685rem);
+    }     
+    #side_menu {
+        width: 15rem;
+        min-width: 15rem;
+    }
+}
+
+@media only screen and (max-width: 900px), 
+(height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape) {
+    #maintext {
+        padding-left: 15.25rem;
+        width: calc(100% - 17.5275rem - 15.25rem);
+    }     
+    #side_menu {
+        width: 15rem;
+        min-width: 15rem;
+    }       
 }

@@ -20,7 +20,7 @@ msgstr ""
 
 #: app/__init__.py:26
 msgid "Please log in to access this page."
-msgstr "请登录查看次页"
+msgstr "请登录查看此页"
 
 #: app/auth/email.py:12
 msgid "Reset Your Password"
@@ -36,7 +36,7 @@ msgstr "密码"
 
 #: app/auth/forms.py:11
 msgid "Remember Me"
-msgstr "记住"
+msgstr "记住我"
 
 #: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/base_menu.html:21
 #: app/templates/base_menu_new.html:17
@@ -145,11 +145,11 @@ msgstr "关闭菜单"
 
 #: app/templates/base_menu_new.html:5
 msgid "Close Side Menu"
-msgstr ""
+msgstr "关闭侧菜单"
 
 #: app/templates/base_menu_new.html:34
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: app/templates/edit_profile.html:15
 msgid "About me"
@@ -170,11 +170,11 @@ msgstr "尾注"
 
 #: app/templates/editor.html:75
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #: app/templates/editor.html:77
 msgid "Abstract"
-msgstr ""
+msgstr "摘要"
 
 #: app/templates/editor.html:102 app/templates/test.html:45
 msgid "Toolbar"
@@ -203,7 +203,7 @@ msgstr "语法凸显"
 
 #: app/templates/editor.html:135
 msgid "Hide input"
-msgstr ""
+msgstr "隐藏输入"
 
 #: app/templates/editor.html:138 app/templates/test.html:75
 msgid "Show title and abstract"
@@ -219,7 +219,7 @@ msgstr "文件头"
 
 #: app/templates/editor.html:147 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
-msgstr ""
+msgstr "强调"
 
 #: app/templates/editor.html:150 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
@@ -265,31 +265,31 @@ msgstr ""
 
 #: app/templates/editor_side_menu.html:10
 msgid "Preview"
-msgstr ""
+msgstr "预览"
 
 #: app/templates/editor_side_menu.html:15
 msgid "HTML with img-equations"
-msgstr ""
+msgstr "HTML图像方程式"
 
 #: app/templates/editor_side_menu.html:16
 msgid "HTML with raw LaTeX equations"
-msgstr ""
+msgstr "HTML raw LaTex方程式"
 
 #: app/templates/editor_side_menu.html:40
 msgid "Markdown, same as in the input"
-msgstr ""
+msgstr "Markdown,与输入相同"
 
 #: app/templates/editor_side_menu.html:42
 msgid "Markdown with imgage equations"
-msgstr ""
+msgstr "Markdown图像方程式"
 
 #: app/templates/editor_side_menu.html:42
 msgid "Image"
-msgstr ""
+msgstr "图像"
 
 #: app/templates/editor_side_menu.html:45
 msgid "A kind of HTML markup for habr.com"
-msgstr ""
+msgstr "HTML markup habr.com"
 
 #: app/templates/editor_side_menu.html:51 app/templates/test.html:181
 msgid "Publish on Wordpress.com"
@@ -319,19 +319,19 @@ msgstr "连接到Wordpress.com"
 #: app/templates/editor_side_menu.html:59
 #: app/templates/editor_side_menu.html:68
 msgid "Connect"
-msgstr ""
+msgstr "连接"
 
 #: app/templates/editor_side_menu.html:63
 msgid "Publish on Medium.com"
-msgstr ""
+msgstr "在Medium.com上发表"
 
 #: app/templates/editor_side_menu.html:66
 msgid "Clear Medium.com cookies"
-msgstr ""
+msgstr "清除Medium.com上的cookies"
 
 #: app/templates/editor_side_menu.html:68
 msgid "Connect Medium.com"
-msgstr ""
+msgstr "连接到Medium.com"
 
 #: app/templates/editor_side_menu.html:74 app/templates/test.html:197
 msgid "Generate pdf"
@@ -339,7 +339,7 @@ msgstr "生成PDF"
 
 #: app/templates/editor_side_menu.html:79
 msgid "Generate ePUB"
-msgstr ""
+msgstr "生成ePUB"
 
 #: app/templates/editor_side_menu.html:83 app/templates/test.html:201
 msgid "Generate LaTeX"
@@ -347,158 +347,158 @@ msgstr "生成LaTex"
 
 #: app/templates/editor_side_menu.html:109
 msgid "Markdown cheatsheet"
-msgstr ""
+msgstr "Markdown cheatsheet"
 
 #: app/templates/md_cheatsheet.html:2
 msgid "Close Markdown cheatsheet"
-msgstr ""
+msgstr "关闭Markdown cheatsheet"
 
 #: app/templates/md_cheatsheet.html:3
 msgid "Headers"
-msgstr ""
+msgstr "标题"
 
 #: app/templates/md_cheatsheet.html:4
 msgid "Header 1"
-msgstr ""
+msgstr "标题1"
 
 #: app/templates/md_cheatsheet.html:5
 msgid "Header 2"
-msgstr ""
+msgstr "标题2"
 
 #: app/templates/md_cheatsheet.html:6
 msgid "Header 3"
-msgstr ""
+msgstr "标题3"
 
 #: app/templates/md_cheatsheet.html:7
 msgid "Styling"
-msgstr ""
+msgstr "式样"
 
 #: app/templates/md_cheatsheet.html:8
 msgid "emphasize"
-msgstr ""
+msgstr "强调"
 
 #: app/templates/md_cheatsheet.html:12
 msgid "Mistaken text."
-msgstr ""
+msgstr "错误的tsxt"
 
 #: app/templates/md_cheatsheet.html:14
 msgid "Quoted text."
-msgstr ""
+msgstr "引用的text"
 
 #: app/templates/md_cheatsheet.html:16
 msgid "is a liquid."
-msgstr ""
+msgstr "是水的化学名称"
 
 #: app/templates/md_cheatsheet.html:17
 msgid "is 1024."
-msgstr ""
+msgstr "是1024"
 
 #: app/templates/md_cheatsheet.html:19
 msgid "Lists"
-msgstr ""
+msgstr "列表"
 
 #: app/templates/md_cheatsheet.html:21 app/templates/md_cheatsheet.html:22
 #: app/templates/md_cheatsheet.html:23
 msgid "Item"
-msgstr ""
-
+msgstr "项目"
+ww
 #: app/templates/md_cheatsheet.html:25
 msgid "Item 1"
-msgstr ""
+msgstr "项目1"
 
 #: app/templates/md_cheatsheet.html:26
 msgid "Item 2"
-msgstr ""
+msgstr "项目2"
 
 #: app/templates/md_cheatsheet.html:28
 msgid "Item 52"
-msgstr ""
+msgstr "项目52"
 
 #: app/templates/md_cheatsheet.html:29
 msgid "Item 53"
-msgstr ""
+msgstr "项目53"
 
 #: app/templates/md_cheatsheet.html:31
 msgid "Links"
-msgstr ""
+msgstr "链接"
 
 #: app/templates/md_cheatsheet.html:32
 msgid "A link"
-msgstr ""
+msgstr "链接"
 
 #: app/templates/md_cheatsheet.html:33
 msgid "An image"
-msgstr ""
+msgstr "图像"
 
 #: app/templates/md_cheatsheet.html:33
 msgid "title"
-msgstr ""
+msgstr "标题"
 
 #: app/templates/md_cheatsheet.html:35
 msgid "Some `inline code`."
-msgstr ""
+msgstr "inline code"
 
 #: app/templates/md_cheatsheet.html:36
 msgid "An highlighted block"
-msgstr ""
+msgstr "强调的block"
 
 #: app/templates/md_cheatsheet.html:37
 msgid "This is block code"
-msgstr ""
+msgstr "这是一个block code"
 
 #: app/templates/md_cheatsheet.html:40
 msgid "Tables"
-msgstr ""
+msgstr "表格"
 
 #: app/templates/md_cheatsheet.html:44 app/templates/md_cheatsheet.html:45
 #: app/templates/md_cheatsheet.html:46
 msgid "True"
-msgstr ""
+msgstr "真实的"
 
 #: app/templates/md_cheatsheet.html:44 app/templates/md_cheatsheet.html:45
 #: app/templates/md_cheatsheet.html:46 app/templates/md_cheatsheet.html:47
 msgid "False"
-msgstr ""
+msgstr "错误的"
 
 #: app/templates/md_cheatsheet.html:50
-msgid "Column 1"
-msgstr ""
+msgid "Column"
+msgstr "专栏"
 
 #: app/templates/md_cheatsheet.html:50
 msgid "Column 2"
-msgstr ""
+msgstr "专栏2"
 
 #: app/templates/md_cheatsheet.html:50
 msgid "Column 3"
-msgstr ""
+msgstr "专栏3"
 
 #: app/templates/md_cheatsheet.html:52
 msgid "left-aligned"
-msgstr ""
+msgstr "左边对齐"
 
 #: app/templates/md_cheatsheet.html:52
 msgid "centered"
-msgstr ""
+msgstr "居中"
 
 #: app/templates/md_cheatsheet.html:52
 msgid "right-aligned"
-msgstr ""
+msgstr "右边对齐"
 
 #: app/templates/md_cheatsheet.html:54
 msgid "Footnotes"
-msgstr ""
+msgstr "脚注"
 
 #: app/templates/md_cheatsheet.html:55
 msgid "Some text with footnote."
-msgstr ""
+msgstr "有脚注的text"
 
 #: app/templates/md_cheatsheet.html:55
 msgid "The footnote"
-msgstr ""
+msgstr "脚注"
 
 #: app/templates/md_cheatsheet.html:56
 msgid "LaTeX math"
-msgstr ""
+msgstr "LaTex匹配"
 
 #: app/templates/md_cheatsheet.html:57
 msgid "Fundamentally, Euler's identity asserts that"
@@ -562,19 +562,19 @@ msgstr "新的文章"
 
 #: app/templates/auth/login.html:24
 msgid "Forgot Your Password?"
-msgstr ""
+msgstr "忘记密码？"
 
 #: app/templates/auth/login.html:25
 msgid "Click to Reset"
-msgstr ""
+msgstr "点击重置"
 
 #: app/templates/auth/login.html:28
 msgid "New User?"
-msgstr ""
+msgstr "新用户？"
 
 #: app/templates/auth/login.html:28
 msgid "Click to Register"
-msgstr ""
+msgstr "点击注册"
 
 #: app/templates/errors/404.html:4
 msgid "Not Found"
@@ -593,7 +593,7 @@ msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "已通知网站管理员。抱歉给您带来的不便"
 
 #~ msgid "[Microblog] Reset Your Password"
-#~ msgstr ""
+#~ msgstr "重置密码"
 
 #~ msgid "form.username.label"
 #~ msgstr ""
@@ -620,7 +620,7 @@ msgstr "已通知网站管理员。抱歉给您带来的不便"
 #~ msgstr "输出"
 
 #~ msgid "Connect"
-#~ msgstr ""
+#~ msgstr "连接"
 
 #~ msgid "Help"
 #~ msgstr "帮助"
@@ -635,5 +635,5 @@ msgstr "已通知网站管理员。抱歉给您带来的不便"
 #~ msgstr "编辑"
 
 #~ msgid "Some text with footnote"
-#~ msgstr ""
+#~ msgstr "一些有脚注的text"
 

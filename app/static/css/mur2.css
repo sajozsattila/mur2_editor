@@ -127,9 +127,9 @@ body h5 {
     height: 100% ;
     /* */
     background-color: #c62641;
-    padding-top: 0.7rem;
-    padding-left: 1rem;
-    padding-right: 0.7rem;
+    padding-top: 0.8425rem;
+    padding-left: 1.685rem;
+    padding-right: 0.8425rem;
     flex-direction: column;
     z-index: 20;
     justify-content: space-between;
@@ -148,10 +148,10 @@ body h5 {
     /* the bottom of the #msg */
     top: 5.5em;
     height: calc(100% - 10.5em) ; 
-    padding-left: 1em;  
+    padding-left: 1.685em;  
     overflow: auto;
     /* */
-    padding: 2em;
+    padding: 3.37rem;
     padding-top: 1ex;
     padding-right: 0;
     scrollbar-width: thin;
@@ -166,11 +166,11 @@ body h5 {
 #mur2menutop {
     /* */
     width: calc( 100% + 1rem);
-    height: 2.8rem;
+    height: calc( 2.8rem - 2px);
     border-bottom: solid 1px white;
     text-align: right;
     position: relative;
-    left: -1rem;
+    left: -1.685rem;
 }
 #mur2menutop .control-item {
     padding-right: 0;
@@ -237,6 +237,7 @@ body h5 {
     padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }
 
+
 /* 
 *********************************
 * Settings for the preview side 
@@ -291,7 +292,92 @@ div#article_abstract,
     margin-bottom: 1.685rem;
 }
 
-body h1#article_title{
-    font-size: 2.986em;
+#article_preview_side div#article_title, 
+body h1#article_title,
+body h1#article_title + div {
+    position: relative;
+    left: -6.74rem;
+}
+
+#article_preview_side div#article_title, 
+body h1#article_title {
     line-height: 5.055rem;
+    font-size: 4.2999em;
+}
+
+body h1#article_title + div {
+    color: #666;
+    margin-bottom: 1.685rem;
+}
+
+body h1#article_title, 
+body h1#article_title p{
+    max-width: 47.74rem;
+}
+
+
+/* phones */
+@media only screen 
+and (min-device-width : 300px) 
+and (max-device-width : 767px){ 
+    body h1#article_title {
+        left: 0rem;
+        max-width: 41rem;
+    }
+    div#article_abstract, 
+    #article_main p,
+    #article_main li,
+    #article_main h1 {
+        max-width: unset;    
+    }
+    .main\.reader #side_menu {
+        background-color: rgba(0,0,0,0);
+    }
+    .main\.reader #side_menu .control-item {
+        color:  rgba(0,0,0,0);
+    }
+    #id_side_menu:checked ~ #side_menu {
+        background-color: white;
+    }
+    #id_side_menu:checked ~ #side_menu #mur2menu_link .control-item {
+        color:  #333;
+        background-color: white;
+    }   
+    #msg {
+        display:none;
+    }
+    .topmenu {
+        height: 5rem;
+    }
+}
+
+
+/* 5:4 desktop screen */
+@media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
+    body h1#article_title {
+        left: -3.37rem;
+        max-width: 44.37rem;
+    }   
+}
+
+/* iPad in landscape */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    body h1#article_title {
+        left: 0rem;
+        max-width: 41rem;
+    }
+}
+
+/* iPad  in portrait */
+@media only screen
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    body h1#article_title {
+        left: 0rem;
+        max-width: 41rem;
+    }
 }
