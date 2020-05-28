@@ -26,8 +26,9 @@
     padding-right: 0.5em;
 }
 #article_preview_side {
-    padding-left: 0.5em;
-    padding-right: 1em;
+    padding-left: 6.74em;
+    overflow-x: visible;
+    overflow-y: auto;
 }
 
 
@@ -65,10 +66,14 @@
 
 /* switch between the menus */
 .choicemenu #choicemenu,
-.side_menu #side_menu,
+#id_side_menu:checked ~ #menu #side_menu,
 .editor_toolbar #editor_toolbar {
     display: flex;
     /* */
+}
+
+.editor_toolbar #editor_toolbar {
+    padding-right: 1.685rem;
 }
 
 /* the main objcet of the page */
@@ -140,7 +145,9 @@ textarea {
 
 #article_main_pre, 
 #article_main {
-    overflow: auto;
+    overflow-y: auto;
+    margin-left: -6.74rem;
+    padding-left: 6.74em;
     /* */
 }
 
@@ -224,7 +231,7 @@ textarea {
 #id_hide_input.inputoff + .far.fa-arrow-alt-circle-left, 
 #id_hide_preview.previewoff + .far.fa-arrow-alt-circle-right, 
 #id_show_title.titleon + .far.fa-arrow-alt-circle-down, 
-#menu.side_menu #editor_toolbar .fas.fa-bars,
+#id_side_menu:checked ~ #menu #editor_toolbar .fas.fa-bars,
 #id_syntax_hl + .fab.fa-markdown {
     color: #C62641;
 }
@@ -281,6 +288,9 @@ textarea {
     min-height: 30%;
     /* */
     scrollbar-width: thin;
+    overflow-y: auto;
+    margin-left: -6.74rem;
+    padding-left: 6.74em;
 }
 
 
@@ -302,7 +312,9 @@ textarea {
     padding-left: 0.61rem;
 }
 
-/* markdown cheatsheet */
+/**********************************
+ * markdown cheatsheet 
+ */
 #markdown_cheat_sheet {
     display: none;
     font-family: 'DM Mono';
