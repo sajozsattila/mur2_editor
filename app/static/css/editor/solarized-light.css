@@ -8,8 +8,8 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #fdf6e3;
   color: #657b83;
+    scrollbar-width: thin;
 }
 
 .hljs-comment,
