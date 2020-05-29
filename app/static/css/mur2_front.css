@@ -67,55 +67,79 @@ td a.control-item {
     margin-left: 1rem;
 }
 
-/*
- ****************************************
- * special setting for reader 
- */
-.main\.reader #side_menu,
-.main\.user #side_menu {  
+
+#side_menu{  
     color: #666;
     background-color: white;
 }
 
-.main\.user #side_menu .control-item,
-.main\.reader #side_menu .control-item {
+#side_menu .control-item {
     color: #666;
 }
 
-.main\.user #side_menu .control-item:hover,
-.main\.reader #side_menu .control-item:hover {
-    /* */
+#side_menu .control-item:hover {
     border-bottom: solid #666 1px;
 }
 
-.main\.user #side_menu #mur2menutop,
-.main\.reader #side_menu #mur2menutop {
-    /* */
+#side_menu #mur2menutop {
     border-bottom: solid 1px #666;
 }
 
-.main\.user #side_menu #side_top,
-.main\.reader #side_menu #side_top {
+#side_menu #side_top {
     border-left: 1px solid #666;
 }
 
-.main\.user .topmenu,
-.main\.reader .topmenu {
+.topmenu {
     border: none;
 }
 
-.main\.user #maintext,
-.main\.reader #maintext {
+#maintext {
     direction: rtl;
 }
 
-.main\.user #article_main, 
-.main\.reader #article_main {
+#article_main {
     direction: ltr;
 }
 
+/*
+ ****************************************
+ * special setting for login 
+ */
 
+.auth\.login #maintext {
+    border-right: 1px solid #333;
+    z-index: 30;
+    padding-right: 1.685rem;
+    overflow: visible;
+    direction: ltr;
+    text-align: right;
+}
 
+.auth\.login #maintext h1 {
+    border-top: solid 1px #333;
+    padding-right: 3.37rem;
+    padding-top: 1.685rem;
+    margin-top: 1.5rem;
+    min-width: 100%;
+    left: 0;
+}
+
+.auth\.login #foot {
+    border-left: 1px solid #333; 
+    padding-left: 1.685rem;
+}
+
+.auth\.login #mur2menu_link {
+    padding-left: 1.685rem;
+}
+
+.auth\.login #side_menu #mur2menutop {
+    border-bottom: solid 1px #333;
+}
+
+.auth\.login #side_menu #side_top {
+    /* border-left: 1.685rem solid #c62641; */
+}
 /****************************************
  * Media settings
  */
@@ -146,6 +170,13 @@ and (max-device-width : 767px){
     
     #id_side_menu:checked + #side_menu {
         z-index: 3;
+    }
+    
+    .auth\.login #side_menu {
+        display: none;
+    }
+    .auth\.login #maintext {
+        padding-right: 5.055rem;
     }
 }
 

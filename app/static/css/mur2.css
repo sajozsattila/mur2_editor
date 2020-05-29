@@ -50,6 +50,13 @@ body h5 {
     width: auto !important ;    
 }
 
+a {
+    background: 0 0;
+    color: #115B7A;
+    transition: all .2s;
+    text-decoration: underline;
+}
+
 #horizontal_box {
     width: 100%;
     display: flex ;
@@ -136,7 +143,8 @@ body h5 {
     overflow: auto;
     scrollbar-width: thin;
     letter-spacing: 1px;
-    font-variant: small-caps;
+    /*font-variant: small-caps;*/
+    text-transform: uppercase;
 }
 
 #maintext {
@@ -170,7 +178,7 @@ body h5 {
     border-bottom: solid 1px white;
     text-align: right;
     position: relative;
-    left: -1.685rem;
+    left: calc( -1.685rem + 1px);
 }
 #mur2menutop .control-item {
     padding-right: 0;
@@ -196,6 +204,7 @@ body h5 {
 }
 #foot a {
     display: inline-block;
+    text-transform: initial;
 }
 
 .separator {
@@ -265,12 +274,7 @@ div#article_abstract,
     text-indent: 1.685rem;;
 }
 
-#article_main a {
-    background: 0 0;
-    color: #254c79;
-    transition: all .2s;
-    text-decoration: underline;
-}
+
 
 #article_main blockquote p {
     hanging-punctuation: first; /* this should wokr with safary only */

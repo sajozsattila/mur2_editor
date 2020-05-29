@@ -25,6 +25,10 @@ body h5 {
     max-width: 44.37rem;
 }
 
+.normalfont {
+    font-family: liberation-serif, sans-serif;
+}
+
 
 /* phones */
 @media only screen 

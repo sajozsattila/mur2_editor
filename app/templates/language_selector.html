@@ -1,7 +1,9 @@
         <!-- Google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">    
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&family=Roboto&display=swap" rel="stylesheet">   
+
+        {% if  request.endpoint == 'main.editor' or request.endpoint == 'main.edit' %}
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">  
+        {% endif %}
         
         <!-- Font awesome -->
         <script src="https://kit.fontawesome.com/73ba869ba8.js" crossorigin="anonymous"></script>

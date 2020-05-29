@@ -1,13 +1,9 @@
 
 
 .normalfont {
-    font-family: lora, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
     line-height: 1.4;      /* was 1.88*/
     letter-spacing: 0;
     font-feature-settings: "liga" 1, "frac" 1;    
-    font-variant: small-caps;
     letter-spacing: 1px;
 }
 
@@ -321,6 +317,7 @@ textarea {
     font-size: 14px;
     font-variant: normal;
     padding-left: .61rem;
+    text-transform: initial;
 }
 #id_mcs:checked ~ #markdown_cheat_sheet {
     display: block;

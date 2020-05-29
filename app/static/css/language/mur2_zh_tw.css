@@ -1,8 +1,12 @@
 body, button input, select {
     /* */
-    font-family: source-han-serif-tc, serif; 
+    font-family: source-han-serif-tc, liberation-serif, serif; 
     font-weight: 400;
     font-size: 18px;
     line-height: 1.5; 
     letter-spacing: 0;
+}
+
+.normalfont {
+    font-family: source-han-serif-tc, liberation-serif, serif; 
 }
