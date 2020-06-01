@@ -330,10 +330,10 @@ function ParserCollection(
         return tokens[idx].content;
     };
 
-        // Custom image embedding for smooth UX
-		_mdPreview.renderer.rules.math_inline = function (tokens, idx) {
-			return imageLoader.getHtmlStub(tokens[idx].content);
-		};
+    // Custom image embedding for smooth UX
+    _mdPreview.renderer.rules.math_inline = function (tokens, idx) {
+        return imageLoader.getHtmlStub(tokens[idx].content);
+    };
         
         
 

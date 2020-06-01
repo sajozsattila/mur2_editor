@@ -59,13 +59,9 @@ td a.control-item {
     -webkit-justify-content: space-between;   
     justify-content: -webkit-space-between;/* for Safari */
     margin-bottom: 1rem;
-}
-#article_action {
-    display: flex;
     flex-direction: column;
-
-    margin-left: 1rem;
 }
+
 
 
 #side_menu{  
@@ -106,8 +102,9 @@ td a.control-item {
  * special setting for login 
  */
 
+.main\.edit_profile #maintext ,
 .auth\.login #maintext {
-    border-right: 1px solid #333;
+    border-right: 1px solid #666;
     z-index: 30;
     padding-right: 1.685rem;
     overflow: visible;
@@ -115,8 +112,9 @@ td a.control-item {
     text-align: right;
 }
 
+
 .auth\.login #maintext h1 {
-    border-top: solid 1px #333;
+    border-top: solid 1px #666;
     padding-right: 3.37rem;
     padding-top: 1.685rem;
     margin-top: 1.5rem;
@@ -125,7 +123,7 @@ td a.control-item {
 }
 
 .auth\.login #foot {
-    border-left: 1px solid #333; 
+    border-left: 1px solid #666; 
     padding-left: 1.685rem;
 }
 
@@ -134,12 +132,166 @@ td a.control-item {
 }
 
 .auth\.login #side_menu #mur2menutop {
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px #666;
 }
 
-.auth\.login #side_menu #side_top {
-    /* border-left: 1.685rem solid #c62641; */
+
+/*
+ ****************************************
+ * special setting for user 
+ */
+
+
+.main\.user  #user_username {
+    writing-mode:  tb;
+    width: 25rem;
+    /* mur2menutop - foot - side_menu */
+    height: calc(100% - 2.8rem - 2.6rem - 0.8425rem );
+    display: inline-block;
+    line-height: 1;
+    font-weight: bold;
+    color: #333;   
+    position: fixed;
+    left: 0;
+    top: calc( 2.8rem + 0.8425rem );
+    text-align: center;
+    transform: rotate(180deg);
 }
+
+.main\.search #maintext,
+.main\.user #maintext {
+    width: calc(100% - 27.5275rem - 34.315rem );
+    top: 1rem;    
+}
+
+.main\.user #maintext {
+    padding-top: 2.4825rem ;
+}
+
+.main\.search .usertitle ,
+.main\.user .usertitle {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    border-left: 1px solid #666;
+
+    position: relative;
+    top: -1.685rem;
+    padding-top: 2.5275rem;
+    padding-bottom: 0.845rem;
+}
+
+.main\.search .usertitle a,
+.main\.user .usertitle a{
+    text-decoration: none;
+    color: #333;
+}
+
+.main\.search .usertitle,
+.main\.search .userabstract,
+.main\.user .usertitle,
+.main\.user .userabstract {
+    margin-left: 0.845rem;
+    padding-left: 0.845rem;
+    
+}
+
+.main\.search  .userabstract ,
+.main\.user .userabstract {
+    display: flex;
+    flex-direction: row;
+} 
+
+.main\.search   .user_articles, 
+.main\.user .user_articles {
+    padding-bottom: 3.37rem;
+    border-top: 1px solid #666;
+    direction: ltr;
+}
+
+.main\.search  .userabstracttext p,
+.main\.search  .usertitle p,
+.main\.user .userabstracttext p ,
+.main\.user .usertitle p {
+    margin: unset;
+    max-width: 41rem;
+}
+
+.main\.search  .article_action,
+.main\.user .article_action{
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    width: 3.37rem;
+}
+
+.main\.search  .article_action:hover,
+.main\.user .article_action:hover{
+    opacity: 1;
+}
+
+/*
+ ****************************************
+ * special setting for user 
+ */
+.main\.edit_profile #maintext h1 {
+    border-top: solid 1px #666;
+    padding-right: 1.685rem;
+    padding-top: 1.685rem;
+    margin-top: 1.5rem;
+    min-width: 100%;
+    left: 0;
+}
+
+/*
+ ****************************************
+ * special setting for search 
+ */
+.main\.search #maintext h1 {
+    direction: ltr;
+    margin: unset;
+    left: 1.685rem;
+    max-width: unset;
+    border-top: 1px solid #666;
+    padding-left: 2.5275rem;
+    padding-top: 0.8465rem;
+    width: calc(100% + 1.685rem);
+}
+
+.main\.search #maintext {
+    padding-top: calc(2.4215rem + 1px);
+}
+
+#maintitle {
+    max-width: unset;
+    margin-left: calc( 1.685rem + 1px);
+    border-left: 1px solid #666;
+    padding-left: 0.8425rem;
+    margin-bottom: 1.685rem;
+    position: relative;
+    left: -0.86425rem;
+    text-align: left;
+    top: -2.8rem;
+    padding-top: 2.8rem;
+}
+
+#maintitle div {
+    padding-left: 3.5rem;
+    color: #666;
+}
+
+#lapozo {
+    border-top: 1px solid #666;
+    flex-direction: row;
+    justify-content: space-between;    
+    display: -webkit-flex ; /* for 9 > Safari */
+    -webkit-justify-content: space-between;   
+    justify-content: -webkit-space-between;/* for Safari */
+    padding-top: 0.8425rem;
+        
+}
+
 /****************************************
  * Media settings
  */
@@ -148,7 +300,8 @@ td a.control-item {
 @media only screen 
 and (min-device-width : 300px) 
 and (max-device-width : 767px){ 
-    #maintext {
+    #maintext,
+    .main\.user #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 1.685rem - 1.685rem);
         z-index: 2;
@@ -182,7 +335,8 @@ and (max-device-width : 767px){
 
 /* 5/4 desktop */
 @media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
-    #maintext {
+    #maintext,
+    .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
     }     
@@ -198,7 +352,8 @@ and (max-device-width : 767px){
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
-    #maintext {
+    #maintext,
+    .main\.user #maintext {
         padding-left: 3.37rem;
         width: calc(100% - 17.5275rem - 3.37rem);
     }     
@@ -206,6 +361,11 @@ and (orientation : landscape) {
         width: 15rem;
         min-width: 15rem;
     }    
+    .main\.user  #user_username {
+        writing-mode:  lr;
+        transform: unset;
+        position: initial;
+    }
     
 }
 
@@ -214,7 +374,8 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
-    #maintext {
+    #maintext,
+    .main\.user #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 17.5275rem - 1.685rem);
     }     
@@ -226,7 +387,8 @@ and (orientation : portrait) {
 
 @media only screen and (max-width: 900px), 
 (height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape) {
-    #maintext {
+    #maintext,
+    .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
     }     
