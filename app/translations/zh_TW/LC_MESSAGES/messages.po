@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-29 06:45+0000\n"
+"POT-Creation-Date: 2020-06-01 19:39+0000\n"
 "PO-Revision-Date: 2020-05-29 06:45+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -38,7 +38,8 @@ msgstr "密碼"
 msgid "Remember Me"
 msgstr "記住我"
 
-#: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/base_menu.html:18
+#: app/auth/forms.py:12 app/auth/routes.py:36 app/templates/auth/login.html:7
+#: app/templates/base_menu.html:19
 msgid "Sign In"
 msgstr "登錄"
 
@@ -50,7 +51,7 @@ msgstr "電郵地址"
 msgid "Repeat Password"
 msgstr "確定密碼"
 
-#: app/auth/forms.py:22 app/auth/routes.py:49
+#: app/auth/forms.py:22 app/auth/routes.py:57
 msgid "Register"
 msgstr "註冊"
 
@@ -66,55 +67,55 @@ msgstr "請使用別的電郵地址"
 msgid "Request Password Reset"
 msgstr "申請密碼重置"
 
-#: app/auth/routes.py:21
+#: app/auth/routes.py:29
 msgid "Invalid username or password"
 msgstr "無效用戶名或密碼"
 
-#: app/auth/routes.py:47
+#: app/auth/routes.py:55
 msgid "Congratulations, you are now a registered user!"
 msgstr "恭喜，你已成為註冊用戶"
 
-#: app/auth/routes.py:63
+#: app/auth/routes.py:71
 msgid "Check your email for the instructions to reset your password"
 msgstr "請查看電郵以重置你的密碼"
 
-#: app/auth/routes.py:66 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:74 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
 msgstr "重置密碼"
 
-#: app/auth/routes.py:80
+#: app/auth/routes.py:88
 msgid "Your password has been reset."
 msgstr "密碼已重置"
 
-#: app/main/routes.py:105
+#: app/main/routes.py:108
 msgid "You can not edit this article"
 msgstr "你無權編輯此文章"
 
-#: app/main/routes.py:281 app/main/routes.py:351
+#: app/main/routes.py:285 app/main/routes.py:355
 msgid "Your changes have been saved."
 msgstr "改變已保存"
 
-#: app/main/routes.py:294
+#: app/main/routes.py:298
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:305 app/main/routes.py:330
+#: app/main/routes.py:309 app/main/routes.py:334
 msgid "User no right to delete this"
 msgstr "用戶無權刪除此文章"
 
-#: app/main/routes.py:305
+#: app/main/routes.py:309
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:330
+#: app/main/routes.py:334
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:630
+#: app/main/routes.py:633
 msgid "No more disk space quota for "
 msgstr "空間配額不足"
 
-#: app/templates/article.html:11 app/templates/article.html:29
+#: app/templates/article.html:10
 msgid "Delete article"
 msgstr "刪除文章"
 
@@ -142,7 +143,7 @@ msgstr "媒體"
 msgid "Sign out"
 msgstr "退出"
 
-#: app/templates/base_menu.html:23 app/templates/base_menu.html:31
+#: app/templates/base_menu.html:25 app/templates/base_menu.html:33
 msgid "Search"
 msgstr "搜索"
 
@@ -519,17 +520,25 @@ msgstr "媒體文件"
 msgid "Delete file"
 msgstr "刪除文件"
 
-#: app/templates/search.html:4
+#: app/templates/search.html:5
 msgid "Search Results"
 msgstr "搜索結果"
 
-#: app/templates/search.html:13
+#: app/templates/search.html:6
+msgid "result for"
+msgstr ""
+
+#: app/templates/search.html:16
+msgid "Next results"
+msgstr "下一頁"
+
+#: app/templates/search.html:23
 msgid "Previous results"
 msgstr "上一頁"
 
-#: app/templates/search.html:18
-msgid "Next results"
-msgstr "下一頁"
+#: app/templates/show_profile.html:8
+msgid "Last seen on"
+msgstr "上次看到"
 
 #: app/templates/test.html:39
 msgid "Close Menu"
@@ -551,31 +560,23 @@ msgstr "關閉側菜單"
 msgid "preview"
 msgstr "預覽"
 
-#: app/templates/user.html:10
-msgid "Last seen on"
-msgstr "上次看到"
-
-#: app/templates/user.html:12
-msgid "Edit your profile"
-msgstr "編輯你的用戶資料"
-
-#: app/templates/user.html:17
+#: app/templates/user.html:19
 msgid "New Article"
 msgstr "新的文章"
 
-#: app/templates/auth/login.html:24
+#: app/templates/auth/login.html:27
 msgid "Forgot Your Password?"
 msgstr "忘記密碼"
 
-#: app/templates/auth/login.html:25
+#: app/templates/auth/login.html:28
 msgid "Click to Reset"
 msgstr "點擊重置"
 
-#: app/templates/auth/login.html:28
+#: app/templates/auth/login.html:31
 msgid "New User?"
 msgstr "新用戶？"
 
-#: app/templates/auth/login.html:28
+#: app/templates/auth/login.html:31
 msgid "Click to Register"
 msgstr "點擊註冊"
 
@@ -594,4 +595,7 @@ msgstr "未知錯誤"
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "已通知網站管理員。抱歉給您帶來的不便"
+
+#~ msgid "Edit your profile"
+#~ msgstr "編輯你的用戶資料"
 

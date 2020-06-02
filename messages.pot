@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-29 06:45+0000\n"
+"POT-Creation-Date: 2020-06-01 19:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,8 @@ msgstr ""
 msgid "Remember Me"
 msgstr ""
 
-#: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/base_menu.html:18
+#: app/auth/forms.py:12 app/auth/routes.py:36 app/templates/auth/login.html:7
+#: app/templates/base_menu.html:19
 msgid "Sign In"
 msgstr ""
 
@@ -49,7 +50,7 @@ msgstr ""
 msgid "Repeat Password"
 msgstr ""
 
-#: app/auth/forms.py:22 app/auth/routes.py:49
+#: app/auth/forms.py:22 app/auth/routes.py:57
 msgid "Register"
 msgstr ""
 
@@ -65,55 +66,55 @@ msgstr ""
 msgid "Request Password Reset"
 msgstr ""
 
-#: app/auth/routes.py:21
+#: app/auth/routes.py:29
 msgid "Invalid username or password"
 msgstr ""
 
-#: app/auth/routes.py:47
+#: app/auth/routes.py:55
 msgid "Congratulations, you are now a registered user!"
 msgstr ""
 
-#: app/auth/routes.py:63
+#: app/auth/routes.py:71
 msgid "Check your email for the instructions to reset your password"
 msgstr ""
 
-#: app/auth/routes.py:66 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:74 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
 msgstr ""
 
-#: app/auth/routes.py:80
+#: app/auth/routes.py:88
 msgid "Your password has been reset."
 msgstr ""
 
-#: app/main/routes.py:105
+#: app/main/routes.py:108
 msgid "You can not edit this article"
 msgstr ""
 
-#: app/main/routes.py:281 app/main/routes.py:351
+#: app/main/routes.py:285 app/main/routes.py:355
 msgid "Your changes have been saved."
 msgstr ""
 
-#: app/main/routes.py:294
+#: app/main/routes.py:298
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:305 app/main/routes.py:330
+#: app/main/routes.py:309 app/main/routes.py:334
 msgid "User no right to delete this"
 msgstr ""
 
-#: app/main/routes.py:305
+#: app/main/routes.py:309
 msgid "Article"
 msgstr ""
 
-#: app/main/routes.py:330
+#: app/main/routes.py:334
 msgid "File"
 msgstr ""
 
-#: app/main/routes.py:630
+#: app/main/routes.py:633
 msgid "No more disk space quota for "
 msgstr ""
 
-#: app/templates/article.html:11 app/templates/article.html:29
+#: app/templates/article.html:10
 msgid "Delete article"
 msgstr ""
 
@@ -141,7 +142,7 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: app/templates/base_menu.html:23 app/templates/base_menu.html:31
+#: app/templates/base_menu.html:25 app/templates/base_menu.html:33
 msgid "Search"
 msgstr ""
 
@@ -518,16 +519,24 @@ msgstr ""
 msgid "Delete file"
 msgstr ""
 
-#: app/templates/search.html:4
+#: app/templates/search.html:5
 msgid "Search Results"
 msgstr ""
 
-#: app/templates/search.html:13
+#: app/templates/search.html:6
+msgid "result for"
+msgstr ""
+
+#: app/templates/search.html:16
+msgid "Next results"
+msgstr ""
+
+#: app/templates/search.html:23
 msgid "Previous results"
 msgstr ""
 
-#: app/templates/search.html:18
-msgid "Next results"
+#: app/templates/show_profile.html:8
+msgid "Last seen on"
 msgstr ""
 
 #: app/templates/test.html:39
@@ -550,31 +559,23 @@ msgstr ""
 msgid "preview"
 msgstr ""
 
-#: app/templates/user.html:10
-msgid "Last seen on"
-msgstr ""
-
-#: app/templates/user.html:12
-msgid "Edit your profile"
-msgstr ""
-
-#: app/templates/user.html:17
+#: app/templates/user.html:19
 msgid "New Article"
 msgstr ""
 
-#: app/templates/auth/login.html:24
+#: app/templates/auth/login.html:27
 msgid "Forgot Your Password?"
 msgstr ""
 
-#: app/templates/auth/login.html:25
+#: app/templates/auth/login.html:28
 msgid "Click to Reset"
 msgstr ""
 
-#: app/templates/auth/login.html:28
+#: app/templates/auth/login.html:31
 msgid "New User?"
 msgstr ""
 
-#: app/templates/auth/login.html:28
+#: app/templates/auth/login.html:31
 msgid "Click to Register"
 msgstr ""
 

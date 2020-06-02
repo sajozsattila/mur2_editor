@@ -245,17 +245,30 @@ a {
     text-align: center;
     padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }
-
+#side_menu #search:hover,
+#side_menu #searchclose:hover {
+    border-bottom: unset;
+}
 
 /* 
 *********************************
 * Settings for the preview side 
 */
-
-#article_main img {
-    max-width: 100%;
+#article_main figure {
     padding-top: 1.685rem;;
     padding-bottom: 1.685rem;
+    margin: unset;
+    max-width: 47rem;
+}
+
+#article_main figure img {
+    max-width: 100%;
+}
+
+#article_main table + p[id^='tbl'] ,
+#article_main figcaption {
+    font-style: italic;
+    padding-left: 1.685rem;
 }
 
 div#article_abstract, 
@@ -263,6 +276,31 @@ div#article_abstract,
 #article_main li,
 #article_main h1 {
     max-width: 41rem;    
+}
+
+#article_main table {
+    border-top: 2px solid #666;
+    border-bottom: 2px solid #666;
+    margin-top: 1.685rem;
+    border-collapse: collapse;
+}
+#article_main thead {
+    border-bottom: 1px solid #666;
+}
+#article_main table + p[id^='tbl'] {
+    margin-bottom: 1.685rem;
+}
+#article_main table + p:not([id^='tbl']) {
+    margin-top: 1.685rem;
+}
+#article_main table + p[id^='tbl'] + p {
+    text-indent: 0;
+}
+
+#article_main p[id^='eq:'] {
+    text-align: center;
+    margin-top: 1.685rem;
+    margin-bottom: 1.685rem;
 }
 
 #article_main p,
@@ -273,8 +311,6 @@ div#article_abstract,
 #article_main p + p {
     text-indent: 1.685rem;;
 }
-
-
 
 #article_main blockquote p {
     hanging-punctuation: first; /* this should wokr with safary only */
