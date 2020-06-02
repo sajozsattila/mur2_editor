@@ -14,7 +14,6 @@ var g_preview_on = true;
 // which textareai is selected
 var g_selectedTextarea = null;
 
-
 //////////
 // set a DOM content, with highlighting or not 
 //     if 'lang' === 'none' it is setting just the innerHTML
@@ -96,9 +95,9 @@ function ParserCollection(
         xhtmlOut: false, // Use '/' to close single tags (<br />)
         breaks: false, // Convert '\n' in paragraphs into <br>
         langPrefix: 'language-', // CSS language prefix for fenced blocks
-        linkify: true, // autoconvert URL-like texts to links
+        linkify: false, // autoconvert URL-like texts to links
         typographer: true, // Enable smartypants and other sweet transforms
-        quotes: '""\'\'',
+        quotes: '“”‘’',
 
         // option for tex plugin
         _habr: {
@@ -141,8 +140,26 @@ function ParserCollection(
     // some globel to make local
     var domSetHighlightedContent = g_domSetHighlightedContent;
         var imageLoader = imageLoader;
-
+        
+    var browserlanguage = document.querySelector('meta[name="mur2language"]').content;       
+    switch (browserlanguage) {
+        case 'hu':
+            defaults.quotes = '„”»«';
+            break;
+        case 'zh_Hant':
+            defaults.quotes = '「」『』';
+            break;
+        case 'es':
+            defaults.quotes = '«»“”';
+            break;
+    };
+               
     var _mdPreview = markdownit(defaults)
+        .use(markdownItAttrs, {})
+        .use(implicitFigures, {
+            figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
+            tabindex: true // <figure tabindex="1+n">..., default: false
+        })        
         .use(markdownitS2Tex)
         .use(markdownitSub)
         .use(markdownitSup)
@@ -150,6 +167,11 @@ function ParserCollection(
         .use(markdownitIns);
 
     var _mdHtmlAndImages = markdownit(defaults)
+        .use(markdownItAttrs, {})
+        .use(implicitFigures, {
+            figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
+            tabindex: true // <figure tabindex="1+n">..., default: false
+        })
         .use(markdownitS2Tex)
         .use(markdownitSub)
         .use(markdownitSup)
@@ -157,6 +179,11 @@ function ParserCollection(
         .use(markdownitIns);
 
     var _mdHtmlAndTex = markdownit(defaults)
+        .use(markdownItAttrs, {})
+        .use(implicitFigures, {
+            figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
+            tabindex: true // <figure tabindex="1+n">..., default: false
+        })    
         .use(markdownitS2Tex, {
             noreplace: true
         })
@@ -180,7 +207,7 @@ function ParserCollection(
     var languageFootnote = document.querySelector('meta[name="endnotetext"]').content
     for (var i = 0; i < mdsnames.length; i++) {
         mdsnames[i].renderer.rules.footnote_block_open = () => (
-            '<h4 class="mt-3">' + languageFootnote + '</h4>\n' +
+            '<h3 class="mt-3">' + languageFootnote + '</h3>\n' +
             '<section class="footnotes">\n' +
             '<ol class="footnotes-list">\n'
         );
