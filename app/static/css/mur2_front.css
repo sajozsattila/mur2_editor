@@ -300,8 +300,13 @@ td a.control-item {
 @media only screen 
 and (min-device-width : 300px) 
 and (max-device-width : 767px){ 
+    #foot {
+        display: none;
+    }
+    
     #maintext,
-    .main\.user #maintext {
+    .main\.user #maintext,
+    .main\.edit_profile #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 1.685rem - 1.685rem);
         z-index: 2;
@@ -311,6 +316,12 @@ and (max-device-width : 767px){
         min-width: calc(100% - 1.685rem);  
         z-index: 1;
         font-size: 2rem;
+    }
+    #side_menu #side_top {
+        border-left: unset;
+    }
+    #side_menu #mur2menutop {
+        border-bottom: unset;
     }
     
     #mur2menutop .toolbar {
@@ -330,6 +341,21 @@ and (max-device-width : 767px){
     }
     .auth\.login #maintext {
         padding-right: 5.055rem;
+    }
+    
+    .main\.user   #maintext {
+        position: relative;
+        top: 3rem;
+    }
+    .main\.user  #user_username {
+        writing-mode: lr;
+        transform: unset;
+        position: relative;
+        height: 6.74rem;
+        text-align: left;
+        top: -1.685rem;
+        width: 100%;
+        left: 1.685rem;
     }
 }
 
@@ -362,9 +388,12 @@ and (orientation : landscape) {
         min-width: 15rem;
     }    
     .main\.user  #user_username {
-        writing-mode:  lr;
+        writing-mode: lr;
         transform: unset;
-        position: initial;
+        position: relative;
+        height: 6.74rem;
+        text-align: right;
+        top: -1.685rem;
     }
     
 }
@@ -382,6 +411,14 @@ and (orientation : portrait) {
     #side_menu {
         width: 15rem;
         min-width: 15rem;
+    }
+    .main\.user  #user_username {
+        writing-mode: lr;
+        transform: unset;
+        position: relative;
+        height: 6.74rem;
+        text-align: right;
+        top: -1.685rem;
     }
 }
 
