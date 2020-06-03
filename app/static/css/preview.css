@@ -1,0 +1,119 @@
+/* 
+*********************************
+* Settings for the preview side 
+*/
+#article_main figure {
+    padding-top: var(--verticaldistance);
+    padding-bottom: var(--verticaldistance);
+    margin: unset;
+    max-width: 47rem;
+}
+
+#article_main figure img {
+    max-width: 100%;
+}
+
+#article_main p img {
+    float: left;
+    padding-right: 1ex;
+        
+}
+
+#article_main table + p[id^='tbl'] ,
+#article_main figcaption {
+    font-style: italic;
+    padding-left: var(--verticaldistance);
+}
+
+div#article_abstract, 
+#article_main p,
+#article_main li,
+#article_main h1 {
+    max-width: 41rem;    
+}
+
+#article_main table {
+    border-top: 2px solid #666;
+    border-bottom: 2px solid #666;
+    margin-top: var(--verticaldistance);
+    border-collapse: collapse;
+}
+#article_main thead {
+    border-bottom: 1px solid #666;
+}
+#article_main table + p[id^='tbl'] {
+    margin-bottom: var(--verticaldistance);
+}
+#article_main p[id^='eq:'] + p[id^='eq:'],
+#article_main table + p:not([id^='tbl']) {
+    margin-top: var(--verticaldistance);
+}
+#article_main table + p[id^='tbl'] + p {
+    text-indent: 0;
+}
+
+
+
+#article_main p[id^='eq:'] {
+    text-align: center;
+    margin-top: var(--verticaldistance);
+    margin-bottom: var(--verticaldistance);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#article_main p[id^='eq:'] + p[id^='eq:'] {
+    text-indent: var(--verticaldistance);
+}
+
+#article_main p,
+#article_main li {
+    margin: auto 0;
+}
+
+#article_main p + p {
+    text-indent: var(--verticaldistance);
+}
+
+#article_main blockquote p {
+    hanging-punctuation: first; /* this should wokr with safary only */
+}
+
+/* p after block LaTeX code */
+#article_main p[style] + p {
+    text-indent: 0rem;
+}
+/* block LaTeX codes */
+#article_main p[style] {
+    padding-top: var(--verticaldistance);
+    padding-bottom: var(--verticaldistance);
+}
+
+#article_main p + ul, 
+#article_main p + ol {
+    margin-top: var(--verticaldistance);
+    margin-bottom: var(--verticaldistance);
+}
+
+#article_preview_side div#article_title, 
+body h1#article_title,
+body h1#article_title + div {
+    position: relative;
+    left: calc( var(--verticaldistance) * -4 );
+}
+
+#article_preview_side div#article_title, 
+body h1#article_title {
+    line-height: calc( var(--verticaldistance) * 3 );
+    font-size: 4.2999em;
+}
+
+body h1#article_title + div {
+    color: #666;
+    margin-bottom: var(--verticaldistance);
+}
+
+body h1#article_title, 
+body h1#article_title p{
+    max-width: 47.74rem;
+}

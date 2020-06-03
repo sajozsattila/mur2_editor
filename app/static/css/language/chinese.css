@@ -1,0 +1,13 @@
+:root {
+  --verticaldistance: 2.3rem;
+}
+
+#article_main p {
+    text-indent: var(--verticaldistance);   
+}
+
+#article_preview_side div#article_title, 
+body h1#article_title {
+    position: relative;
+    left: calc( var(--verticaldistance) * -5.1 );
+}

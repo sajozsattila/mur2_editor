@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 /**
  * DOMContentLoaded polyfill
  *
@@ -404,7 +406,8 @@ function ImageLoader(preloader, protocol, loaderid) {
 
 		placeholderTimer = null,
 		placeholderIndex = null,
-		placeholderUrl = null;
+		placeholderUrl = null,
+        blockcount = 1;
     
     this.loaderid = loaderid;
 
@@ -454,6 +457,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 			}
 			else {
 				map[url].push(i);
+                map[url].sort(function(a, b){return b-a});
 			}
 		}
 	}
@@ -464,6 +468,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 	this.reset = function () {
 		curItems = [];
 		n = 0;
+        blockcount = 1;
 	};
 
 	/**
@@ -474,13 +479,15 @@ function ImageLoader(preloader, protocol, loaderid) {
 	 * @param baselineShift
 	 */
 	var callback = function (url, svg, baselineShift, prefix) {
-		var indexes = map[url], i;
-
+		var indexes = map[url], i;        
 		if (indexes && (i = indexes.length)) {
-			for (; i--;) {
+            for (; i--;) {
 				var index = indexes[i];
 
-				insertPicture(index, svg, baselineShift, index === placeholderIndex ? 'fade-in' : 'replace', prefix);
+				var block = insertPicture(index, svg, baselineShift, index === placeholderIndex ? 'fade-in' : 'replace', prefix );
+                if ( block && i === 0) {
+                    blockcount += 1;
+                }
 
 				if (index === placeholderIndex) {
 					// Clear the fade out timer if the new image has just bee
@@ -509,6 +516,22 @@ function ImageLoader(preloader, protocol, loaderid) {
 			finalOpacity = mode == 'fade-out' ? '0.5' : '1',
 			newSvgAttrs = '<svg class="svg-preview" id="' + id + '" ';
 
+
+        /* check the parent is block or not 
+         *   this is a hack at the moment: just check the parent have text-align: center style
+         */
+        var block = false;
+        if ( parentNode.style.textAlign === 'center' && parentNode.id === "" ) {
+            block = true
+            // add id for equaltaion
+            parentNode.id = "eq:"+blockcount;
+            // add printable number
+            var labelNode = document.createElement('em');
+            labelNode.innerHTML = "("+blockcount+")";
+            parentNode.insertBefore(labelNode, oldSvgNode);
+            var spanNode = document.createElement('span');
+            parentNode.appendChild(spanNode);            
+        }
         var lheight = svg.match(/ height="[\.\d]+" /g)[0].trim().split("=")[1].replace(/"/g, '')
 		if (baselineShift === null) {
 			// svg has been loaded but something went wrong.
@@ -533,6 +556,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 				document.getElementById(id).style.opacity = finalOpacity;
 			}, 0);
 		}
+        return block;
 	}
 
 	/**
@@ -557,7 +581,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 	this.fixDom = function () {
 		detectPlaceholderFormula();
 		buildMap();
-		for (var i = n; i--;) {
+		for (var i = 0; i < n; i++) {
 			preloader.onLoad(curItems[i], callback, this.loaderid);
 		}
 
