@@ -11,3 +11,15 @@ body h1#article_title {
     position: relative;
     left: calc( var(--verticaldistance) * -5.1 );
 }
+
+body, button input, select {
+    /* */
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4; 
+    letter-spacing: 1px;
+}
+
+div#article_abstract, #article_main p, #article_main li, #article_main h1 {
+    max-width: 44rem;
+}

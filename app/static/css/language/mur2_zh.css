@@ -1,13 +1,16 @@
 body, button input, select {
-    /* */
-    font-family: source-han-serif-sc, liberation-serif, serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.5; 
-    letter-spacing: 0;
+    /* */    
+    font-family: source-han-sans-simplified-c, sans-serif; 
 }
 
 .normalfont {
-    font-family: source-han-serif-sc, liberation-serif, serif; 
+    font-family: source-han-sans-simplified-c, sans-serif; 
 }
 
+body h1, body h2, body h3, body h4, body h5 {
+    font-family: source-han-serif-sc, serif;
+}
+
+body h1#article_title, body h1#article_title p {
+    font-family: source-han-serif-sc, source-han-sans-simplified-c, serif;
+}
