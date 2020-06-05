@@ -729,13 +729,27 @@ function ParserCollection(
             fileInput = this;
 
         reader.onload = function() {
+            var filecontent = this.result;
+            
+            var htmlObject = document.createElement('div');
+            htmlObject.innerHTML = filecontent;
+            var fragment = document.createDocumentFragment(); 
+            fragment.appendChild( htmlObject ); 
+            var article_title = fragment.getElementById("article_title") ;
+            var article_abstract = fragment.getElementById("article_abstract") ;
+
+            abstactSource.value = article_abstract.innerHTML.replace("\n", "");
+            titleSource.value = article_title.innerHTML.replace("\n", "");
+            article_title.parentNode.removeChild(article_title);
+            article_abstract.parentNode.removeChild(article_abstract);
+            
             // upload to the main
-            //   this could be more sofisticated and work with the donwloaded files ???
-            mainSource.value = this.result;
+            mainSource.value = fragment.textContent.replace(/^\s+/g, '');;
             updateMain(mainImageLoader, true);
             mainSource.dispatchEvent(inputevent);
             decorator.update();
             fileInput.value = fileInput.defaultValue;
+            fragment = null;
         };
         reader.readAsText(this.files[0]);
     });
