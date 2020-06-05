@@ -5,7 +5,7 @@ The aim of this project to provide a lightweight editor for long-form journalist
 
 Most of the part of the editor is written in Javascript and it works in browsers, except math equations and specific export file generation. The editor stores your text in the browser to prevent the loss of your work in case of software or hardware failures. It is also secure as your work store on your computer.   
 
-# Why the μr² editor?
+# Why the [μr² editor](https://mur2.co.uk/editor)?
 ## Designed for long-form
 
 The aim of this project to provide a lightweight online editor for long-form bloggers, journalist and academic writers.
