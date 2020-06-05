@@ -145,6 +145,7 @@ textarea {
     margin-left: -6.74rem;
     padding-left: 6.74em;
     /* */
+    scrollbar-width: thin;
 }
 
 /* hide and show preview */

@@ -107,6 +107,10 @@
 			<div id="mcs">
 				<div class="headsidebar">
 					<label class="control-item " for="id_mcs" title="{{ _('Markdown cheatsheet') }}">{{ _("Markdown cheatsheet") }}</label>
+                </div>    
+                <div>
+                    <input onclick="window.location.href = '{{ url_for('main.editormanual') }}';" class="control-input" id="id_mur2_manual" type="radio" name="source_type">
+                    <label class="control-item " for="id_mur2_manual" title="{{ _('Editor manual') }}">{{ _("Editor manual") }}</label>
 				</div>
 			</div>
 		</div><!-- first_menu -->
