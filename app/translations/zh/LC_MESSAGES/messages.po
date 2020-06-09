@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-01 19:39+0000\n"
+"POT-Creation-Date: 2020-06-09 22:07+0000\n"
 "PO-Revision-Date: 2020-05-04 20:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Remember Me"
 msgstr ""
 
-#: app/auth/forms.py:12 app/auth/routes.py:36 app/templates/auth/login.html:7
+#: app/auth/forms.py:12 app/auth/routes.py:56 app/templates/auth/login.html:7
 #: app/templates/base_menu.html:19
 msgid "Sign In"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Repeat Password"
 msgstr ""
 
-#: app/auth/forms.py:22 app/auth/routes.py:57
+#: app/auth/forms.py:22 app/auth/routes.py:95
 msgid "Register"
 msgstr ""
 
@@ -67,56 +67,60 @@ msgstr ""
 msgid "Request Password Reset"
 msgstr ""
 
-#: app/auth/routes.py:29
+#: app/auth/routes.py:30
 msgid "Invalid username or password"
 msgstr ""
 
-#: app/auth/routes.py:55
+#: app/auth/routes.py:93
 msgid "Congratulations, you are now a registered user!"
 msgstr ""
 
-#: app/auth/routes.py:71
+#: app/auth/routes.py:109
 msgid "Check your email for the instructions to reset your password"
 msgstr ""
 
-#: app/auth/routes.py:74 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:112 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
 msgstr ""
 
-#: app/auth/routes.py:88
+#: app/auth/routes.py:126
 msgid "Your password has been reset."
 msgstr ""
 
-#: app/main/routes.py:108
+#: app/main/routes.py:123
 msgid "You can not edit this article"
 msgstr ""
 
-#: app/main/routes.py:285 app/main/routes.py:355
+#: app/main/routes.py:331 app/main/routes.py:424
 msgid "Your changes have been saved."
 msgstr ""
 
-#: app/main/routes.py:298
+#: app/main/routes.py:344
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:309 app/main/routes.py:334
+#: app/main/routes.py:355 app/main/routes.py:403
 msgid "User no right to delete this"
 msgstr ""
 
-#: app/main/routes.py:309
+#: app/main/routes.py:355
 msgid "Article"
 msgstr ""
 
-#: app/main/routes.py:334
+#: app/main/routes.py:403
 msgid "File"
 msgstr ""
 
-#: app/main/routes.py:633
+#: app/main/routes.py:726
 msgid "No more disk space quota for "
 msgstr ""
 
-#: app/templates/article.html:10
+#: app/templates/article.html:11
 msgid "Delete article"
+msgstr ""
+
+#: app/templates/article.html:21
+msgid "Reopen editing"
 msgstr ""
 
 #: app/templates/base_menu.html:5
@@ -147,11 +151,15 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: app/templates/edit_profile.html:4
+msgid "Edit Profile"
+msgstr ""
+
 #: app/templates/edit_profile.html:15
 msgid "About me"
 msgstr ""
 
-#: app/templates/edit_profile.html:21 app/templates/editor.html:114
+#: app/templates/edit_profile.html:21 app/templates/editor.html:115
 #: app/templates/test.html:66
 msgid "Save"
 msgstr ""
@@ -164,98 +172,98 @@ msgstr ""
 msgid "editor"
 msgstr ""
 
-#: app/templates/editor.html:18 app/templates/test.html:22
-msgid "Endnote"
+#: app/templates/editor.html:18
+msgid "Endnotes"
 msgstr ""
 
-#: app/templates/editor.html:61
+#: app/templates/editor.html:62
 msgid "Title"
 msgstr ""
 
-#: app/templates/editor.html:63
+#: app/templates/editor.html:64
 msgid "Abstract"
 msgstr ""
 
-#: app/templates/editor.html:88 app/templates/test.html:45
+#: app/templates/editor.html:89 app/templates/test.html:45
 msgid "Toolbar"
 msgstr ""
 
-#: app/templates/editor.html:93 app/templates/editor.html:164
+#: app/templates/editor.html:94 app/templates/editor.html:165
 #: app/templates/test.html:111
 msgid "Show side menu"
 msgstr ""
 
-#: app/templates/editor.html:102 app/templates/test.html:55
+#: app/templates/editor.html:103 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr ""
 
-#: app/templates/editor.html:106 app/templates/test.html:59
+#: app/templates/editor.html:107 app/templates/test.html:59
 msgid "Upload file"
 msgstr ""
 
-#: app/templates/editor.html:110 app/templates/test.html:63
+#: app/templates/editor.html:111 app/templates/test.html:63
 msgid "Download result"
 msgstr ""
 
-#: app/templates/editor.html:118 app/templates/test.html:69
+#: app/templates/editor.html:119 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr ""
 
-#: app/templates/editor.html:121
+#: app/templates/editor.html:122
 msgid "Hide input"
 msgstr ""
 
-#: app/templates/editor.html:124 app/templates/test.html:75
+#: app/templates/editor.html:125 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr ""
 
-#: app/templates/editor.html:127 app/templates/test.html:72
+#: app/templates/editor.html:128 app/templates/test.html:72
 msgid "Hide preview"
 msgstr ""
 
-#: app/templates/editor.html:130 app/templates/test.html:78
+#: app/templates/editor.html:131 app/templates/test.html:78
 msgid "Head"
 msgstr ""
 
-#: app/templates/editor.html:133 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:134 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr ""
 
-#: app/templates/editor.html:136 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:137 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr ""
 
-#: app/templates/editor.html:139 app/templates/test.html:87
+#: app/templates/editor.html:140 app/templates/test.html:87
 msgid "Picture"
 msgstr ""
 
-#: app/templates/editor.html:142 app/templates/test.html:90
+#: app/templates/editor.html:143 app/templates/test.html:90
 msgid "Link"
 msgstr ""
 
-#: app/templates/editor.html:145 app/templates/test.html:93
+#: app/templates/editor.html:146 app/templates/test.html:93
 msgid "List"
 msgstr ""
 
-#: app/templates/editor.html:148 app/templates/test.html:96
+#: app/templates/editor.html:149 app/templates/test.html:96
 msgid "Numbered list"
 msgstr ""
 
-#: app/templates/editor.html:151 app/templates/test.html:99
+#: app/templates/editor.html:152 app/templates/test.html:99
 msgid "Footnote"
 msgstr ""
 
-#: app/templates/editor.html:154 app/templates/test.html:102
+#: app/templates/editor.html:155 app/templates/test.html:102
 msgid "Table"
 msgstr ""
 
-#: app/templates/editor.html:157 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:158 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr ""
 
-#: app/templates/editor.html:160 app/templates/test.html:108
+#: app/templates/editor.html:161 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr ""
 
@@ -291,62 +299,70 @@ msgstr ""
 msgid "A kind of HTML markup for habr.com"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:51 app/templates/test.html:181
+#: app/templates/editor_side_menu.html:56
+msgid "Finish editing"
+msgstr ""
+
+#: app/templates/editor_side_menu.html:68 app/templates/test.html:181
 msgid "Publish on Wordpress.com"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:51
-#: app/templates/editor_side_menu.html:63 app/templates/test.html:182
+#: app/templates/editor_side_menu.html:68
+#: app/templates/editor_side_menu.html:80 app/templates/test.html:182
 msgid "Publish"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:54 app/templates/test.html:185
+#: app/templates/editor_side_menu.html:71 app/templates/test.html:185
 msgid "Clear Wordpress.com cookies"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:54
-#: app/templates/editor_side_menu.html:66 app/templates/test.html:186
+#: app/templates/editor_side_menu.html:71
+#: app/templates/editor_side_menu.html:83 app/templates/test.html:186
 msgid "Clear cookies"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:56
-#: app/templates/editor_side_menu.html:59 app/templates/test.html:190
+#: app/templates/editor_side_menu.html:73
+#: app/templates/editor_side_menu.html:76 app/templates/test.html:190
 #: app/templates/test.html:191
 msgid "Connect to Wordpress.com"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:56
-#: app/templates/editor_side_menu.html:59
-#: app/templates/editor_side_menu.html:68
+#: app/templates/editor_side_menu.html:73
+#: app/templates/editor_side_menu.html:76
+#: app/templates/editor_side_menu.html:85
 msgid "Connect"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:63
+#: app/templates/editor_side_menu.html:80
 msgid "Publish on Medium.com"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:66
+#: app/templates/editor_side_menu.html:83
 msgid "Clear Medium.com cookies"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:68
+#: app/templates/editor_side_menu.html:85
 msgid "Connect Medium.com"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:74 app/templates/test.html:197
+#: app/templates/editor_side_menu.html:91 app/templates/test.html:197
 msgid "Generate pdf"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:79
+#: app/templates/editor_side_menu.html:96
 msgid "Generate ePUB"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:83 app/templates/test.html:201
+#: app/templates/editor_side_menu.html:100 app/templates/test.html:201
 msgid "Generate LaTeX"
 msgstr ""
 
-#: app/templates/editor_side_menu.html:109
+#: app/templates/editor_side_menu.html:126
 msgid "Markdown cheatsheet"
+msgstr ""
+
+#: app/templates/editor_side_menu.html:130
+msgid "Editor manual"
 msgstr ""
 
 #: app/templates/md_cheatsheet.html:2
@@ -540,6 +556,10 @@ msgstr ""
 msgid "Last seen on"
 msgstr ""
 
+#: app/templates/test.html:22
+msgid "Endnote"
+msgstr ""
+
 #: app/templates/test.html:39
 msgid "Close Menu"
 msgstr ""
@@ -560,7 +580,7 @@ msgstr ""
 msgid "preview"
 msgstr ""
 
-#: app/templates/user.html:19
+#: app/templates/user.html:23
 msgid "New Article"
 msgstr ""
 
