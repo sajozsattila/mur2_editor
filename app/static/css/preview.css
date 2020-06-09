@@ -16,7 +16,7 @@
 #article_main p img {
     float: left;
     padding-right: 1ex;
-        
+    max-width: 50%;        
 }
 
 #article_main table + p[id^='tbl'] ,

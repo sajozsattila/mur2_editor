@@ -179,6 +179,10 @@
                     var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id+"_time" }}"))/1000;
                     var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id+"_time" }}"))/1000;
 
+                    console.log(articleTimestamp);
+                    console.log(dataTime);
+                    console.log(data_titleTime);
+                    console.log(data_abstractTime);
                     if ( dataTime > {{ articleTimestamp }} ) {
                         var data = localStorage.getItem("{{ "mur2_main_content"+article_id }}");
                     }

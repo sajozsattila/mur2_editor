@@ -928,6 +928,14 @@ function ParserCollection(
             generate_from_md('latex', mainCollection);
         } else if (target.id === "id_epub") {
             generate_from_md('epub', mainCollection);
+        } else if (target.id === "id_publish_article") {
+            // finishe editing article
+            var iframe = document.getElementById('transFrame');
+            iframe.addEventListener('load', Handler);
+            function Handler() {
+                window.location.reload(true); 
+            }
+            
         }
 
     });

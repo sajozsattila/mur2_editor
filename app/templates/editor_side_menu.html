@@ -45,6 +45,23 @@
 					<label class="control-item " for="id_habr" title="{{ _('A kind of HTML markup for habr.com') }}" data-result-as="habr">H</label>
 				</div>
 			</div>
+            {% if not current_user.is_anonymous and article_status == "editing" %}
+            <div id="finish_editing"> 
+                <div class="headsidebar">
+                <!-- closs editing -->
+                <form target="transFrame" action="{{ url_for('main.updateArticle')  }}" method="post">
+                    {{ updateform.status(value="issued" ) }} 
+                    {{ updateform.articleid(value=article_id ) }} 
+                    <input class="control-input" type="submit" id="id_publish_article" value="Finish editing">
+                    <label class="control-item" for="id_publish_article" title="{{ _('Finish editing') }}" >{{ _('Finish editing') }}</label>
+                </form>
+                <!-- commuicate with the server on background -->
+                <iframe  style="display: none;" width="0" height="0" frameborder="0"  name="transFrame" id="transFrame" >
+                </iframe>
+                </div>
+            </div>
+            {% endif %}
+            
 			<div id="side_export">
 				<div class="headsidebar">{% if ( wordpresslogin ) %}
 					<input id="id_wpc_publish" class="control-input" type="radio" name="source_type">
@@ -117,7 +134,7 @@
         {% include 'md_cheatsheet.html' %}
 	</div>	<!-- top -->
 	 <div id="foot"> 
-         <a href="https://mur2.co.uk" class="control-item">© 2020 μr²</a>
+         <a href="https://mur2.co.uk/reader/21" class="control-item">© 2020 μr²</a>
     </div>
 </div>
 <!-- side menu -->

@@ -1,12 +1,13 @@
 body, button input, select {
     /* */    
-    font-family: source-han-sans-simplified-c, sans-serif; 
+    font-family: source-han-sans-simplified-c, sans-serif;
 }
 
 .normalfont {
     font-family: source-han-sans-simplified-c, sans-serif; 
 }
 
+.result-as-html div#article_title,
 body h1, body h2, body h3, body h4, body h5 {
     font-family: source-han-serif-sc, serif;
 }
@@ -14,3 +15,4 @@ body h1, body h2, body h3, body h4, body h5 {
 body h1#article_title, body h1#article_title p {
     font-family: source-han-serif-sc, source-han-sans-simplified-c, serif;
 }
+

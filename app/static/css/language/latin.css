@@ -2,3 +2,6 @@
   --verticaldistance: 1.685rem;
 }
 
+.result-as-html div#article_title {
+    font-family: 'Ibarra Real Nova', serif;
+}

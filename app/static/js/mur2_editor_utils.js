@@ -214,7 +214,8 @@ async function save_article(blobs) {
         fd.append('article_abstract', article_abstract);
         // send data
         var xhr = new XMLHttpRequest();
-        xhr.open('post', '/markdownsave', true);
+        xhr.open('post', '/markdownsave', true);       
+        
     } else { // if review
         var article_id = document.querySelector('meta[name="review_id"]').content
         var result = document.getElementById('review_result').value

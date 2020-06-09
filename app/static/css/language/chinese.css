@@ -1,25 +1,55 @@
 :root {
-  --verticaldistance: 2.3rem;
+  --verticaldistance: 2.1em;
 }
 
 #article_main p {
     text-indent: var(--verticaldistance);   
 }
 
-#article_preview_side div#article_title, 
-body h1#article_title {
-    position: relative;
-    left: calc( var(--verticaldistance) * -5.1 );
+#article_preview_side div#article_title,
+body h1#article_title, body h1#article_title p {
+    max-width: 53rem;
+    text-indent: unset;
+    word-break: keep-all;
+    font-size: 3.58rem;
+    left: calc( var(--verticaldistance) * -1 );
+    line-height: 1.1;
+    margin: unset;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 body, button input, select {
     /* */
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.4; 
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5; 
     letter-spacing: 1px;
+    word-break: break-word;
+    color: #333;
 }
 
 div#article_abstract, #article_main p, #article_main li, #article_main h1 {
-    max-width: 44rem;
+    max-width: 47rem;
+}
+
+textarea,
+.ldt {
+    letter-spacing: 0px;
+}
+
+body h1#article_title + div {
+    left: calc( var(--verticaldistance) * -2.8 );
+}
+
+body h1, body h2, body h3, body h4, body h5 {
+    left: calc( var(--verticaldistance) * -1);
+    text-indent: unset;
+    margin: unset;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+strong {
+    font-weight: 700;
 }

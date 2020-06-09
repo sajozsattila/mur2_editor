@@ -1,10 +1,6 @@
 body, button input, select {
     /* */
     font-family: source-han-sans-traditional, sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.4; 
-    letter-spacing: 1px;
 }
 
 .normalfont {

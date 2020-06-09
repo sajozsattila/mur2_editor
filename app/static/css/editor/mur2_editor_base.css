@@ -92,7 +92,7 @@
     padding-right: 0;
 }
 
-
+#finish_editing,
 #mcs,
 #side_export {
     padding-left: 1rem;
@@ -268,7 +268,6 @@ textarea {
     font-size: 2.986em;
     line-height: 1;
     text-align: left;
-    font-family: 'Ibarra Real Nova', serif;
 }
 .result-as-html div#article_title .svg-preview{
     vertical-align: calc( 2.986 * var(--latex_align) ) !important ; 
