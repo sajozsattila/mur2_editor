@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 22:07+0000\n"
+"POT-Creation-Date: 2020-06-11 20:53+0000\n"
 "PO-Revision-Date: 2020-05-29 06:45+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -86,6 +86,18 @@ msgstr "重置密碼"
 #: app/auth/routes.py:126
 msgid "Your password has been reset."
 msgstr "密碼已重置"
+
+#: app/main/forms.py:55
+msgid "Image only!"
+msgstr ""
+
+#: app/main/forms.py:55
+msgid "File was empty!"
+msgstr ""
+
+#: app/main/forms.py:56
+msgid "Upload"
+msgstr ""
 
 #: app/main/routes.py:123
 msgid "You can not edit this article"
@@ -528,11 +540,7 @@ msgstr "等於−1。但通常被列為"
 msgid "Euler's identity:"
 msgstr "欧拉恒等式"
 
-#: app/templates/media.html:10
-msgid "Media files"
-msgstr "媒體文件"
-
-#: app/templates/media.html:31
+#: app/templates/media.html:34 app/templates/media.html:36
 msgid "Delete file"
 msgstr "刪除文件"
 
@@ -618,4 +626,7 @@ msgstr "已通知網站管理員。抱歉給您帶來的不便"
 
 #~ msgid "Edit your profile"
 #~ msgstr "編輯你的用戶資料"
+
+#~ msgid "Media files"
+#~ msgstr "媒體文件"
 

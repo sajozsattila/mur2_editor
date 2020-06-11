@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 22:07+0000\n"
+"POT-Creation-Date: 2020-06-11 20:53+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -86,6 +86,18 @@ msgstr "Jelszó visszaállítása"
 #: app/auth/routes.py:126
 msgid "Your password has been reset."
 msgstr "Az új jelszó beállítottuk."
+
+#: app/main/forms.py:55
+msgid "Image only!"
+msgstr "Kizárolag képfájl!"
+
+#: app/main/forms.py:55
+msgid "File was empty!"
+msgstr "Üres fájl!"
+
+#: app/main/forms.py:56
+msgid "Upload"
+msgstr "Feltöltés"
 
 #: app/main/routes.py:123
 msgid "You can not edit this article"
@@ -528,11 +540,7 @@ msgstr " egyenlő -1-el. De általában így irják"
 msgid "Euler's identity:"
 msgstr "Euler-összefüggés:"
 
-#: app/templates/media.html:10
-msgid "Media files"
-msgstr "Média fájlok"
-
-#: app/templates/media.html:31
+#: app/templates/media.html:34 app/templates/media.html:36
 msgid "Delete file"
 msgstr "Fájl törlése"
 
@@ -648,4 +656,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 
 #~ msgid "Edit your profile"
 #~ msgstr "Profil szerkesztése"
+
+#~ msgid "Media files"
+#~ msgstr "Média fájlok"
 
