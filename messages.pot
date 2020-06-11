@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 22:07+0000\n"
+"POT-Creation-Date: 2020-06-11 20:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,6 +84,18 @@ msgstr ""
 
 #: app/auth/routes.py:126
 msgid "Your password has been reset."
+msgstr ""
+
+#: app/main/forms.py:55
+msgid "Image only!"
+msgstr ""
+
+#: app/main/forms.py:55
+msgid "File was empty!"
+msgstr ""
+
+#: app/main/forms.py:56
+msgid "Upload"
 msgstr ""
 
 #: app/main/routes.py:123
@@ -527,11 +539,7 @@ msgstr ""
 msgid "Euler's identity:"
 msgstr ""
 
-#: app/templates/media.html:10
-msgid "Media files"
-msgstr ""
-
-#: app/templates/media.html:31
+#: app/templates/media.html:34 app/templates/media.html:36
 msgid "Delete file"
 msgstr ""
 

@@ -49,4 +49,3 @@ function clear_cookies(cname) {
     }
 }
 
-

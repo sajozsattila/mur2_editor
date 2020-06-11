@@ -160,7 +160,8 @@ and (max-device-width : 767px){
 
 /* 5:4 desktop screen */
 @media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
-    body h1#article_title {
+    body h1#article_title,
+    body h1#article_title + div  {
         left: calc( var(--verticaldistance) * -2 );
         max-width: 44.37rem;
     }   
@@ -171,10 +172,11 @@ and (max-device-width : 767px){
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
-    body h1#article_title {
+    body h1#article_title,
+    body h1#article_title + div {
         left: 0rem;
         max-width: 41rem;
-    }
+    }        
 }
 
 /* iPad  in portrait */
@@ -182,7 +184,8 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
-    body h1#article_title {
+    body h1#article_title,
+    body h1#article_title + div  {
         left: 0rem;
         max-width: 41rem;
     }
