@@ -1,19 +1,5 @@
 
 
-<span id="article_title">
-
- μr² editor manual
-
-</span>
-
-
-<span id="article_abstract">
-
-Let see the details of how the editor is working.
-
-</span>
-
-
 # Markdown
 
 ## Heading
