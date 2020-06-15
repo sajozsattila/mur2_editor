@@ -21,8 +21,7 @@
 
 
 /* Markdown inline highlight styles */
-.ldt .sub,
-.ldt .sup {
+.ldt .sub {
 	color: goldenrod;
 }
 .ldt .code {
