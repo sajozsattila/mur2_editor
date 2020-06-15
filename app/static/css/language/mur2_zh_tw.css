@@ -1,17 +1,23 @@
 body, button input, select {
     /* */
-    font-family: source-han-sans-traditional, sans-serif;
+    font-family: source-han-sans-traditional, source-han-serif-tc, sans-serif;
 }
 
-.normalfont {
-    
-    font-family: source-han-sans-traditional, sans-serif;
+.normalfont {    
+    font-family: source-han-sans-traditional, source-han-serif-tc, sans-serif;
 }
 
 body h1, body h2, body h3, body h4, body h5 {
     font-family: source-han-serif-tc, source-han-sans-traditional, serif; 
 }
 
-body h1#article_title, body h1#article_title p {
+body span#article_title, body span#article_title p {
     font-family: source-han-serif-tc, source-han-sans-traditional, serif;
+}
+
+.ldt, 
+.ldt pre, 
+.ldt textarea,
+.ldt-pre, textarea {
+    font-family: source-han-sans-traditional,  source-han-serif-tc, serif; 
 }

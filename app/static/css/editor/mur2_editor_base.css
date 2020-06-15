@@ -115,9 +115,11 @@
 
 
 .ldt-pre,
-textarea {
+textarea,
+.ldt, 
+.ldt pre, 
+.ldt textarea {
     /* */
-    font-family: 'DM Mono', sans-serif !important; 
     line-height: 1.4; /* this need to be same than in the body */
     font-feature-settings: "liga" 0, "frac" 0;
 }
@@ -297,6 +299,7 @@ textarea {
 
 .focused {
     color: black;
+    font-weight: bold;
     /* */
 }
 

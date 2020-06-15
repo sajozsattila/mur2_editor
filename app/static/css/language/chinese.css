@@ -53,3 +53,13 @@ body h1, body h2, body h3, body h4, body h5 {
 strong {
     font-weight: 700;
 }
+
+.ldt, 
+.ldt pre, 
+.ldt textarea,
+.ldt-pre, textarea {
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    color: grey;
+}

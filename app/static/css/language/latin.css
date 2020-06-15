@@ -5,3 +5,12 @@
 .result-as-html div#article_title {
     font-family: 'Ibarra Real Nova', serif;
 }
+
+.ldt-pre,
+textarea,
+.ldt, 
+.ldt pre, 
+.ldt textarea {
+    font-family: 'Roboto Mono', monospace; !important; 
+    
+}
