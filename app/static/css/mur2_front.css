@@ -142,7 +142,8 @@ td a.control-item {
  */
 
 
-.main\.user  #user_username {
+.main\.user  #user_username,
+.main\.root  #user_username {
     writing-mode:  tb;
     width: 25rem;
     /* mur2menutop - foot - side_menu */
@@ -159,9 +160,14 @@ td a.control-item {
 }
 
 .main\.search #maintext,
-.main\.user #maintext {
+.main\.user #maintext,
+.main\.root #maintext {
     width: calc(100% - 27.5275rem - 34.315rem );
     top: 1rem;    
+}
+
+.main\.root #maintext {
+    top: 3rem;
 }
 
 .main\.user #maintext {
@@ -169,6 +175,7 @@ td a.control-item {
 }
 
 .main\.search .usertitle ,
+.main\.root .usertitle ,
 .main\.user .usertitle {
     text-transform: uppercase;
     font-weight: bold;
@@ -183,13 +190,16 @@ td a.control-item {
 }
 
 .main\.search .usertitle a,
-.main\.user .usertitle a{
+.main\.root .usertitle a,
+.main\.user .usertitle a {
     text-decoration: none;
     color: #333;
 }
 
 .main\.search .usertitle,
 .main\.search .userabstract,
+.main\.root .usertitle,
+.main\.root .userabstract,
 .main\.user .usertitle,
 .main\.user .userabstract {
     margin-left: 0.845rem;
@@ -198,12 +208,14 @@ td a.control-item {
 }
 
 .main\.search  .userabstract ,
+.main\.root .userabstract,
 .main\.user .userabstract {
     display: flex;
     flex-direction: row;
 } 
 
 .main\.search   .user_articles, 
+.main\.root   .user_articles, 
 .main\.user .user_articles {
     padding-bottom: 3.37rem;
     border-top: 1px solid #666;
@@ -212,6 +224,8 @@ td a.control-item {
 
 .main\.search  .userabstracttext p,
 .main\.search  .usertitle p,
+.main\.root  .userabstracttext p,
+.main\.root  .usertitle p,
 .main\.user .userabstracttext p ,
 .main\.user .usertitle p {
     margin: unset;
@@ -219,6 +233,7 @@ td a.control-item {
 }
 
 .main\.search  .article_action,
+.main\.root  .article_action,
 .main\.user .article_action{
     opacity: 0;
     display: flex;
@@ -227,6 +242,7 @@ td a.control-item {
 }
 
 .main\.search  .article_action:hover,
+.main\.root  .article_action:hover,
 .main\.user .article_action:hover{
     opacity: 1;
 }
@@ -306,6 +322,7 @@ and (max-device-width : 767px){
     
     #maintext,
     .main\.user #maintext,
+    .main\.root #maintext,
     .main\.edit_profile #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 1.685rem - 1.685rem);
@@ -343,10 +360,12 @@ and (max-device-width : 767px){
         padding-right: 5.055rem;
     }
     
+    .main\.root   #maintext,
     .main\.user   #maintext {
         position: relative;
         top: 3rem;
     }
+    .main\.root  #user_username
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;
@@ -362,6 +381,7 @@ and (max-device-width : 767px){
 /* 5/4 desktop */
 @media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
     #maintext,
+    .main\.root #maintext,
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
@@ -379,6 +399,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
     #maintext,
+    .main\.root #maintext, 
     .main\.user #maintext {
         padding-left: 3.37rem;
         width: calc(100% - 17.5275rem - 3.37rem);
@@ -386,7 +407,8 @@ and (orientation : landscape) {
     #side_menu {
         width: 15rem;
         min-width: 15rem;
-    }    
+    }  
+    .main\.root  #user_username,
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;
@@ -404,6 +426,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
     #maintext,
+    .main\.root #maintext,
     .main\.user #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 17.5275rem - 1.685rem);
@@ -412,6 +435,7 @@ and (orientation : portrait) {
         width: 15rem;
         min-width: 15rem;
     }
+    .main\.root  #user_username,
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;
@@ -425,6 +449,7 @@ and (orientation : portrait) {
 @media only screen and (max-width: 900px), 
 (height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape) {
     #maintext,
+    .main\.root #maintext.
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
