@@ -89,15 +89,15 @@ msgstr "密碼已重置"
 
 #: app/main/forms.py:55
 msgid "Image only!"
-msgstr ""
+msgstr "仅限图像"
 
 #: app/main/forms.py:55
 msgid "File was empty!"
-msgstr ""
+msgstr "文件空缺"
 
 #: app/main/forms.py:56
 msgid "Upload"
-msgstr ""
+msgstr "上傳"
 
 #: app/main/routes.py:123
 msgid "You can not edit this article"
@@ -133,7 +133,7 @@ msgstr "刪除文章"
 
 #: app/templates/article.html:21
 msgid "Reopen editing"
-msgstr ""
+msgstr "重新打開編輯"
 
 #: app/templates/base_menu.html:5
 msgid "Close Side Menu"
@@ -165,7 +165,7 @@ msgstr "搜索"
 
 #: app/templates/edit_profile.html:4
 msgid "Edit Profile"
-msgstr ""
+msgstr "編輯用戶資料"
 
 #: app/templates/edit_profile.html:15
 msgid "About me"
@@ -186,7 +186,7 @@ msgstr "編輯器"
 
 #: app/templates/editor.html:18
 msgid "Endnotes"
-msgstr ""
+msgstr "尾註"
 
 #: app/templates/editor.html:62
 msgid "Title"
@@ -313,7 +313,7 @@ msgstr "HTML markup habr.com"
 
 #: app/templates/editor_side_menu.html:56
 msgid "Finish editing"
-msgstr ""
+msgstr "結束編輯"
 
 #: app/templates/editor_side_menu.html:68 app/templates/test.html:181
 msgid "Publish on Wordpress.com"
@@ -375,7 +375,7 @@ msgstr "Markdown速查表"
 
 #: app/templates/editor_side_menu.html:130
 msgid "Editor manual"
-msgstr ""
+msgstr "編輯器使用指南"
 
 #: app/templates/md_cheatsheet.html:2
 msgid "Close Markdown cheatsheet"
@@ -550,7 +550,7 @@ msgstr "搜索結果"
 
 #: app/templates/search.html:6
 msgid "result for"
-msgstr ""
+msgstr "結果為"
 
 #: app/templates/search.html:16
 msgid "Next results"
