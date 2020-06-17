@@ -45,6 +45,8 @@
 .result-as-habr #article_main_pre {
     display: block; 
     /* */
+    padding: 0;
+    font-family: inherit;
 }
 .result-as-src #article_main,
 .result-as-htmltex #article_main,
@@ -53,6 +55,16 @@
 .result-as-habr #article_main {
     display: none;
     /* */
+}
+
+.result-as-src  #article_preview_side div#article_title,
+.result-as-htmltex  #article_preview_side div#article_title,
+.result-as-md #article_preview_side div#article_title,
+.result-as-mdp  #article_preview_side div#article_title,
+.result-as-habr  #article_preview_side div#article_title {
+    font-size: inherit;
+    line-height: unset;
+    left: 0;
 }
 
 #side_menu, 
@@ -212,6 +224,7 @@ textarea,
     text-align: center;
 }
 #article_preview_side.titleon .title_and_abstract + #article_main,
+#article_preview_side.titleon .title_and_abstract ~ #article_main_pre,
 #article_input_side.titleon .title_and_abstract + .ldt {
     display: none;
 }

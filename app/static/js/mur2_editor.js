@@ -562,11 +562,6 @@ function ParserCollection(
         },
         abstractImageLoader
     );
-    
-    console.log(mainCollection);
-    console.log(abstractCollection);
-
-
 
     // load first everything
     mainCollection.updateResult(mainImageLoader, true);
