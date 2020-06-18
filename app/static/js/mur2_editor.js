@@ -495,7 +495,7 @@ function ParserCollection(
     var titleSource = document.getElementById('title-source'),
         titleResult = document.getElementById('article_title'),
         abstactSource = document.getElementById('abstact-source'),
-        abstactResult = document.getElementById('article_abstract'),
+        abstactResult = document.getElementById('article_abstract_text'),
         mainSource = document.getElementById('main-source'),
         mainResult = document.getElementById('article_main'),
         article_id = document.querySelector('meta[name="article_id"]').content;
@@ -555,8 +555,8 @@ function ParserCollection(
                 localStorage.setItem("mur2_abstract_content"+article_id+'_time', +new Date);
             } catch (e) {}
         },
-        "article_abstract",
-        "article_abstract",
+        "article_abstract_text",
+        "article_abstract_text",
         function domGetSource() {
             return '<span id="article_abstract">\n\n' + abstactSource.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n';
         },
@@ -748,6 +748,42 @@ function ParserCollection(
         };
         reader.readAsText(this.files[0]);
     });
+    
+    // Featured Image
+    document.getElementById('feaImg_add').addEventListener('change', function() {
+        console.log("readimg");
+        // A file has been chosen
+        if (!this.files || !FileReader) {
+            return;
+        }
+        var file = document.getElementById('feaImg_add').files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function() {
+            var image = document.getElementById("article_abstract_div").firstElementChild;
+            // the result image data
+            image.src = reader.result;
+            image.classList.remove("hide");
+            // save the image localy
+            localStorage.setItem("mur2_featured_image"+article_id, image.src);
+            localStorage.setItem("mur2_featured_image"+article_id+'_time', +new Date);
+        };
+        // you have to declare the file loading
+        reader.readAsDataURL(file);     
+    });        
+    let featureImg = document.querySelector('#id_featureImage');
+    featureImg.addEventListener('click', function() {
+        let target = event.target;
+        if (target.id == "feaImg_del") {            
+            var image = document.getElementById("article_abstract_div").firstElementChild;
+            // the result image data
+            image.src = "";
+            image.classList.add("hide");
+            // save the image localy
+            localStorage.setItem("mur2_featured_image"+article_id, image.src);
+            localStorage.setItem("mur2_featured_image"+article_id+'_time', +new Date);
+        };
+    });    
 
     // other event delegator for menu and toolbar
     let editor_toolbar = document.querySelector('#menu');
