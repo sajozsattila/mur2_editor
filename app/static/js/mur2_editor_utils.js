@@ -190,7 +190,14 @@ async function save_article(blobs) {
     });
     var abstractdatatext = document.getElementById('article_abstract').innerHTML;
     var titledatatext = document.getElementById('article_title').innerHTML;
-    
+    var featuredImagesSrc = "";
+    var featuredimages = document.getElementsByClassName("feature_image")[0];
+    if ( featuredimages.src != featuredimages.baseURI ) {
+        console.log(featuredimages.src);
+        console.log(featuredimages.baseURI);
+        featuredImagesSrc = featuredimages.src;
+        console.log(document.getElementsByClassName("feature_image"));
+    }
 
     // type of the text
     var texttype = document.querySelector('meta[name="texttype"]').content.trim()
@@ -212,6 +219,7 @@ async function save_article(blobs) {
         fd.append('article_id', article_id);
         fd.append('article_title', article_title);
         fd.append('article_abstract', article_abstract);
+        fd.append('featuredimages', featuredImagesSrc);
         // send data
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/markdownsave', true);       
@@ -304,11 +312,14 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
 
         // if it is not a new article get the id
         var article_id = document.querySelector('meta[name="article_id"]').content
-        // ???
-
+        // ???        
+        
         var htmltext = mainCollection.getHtmlImg();
         var article_title = titleCollection.getHtmlImg();
         var article_abstract = abstractCollection.getHtmlImg();
+        var featuredimages = document.getElementsByClassName("feature_image")[0];
+        console.log(featuredimages);
+        
 
         // publish in Wordpress.com
         var fd = new FormData();
@@ -317,6 +328,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         fd.append('content', article_abstract + "<hr>" + htmltext);
         fd.append('excerpt', article_abstract);
         fd.append('format', 'standard');
+        fd.append('featured_media', featuredimages.src);
 
         var xhr = new XMLHttpRequest();
         xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/posts', true);

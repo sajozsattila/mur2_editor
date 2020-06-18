@@ -308,17 +308,7 @@ td a.control-item {
         
 }
 
-.feature_image {    
-    height: calc( 5 * 1.685rem);    
-    width: calc( 5 * 1.685rem);    
-    border-radius: 50%;    
-    background-color: #7db9e8;    
-    margin: 0 1.685rem 0.8425rem 0;    
-    float: left;    
-    -webkit-shape-outside: circle();    
-    shape-outside: circle();
-    border: solid 1px #333;
-}
+
 
 /****************************************
  * Media settings

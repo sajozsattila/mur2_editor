@@ -62,8 +62,20 @@
              <div class="title_and_abstract">
                  <div>{{ _("Title") }}:</div>
                  <textarea id="title-source"  maxlength="120"  ></textarea>
+                 <div id="id_featureImage">
+                     <input class="feaImg_action control-input" id="feaImg_add" type="file" name="{{  _('Set Featured Image') }}" >
+                     <label class="toolbar" for="feaImg_add" title="{{  _('Set Featured Image') }}" >
+                         {{  _('Set Featured Image') }}
+                     </label>
+                     
+                     <input class="feaImg_action control-input" id="feaImg_del" type="radio" name="{{  _('Delete Featured Image') }}" >
+                     <label class="toolbar" for="feaImg_del" title="{{  _('Delete Featured Image') }}" >
+                         {{  _('Delete Featured Image') }}
+                     </label>                     
+                 </div>
                  <div>{{ _("Abstract") }}:</div>                 
                  <textarea id="abstact-source" maxlength="1200" ></textarea>
+                 
              </div>
             <textarea id="main-source"></textarea>
             <div id="highlight_main" ></div>
@@ -72,7 +84,14 @@
          <div id="article_preview_side" >
              <div class="title_and_abstract">
                  <div id="article_title"></div>
-                 <div id="article_abstract"></div>
+                 <div id="article_abstract_div">
+                     {% if articleFeaturedImage != None and articleFeaturedImage != "" %}
+                     <img class="feature_image" src="{{ articleFeaturedImage }}">
+                     {% else %}
+                     <img class="feature_image hide" src="">
+                     {% endif %}
+                     <p id="article_abstract_text"></p>
+                 </div>
                  <div class="separator"></div>
              </div>
             <div id="article_main"></div>
@@ -179,6 +198,7 @@
                     var dataTime = parseInt(localStorage.getItem("{{ "mur2_main_content"+article_id+"_time" }}"))/1000;
                     var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id+"_time" }}"))/1000;
                     var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id+"_time" }}"))/1000;
+                    var data_fImageTime = parseInt(localStorage.getItem("{{"mur2_featured_image"+ article_id+"_time" }}"))/1000;
 
                     if ( dataTime > {{ articleTimestamp }} ) {
                         var data = localStorage.getItem("{{ "mur2_main_content"+article_id }}");
@@ -189,6 +209,9 @@
                     if ( data_abstractTime > {{ articleTimestamp }} ) {
                         var data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id }}");
                     }
+                    if ( data_fImageTime > {{ articleTimestamp }} ) {
+                        document.getElementsByClassName("feature_image")[0].src = localStorage.getItem("{{"mur2_featured_image"+ article_id }}");
+                    }
                 }
                 catch (e) {console.log(e)};
            }
@@ -196,6 +219,7 @@
             document.getElementById('main-source').value = data || '{{ article_markdown }}'.replace(/&lt;/g, '<')  ;
             document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace(/'&lt;/g, '<')  ;
             document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace(/&lt;/g, '<')  ;
+            
         }());
                   
        </script> 

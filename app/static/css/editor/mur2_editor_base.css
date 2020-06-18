@@ -187,7 +187,7 @@ textarea,
 
 #article_preview_side.inputoff  .title_and_abstract,
 #article_preview_side.inputoff  .title_and_abstract #article_title, 
-#article_preview_side.inputoff  .title_and_abstract #article_abstract {
+#article_preview_side.inputoff  .title_and_abstract #article_abstract_div {
     display: flex;
     min-height: unset;
     overflow: unset;
@@ -196,7 +196,7 @@ textarea,
 
 /* hide title and abstract */
 #article_preview_side #article_title,
-#article_preview_side #article_abstract,
+#article_preview_side #article_abstract_div,
 #article_preview_side #separator,
 #article_input_side #title-source,
 #article_input_side #abstact-source,
@@ -207,7 +207,7 @@ textarea,
     /* */
 }
 #article_preview_side.titleon #article_title,
-#article_preview_side.titleon #article_abstract,
+#article_preview_side.titleon #article_abstract_div,
 #article_preview_side.titleon #separator,
 #article_input_side.titleon #title-source,
 #article_input_side.titleon #abstact-source,
@@ -215,7 +215,7 @@ textarea,
 #article_preview_side.titleon .title_and_abstract 
 {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     height: 100%;
     /* */
 }
@@ -325,6 +325,18 @@ textarea,
 }
 
 /**********************************
+ * feature img
+ */
+
+#id_featureImage * {
+    color: black;
+}
+
+#id_featureImage .toolbar:hover {
+    border-bottom: solid black 1px;
+}
+
+/**********************************
  * markdown cheatsheet 
  */
 #markdown_cheat_sheet {
@@ -364,6 +376,13 @@ textarea,
     text-align: right;    
 }
 
+#article_preview_side.titleon #article_abstract_div {
+    display: block;    
+}
+
+#article_abstract_div #article_abstract_text {
+    margin: unset;
+}
 
 
 /* iPad in landscape */
