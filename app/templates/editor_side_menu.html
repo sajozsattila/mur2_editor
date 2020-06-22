@@ -70,16 +70,8 @@
 					<input id="id_wpc_clear" class="control-input" type="radio" name="source_type">
 					<label class="control-item " for="id_wpc_clear" title="{{ _('Clear Wordpress.com cookies') }}">{{ _("Clear cookies") }}</label>{% else %} 
                     {% if article_id == "-2" %}
-                    <!--
-					<input onclick="window.location.href = 'https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=https://mur2.co.uk/editor';" class="control-input" id="id_wpc_connect" type="radio" name="source_type">
-					<label class="control-item fab fa-wordpress-simple" for="id_wpc_connect" title="{{ _('Connect to Wordpress.com') }}"> <span class="normalfont">{{ _("Connect") }}</span>
-					</label>-->
                     <a class="control-item fab fa-wordpress-simple" href='https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=https://mur2.co.uk/editor'>{{ _("Connect") }}</a>
                     {% else %}
-                    <!--
-					<input onclick="window.location.href = 'https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=https://mur2.co.uk/edit/{{ article_id }}';" class="control-input" id="id_wpc_connect" type="radio" name="source_type">
-					<label class="control-item fab fa-wordpress-simple" for="id_wpc_connect" title="{{ _('Connect to Wordpress.com') }}">{{ _("Connect") }}</label>
-                     -->
                     <a class="control-item fab fa-wordpress-simple" href='https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=68742&redirect_uri=https://mur2.co.uk/edit/{{ article_id }}'>{{ _("Connect") }}</a>
 {% endif %} {% endif %}</div>
 

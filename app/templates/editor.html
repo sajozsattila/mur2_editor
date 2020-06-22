@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ language }}">
     <head>
-        <title>μr² {{ _('editor')}}</title>
+        <title>{{ title }}</title>
         
 
         <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
@@ -75,7 +75,14 @@
                  </div>
                  <div>{{ _("Abstract") }}:</div>                 
                  <textarea id="abstact-source" maxlength="1200" ></textarea>
-                 
+                 <div>{{ _("Keywords") }}:</div>   
+                 <div id="keywords" class="multi-search-filter" onclick="Array.from(this.children).find(n=>n.tagName==='INPUT').focus()">
+                     {% for key in keywords %}
+                     <div class="multi-search-item"><span>{{ key }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div>
+                     </div>
+                     {% endfor %}
+                     <input type="text" onkeyup="multiSearchKeyup(this)">
+                 </div>
              </div>
             <textarea id="main-source"></textarea>
             <div id="highlight_main" ></div>

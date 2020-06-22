@@ -175,6 +175,15 @@ async function alarming(xhr, sucessmsg) {
     msgbox.innerHTML = "";
 }
 
+function keywordlist() {
+    var keywords = [];
+    var keywords_dom = document.getElementsByClassName("multi-search-item");
+    for ( var i = keywords_dom.length; i--; ) {
+        keywords.push(keywords_dom[i].firstChild.firstChild.data);
+    }
+    return keywords;
+}
+    
 
 
 /* save Article content */
@@ -193,12 +202,10 @@ async function save_article(blobs) {
     var featuredImagesSrc = "";
     var featuredimages = document.getElementsByClassName("feature_image")[0];
     if ( featuredimages.src != featuredimages.baseURI ) {
-        console.log(featuredimages.src);
-        console.log(featuredimages.baseURI);
         featuredImagesSrc = featuredimages.src;
-        console.log(document.getElementsByClassName("feature_image"));
     }
-
+    var keywords = keywordlist();
+    
     // type of the text
     var texttype = document.querySelector('meta[name="texttype"]').content.trim()
     // transform the Blob to Form as this easier to process for the 
@@ -220,6 +227,7 @@ async function save_article(blobs) {
         fd.append('article_title', article_title);
         fd.append('article_abstract', article_abstract);
         fd.append('featuredimages', featuredImagesSrc);
+        fd.append('keywords', keywords.toString());
         // send data
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/markdownsave', true);       
@@ -257,7 +265,8 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
     var article_title = titleCollection.getHtmlImg().split("\n")[1].slice(3,-4);
     var article_abstract = abstractCollection.getHtmlImg();
     var article_id = document.querySelector('meta[name="article_id"]').content
-    
+    var keywords = keywordlist();
+    console.log(keywords);
     
     var fd = new FormData();
     fd.append('acceskey', access_token);
@@ -265,6 +274,7 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
     fd.append('article_title', article_title);
     fd.append('article_content', article_abstract + "<hr>" + htmltext);
     fd.append("destination", "medium");
+    fd.append("keywords", keywords.toString());
     
     var xhr = new XMLHttpRequest();
     /* need to receive file back */
@@ -297,6 +307,11 @@ async function wordpress2(link, id) {
     xhr.send(fd);
     alarming(xhr, "Published on " + link);
 }
+
+async function checktag(tag) {
+    
+}
+
 async function wordpress_on_fly(titleCollection, abstractCollection, mainCollection) {
     var msgbox = document.getElementById("msg")
 
@@ -318,8 +333,34 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var article_title = titleCollection.getHtmlImg();
         var article_abstract = abstractCollection.getHtmlImg();
         var featuredimages = document.getElementsByClassName("feature_image")[0];
-        console.log(featuredimages);
         
+        // tags        
+        var keywords = keywordlist();       
+        var keywordsId = [];
+        // get tags            
+        for ( var i = keywords.length; i--; ) {
+            let response = await new Promise(resolve => {
+                let fd = new FormData();
+                let xhrtt = new XMLHttpRequest();
+                console.log(keywords[i]);
+                fd.append('name', keywords[i]);
+                xhrtt.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/tags', true);
+                xhrtt.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token));
+                
+                xhrtt.onload = function() {
+                    resolve(xhrtt.response);
+                }                
+                xhrtt.send(fd);
+            });
+            var result = JSON.parse(response);
+            if ('id' in result) {
+                keywordsId.push(result.id);
+            } else if ('data' in result) {
+                if ('term_id' in result.data) {
+                    keywordsId.push(result.data.term_id);
+                }
+            }
+        }
 
         // publish in Wordpress.com
         var fd = new FormData();
@@ -328,10 +369,10 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         fd.append('content', article_abstract + "<hr>" + htmltext);
         fd.append('excerpt', article_abstract);
         fd.append('format', 'standard');
-        fd.append('featured_media', featuredimages.src);
+        fd.append("tags", keywordsId);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/posts', true);
+        xhr.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/posts', true);        
         xhr.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token));
         xhr.send(fd);
         xhr.onload = function() {
@@ -424,6 +465,22 @@ async function generate_from_md(destination, mainCollection) {
     } else {
         msgbox.innerHTML = "";
     }
+}
 
-
+/* keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords */
+function multiSearchKeyup(inputElement) {
+    if(event.keyCode === 13) {
+        inputElement.parentNode
+            .insertBefore(createFilterItem(inputElement.value), inputElement)
+            ;
+        inputElement.value = "";
+    }
+    function createFilterItem(text) {
+        const item = document.createElement("div");
+        item.setAttribute("class", "multi-search-item");
+        const span = `<span>${text}</span>`;
+        const close = `<div class="fa fa-close" onclick="this.parentNode.remove()"></div>`;
+        item.innerHTML = span+close;
+        return item;
+    }
 }

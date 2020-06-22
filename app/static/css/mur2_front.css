@@ -159,6 +159,7 @@ td a.control-item {
     transform: rotate(180deg);
 }
 
+.main\.keywords #maintext,
 .main\.search #maintext,
 .main\.user #maintext,
 .main\.root #maintext {
@@ -174,6 +175,7 @@ td a.control-item {
     padding-top: 2.4825rem ;
 }
 
+.main\.keywords .usertitle,
 .main\.search .usertitle ,
 .main\.root .usertitle ,
 .main\.user .usertitle {
@@ -189,6 +191,7 @@ td a.control-item {
     padding-bottom: 0.845rem;
 }
 
+.main\.keywords .usertitle a,
 .main\.search .usertitle a,
 .main\.root .usertitle a,
 .main\.user .usertitle a {
@@ -196,6 +199,8 @@ td a.control-item {
     color: #333;
 }
 
+.main\.keywords .usertitle,
+.main\.keywords .userabstract,
 .main\.search .usertitle,
 .main\.search .userabstract,
 .main\.root .usertitle,
@@ -207,6 +212,7 @@ td a.control-item {
     
 }
 
+.main\.keywords  .userabstract ,
 .main\.search  .userabstract ,
 .main\.root .userabstract,
 .main\.user .userabstract {
@@ -214,6 +220,7 @@ td a.control-item {
     flex-direction: row;
 } 
 
+.main\.keywords   .user_articles, 
 .main\.search   .user_articles, 
 .main\.root   .user_articles, 
 .main\.user .user_articles {
@@ -222,6 +229,8 @@ td a.control-item {
     direction: ltr;
 }
 
+.main\.keywords  .userabstracttext p,
+.main\.keywords  .usertitle p,
 .main\.search  .userabstracttext p,
 .main\.search  .usertitle p,
 .main\.root  .userabstracttext p,
@@ -232,6 +241,7 @@ td a.control-item {
     max-width: calc( 41rem + 5 * 1.685rem);;
 }
 
+.main\.keywords  .article_action,
 .main\.search  .article_action,
 .main\.root  .article_action,
 .main\.user .article_action{
@@ -241,6 +251,7 @@ td a.control-item {
     width: 3.37rem;
 }
 
+.main\.keywords  .article_action:hover,
 .main\.search  .article_action:hover,
 .main\.root  .article_action:hover,
 .main\.user .article_action:hover{
@@ -264,6 +275,7 @@ td a.control-item {
  ****************************************
  * special setting for search 
  */
+.main\.keywords #maintext h1, 
 .main\.search #maintext h1 {
     direction: ltr;
     margin: unset;
@@ -275,6 +287,7 @@ td a.control-item {
     width: calc(100% + 1.685rem);
 }
 
+.main\.keywords #maintext,
 .main\.search #maintext {
     padding-top: calc(2.4215rem + 1px);
 }
