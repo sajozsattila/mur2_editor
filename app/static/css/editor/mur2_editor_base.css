@@ -384,6 +384,42 @@ textarea,
     margin: unset;
 }
 
+/**********************************
+ * keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords
+ */
+.multi-search-filter{
+    border: 1px solid black;
+    padding:3px;
+}
+.multi-search-filter > input {
+    border: 0px;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    height: 100%;
+}
+.multi-search-item {
+    margin: 2px;
+    padding: 2px 24px 2px 8px;
+    float: left;
+    display: flex;
+    background-color: #c62641 ;
+    color: white;
+    border-radius: 3px;
+    position: relative;
+}
+.multi-search-item > span {
+    line-height:  1.685rem;;
+}
+.multi-search-item > .fa {
+    font-size: 12px;
+    line-height: 1.685rem;;
+    margin-left: 8px;
+    position: absolute;
+    right: 8px;
+    top: 2px;
+}
+
 
 /* iPad in landscape */
 @media only screen
