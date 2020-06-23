@@ -273,4 +273,17 @@ a {
     border: solid 1px #333;
 }
 
+/* Cookien police */
+#cookie-bar-button {
+    background-color:  #c62641 !important;
+    border-radius: 0px !important;
+}
+
+#cookie-bar {
+    font-family: initial !important
+}
+
+#cookie-bar p {
+    font-family: initial !important
+}
 
