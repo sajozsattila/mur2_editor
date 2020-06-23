@@ -155,7 +155,6 @@ a {
     overflow: auto;
     scrollbar-width: thin;
     letter-spacing: 1px;
-    /*font-variant: small-caps;*/
     text-transform: uppercase;
 }
 

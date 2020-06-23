@@ -177,11 +177,19 @@ async function alarming(xhr, sucessmsg) {
 
 function keywordlist() {
     var keywords = [];
-    var keywords_dom = document.getElementsByClassName("multi-search-item");
+    var keywords_dom = document.getElementById("keywords").getElementsByClassName("multi-search-item");
     for ( var i = keywords_dom.length; i--; ) {
         keywords.push(keywords_dom[i].firstChild.firstChild.data);
     }
     return keywords;
+}
+function categorylist() {
+    var categories = [];
+    var category_dom = document.getElementById("categories").getElementsByClassName("multi-search-item");
+    for ( var i = category_dom.length; i--; ) {
+        categories.push(category_dom[i].firstChild.firstChild.data);
+    }
+    return categories;
 }
     
 
@@ -205,6 +213,7 @@ async function save_article(blobs) {
         featuredImagesSrc = featuredimages.src;
     }
     var keywords = keywordlist();
+    var categories = categorylist();
     
     // type of the text
     var texttype = document.querySelector('meta[name="texttype"]').content.trim()
@@ -228,6 +237,7 @@ async function save_article(blobs) {
         fd.append('article_abstract', article_abstract);
         fd.append('featuredimages', featuredImagesSrc);
         fd.append('keywords', keywords.toString());
+        fd.append('categories', categories.toString());
         // send data
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/markdownsave', true);       
@@ -306,10 +316,6 @@ async function wordpress2(link, id) {
     xhr.open('post', '/export_data', true);
     xhr.send(fd);
     alarming(xhr, "Published on " + link);
-}
-
-async function checktag(tag) {
-    
 }
 
 async function wordpress_on_fly(titleCollection, abstractCollection, mainCollection) {
@@ -411,6 +417,9 @@ async function generate_from_md(destination, mainCollection) {
     var msgbox = document.getElementById("msg")
     msgbox.innerHTML = "Working";
     msgbox.style.color = "green";
+    
+    // author
+    var author = document.querySelector('meta[name="author"]').content
 
     fd.append("destination", destination);
     fd.append("mdfile", mddata, "article_text.md");
@@ -418,6 +427,7 @@ async function generate_from_md(destination, mainCollection) {
     fd.append('article_abstract', article_abstract);
     fd.append('endnotetext', endnotetext);
     fd.append('language', language);
+    fd.append('author', author);
     var xhr = new XMLHttpRequest();
     /* need to receive file back */
     xhr.responseType = 'blob';

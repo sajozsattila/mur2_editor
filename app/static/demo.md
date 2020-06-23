@@ -7,7 +7,7 @@ The aim of this project to provide a lightweight online editor for long-form blo
 
 The allows the writer to focus on the “_what_”, the creative part of the work, rather than the “_how_” is it going to look on the webpage or final paper. The μr² creates a clean, simple and distraction-free writing environment for when you need to focus on your words:
 
- ![μr² in focus mode](https://mur2.co.uk/_uploads/photos/attila/mur2_focuse_mode_en.png) 
+ ![μr² in focus mode](https://mur2.co.uk/_uploads/photos/1/mur2_focuse_mode_en.png) 
 
 ## Markdown and more
 
