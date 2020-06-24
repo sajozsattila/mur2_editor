@@ -159,6 +159,8 @@ td a.control-item {
     transform: rotate(180deg);
 }
 
+
+.main\.categories #maintext,
 .main\.keywords #maintext,
 .main\.search #maintext,
 .main\.user #maintext,
@@ -175,6 +177,7 @@ td a.control-item {
     padding-top: 2.4825rem ;
 }
 
+.main\.categories .usertitle,
 .main\.keywords .usertitle,
 .main\.search .usertitle ,
 .main\.root .usertitle ,
@@ -191,6 +194,7 @@ td a.control-item {
     padding-bottom: 0.845rem;
 }
 
+.main\.categories .usertitle a,
 .main\.keywords .usertitle a,
 .main\.search .usertitle a,
 .main\.root .usertitle a,
@@ -199,6 +203,8 @@ td a.control-item {
     color: #333;
 }
 
+.main\.categories .usertitle,
+.main\.categories .userabstract,
 .main\.keywords .usertitle,
 .main\.keywords .userabstract,
 .main\.search .usertitle,
@@ -212,6 +218,7 @@ td a.control-item {
     
 }
 
+.main\.categories  .userabstract ,
 .main\.keywords  .userabstract ,
 .main\.search  .userabstract ,
 .main\.root .userabstract,
@@ -220,6 +227,7 @@ td a.control-item {
     flex-direction: row;
 } 
 
+.main\.categories   .user_articles,
 .main\.keywords   .user_articles, 
 .main\.search   .user_articles, 
 .main\.root   .user_articles, 
@@ -229,6 +237,8 @@ td a.control-item {
     direction: ltr;
 }
 
+.main\.categories  .userabstracttext p,
+.main\.categories  .usertitle p,
 .main\.keywords  .userabstracttext p,
 .main\.keywords  .usertitle p,
 .main\.search  .userabstracttext p,
@@ -241,6 +251,7 @@ td a.control-item {
     max-width: calc( 41rem + 5 * 1.685rem);;
 }
 
+.main\.categories  .article_action,
 .main\.keywords  .article_action,
 .main\.search  .article_action,
 .main\.root  .article_action,
@@ -251,6 +262,7 @@ td a.control-item {
     width: 3.37rem;
 }
 
+.main\.categories  .article_action:hover,
 .main\.keywords  .article_action:hover,
 .main\.search  .article_action:hover,
 .main\.root  .article_action:hover,
@@ -275,6 +287,7 @@ td a.control-item {
  ****************************************
  * special setting for search 
  */
+.main\.categories #maintext h1, 
 .main\.keywords #maintext h1, 
 .main\.search #maintext h1 {
     direction: ltr;
@@ -287,6 +300,7 @@ td a.control-item {
     width: calc(100% + 1.685rem);
 }
 
+.main\.categories #maintext,
 .main\.keywords #maintext,
 .main\.search #maintext {
     padding-top: calc(2.4215rem + 1px);
@@ -321,9 +335,13 @@ td a.control-item {
         
 }
 
-#keywordsid {
+#categoryid {
     font-style: italic;
     padding-top: 0.8425rem;
+}
+
+#keywordsid {
+    font-style: italic;
 }
 
 
