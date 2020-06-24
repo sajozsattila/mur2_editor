@@ -335,13 +335,14 @@ td a.control-item {
         
 }
 
-#categoryid {
+#categoryid ,
+#keywordsid {
     font-style: italic;
     padding-top: 0.8425rem;
 }
 
-#keywordsid {
-    font-style: italic;
+#categoryid + #keywordsid {
+    padding-top: unset;
 }
 
 
