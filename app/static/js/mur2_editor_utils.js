@@ -189,6 +189,8 @@ function categorylist() {
     for ( var i = category_dom.length; i--; ) {
         categories.push(category_dom[i].firstChild.firstChild.data);
     }
+    if categories.length === 0:
+        categories.push("Uncategorized")
     return categories;
 }
     
