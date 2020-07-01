@@ -517,20 +517,24 @@ function ImageLoader(preloader, protocol, loaderid) {
 			newSvgAttrs = '<svg class="svg-preview" id="' + id + '" ';
 
 
+        /* Numbering equlation
         /* check the parent is block or not 
          *   this is a hack at the moment: just check the parent have text-align: center style
          */
         var block = false;
-        if ( parentNode.style.textAlign === 'center' && parentNode.id === "" ) {
-            block = true
-            // add id for equaltaion
-            parentNode.id = "eq:"+blockcount;
-            // add printable number
-            var labelNode = document.createElement('em');
-            labelNode.innerHTML = "("+blockcount+")";
-            parentNode.insertBefore(labelNode, oldSvgNode);
-            var spanNode = document.createElement('span');
-            parentNode.appendChild(spanNode);            
+        // if ( parentNode.style.textAlign === 'center' && parentNode.id === "" ) {
+        if ( parentNode.style.textAlign === 'center' ) {
+            // if labeled we add number otherwise not 
+            var labeled = parentNode.id.match(/eq\:.*$/);
+            if (labeled && parentNode.childElementCount == 1) {
+                block = true
+                // add printable number
+                var labelNode = document.createElement('em');
+                labelNode.innerHTML = "("+blockcount+")";                
+                var spanNode = document.createElement('span');
+                parentNode.insertBefore(spanNode, oldSvgNode);
+                parentNode.appendChild(labelNode);            
+            }                   
         }
         var lheight = svg.match(/ height="[\.\d]+" /g)[0].trim().split("=")[1].replace(/"/g, '')
 		if (baselineShift === null) {

@@ -25,9 +25,6 @@ itsdangerous==1.1.0
 Jinja2==2.11.1
 Mako==1.0.7
 Markdown==3.1.1
-pandoc-fignos==2.2.0
-pandoc-tablenos==2.1.1
-pandoc-xnos==2.3.0
 pandocfilters==1.4.2
 PyJWT==1.4.2
 python-dateutil==2.6.1
