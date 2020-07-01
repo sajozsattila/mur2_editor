@@ -69,7 +69,7 @@
 				max = state.posMax,
 				start = state.pos,
 				openDelim = state.src.slice(start, start + open.length);
-
+            
 			if (openDelim !== open) {
 				return false;
 			}
@@ -120,6 +120,12 @@
 				if (m || srcEnd == '') {
 					tag = 'tex-block';
 				}
+                /* catch labeled equalations */
+                var me = srcEnd.match(/\s*\{#eq\:.*\}\s*$/);
+                if ( me ) {
+                    console.log("in");
+                    tag = 'tex-block';
+                }
 			}
 
 			if (m) {
