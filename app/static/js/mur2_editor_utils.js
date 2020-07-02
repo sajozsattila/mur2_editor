@@ -210,13 +210,6 @@ async function save_article(blobs) {
     });
     var abstractdatatext = document.getElementById('article_abstract').innerHTML;
     var titledatatext = document.getElementById('article_title').innerHTML;
-    var featuredImagesSrc = "";
-    var featuredimages = document.getElementsByClassName("feature_image")[0];
-    if ( featuredimages.src != featuredimages.baseURI ) {
-        featuredImagesSrc = featuredimages.src;
-    }
-    var keywords = keywordlist();
-    var categories = categorylist();
     
     // type of the text
     var texttype = document.querySelector('meta[name="texttype"]').content.trim()
@@ -225,12 +218,26 @@ async function save_article(blobs) {
     // add data to the form, so the Flask server able to receive them		// 
     // if Article 
     if (texttype == 'article') {
-
+        // values just for Article type
         // the article id
         var article_id = document.querySelector('meta[name="article_id"]').content
         // the article abstract and title, later this need to change as they need to be editable
         var article_title = document.getElementById("title-source").value
         var article_abstract = document.getElementById("abstact-source").value
+        var featuredImagesSrc = "";
+        var featuredimages = document.getElementsByClassName("feature_image")[0];
+        if ( featuredimages.src != featuredimages.baseURI ) {
+            featuredImagesSrc = featuredimages.src;
+        }
+        var keywords = keywordlist();
+        var categories = categorylist();
+        // url
+        var canonicalUrlText = document.getElementById('canonicalUrlText').value
+        if ( canonicalUrlText.trim().length === 0 ) {
+            canonicalUrlText = "http://mur2.co.uk/reader/"+article_id;
+        }
+
+
         fd.append("file", markupdata);
         fd.append("htmlfile", htmldata, "article_text.html");
         fd.append("article_title_html", titledatatext);
@@ -241,6 +248,7 @@ async function save_article(blobs) {
         fd.append('featuredimages', featuredImagesSrc);
         fd.append('keywords', keywords.toString());
         fd.append('categories', categories.toString());
+        fd.append('article_url', canonicalUrlText);
         // send data
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/markdownsave', true);       
