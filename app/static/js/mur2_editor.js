@@ -419,7 +419,6 @@ function ParserCollection(
         
         if ( !force ) {
             if ( source === old_source ) {
-                console.log("same");
                 return;
             }
         }
@@ -749,7 +748,6 @@ function ParserCollection(
     
     // Featured Image
     document.getElementById('feaImg_add').addEventListener('change', function() {
-        console.log("readimg");
         // A file has been chosen
         if (!this.files || !FileReader) {
             return;

@@ -62,7 +62,6 @@ async function download_result(blobs) {
 
 function editorToolbarAction(action) {
     if (g_selectedTextarea !== null) {
-        console.log(g_selectedTextarea);
         var field = document.getElementById(g_selectedTextarea);
         var start = field.selectionStart;
         var end = field.selectionEnd;
@@ -123,13 +122,11 @@ function editorToolbarAction(action) {
         if (wrap !== null) {
 
             if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
-                console.log(action, wrap, wrap2);
                 field.value =
                     field.value.substring(0, start) +
                     leftWhitespace + wrap + text.trim() + wrap2 + rightWhitespace +
                     field.value.substring(end);
             } else {
-                console.log(action, wrap);
                 // new areas
                 field.value =
                     field.value.substring(0, start) +
@@ -236,8 +233,6 @@ async function save_article(blobs) {
         if ( canonicalUrlText.trim().length === 0 ) {
             canonicalUrlText = "http://mur2.co.uk/reader/"+article_id;
         }
-        console.log(canonicalUrlText);
-
 
         fd.append("file", markupdata);
         fd.append("htmlfile", htmldata, "article_text.html");
@@ -288,7 +283,6 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
     var article_abstract = abstractCollection.getHtmlImg();
     var article_id = document.querySelector('meta[name="article_id"]').content
     var keywords = keywordlist();
-    console.log(keywords);
     
     var fd = new FormData();
     fd.append('acceskey', access_token);
@@ -360,7 +354,6 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
             let response = await new Promise(resolve => {
                 let fd = new FormData();
                 let xhrtt = new XMLHttpRequest();
-                console.log(keywords[i]);
                 fd.append('name', keywords[i]);
                 xhrtt.open('post', 'https://public-api.wordpress.com/wp/v2/sites/' + address + '/tags', true);
                 xhrtt.setRequestHeader('Authorization', 'Bearer ' + decodeURIComponent(access_token));
