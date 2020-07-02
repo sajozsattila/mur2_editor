@@ -236,6 +236,7 @@ async function save_article(blobs) {
         if ( canonicalUrlText.trim().length === 0 ) {
             canonicalUrlText = "http://mur2.co.uk/reader/"+article_id;
         }
+        console.log(canonicalUrlText);
 
 
         fd.append("file", markupdata);
