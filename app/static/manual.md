@@ -47,12 +47,6 @@ _This is another italic text_
 ## Math
 You can use math formulas inline such as $$ \mu r^2 $$ or you can use in a block like this: 
 
-$$
-\text{Euler's identity: } e^{i \pi } + 1 = 0
-$$
-
-You can also use more complicated formula such as matrices:
-
 $$ T^{\mu\nu}=\begin{pmatrix}
 \varepsilon&0&0&0\\
 0&\varepsilon/3&0&0\\
@@ -60,19 +54,21 @@ $$ T^{\mu\nu}=\begin{pmatrix}
 0&0&0&\varepsilon/3\\
 \end{pmatrix}, $$
 
-or integrals:
+If you label block formula it will be automatically numbered:
 
-$$ P_\omega=2+{n_\omega\over 2}\hbar\omega\,{1+R\over 1-v^2}\int\limits_{-1}^{1}dx\,(x-v)|x-v| $$
+$$ P_\omega=2+{n_\omega\over 2}\hbar\omega\,{1+R\over 1-v^2}\int\limits_{-1}^{1}dx\,(x-v)|x-v| $${#eq:1}
 
-Block equations are numbered on the left side. This numbering is added automatically. Repeated math blocks are independently given the same number where they are in the text.For example: if we write Euler's identity again it will be numbered as *(1)*
+Block equations are numbered on the left side. This numbering is added automatically. Repeated math blocks are independently given the same number where they are in the text. For example: if we write Euler's identity again it will be numbered as *(1)*
 
 $$
 \text{Euler's identity: } e^{i \pi } + 1 = 0
-$$
+$${#eq:2}
 
-You can cross-reference to these equalisations with the `#eq:id`, where the *id* is the number of the math block. See the [integrals](#eq:3).^[If you repeat a formula multiple times, the link is ambiguous and it's browser dependant on where the link leads but it's usually the first occurrence. ]
+You can cross-reference to these equalisations as links. Example the [integrals](#eq:1).^[If you repeat a formula multiple times, the link is ambiguous and it's browser dependant on where the link leads but it's usually the first occurrence. ]
 
-Beware of dragons living in the  *PDF* or *LaTeX* generation! They render everything between the `$$` as a *math formula* which means `\LaTeX` and similar non-math mode commands will break the export. Except if you handle them in `\text{}`.^[E.g: `\text{\LaTeX}`].^[Unfortunatelly with ePUB this is not true. It can handle `\text{some text}`, but text commands such as `\LaTeX`, will fail.] The tikz-pictures will also break. If you need this kind of things in PDF, insert them as SVG.^[You can generate example on [i.Upmath](https://i.upmath.me/).]
+Beware of dragons living in the  *PDF* or *LaTeX* generation! They render everything between the `$$` as a *math formula* which means `\LaTeX` and similar non-math mode commands will break the export. Except if you handle them in `\text{}`.[^1] ^[Unfortunatelly with ePUB this is not true. It can handle `\text{some text}`, but text commands such as `\LaTeX`, will fail.] The tikz-pictures will also break. If you need this kind of things in PDF, insert them as SVG.^[You can generate example on [i.Upmath](https://i.upmath.me/).]
+
+[^1]: E.g: `\text{\LaTeX}`
 
 
 ## Lists
@@ -160,15 +156,15 @@ You also able to add a caption to the table and anchor:
 
 |  output format | μr² supporting? |
 | ------ | ----------- |
-| Wordpress | yes |
+| WordPress | yes |
 | Medium | yes |
 | PDF | yes |
 | ePUB | yes |
 | LaTeX | yes |
-Table: Demonstration of a simple table with caption and footnote[^tag][^space] {#tbl:1 tag="first table"}
+Table: Demonstration of a simple table with caption, anchoor and footnote[^space] {#tbl:1}
 
 
-You can align text in the columns to the left, right or center by adding a colon (`:`) to the left, right or on both side of the hyphens within the header row:
+You can align text in the columns to the left, right or centre by adding a colon (`:`) to the left, right or on both side of the hyphens within the header row:
 
 |  output format | μr² supporting? |
 | :------: | -----------: |
@@ -177,13 +173,13 @@ You can align text in the columns to the left, right or center by adding a colon
 | PDF | yes |
 | ePUB | yes |
 | LaTeX | yes |
+
 Table: Demonstration of centre and right-aligned table. {#tbl:2}
 
 
-And there is a reference of the table: [first table](#tbl:1){@tbl:1}^[The Pandoc has problems with the attributes on the tables, so in this example, there is a combination of a HTML link and an attribute. the `[first table](#tbl:1)` for link, the `{@tbl:1}`. This is OK, in HTML but in the PDF or LaTeX the link will point nowhere. So there, just use the attribute. ]
+And there is a reference of the table: [first table](#tbl:1)
 
 [^space]: The space between the caption and the attribute is important!
-[^tag]: The value of the tag element just used in PDF and LaTeX output.
 
 ## Links
 Simple link:

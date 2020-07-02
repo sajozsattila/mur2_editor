@@ -123,7 +123,6 @@
                 /* catch labeled equalations */
                 var me = srcEnd.match(/\s*\{#eq\:.*\}\s*$/);
                 if ( me ) {
-                    console.log("in");
                     tag = 'tex-block';
                 }
 			}
