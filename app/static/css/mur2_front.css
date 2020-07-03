@@ -102,6 +102,7 @@ td a.control-item {
  * special setting for login 
  */
 
+.main\.edit_journal #maintext ,
 .main\.edit_profile #maintext ,
 .auth\.login #maintext {
     border-right: 1px solid #666;
@@ -142,6 +143,7 @@ td a.control-item {
  */
 
 
+.main\.journal  #user_username,
 .main\.user  #user_username,
 .main\.root  #user_username {
     writing-mode:  tb;
@@ -164,6 +166,7 @@ td a.control-item {
 .main\.keywords #maintext,
 .main\.search #maintext,
 .main\.user #maintext,
+.main\.journal #maintext,
 .main\.root #maintext {
     width: calc(100% - 27.5275rem - 34.315rem );
     top: 1rem;    
@@ -173,10 +176,12 @@ td a.control-item {
     top: 3rem;
 }
 
+.main\.journal #maintext,
 .main\.user #maintext {
     padding-top: 2.4825rem ;
 }
 
+.main\.journal .usertitle,
 .main\.categories .usertitle,
 .main\.keywords .usertitle,
 .main\.search .usertitle ,
@@ -194,6 +199,7 @@ td a.control-item {
     padding-bottom: 0.845rem;
 }
 
+.main\.journal .usertitle a,
 .main\.categories .usertitle a,
 .main\.keywords .usertitle a,
 .main\.search .usertitle a,
@@ -203,6 +209,8 @@ td a.control-item {
     color: #333;
 }
 
+.main\.journal .usertitle,
+.main\.journal .userabstract,
 .main\.categories .usertitle,
 .main\.categories .userabstract,
 .main\.keywords .usertitle,
@@ -218,6 +226,7 @@ td a.control-item {
     
 }
 
+.main\.journal .userabstract,
 .main\.categories  .userabstract ,
 .main\.keywords  .userabstract ,
 .main\.search  .userabstract ,
@@ -227,6 +236,7 @@ td a.control-item {
     flex-direction: row;
 } 
 
+.main\.journal   .user_articles,
 .main\.categories   .user_articles,
 .main\.keywords   .user_articles, 
 .main\.search   .user_articles, 
@@ -237,6 +247,8 @@ td a.control-item {
     direction: ltr;
 }
 
+.main\.journal  .userabstracttext p,
+.main\.journal  .usertitle p,
 .main\.categories  .userabstracttext p,
 .main\.categories  .usertitle p,
 .main\.keywords  .userabstracttext p,
@@ -251,6 +263,7 @@ td a.control-item {
     max-width: calc( 41rem + 5 * 1.685rem);;
 }
 
+.main\.journal  .article_action,
 .main\.categories  .article_action,
 .main\.keywords  .article_action,
 .main\.search  .article_action,
@@ -262,6 +275,7 @@ td a.control-item {
     width: 3.37rem;
 }
 
+.main\.journal  .article_action:hover,
 .main\.categories  .article_action:hover,
 .main\.keywords  .article_action:hover,
 .main\.search  .article_action:hover,
@@ -274,6 +288,7 @@ td a.control-item {
  ****************************************
  * special setting for user 
  */
+.main\.edit_journal #maintext h1,
 .main\.edit_profile #maintext h1 {
     border-top: solid 1px #666;
     padding-right: 1.685rem;
