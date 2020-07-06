@@ -144,12 +144,12 @@ msgstr "Kulcsszó"
 #: app/templates/article.html:93 app/templates/article.html:122
 #: app/templates/editor.html:78
 msgid "Categories"
-msgstr "Kategoriák"
+msgstr "Kategóriák"
 
 #: app/main/routes.py:321 app/templates/article.html:47
 #: app/templates/article.html:93 app/templates/article.html:122
 msgid "Category"
-msgstr "Kategoria"
+msgstr "Kategória"
 
 #: app/main/routes.py:362
 msgid "You can not edit this article"
@@ -641,19 +641,19 @@ msgstr "Fájl törlése"
 
 #: app/templates/read.html:13
 msgid "Download PDF"
-msgstr ""
+msgstr "PDF letöltése"
 
 #: app/templates/read.html:14
 msgid "Download ePUB"
-msgstr ""
+msgstr "ePUB letöltése"
 
 #: app/templates/read.html:29
 msgid "Categories:"
-msgstr "Kategoriák:"
+msgstr "Kategóriák:"
 
 #: app/templates/read.html:29
 msgid "Category:"
-msgstr "Kategoria:"
+msgstr "Kategória:"
 
 #: app/templates/read.html:34
 msgid "Keywords:"
