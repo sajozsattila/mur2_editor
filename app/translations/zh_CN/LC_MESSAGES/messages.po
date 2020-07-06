@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-11 20:53+0000\n"
+"POT-Creation-Date: 2020-07-06 14:27+0000\n"
 "PO-Revision-Date: 2020-05-04 20:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -43,7 +43,8 @@ msgstr "记住我"
 msgid "Sign In"
 msgstr "登录"
 
-#: app/auth/forms.py:17 app/auth/forms.py:36
+#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:70
+#: app/main/forms.py:94 app/templates/registerjournal.html:15
 msgid "Email"
 msgstr "电邮地址"
 
@@ -51,7 +52,7 @@ msgstr "电邮地址"
 msgid "Repeat Password"
 msgstr "确定密码"
 
-#: app/auth/forms.py:22 app/auth/routes.py:95
+#: app/auth/forms.py:22 app/auth/routes.py:97
 msgid "Register"
 msgstr "注册"
 
@@ -59,7 +60,7 @@ msgstr "注册"
 msgid "Please use a different username."
 msgstr "请使用别的用户名"
 
-#: app/auth/forms.py:32
+#: app/auth/forms.py:32 app/main/forms.py:82 app/main/forms.py:115
 msgid "Please use a different email address."
 msgstr "请使用别的电邮地址"
 
@@ -71,19 +72,19 @@ msgstr "申请密码重置"
 msgid "Invalid username or password"
 msgstr "无效用户名或密码"
 
-#: app/auth/routes.py:93
+#: app/auth/routes.py:95
 msgid "Congratulations, you are now a registered user!"
 msgstr "恭喜，你已成为注册用户"
 
-#: app/auth/routes.py:109
+#: app/auth/routes.py:111
 msgid "Check your email for the instructions to reset your password"
 msgstr "请查看电邮以重置你的密码"
 
-#: app/auth/routes.py:112 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:114 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
 msgstr "重置密码"
 
-#: app/auth/routes.py:126
+#: app/auth/routes.py:128
 msgid "Your password has been reset."
 msgstr "密码已重置"
 
@@ -99,31 +100,94 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: app/main/routes.py:123
+#: app/main/forms.py:68 app/main/forms.py:92 app/templates/editor.html:63
+msgid "Title"
+msgstr "标题"
+
+#: app/main/forms.py:69 app/main/forms.py:93
+#: app/templates/registerjournal.html:29
+msgid "About"
+msgstr ""
+
+#: app/main/forms.py:71 app/main/forms.py:95
+msgid "Address"
+msgstr ""
+
+#: app/main/forms.py:72 app/main/forms.py:96
+msgid "Submit"
+msgstr ""
+
+#: app/main/forms.py:77 app/main/forms.py:109
+msgid "Please use a different title."
+msgstr ""
+
+#: app/main/forms.py:87 app/main/forms.py:121
+msgid "Please use a different address."
+msgstr ""
+
+#: app/main/routes.py:223
+msgid "Register Journal"
+msgstr ""
+
+#: app/main/routes.py:293 app/templates/article.html:52
+#: app/templates/article.html:98 app/templates/article.html:127
+#: app/templates/editor.html:86
+msgid "Keywords"
+msgstr ""
+
+#: app/main/routes.py:295 app/templates/article.html:52
+#: app/templates/article.html:98 app/templates/article.html:127
+msgid "Keyword"
+msgstr ""
+
+#: app/main/routes.py:319 app/templates/article.html:47
+#: app/templates/article.html:93 app/templates/article.html:122
+#: app/templates/editor.html:78
+msgid "Categories"
+msgstr ""
+
+#: app/main/routes.py:321 app/templates/article.html:47
+#: app/templates/article.html:93 app/templates/article.html:122
+msgid "Category"
+msgstr ""
+
+#: app/main/routes.py:362
 msgid "You can not edit this article"
 msgstr "你无权编辑此文章"
 
-#: app/main/routes.py:331 app/main/routes.py:424
+#: app/main/routes.py:369
+msgid "editor"
+msgstr "编辑器"
+
+#: app/main/routes.py:529
+msgid "The author already have Article with this title!"
+msgstr ""
+
+#: app/main/routes.py:646 app/main/routes.py:744 app/main/routes.py:765
 msgid "Your changes have been saved."
 msgstr "改变已保存"
 
-#: app/main/routes.py:344
+#: app/main/routes.py:660
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:355 app/main/routes.py:403
+#: app/main/routes.py:671 app/main/routes.py:724
 msgid "User no right to delete this"
 msgstr "用户无权删除此文章"
 
-#: app/main/routes.py:355
+#: app/main/routes.py:671
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:403
+#: app/main/routes.py:724
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:726
+#: app/main/routes.py:931
+msgid "Can not create Media directory for "
+msgstr ""
+
+#: app/main/routes.py:938
 msgid "No more disk space quota for "
 msgstr "空间配额不足"
 
@@ -131,8 +195,25 @@ msgstr "空间配额不足"
 msgid "Delete article"
 msgstr "删除文章"
 
-#: app/templates/article.html:21
+#: app/templates/article.html:22
 msgid "Reopen editing"
+msgstr ""
+
+#: app/templates/article.html:34
+msgid "Send to Journal"
+msgstr ""
+
+#: app/templates/article.html:44 app/templates/article.html:90
+#: app/templates/article.html:119 app/templates/read.html:25
+msgid "Publihed in"
+msgstr ""
+
+#: app/templates/article.html:73
+msgid "Accept for Publishing"
+msgstr ""
+
+#: app/templates/article.html:80
+msgid "Reject Publishing"
 msgstr ""
 
 #: app/templates/base_menu.html:5
@@ -163,6 +244,11 @@ msgstr "退出"
 msgid "Search"
 msgstr "搜索"
 
+#: app/templates/edit_journal.html:32 app/templates/edit_profile.html:21
+#: app/templates/editor.html:152 app/templates/test.html:66
+msgid "Save"
+msgstr "保存"
+
 #: app/templates/edit_profile.html:4
 msgid "Edit Profile"
 msgstr ""
@@ -171,111 +257,112 @@ msgstr ""
 msgid "About me"
 msgstr "关于我"
 
-#: app/templates/edit_profile.html:21 app/templates/editor.html:115
-#: app/templates/test.html:66
-msgid "Save"
-msgstr "保存"
-
 #: app/templates/edit_profile.html:26
 msgid "Delete user"
 msgstr "注销用户"
-
-#: app/templates/editor.html:4
-msgid "editor"
-msgstr "编辑器"
 
 #: app/templates/editor.html:18
 msgid "Endnotes"
 msgstr ""
 
-#: app/templates/editor.html:62
-msgid "Title"
-msgstr "标题"
+#: app/templates/editor.html:66 app/templates/editor.html:67
+#: app/templates/editor.html:68
+msgid "Set Featured Image"
+msgstr ""
 
-#: app/templates/editor.html:64
+#: app/templates/editor.html:71 app/templates/editor.html:72
+#: app/templates/editor.html:73
+msgid "Delete Featured Image"
+msgstr ""
+
+#: app/templates/editor.html:76
 msgid "Abstract"
 msgstr "摘要"
 
-#: app/templates/editor.html:89 app/templates/test.html:45
+#: app/templates/editor.html:94
+msgid "Canonical Url"
+msgstr ""
+
+#: app/templates/editor.html:126 app/templates/test.html:45
 msgid "Toolbar"
 msgstr "工具栏"
 
-#: app/templates/editor.html:94 app/templates/editor.html:165
+#: app/templates/editor.html:131 app/templates/editor.html:202
 #: app/templates/test.html:111
 msgid "Show side menu"
 msgstr "显示侧菜单"
 
-#: app/templates/editor.html:103 app/templates/test.html:55
+#: app/templates/editor.html:140 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr "关闭工具栏"
 
-#: app/templates/editor.html:107 app/templates/test.html:59
+#: app/templates/editor.html:144 app/templates/test.html:59
 msgid "Upload file"
 msgstr "上传文件"
 
-#: app/templates/editor.html:111 app/templates/test.html:63
+#: app/templates/editor.html:148 app/templates/test.html:63
 msgid "Download result"
 msgstr "下载文件"
 
-#: app/templates/editor.html:119 app/templates/test.html:69
+#: app/templates/editor.html:156 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "语法凸显"
 
-#: app/templates/editor.html:122
+#: app/templates/editor.html:159
 msgid "Hide input"
 msgstr "隐藏输入"
 
-#: app/templates/editor.html:125 app/templates/test.html:75
+#: app/templates/editor.html:162 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr "显示标题和摘要"
 
-#: app/templates/editor.html:128 app/templates/test.html:72
+#: app/templates/editor.html:165 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "隐藏预览"
 
-#: app/templates/editor.html:131 app/templates/test.html:78
+#: app/templates/editor.html:168 app/templates/test.html:78
 msgid "Head"
 msgstr "标题"
 
-#: app/templates/editor.html:134 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:171 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr "强调"
 
-#: app/templates/editor.html:137 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:174 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr "黑体"
 
-#: app/templates/editor.html:140 app/templates/test.html:87
+#: app/templates/editor.html:177 app/templates/test.html:87
 msgid "Picture"
 msgstr "图片"
 
-#: app/templates/editor.html:143 app/templates/test.html:90
+#: app/templates/editor.html:180 app/templates/test.html:90
 msgid "Link"
 msgstr "链接"
 
-#: app/templates/editor.html:146 app/templates/test.html:93
+#: app/templates/editor.html:183 app/templates/test.html:93
 msgid "List"
 msgstr "列表"
 
-#: app/templates/editor.html:149 app/templates/test.html:96
+#: app/templates/editor.html:186 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "标号列表"
 
-#: app/templates/editor.html:152 app/templates/test.html:99
+#: app/templates/editor.html:189 app/templates/test.html:99
 msgid "Footnote"
 msgstr "注脚"
 
-#: app/templates/editor.html:155 app/templates/test.html:102
+#: app/templates/editor.html:192 app/templates/test.html:102
 msgid "Table"
 msgstr "表格"
 
-#: app/templates/editor.html:158 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:195 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr "代码"
 
-#: app/templates/editor.html:161 app/templates/test.html:108
+#: app/templates/editor.html:198 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr "LaTex码"
 
@@ -320,7 +407,7 @@ msgid "Publish on Wordpress.com"
 msgstr "在Wordpress.com上发布"
 
 #: app/templates/editor_side_menu.html:68
-#: app/templates/editor_side_menu.html:80 app/templates/test.html:182
+#: app/templates/editor_side_menu.html:82 app/templates/test.html:182
 msgid "Publish"
 msgstr "发布"
 
@@ -329,52 +416,60 @@ msgid "Clear Wordpress.com cookies"
 msgstr "清除Worldpress.com上的插件"
 
 #: app/templates/editor_side_menu.html:71
-#: app/templates/editor_side_menu.html:83 app/templates/test.html:186
+#: app/templates/editor_side_menu.html:85 app/templates/test.html:186
 msgid "Clear cookies"
 msgstr "清除插件"
 
 #: app/templates/editor_side_menu.html:73
-#: app/templates/editor_side_menu.html:76 app/templates/test.html:190
-#: app/templates/test.html:191
-msgid "Connect to Wordpress.com"
-msgstr "连接到Wordpress.com"
-
-#: app/templates/editor_side_menu.html:73
-#: app/templates/editor_side_menu.html:76
-#: app/templates/editor_side_menu.html:85
+#: app/templates/editor_side_menu.html:75
+#: app/templates/editor_side_menu.html:87
 msgid "Connect"
 msgstr "连接"
 
-#: app/templates/editor_side_menu.html:80
+#: app/templates/editor_side_menu.html:82
 msgid "Publish on Medium.com"
 msgstr "在Medium.com上发表"
 
-#: app/templates/editor_side_menu.html:83
+#: app/templates/editor_side_menu.html:85
 msgid "Clear Medium.com cookies"
 msgstr "清除Medium.com上的插件"
 
-#: app/templates/editor_side_menu.html:85
+#: app/templates/editor_side_menu.html:87
 msgid "Connect Medium.com"
 msgstr "连接到Medium.com"
 
-#: app/templates/editor_side_menu.html:91 app/templates/test.html:197
+#: app/templates/editor_side_menu.html:93 app/templates/test.html:197
 msgid "Generate pdf"
 msgstr "生成PDF"
 
-#: app/templates/editor_side_menu.html:96
+#: app/templates/editor_side_menu.html:98
 msgid "Generate ePUB"
 msgstr "生成ePUB"
 
-#: app/templates/editor_side_menu.html:100 app/templates/test.html:201
+#: app/templates/editor_side_menu.html:102 app/templates/test.html:201
 msgid "Generate LaTeX"
 msgstr "生成LaTex"
 
-#: app/templates/editor_side_menu.html:126
+#: app/templates/editor_side_menu.html:128
 msgid "Markdown cheatsheet"
 msgstr "Markdown速查表"
 
-#: app/templates/editor_side_menu.html:130
+#: app/templates/editor_side_menu.html:132
 msgid "Editor manual"
+msgstr ""
+
+#: app/templates/frontpage.html:14 app/templates/keywords.html:14
+#: app/templates/user.html:64
+msgid "Newer Articles"
+msgstr ""
+
+#: app/templates/frontpage.html:19 app/templates/keywords.html:19
+#: app/templates/user.html:69
+msgid "Older Articles"
+msgstr ""
+
+#: app/templates/frontpage.html:47 app/templates/user.html:97
+msgid "Please enter the title of the Journal"
 msgstr ""
 
 #: app/templates/md_cheatsheet.html:2
@@ -544,6 +639,38 @@ msgstr "欧拉恒等式"
 msgid "Delete file"
 msgstr "删除文件"
 
+#: app/templates/read.html:13
+msgid "Download PDF"
+msgstr ""
+
+#: app/templates/read.html:14
+msgid "Download ePUB"
+msgstr ""
+
+#: app/templates/read.html:29
+msgid "Categories:"
+msgstr ""
+
+#: app/templates/read.html:29
+msgid "Category:"
+msgstr ""
+
+#: app/templates/read.html:34
+msgid "Keywords:"
+msgstr ""
+
+#: app/templates/read.html:34
+msgid "Keyword:"
+msgstr ""
+
+#: app/templates/registerjournal.html:8
+msgid "Journal Title"
+msgstr ""
+
+#: app/templates/registerjournal.html:22
+msgid "Journal URL"
+msgstr ""
+
 #: app/templates/search.html:5
 msgid "Search Results"
 msgstr "搜索结果"
@@ -588,7 +715,19 @@ msgstr "关闭侧菜单"
 msgid "preview"
 msgstr "预览"
 
-#: app/templates/user.html:23
+#: app/templates/test.html:190 app/templates/test.html:191
+msgid "Connect to Wordpress.com"
+msgstr "连接到Wordpress.com"
+
+#: app/templates/user.html:33
+msgid "Editor of these Journals"
+msgstr ""
+
+#: app/templates/user.html:44
+msgid "Writer of these Articles"
+msgstr ""
+
+#: app/templates/user.html:51
 msgid "New Article"
 msgstr "新的文章"
 
@@ -677,4 +816,10 @@ msgstr "已通知网站管理员。抱歉给您带来的不便"
 
 #~ msgid "Media files"
 #~ msgstr "媒体文件"
+
+#~ msgid "Newer posts"
+#~ msgstr ""
+
+#~ msgid "Older posts"
+#~ msgstr ""
 
