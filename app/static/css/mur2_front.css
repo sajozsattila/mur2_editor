@@ -350,13 +350,16 @@ td a.control-item {
         
 }
 
-#categoryid ,
-#keywordsid {
+.categoryid ,
+.keywordsid, 
+.journalid {
     font-style: italic;
     padding-top: 0.8425rem;
 }
 
-#categoryid + #keywordsid {
+.categoryid + .keywordsid ,
+.journalid + .categoryid , 
+.journalid + .categoryid + .keywordsid {
     padding-top: unset;
 }
 
