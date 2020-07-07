@@ -395,7 +395,7 @@ msgid "Image"
 msgstr "Kép"
 
 #: app/templates/editor_side_menu.html:45
-msgid "A kind of HTML markup for habr.com"
+msgid "A kind of HTML markup for habr.com" 
 msgstr "Habr.com kompatibilis HTML"
 
 #: app/templates/editor_side_menu.html:56
@@ -721,11 +721,11 @@ msgstr "Csatlakozás a Wordpress.com-hoz"
 
 #: app/templates/user.html:33
 msgid "Editor of these Journals"
-msgstr "Az online folyóirat szerkesztői"
+msgstr "Online folyóiratok amiket szerkeszt"
 
 #: app/templates/user.html:44
 msgid "Writer of these Articles"
-msgstr "A cíkk írói"
+msgstr "Írások"
 
 #: app/templates/user.html:51
 msgid "New Article"
