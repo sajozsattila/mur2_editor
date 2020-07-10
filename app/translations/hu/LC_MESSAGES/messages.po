@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-10 22:08+0000\n"
+"POT-Creation-Date: 2020-07-10 22:27+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -39,7 +39,7 @@ msgid "Remember Me"
 msgstr "Emlékezz rám"
 
 #: app/auth/forms.py:12 app/auth/routes.py:57 app/templates/auth/login.html:7
-#: app/templates/base_menu.html:19
+#: app/templates/base_menu.html:20
 msgid "Sign In"
 msgstr "Bejelentkezés"
 
@@ -217,11 +217,23 @@ msgstr "Név"
 msgid "Article_number"
 msgstr "Cikkek_száma"
 
-#: app/main/routes.py:1252
+#: app/main/routes.py:1253
+msgid "taged"
+msgstr "címkézet"
+
+#: app/main/routes.py:1253
+msgid "publisher"
+msgstr "kiadó"
+
+#: app/main/routes.py:1254
+msgid "type"
+msgstr "tipus"
+
+#: app/main/routes.py:1257
 msgid "published_article_number"
 msgstr "megjelent_cikkek_száma"
 
-#: app/main/routes.py:1252
+#: app/main/routes.py:1257
 msgid "number_of_article"
 msgstr "cikkek_száma"
 
@@ -258,23 +270,27 @@ msgstr "Oldalmenű bezárása"
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: app/templates/base_menu.html:12
+#: app/templates/base_menu.html:11
+msgid "Discovery"
+msgstr "Böngésző"
+
+#: app/templates/base_menu.html:13
 msgid "Editor"
 msgstr "Szerkesztő"
 
-#: app/templates/base_menu.html:14
+#: app/templates/base_menu.html:15
 msgid "Profile"
 msgstr "Profil"
 
-#: app/templates/base_menu.html:15
+#: app/templates/base_menu.html:16
 msgid "Media"
 msgstr "Média"
 
-#: app/templates/base_menu.html:16
+#: app/templates/base_menu.html:17
 msgid "Sign out"
 msgstr "Kijelentkezés"
 
-#: app/templates/base_menu.html:25 app/templates/base_menu.html:33
+#: app/templates/base_menu.html:26 app/templates/base_menu.html:34
 msgid "Search"
 msgstr "Keresés"
 
