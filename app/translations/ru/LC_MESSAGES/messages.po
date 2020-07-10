@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-10 22:08+0000\n"
+"POT-Creation-Date: 2020-07-10 22:27+0000\n"
 "PO-Revision-Date: 2020-04-29 20:56+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -40,7 +40,7 @@ msgid "Remember Me"
 msgstr ""
 
 #: app/auth/forms.py:12 app/auth/routes.py:57 app/templates/auth/login.html:7
-#: app/templates/base_menu.html:19
+#: app/templates/base_menu.html:20
 msgid "Sign In"
 msgstr ""
 
@@ -218,11 +218,23 @@ msgstr ""
 msgid "Article_number"
 msgstr ""
 
-#: app/main/routes.py:1252
+#: app/main/routes.py:1253
+msgid "taged"
+msgstr ""
+
+#: app/main/routes.py:1253
+msgid "publisher"
+msgstr ""
+
+#: app/main/routes.py:1254
+msgid "type"
+msgstr ""
+
+#: app/main/routes.py:1257
 msgid "published_article_number"
 msgstr ""
 
-#: app/main/routes.py:1252
+#: app/main/routes.py:1257
 msgid "number_of_article"
 msgstr ""
 
@@ -259,23 +271,27 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: app/templates/base_menu.html:12
+#: app/templates/base_menu.html:11
+msgid "Discovery"
+msgstr ""
+
+#: app/templates/base_menu.html:13
 msgid "Editor"
 msgstr ""
 
-#: app/templates/base_menu.html:14
+#: app/templates/base_menu.html:15
 msgid "Profile"
 msgstr ""
 
-#: app/templates/base_menu.html:15
+#: app/templates/base_menu.html:16
 msgid "Media"
 msgstr ""
 
-#: app/templates/base_menu.html:16
+#: app/templates/base_menu.html:17
 msgid "Sign out"
 msgstr ""
 
-#: app/templates/base_menu.html:25 app/templates/base_menu.html:33
+#: app/templates/base_menu.html:26 app/templates/base_menu.html:34
 msgid "Search"
 msgstr ""
 
