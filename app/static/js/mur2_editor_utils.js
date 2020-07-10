@@ -67,10 +67,15 @@ function editorToolbarAction(action) {
         var end = field.selectionEnd;
         // if there is selection
         var text = field.value.substring(start, end);
+        
 
         // is there whitespace in the begining or end
-        var leftWhitespace = text.slice(0, 1).trim() === '' ? ' ' : '';
-        var rightWhitespace = text.slice(-1).trim() === '' ? ' ' : '';
+        var leftWhitespace = '', 
+            rightWhitespace= '';
+        if ( start !== end ){
+            var leftWhitespace = text.slice(0, 1).trim() === '' ? ' ' : '';
+            var rightWhitespace = text.slice(-1).trim() === '' ? ' ' : '';
+        }
 
         var wrap = null;
         if (action === "italic") {
@@ -80,7 +85,7 @@ function editorToolbarAction(action) {
             wrap = "**";
             wrap2 = wrap;
         } else if (action === "heading") {
-            wrap = "# ";
+            wrap = "\n# ";
             wrap2 = "\n";
         } else if (action === "code") {
             wrap = "\n```\n";
@@ -110,28 +115,47 @@ function editorToolbarAction(action) {
             }
         } else if (action === "list") {
             re = /\n/g;
-            wrap = "- " + text.replace(re, "\n\- ")
+            wrap = "\n- " + text.replace(re, "\n\- ")            
         } else if (action === "numbered_list") {
             re = /\n/g;
-            wrap = "1. " + text.replace(re, "\n1\. ")
+            wrap = "\n1. " + text.replace(re, "\n1\. ")
         } else if (action === "footnote") {
             wrap = '^[' + text + '] '
         }
 
         // update the area
         if (wrap !== null) {
-
+            var offset = 0;
             if (action === "italic" || action === "strong" || action === "code" || action === "latex" || action === "heading") {
                 field.value =
                     field.value.substring(0, start) +
                     leftWhitespace + wrap + text.trim() + wrap2 + rightWhitespace +
                     field.value.substring(end);
+                
+                if ( start !== end ){
+                    offset = (wrap+wrap2).length;
+                } else {
+                    offset = (wrap).length;
+                }
             } else {
                 // new areas
                 field.value =
                     field.value.substring(0, start) +
                     leftWhitespace + wrap + rightWhitespace +
                     field.value.substring(end);
+                offset = wrap.length-text.length;    
+            }
+            field.focus();
+            field.select();
+            if ( start !== end ){
+                field.selectionStart = start;
+            } else {
+                field.selectionStart = start+offset;
+            }
+            if ( action === "footnote" && start === end ) {
+                field.selectionEnd = end+offset-2;
+            } else {
+                field.selectionEnd = end+offset;
             }
         }
     } else {

@@ -1,5 +1,4 @@
 
-
 # Markdown
 
 ## Heading
@@ -47,6 +46,8 @@ _This is another italic text_
 ## Math
 You can use math formulas inline such as $$ \mu r^2 $$ or you can use in a block like this: 
 
+
+
 $$ T^{\mu\nu}=\begin{pmatrix}
 \varepsilon&0&0&0\\
 0&\varepsilon/3&0&0\\
@@ -58,11 +59,14 @@ If you label block formula it will be automatically numbered:
 
 $$ P_\omega=2+{n_\omega\over 2}\hbar\omega\,{1+R\over 1-v^2}\int\limits_{-1}^{1}dx\,(x-v)|x-v| $${#eq:1}
 
-Block equations are numbered on the left side. This numbering is added automatically. Repeated math blocks are independently given the same number where they are in the text. For example: if we write Euler's identity again it will be numbered as *(1)*
-
 $$
 \text{Euler's identity: } e^{i \pi } + 1 = 0
 $${#eq:2}
+
+Block equations are numbered on the left side. This numbering is added automatically.[^numb]
+
+[^numb]: In HTML the repeated math blocks are given the same number where they are in the text. For example: if we write Euler's identity again, exactly in the same way, it will be numbered again as *(2)*.   However, this is not true in PDF, ePUB and LaTeX. There every labelled block gets a new number. 
+
 
 You can cross-reference to these equalisations as links. Example the [integrals](#eq:1).^[If you repeat a formula multiple times, the link is ambiguous and it's browser dependant on where the link leads but it's usually the first occurrence. ]
 

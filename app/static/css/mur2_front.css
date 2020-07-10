@@ -23,6 +23,14 @@
     flex-direction: column;
     padding-left: 34.315rem;
     width: calc(100% - 27.5275rem - 34.315rem);
+    direction: rtl;
+}
+
+.main\.discovery #maintext {
+    flex-direction: column;
+    padding-left: 1.685rem;
+    width: calc(100% - 27.5275rem);
+    direction: ltr;
 }
 
 #maintext .control-item {
@@ -89,9 +97,7 @@ td a.control-item {
     border: none;
 }
 
-#maintext {
-    direction: rtl;
-}
+
 
 #article_main {
     direction: ltr;
@@ -360,7 +366,7 @@ td a.control-item {
 .categoryid + .keywordsid ,
 .journalid + .categoryid , 
 .journalid + .categoryid + .keywordsid {
-    padding-top: unset;
+    padding-top: unset;    
 }
 
 
