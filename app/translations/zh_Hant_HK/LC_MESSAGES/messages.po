@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-06 14:27+0000\n"
+"POT-Creation-Date: 2020-07-10 22:08+0000\n"
 "PO-Revision-Date: 2020-05-29 06:45+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -38,7 +38,7 @@ msgstr "密碼"
 msgid "Remember Me"
 msgstr "記住我"
 
-#: app/auth/forms.py:12 app/auth/routes.py:56 app/templates/auth/login.html:7
+#: app/auth/forms.py:12 app/auth/routes.py:57 app/templates/auth/login.html:7
 #: app/templates/base_menu.html:19
 msgid "Sign In"
 msgstr "登錄"
@@ -52,7 +52,7 @@ msgstr "電郵地址"
 msgid "Repeat Password"
 msgstr "確定密碼"
 
-#: app/auth/forms.py:22 app/auth/routes.py:97
+#: app/auth/forms.py:22 app/auth/routes.py:98
 msgid "Register"
 msgstr "註冊"
 
@@ -68,23 +68,23 @@ msgstr "請使用別的電郵地址"
 msgid "Request Password Reset"
 msgstr "申請密碼重置"
 
-#: app/auth/routes.py:30
+#: app/auth/routes.py:31
 msgid "Invalid username or password"
 msgstr "無效用戶名或密碼"
 
-#: app/auth/routes.py:95
+#: app/auth/routes.py:96
 msgid "Congratulations, you are now a registered user!"
 msgstr "恭喜，你已成為註冊用戶"
 
-#: app/auth/routes.py:111
+#: app/auth/routes.py:112
 msgid "Check your email for the instructions to reset your password"
 msgstr "請查看電郵以重置你的密碼"
 
-#: app/auth/routes.py:114 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:115 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
 msgstr "重置密碼"
 
-#: app/auth/routes.py:128
+#: app/auth/routes.py:129
 msgid "Your password has been reset."
 msgstr "密碼已重置"
 
@@ -100,7 +100,8 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: app/main/forms.py:68 app/main/forms.py:92 app/templates/editor.html:63
+#: app/main/forms.py:68 app/main/forms.py:92 app/main/routes.py:1240
+#: app/templates/connections.html:55 app/templates/editor.html:63
 msgid "Title"
 msgstr "標題"
 
@@ -109,12 +110,8 @@ msgstr "標題"
 msgid "About"
 msgstr ""
 
-#: app/main/forms.py:71 app/main/forms.py:95
+#: app/main/forms.py:71 app/main/forms.py:95 app/main/routes.py:1240
 msgid "Address"
-msgstr ""
-
-#: app/main/forms.py:72 app/main/forms.py:96
-msgid "Submit"
 msgstr ""
 
 #: app/main/forms.py:77 app/main/forms.py:109
@@ -125,73 +122,110 @@ msgstr ""
 msgid "Please use a different address."
 msgstr ""
 
-#: app/main/routes.py:223
+#: app/main/forms.py:96
+msgid "Submit"
+msgstr ""
+
+#: app/main/routes.py:245
 msgid "Register Journal"
 msgstr ""
 
-#: app/main/routes.py:293 app/templates/article.html:52
-#: app/templates/article.html:98 app/templates/article.html:127
+#: app/main/routes.py:314 app/templates/article.html:60
+#: app/templates/article.html:111 app/templates/article.html:138
 #: app/templates/editor.html:86
 msgid "Keywords"
 msgstr ""
 
-#: app/main/routes.py:295 app/templates/article.html:52
-#: app/templates/article.html:98 app/templates/article.html:127
+#: app/main/routes.py:316 app/templates/article.html:60
+#: app/templates/article.html:111 app/templates/article.html:138
 msgid "Keyword"
 msgstr ""
 
-#: app/main/routes.py:319 app/templates/article.html:47
-#: app/templates/article.html:93 app/templates/article.html:122
+#: app/main/routes.py:340 app/templates/article.html:54
+#: app/templates/article.html:105 app/templates/article.html:132
 #: app/templates/editor.html:78
 msgid "Categories"
 msgstr ""
 
-#: app/main/routes.py:321 app/templates/article.html:47
-#: app/templates/article.html:93 app/templates/article.html:122
+#: app/main/routes.py:342 app/templates/article.html:54
+#: app/templates/article.html:105 app/templates/article.html:132
 msgid "Category"
 msgstr ""
 
-#: app/main/routes.py:362
+#: app/main/routes.py:383
 msgid "You can not edit this article"
 msgstr "你無權編輯此文章"
 
-#: app/main/routes.py:369
+#: app/main/routes.py:390
 msgid "editor"
 msgstr "編輯器"
 
-#: app/main/routes.py:529
+#: app/main/routes.py:551
 msgid "The author already have Article with this title!"
 msgstr ""
 
-#: app/main/routes.py:646 app/main/routes.py:744 app/main/routes.py:765
+#: app/main/routes.py:668 app/main/routes.py:780 app/main/routes.py:801
 msgid "Your changes have been saved."
 msgstr "改變已保存"
 
-#: app/main/routes.py:660
+#: app/main/routes.py:682
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:671 app/main/routes.py:724
+#: app/main/routes.py:693 app/main/routes.py:760
 msgid "User no right to delete this"
 msgstr "用戶無權刪除此文章"
 
-#: app/main/routes.py:671
+#: app/main/routes.py:693
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:724
+#: app/main/routes.py:760
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:931
+#: app/main/routes.py:967
 msgid "Can not create Media directory for "
 msgstr ""
 
-#: app/main/routes.py:938
+#: app/main/routes.py:974
 msgid "No more disk space quota for "
 msgstr "空間配額不足"
 
-#: app/templates/article.html:11
+#: app/main/routes.py:1236
+msgid "Tag"
+msgstr ""
+
+#: app/main/routes.py:1236
+msgid "Journal"
+msgstr ""
+
+#: app/main/routes.py:1238
+msgid "labels"
+msgstr ""
+
+#: app/main/routes.py:1240 app/templates/editor.html:76
+msgid "Abstract"
+msgstr "摘要"
+
+#: app/main/routes.py:1240 app/templates/connections.html:43
+#: app/templates/connections.html:54
+msgid "Name"
+msgstr ""
+
+#: app/main/routes.py:1240
+msgid "Article_number"
+msgstr ""
+
+#: app/main/routes.py:1252
+msgid "published_article_number"
+msgstr ""
+
+#: app/main/routes.py:1252
+msgid "number_of_article"
+msgstr ""
+
+#: app/templates/article.html:10
 msgid "Delete article"
 msgstr "刪除文章"
 
@@ -199,20 +233,20 @@ msgstr "刪除文章"
 msgid "Reopen editing"
 msgstr ""
 
-#: app/templates/article.html:34
+#: app/templates/article.html:36
 msgid "Send to Journal"
 msgstr ""
 
-#: app/templates/article.html:44 app/templates/article.html:90
-#: app/templates/article.html:119 app/templates/read.html:25
+#: app/templates/article.html:50 app/templates/article.html:101
+#: app/templates/article.html:128 app/templates/read.html:25
 msgid "Publihed in"
 msgstr ""
 
-#: app/templates/article.html:73
+#: app/templates/article.html:76
 msgid "Accept for Publishing"
 msgstr ""
 
-#: app/templates/article.html:80
+#: app/templates/article.html:83 app/templates/article.html:91
 msgid "Reject Publishing"
 msgstr ""
 
@@ -274,10 +308,6 @@ msgstr ""
 #: app/templates/editor.html:73
 msgid "Delete Featured Image"
 msgstr ""
-
-#: app/templates/editor.html:76
-msgid "Abstract"
-msgstr "摘要"
 
 #: app/templates/editor.html:94
 msgid "Canonical Url"
@@ -655,11 +685,11 @@ msgstr ""
 msgid "Category:"
 msgstr ""
 
-#: app/templates/read.html:34
+#: app/templates/read.html:35
 msgid "Keywords:"
 msgstr ""
 
-#: app/templates/read.html:34
+#: app/templates/read.html:35
 msgid "Keyword:"
 msgstr ""
 
