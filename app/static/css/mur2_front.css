@@ -31,6 +31,7 @@
     padding-left: 1.685rem;
     width: calc(100% - 27.5275rem);
     direction: ltr;
+    top: 0;
 }
 
 #maintext .control-item {
@@ -390,7 +391,20 @@ and (max-device-width : 767px){
         padding-left: 1.685rem;
         width: calc(100% - 1.685rem - 1.685rem);
         z-index: 2;
-    }     
+        position: relative;
+        top: 3rem;
+    }
+    
+    .main\.discovery #maintext {
+        flex-direction: column;
+        padding-left: 1.685rem;
+        width: calc(100% - 1.685rem  );
+        direction: ltr;
+        top: 3rem;
+        z-index: 2;
+        position: relative;
+    }
+    
     #side_menu {
         width: calc(100% - 1.685rem);
         min-width: calc(100% - 1.685rem);  
@@ -412,7 +426,7 @@ and (max-device-width : 767px){
         color: rgba(0,0,0,0) ;
     }
     
-    #id_side_menu:checked + #side_menu {
+    #id_side_menu:checked ~ #side_menu {
         z-index: 3;
     }
     
@@ -423,12 +437,7 @@ and (max-device-width : 767px){
         padding-right: 5.055rem;
     }
     
-    .main\.root   #maintext,
-    .main\.user   #maintext {
-        position: relative;
-        top: 3rem;
-    }
-    .main\.root  #user_username
+    .main\.root  #user_username,
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;
@@ -449,6 +458,13 @@ and (max-device-width : 767px){
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
     }     
+    .main\.discovery #maintext {
+        flex-direction: column;
+        padding-left: 1.685rem;
+        width: calc(100% - 17.5275rem );
+        direction: ltr;
+        top: 0;
+    }
     #side_menu {
         width: 15rem;
         min-width: 15rem;
@@ -466,7 +482,15 @@ and (orientation : landscape) {
     .main\.user #maintext {
         padding-left: 3.37rem;
         width: calc(100% - 17.5275rem - 3.37rem);
-    }     
+    }
+    .main\.discovery #maintext {
+        flex-direction: column;
+        padding-left: 1.685rem;
+        width: calc(100% - 17.5275rem );
+        direction: ltr;
+        top: 0;
+    }
+    
     #side_menu {
         width: 15rem;
         min-width: 15rem;
@@ -493,7 +517,15 @@ and (orientation : portrait) {
     .main\.user #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 17.5275rem - 1.685rem);
-    }     
+    }   
+    .main\.discovery #maintext {
+        flex-direction: column;
+        padding-left: 1.685rem;
+        width: calc(100% - 17.5275rem );
+        direction: ltr;
+        top: 0;
+    }
+    
     #side_menu {
         width: 15rem;
         min-width: 15rem;
@@ -516,7 +548,14 @@ and (orientation : portrait) {
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
-    }     
+    }  
+    .main\.discovery #maintext {
+        flex-direction: column;
+        padding-left: 1.685rem;
+        width: calc(100% - 17.5275rem );
+        direction: ltr;
+        top: 0;
+    }
     #side_menu {
         width: 15rem;
         min-width: 15rem;

@@ -134,10 +134,16 @@ and (max-device-width : 767px){
     #article_main h1 {
         max-width: unset;    
     }
+    
+    .main\.discovery #side_menu,
+    .main\.root #side_menu ,
     .main\.user #side_menu ,
     .main\.reader #side_menu {
         background-color: rgba(0,0,0,0);
     }
+    
+    .main\.discovery #side_menu .control-item,
+    .main\.root #side_menu .control-item,
     .main\.user #side_menu .control-item,
     .main\.reader #side_menu .control-item {
         color:  rgba(0,0,0,0);
