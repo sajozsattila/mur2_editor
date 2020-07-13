@@ -508,9 +508,20 @@ async function generate_from_md(destination, mainCollection) {
 
 /* keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords */
 function multiSearchKeyup(inputElement) {
-    if(event.keyCode === 13) {
+    var newcat = false
+    if ( event.keyCode === 13 ) {
+        newcat = true;
+    } else if ( inputElement.value.slice(-2) == '\\n' ) {
+        newcat = true;
+    }
+    console.log(newcat);
+    if(newcat) {
+        var newstring = inputElement.value;
+        if ( inputElement.value.slice(-2) == '\\n' ) {
+            newstring = inputElement.value.slice(0,-2);
+        }
         inputElement.parentNode
-            .insertBefore(createFilterItem(inputElement.value), inputElement)
+            .insertBefore(createFilterItem(newstring), inputElement)
             ;
         inputElement.value = "";
     }

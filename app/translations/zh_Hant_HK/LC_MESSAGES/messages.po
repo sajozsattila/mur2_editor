@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-10 22:27+0000\n"
+"POT-Creation-Date: 2020-07-13 16:28+0000\n"
 "PO-Revision-Date: 2020-05-29 06:45+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -100,8 +100,8 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: app/main/forms.py:68 app/main/forms.py:92 app/main/routes.py:1240
-#: app/templates/connections.html:55 app/templates/editor.html:63
+#: app/main/forms.py:68 app/main/forms.py:92 app/main/routes.py:1243
+#: app/templates/connections.html:71 app/templates/editor.html:63
 msgid "Title"
 msgstr "標題"
 
@@ -110,7 +110,7 @@ msgstr "標題"
 msgid "About"
 msgstr ""
 
-#: app/main/forms.py:71 app/main/forms.py:95 app/main/routes.py:1240
+#: app/main/forms.py:71 app/main/forms.py:95 app/main/routes.py:1243
 msgid "Address"
 msgstr ""
 
@@ -131,24 +131,27 @@ msgid "Register Journal"
 msgstr ""
 
 #: app/main/routes.py:314 app/templates/article.html:60
-#: app/templates/article.html:111 app/templates/article.html:138
-#: app/templates/editor.html:86
+#: app/templates/article.html:112 app/templates/article.html:139
+#: app/templates/editor.html:114
 msgid "Keywords"
 msgstr ""
 
 #: app/main/routes.py:316 app/templates/article.html:60
-#: app/templates/article.html:111 app/templates/article.html:138
+#: app/templates/article.html:112 app/templates/article.html:139
+#: app/templates/connections.html:27 app/templates/keywords.html:9
 msgid "Keyword"
 msgstr ""
 
 #: app/main/routes.py:340 app/templates/article.html:54
-#: app/templates/article.html:105 app/templates/article.html:132
+#: app/templates/article.html:106 app/templates/article.html:133
 #: app/templates/editor.html:78
 msgid "Categories"
 msgstr ""
 
 #: app/main/routes.py:342 app/templates/article.html:54
-#: app/templates/article.html:105 app/templates/article.html:132
+#: app/templates/article.html:106 app/templates/article.html:133
+#: app/templates/connections.html:26 app/templates/connections.html:52
+#: app/templates/keywords.html:7
 msgid "Category"
 msgstr ""
 
@@ -160,80 +163,82 @@ msgstr "你無權編輯此文章"
 msgid "editor"
 msgstr "編輯器"
 
-#: app/main/routes.py:551
+#: app/main/routes.py:553
 msgid "The author already have Article with this title!"
 msgstr ""
 
-#: app/main/routes.py:668 app/main/routes.py:780 app/main/routes.py:801
+#: app/main/routes.py:670 app/main/routes.py:782 app/main/routes.py:803
 msgid "Your changes have been saved."
 msgstr "改變已保存"
 
-#: app/main/routes.py:682
+#: app/main/routes.py:684
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:693 app/main/routes.py:760
+#: app/main/routes.py:695 app/main/routes.py:762
 msgid "User no right to delete this"
 msgstr "用戶無權刪除此文章"
 
-#: app/main/routes.py:693
+#: app/main/routes.py:695 app/templates/connections.html:29
+#: app/templates/connections.html:53
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:760
+#: app/main/routes.py:762
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:967
+#: app/main/routes.py:969
 msgid "Can not create Media directory for "
 msgstr ""
 
-#: app/main/routes.py:974
+#: app/main/routes.py:976
 msgid "No more disk space quota for "
 msgstr "空間配額不足"
 
-#: app/main/routes.py:1236
+#: app/main/routes.py:1239 app/templates/connections.html:50
 msgid "Tag"
 msgstr ""
 
-#: app/main/routes.py:1236
+#: app/main/routes.py:1239 app/templates/connections.html:28
+#: app/templates/connections.html:51 app/templates/user.html:47
 msgid "Journal"
 msgstr ""
 
-#: app/main/routes.py:1238
+#: app/main/routes.py:1241
 msgid "labels"
 msgstr ""
 
-#: app/main/routes.py:1240 app/templates/editor.html:76
+#: app/main/routes.py:1243 app/templates/editor.html:76
 msgid "Abstract"
 msgstr "摘要"
 
-#: app/main/routes.py:1240 app/templates/connections.html:43
-#: app/templates/connections.html:54
+#: app/main/routes.py:1243 app/templates/connections.html:59
+#: app/templates/connections.html:70
 msgid "Name"
 msgstr ""
 
-#: app/main/routes.py:1240
+#: app/main/routes.py:1243
 msgid "Article_number"
 msgstr ""
 
-#: app/main/routes.py:1253
+#: app/main/routes.py:1256
 msgid "taged"
 msgstr ""
 
-#: app/main/routes.py:1253
+#: app/main/routes.py:1256
 msgid "publisher"
 msgstr ""
 
-#: app/main/routes.py:1254
+#: app/main/routes.py:1257
 msgid "type"
 msgstr ""
 
-#: app/main/routes.py:1257
+#: app/main/routes.py:1260
 msgid "published_article_number"
 msgstr ""
 
-#: app/main/routes.py:1257
+#: app/main/routes.py:1260
 msgid "number_of_article"
 msgstr ""
 
@@ -249,8 +254,8 @@ msgstr ""
 msgid "Send to Journal"
 msgstr ""
 
-#: app/templates/article.html:50 app/templates/article.html:101
-#: app/templates/article.html:128 app/templates/read.html:25
+#: app/templates/article.html:50 app/templates/article.html:102
+#: app/templates/article.html:129 app/templates/read.html:25
 msgid "Publihed in"
 msgstr ""
 
@@ -270,7 +275,8 @@ msgstr "關閉側菜單"
 msgid "Home"
 msgstr "主頁"
 
-#: app/templates/base_menu.html:11
+#: app/templates/base_menu.html:11 app/templates/keywords.html:7
+#: app/templates/keywords.html:9 app/templates/user.html:47
 msgid "Discovery"
 msgstr ""
 
@@ -294,8 +300,12 @@ msgstr "退出"
 msgid "Search"
 msgstr "搜索"
 
+#: app/templates/connections.html:25
+msgid "Legend"
+msgstr ""
+
 #: app/templates/edit_journal.html:32 app/templates/edit_profile.html:21
-#: app/templates/editor.html:152 app/templates/test.html:66
+#: app/templates/editor.html:182 app/templates/test.html:66
 msgid "Save"
 msgstr "保存"
 
@@ -325,90 +335,190 @@ msgstr ""
 msgid "Delete Featured Image"
 msgstr ""
 
+#: app/templates/editor.html:86
+msgid "Physics"
+msgstr ""
+
+#: app/templates/editor.html:87
+msgid "Chemistry"
+msgstr ""
+
+#: app/templates/editor.html:88
+msgid "Earth Science"
+msgstr ""
+
+#: app/templates/editor.html:89
+msgid "Space Science"
+msgstr ""
+
+#: app/templates/editor.html:90
+msgid "Biology"
+msgstr ""
+
+#: app/templates/editor.html:91
+msgid "Molecular Biology"
+msgstr ""
+
+#: app/templates/editor.html:92
+msgid "Mathematics"
+msgstr ""
+
+#: app/templates/editor.html:93
+msgid "Logic"
+msgstr ""
+
 #: app/templates/editor.html:94
+msgid "Statistics"
+msgstr ""
+
+#: app/templates/editor.html:95
+msgid "History"
+msgstr ""
+
+#: app/templates/editor.html:96
+msgid "Economy"
+msgstr ""
+
+#: app/templates/editor.html:97
+msgid "Sociology"
+msgstr ""
+
+#: app/templates/editor.html:98
+msgid "Low"
+msgstr ""
+
+#: app/templates/editor.html:99
+msgid "Education"
+msgstr ""
+
+#: app/templates/editor.html:100
+msgid "Archaeology"
+msgstr ""
+
+#: app/templates/editor.html:101
+msgid "Politic"
+msgstr ""
+
+#: app/templates/editor.html:102
+msgid "Computer science"
+msgstr ""
+
+#: app/templates/editor.html:103
+msgid "Civil Engineering"
+msgstr ""
+
+#: app/templates/editor.html:104
+msgid "Electrical Engineering"
+msgstr ""
+
+#: app/templates/editor.html:105
+msgid "Genetic"
+msgstr ""
+
+#: app/templates/editor.html:106
+msgid "Software"
+msgstr ""
+
+#: app/templates/editor.html:107
+msgid "Industrial"
+msgstr ""
+
+#: app/templates/editor.html:108
+msgid "Medicine"
+msgstr ""
+
+#: app/templates/editor.html:109
+msgid "Pharmacy"
+msgstr ""
+
+#: app/templates/editor.html:110
+msgid "Dental"
+msgstr ""
+
+#: app/templates/editor.html:124
 msgid "Canonical Url"
 msgstr ""
 
-#: app/templates/editor.html:126 app/templates/test.html:45
+#: app/templates/editor.html:156 app/templates/test.html:45
 msgid "Toolbar"
 msgstr "工具欄"
 
-#: app/templates/editor.html:131 app/templates/editor.html:202
+#: app/templates/editor.html:161 app/templates/editor.html:232
 #: app/templates/test.html:111
 msgid "Show side menu"
 msgstr "顯示側菜單"
 
-#: app/templates/editor.html:140 app/templates/test.html:55
+#: app/templates/editor.html:170 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr "關閉工具欄"
 
-#: app/templates/editor.html:144 app/templates/test.html:59
+#: app/templates/editor.html:174 app/templates/test.html:59
 msgid "Upload file"
 msgstr "上傳文件"
 
-#: app/templates/editor.html:148 app/templates/test.html:63
+#: app/templates/editor.html:178 app/templates/test.html:63
 msgid "Download result"
 msgstr "下載文件"
 
-#: app/templates/editor.html:156 app/templates/test.html:69
+#: app/templates/editor.html:186 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "語法凸顯"
 
-#: app/templates/editor.html:159
+#: app/templates/editor.html:189
 msgid "Hide input"
 msgstr "隱藏輸入"
 
-#: app/templates/editor.html:162 app/templates/test.html:75
+#: app/templates/editor.html:192 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr "顯示標題和摘要"
 
-#: app/templates/editor.html:165 app/templates/test.html:72
+#: app/templates/editor.html:195 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "隱藏預覽"
 
-#: app/templates/editor.html:168 app/templates/test.html:78
+#: app/templates/editor.html:198 app/templates/test.html:78
 msgid "Head"
 msgstr "標題"
 
-#: app/templates/editor.html:171 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:201 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr "強調"
 
-#: app/templates/editor.html:174 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:204 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr "黑體"
 
-#: app/templates/editor.html:177 app/templates/test.html:87
+#: app/templates/editor.html:207 app/templates/test.html:87
 msgid "Picture"
 msgstr "圖片"
 
-#: app/templates/editor.html:180 app/templates/test.html:90
+#: app/templates/editor.html:210 app/templates/test.html:90
 msgid "Link"
 msgstr "鏈接"
 
-#: app/templates/editor.html:183 app/templates/test.html:93
+#: app/templates/editor.html:213 app/templates/test.html:93
 msgid "List"
 msgstr "列表"
 
-#: app/templates/editor.html:186 app/templates/test.html:96
+#: app/templates/editor.html:216 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "標號列表"
 
-#: app/templates/editor.html:189 app/templates/test.html:99
+#: app/templates/editor.html:219 app/templates/test.html:99
 msgid "Footnote"
 msgstr "註腳"
 
-#: app/templates/editor.html:192 app/templates/test.html:102
+#: app/templates/editor.html:222 app/templates/test.html:102
 msgid "Table"
 msgstr "表格"
 
-#: app/templates/editor.html:195 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:225 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr "代碼"
 
-#: app/templates/editor.html:198 app/templates/test.html:108
+#: app/templates/editor.html:228 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr "LaTex碼"
 
@@ -504,17 +614,17 @@ msgstr "Markdown速查表"
 msgid "Editor manual"
 msgstr ""
 
-#: app/templates/frontpage.html:14 app/templates/keywords.html:14
-#: app/templates/user.html:64
+#: app/templates/frontpage.html:14 app/templates/keywords.html:19
+#: app/templates/user.html:68
 msgid "Newer Articles"
 msgstr ""
 
-#: app/templates/frontpage.html:19 app/templates/keywords.html:19
-#: app/templates/user.html:69
+#: app/templates/frontpage.html:19 app/templates/keywords.html:24
+#: app/templates/user.html:73
 msgid "Older Articles"
 msgstr ""
 
-#: app/templates/frontpage.html:47 app/templates/user.html:97
+#: app/templates/frontpage.html:47 app/templates/user.html:101
 msgid "Please enter the title of the Journal"
 msgstr ""
 
@@ -773,7 +883,7 @@ msgstr ""
 msgid "Writer of these Articles"
 msgstr ""
 
-#: app/templates/user.html:51
+#: app/templates/user.html:55
 msgid "New Article"
 msgstr "新的文章"
 
@@ -819,5 +929,17 @@ msgstr "已通知網站管理員。抱歉給您帶來的不便"
 #~ msgstr ""
 
 #~ msgid "Older posts"
+#~ msgstr ""
+
+#~ msgid "Physical Science"
+#~ msgstr ""
+
+#~ msgid "Decisions"
+#~ msgstr ""
+
+#~ msgid "Chemical Engineering"
+#~ msgstr ""
+
+#~ msgid "Political Science"
 #~ msgstr ""
 
