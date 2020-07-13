@@ -76,12 +76,40 @@
                  <div>{{ _("Abstract") }}:</div>                 
                  <textarea id="abstact-source" maxlength="1200" ></textarea>
                  <div>{{ _("Categories") }}:</div>   
-                 <div id="categories" class="multi-search-filter" onclick="Array.from(this.children).find(n=>n.tagName==='INPUT').focus()">
+                 <div id="categories" class="multi-search-filter" >
                      {% for cat in categories %}
                      <div class="multi-search-item"><span>{{ cat }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div>
                      </div>
                      {% endfor %}
-                     <input type="text" onkeyup="multiSearchKeyup(this)">
+                     {% if categories|length < 3 %}
+                     <select id = "myList"  onchange="multiSearchKeyup(this)">
+                         <option value = "{{ _('Physics') }}\n">{{ _('Physics') }}</option>
+                         <option value = "{{ _('Chemistry') }}\n">{{ _('Chemistry') }}</option>
+                         <option value = "{{ _('Earth Science') }}\n">{{ _('Earth Science') }}</option>
+                         <option value = "{{ _('Space Science') }}\n">{{ _('Space Science') }}</option>
+                         <option value = "{{ _('Biology') }}\n">{{ _('Biology') }}</option>
+                         <option value = "{{ _('Molecular Biology') }}\n">{{ _('Molecular Biology') }}</option>
+                         <option value = "{{ _('Mathematics') }}\n">{{ _('Mathematics') }}</option>
+                         <option value = "{{ _('Logic') }}\n">{{ _('Logic') }}</option>
+                         <option value = "{{ _('Statistics') }}\n">{{ _('Statistics') }}</option>
+                         <option value = "{{ _('History') }}\n">{{ _('History') }}</option>
+                         <option value = "{{ _('Economy') }}\n">{{ _('Economy') }}</option>
+                         <option value = "{{ _('Sociology') }}\n">{{ _('Sociology') }}</option>
+                         <option value = "{{ _('Low') }}\n">{{ _('Low') }}</option>
+                         <option value = "{{ _('Education') }}\n">{{ _('Education') }}</option>
+                         <option value = "{{ _('Archaeology') }}\n">{{ _('Archaeology') }}</option>
+                         <option value = "{{ _('Politic') }}\n">{{ _('Politic') }}</option>
+                         <option value = "{{ _('Computer science') }}\n">{{ _('Computer science') }}</option>
+                         <option value = "{{ _('Civil Engineering') }}\n">{{ _('Civil Engineering') }}</option>    
+                         <option value = "{{ _('Electrical Engineering') }}\n">{{ _('Electrical Engineering') }}</option>
+                         <option value = "{{ _('Genetic') }}\n">{{ _('Genetic') }}</option>
+                         <option value = "{{ _('Software') }}\n">{{ _('Software') }}</option>
+                         <option value = "{{ _('Industrial') }}\n">{{ _('Industrial') }}</option>
+                         <option value = "{{ _('Medicine') }}\n">{{ _('Medicine') }}</option>
+                         <option value = "{{ _('Pharmacy') }}\n">{{ _('Pharmacy') }}</option>
+                         <option value = "{{ _('Dental') }}\n">{{ _('Dental') }}</option>
+                     </select>                     
+                     {% endif %}
                  </div>
                  <div>{{ _("Keywords") }}:</div>   
                  <div id="keywords" class="multi-search-filter" onclick="Array.from(this.children).find(n=>n.tagName==='INPUT').focus()">
@@ -89,7 +117,9 @@
                      <div class="multi-search-item"><span>{{ key }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div>
                      </div>
                      {% endfor %}
+                     {% if keywords|length < 6 %}
                      <input type="text" onkeyup="multiSearchKeyup(this)">
+                     {% endif %}
                  </div>
                  <div>{{ _("Canonical Url") }}:</div>  
                  <textarea id="canonicalUrlText"  maxlength="200"  spellcheck="false" >{{ canonicalUrlText }}</textarea>

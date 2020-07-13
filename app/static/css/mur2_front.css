@@ -32,6 +32,7 @@
     width: calc(100% - 27.5275rem);
     direction: ltr;
     top: 0;
+    height: 100%;
 }
 
 #maintext .control-item {
@@ -370,7 +371,24 @@ td a.control-item {
     padding-top: unset;    
 }
 
+/*
+ * Discovery
+*/
+.discovery_legend_color {
+    width: 1.4rem;
+    height: 1.4rem;
+    -webkit-border-radius: 0.7rem;
+    -moz-border-radius: 0.7rem;
+    border-radius: 0.7rem;
+    margin-right: 0.8425rem;
+}
 
+.discovery_legend {
+    display: flex;
+    flex-direction: row;
+    text-transform: initial;
+    padding-left: 1.685rem;    
+}
 
 /****************************************
  * Media settings
