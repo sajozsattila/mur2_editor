@@ -1,4 +1,4 @@
-body, button input, select {
+body, button input, select, button.collapsible {
   /* */
     font-family: liberation-serif, serif;
     font-weight: 400;

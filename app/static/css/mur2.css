@@ -8,7 +8,8 @@ body h1,
 body h2,
 body h3,
 body h4,
-body h5 {
+body h5,
+button.collapsible {
     margin-bottom: var(--verticaldistance);
     margin-top: calc( var(--verticaldistance) * 3 );
     position: relative;
@@ -25,9 +26,10 @@ body h1 {
     height:  calc( 2.488 * var(--latex_height) ) !important ;
     width: auto !important ;    
 }
-body h2 {
-    font-size: 2.074em;
-    line-height: 2.5275rem;
+body h2,
+button.collapsible {
+    font-size: 2.074em !important;
+    line-height: 2.5275rem !important;
 }
 .result-as-html h2 .svg-preview{
     vertical-align: calc( 2.074 * var(--latex_align) ) !important ; 
@@ -287,3 +289,48 @@ a {
     font-family: initial !important
 }
 
+.iframe_wrap {
+    position: relative;
+    display: none;
+}
+
+iframe {
+    width: 100%;
+    height: auto;
+    border: unset;
+    border-left: solid 1px #c62641;
+    overflow: hidden; 
+    scrollbar-color: #c62641 white;
+    scrollbar-width: thin;
+}
+
+iframe img {
+    max-width: 100%;
+}
+
+/************************ 
+collapsible divs
+*/
+ /* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+} 

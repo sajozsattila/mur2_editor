@@ -26,6 +26,7 @@
     direction: rtl;
 }
 
+.main\.proofs #maintext,
 .main\.discovery #maintext {
     flex-direction: column;
     padding-left: 1.685rem;
@@ -104,6 +105,7 @@ td a.control-item {
 #article_main {
     direction: ltr;
 }
+
 
 /*
  ****************************************
@@ -388,6 +390,18 @@ td a.control-item {
     flex-direction: row;
     text-transform: initial;
     padding-left: 1.685rem;    
+}
+
+.main\.categories #maintext {
+    direction: ltr;
+    top: 0;
+    padding: unset;
+    width: auto;
+}
+
+.main\.readmain > :first-child {
+    left: calc( var(--verticaldistance) * 2 );
+    position: relative;
 }
 
 /****************************************

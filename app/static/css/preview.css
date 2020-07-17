@@ -28,7 +28,8 @@
 div#article_abstract_div, 
 #article_main p,
 #article_main li,
-#article_main h1 {
+#article_main h1
+{
     max-width: 41rem;    
 }
 

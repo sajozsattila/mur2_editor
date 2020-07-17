@@ -1,4 +1,4 @@
-body, button input, select {
+body, button input, select, button.collapsible {
     /* */    
     font-family: source-han-sans-simplified-c, sans-serif;
 }
@@ -8,7 +8,7 @@ body, button input, select {
 }
 
 .result-as-html div#article_title,
-body h1, body h2, body h3, body h4, body h5 {
+body h1, body h2, body h3, body h4, body h5, button.collapsible {
     font-family: source-han-serif-sc, serif;
 }
 

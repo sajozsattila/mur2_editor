@@ -703,11 +703,13 @@ function ParserCollection(
             updateMain(mainImageLoader, false);
             // fire inputevent manualy to update highlighted things also
             mainSource.dispatchEvent(inputevent);
+            collapsible_listener();
         } else if (selectedTextarea === 'title-source') {
             updateTitle(titleImageLoader, false);
         } else if (selectedTextarea === 'abstact-source') {
             updateAbstract(abstractImageLoader, false);
         }
+        
     }
 
     // file upload event
@@ -868,6 +870,69 @@ function ParserCollection(
                             menubottom.classList.add('titleon');
                         }
                     }
+                    break;
+                case 'id_proof':
+                    // set in the frontend
+                    if ( g_selectedTextarea === 'main-source') {
+                        var field = document.getElementById(g_selectedTextarea);
+                        var start = field.selectionStart;
+                        var end = field.selectionEnd;
+                        
+                        var modal = document.getElementById("editorModal");
+
+                        // Get the <span> element that closes the modal
+                        var span = document.getElementById("modalClose");
+
+                        var body = document.getElementsByClassName("modal-body")[0];
+                        body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/proofs" type= "text/javascript"></iframe>';
+                        modal.style.display = "block";
+
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                            // the the chosed Article
+                            var iframe = document.getElementById("editor_iframe");                       
+                            var elmnt = iframe.contentWindow.document.getElementById("selected");
+                        
+                            if ( elmnt.innerHTML.length > 0 ) {                            
+                                
+                                // if there is selection this willl be the title
+                                var text = field.value.substring(start, end);
+                                if ( text.length  === 0 ) {
+                                    // set the default tile
+                                    text = iframe.contentWindow.document.getElementById("selected_title").innerHTML;
+                                }
+                                field.value =
+                                    field.value.substring(0, start) +
+                                    '<button type="button" class="collapsible">'+text+'</button><div class="iframe_wrap"><iframe scrolling="no" src="'+elmnt.innerHTML +'"></iframe></div>'
+                                field.value.substring(end);                               
+                                
+                                // set focuse back
+                                field.focus();
+                                field.select();
+                                field.selectionStart = end;
+                                field.selectionEnd = end;
+                                console.log("update");
+                                update();
+                                console.log("update");
+                                // collapsible_listener();
+                            }
+                            modal.style.display = "none";
+                        }                                                
+                        
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                                // set focuse back
+                                field.focus();
+                                field.select();
+                                field.selectionStart = start;
+                                field.selectionEnd = end;
+                            }
+                        }
+                    }
+
+
                     break;
                 case 'id_head':
                     editorToolbarAction("heading");

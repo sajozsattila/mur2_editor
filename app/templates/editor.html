@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- set some mur2 atrtriput which we will use later to send data to the server -->
         <meta name="article_id" content='{{ article_id }}'>
-        <meta name="texttype" content="article">
+        <meta name="texttype" content='{{  texttype }}'>
         <meta name="endnotetext" content={{ _("Endnotes") }}>
         <meta name="mur2language" content='{{ language }}'>
 
@@ -123,7 +123,35 @@
                  </div>
                  <div>{{ _("Canonical Url") }}:</div>  
                  <textarea id="canonicalUrlText"  maxlength="200"  spellcheck="false" >{{ canonicalUrlText }}</textarea>
-             </div>
+                 <div>{{ _("Text Type") }}:</div>
+                 <select id = "textype">
+                     {% if texttype == "Article" %}
+                     <option value = "'Article" selected>{{ _('Article') }}</option>
+                     {% else %}
+                     <option value = "Article">{{ _('Article') }}</option>
+                     {% endif %}
+                     {% if texttype == "Conjecture" %}
+                     <option value = "Conjecture" selected>{{ _('Conjecture') }}</option>
+                     {% else %}
+                     <option value = "Conjecture">{{ _('Conjecture') }}</option>
+                     {% endif %}
+                     {% if texttype == "Proof" %}
+                     <option value = "Proof" selected>{{ _('Proof') }}</option>
+                     {% else %}
+                     <option value = "Proof">{{ _('Proof') }}</option>
+                     {% endif %}
+                     {% if texttype == "Problem" %}
+                     <option value = "Problem" selected>{{ _('Problem') }}</option>
+                     {% else %}
+                     <option value = "Problem">{{ _('Problem') }}</option>
+                     {% endif %}
+                     {% if texttype == "Review" %}
+                     <option value = "Review" selected>{{ _('Review') }}</option>
+                     {% else %}
+                     <option value = "Review">{{ _('Review') }}</option>
+                     {% endif %}
+                 </select>    
+            </div>
             <textarea id="main-source"></textarea>
             <div id="highlight_main" ></div>
          </div>
@@ -145,6 +173,19 @@
             <pre id="article_main_pre"></pre>
          </div>
       </div> <!-- maintext -->
+        
+     <!-- Modal -->
+     <div id="editorModal" class="modal">
+         <!-- Modal content -->
+         <div class="modal-content">
+             <div class="modal-header">
+                 <span id="modalClose">&times;</span>
+                 <h2>Connect Article</h2>
+             </div>
+             <div class="modal-body">
+             </div>
+         </div>
+     </div>
       
      <div id="menu" class="editor_toolbar">
          
@@ -225,7 +266,10 @@
                  <label class="toolbar fontawsome fas fa-code" for="id_code" title="{{ _('Code') }}" ></label>
                  <!-- LaTeX -->
                  <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
-                 <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>                      
+                 <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>
+                 <!-- Proof search -->
+                 <input class="choice_toolbar control-input" id="id_proof" type="radio" name="source_type" >
+                 <label class="toolbar menufont" for="id_proof" title="{{ _('Proof search') }}" >P</label>
               </div>
               <div>
                   <!-- Show side menu -->

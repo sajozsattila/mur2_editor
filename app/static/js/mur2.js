@@ -49,3 +49,26 @@ function clear_cookies(cname) {
     }
 }
 
+// collapsible divs
+function collapsible_listener() {
+    console.log(document);
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    console.log(coll.length);
+    for (i = coll.length; i--;) {
+        
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.parentElement.nextSibling;            
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+                var iframe = content.firstChild;
+                iframe.style.height =
+                    iframe.contentWindow.document.body.offsetHeight + 'px';                                
+            }
+        });
+    } 
+}
+collapsible_listener();
