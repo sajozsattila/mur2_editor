@@ -23,7 +23,6 @@ function upload_source() {
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
 
-
 async function download_result(blobs) {
     var result = "";
     for (var b = blobs.length; b--;) {
@@ -233,61 +232,50 @@ async function save_article(blobs) {
     var titledatatext = document.getElementById('article_title').innerHTML;
     
     // type of the text
-    var texttype = document.querySelector('meta[name="texttype"]').content.trim()
+    // var texttype = document.querySelector('meta[name="texttype"]').content.trim()
+    var texttype = document.getElementById('textype').value
+    if ( texttype.length === 0 ) {
+        // the default value
+        texttype = "Article";
+    }
+    
     // transform the Blob to Form as this easier to process for the 
     var fd = new FormData();
     // add data to the form, so the Flask server able to receive them		// 
-    // if Article 
-    if (texttype == 'article') {
-        // values just for Article type
-        // the article id
-        var article_id = document.querySelector('meta[name="article_id"]').content
-        // the article abstract and title, later this need to change as they need to be editable
-        var article_title = document.getElementById("title-source").value
-        var article_abstract = document.getElementById("abstact-source").value
-        var featuredImagesSrc = "";
-        var featuredimages = document.getElementsByClassName("feature_image")[0];
-        if ( featuredimages.src != featuredimages.baseURI ) {
-            featuredImagesSrc = featuredimages.src;
-        }
-        var keywords = keywordlist();
-        var categories = categorylist();
-        // url
-        var canonicalUrlText = document.getElementById('canonicalUrlText').value
-        if ( canonicalUrlText.trim().length === 0 ) {
-            canonicalUrlText = "http://mur2.co.uk/reader/"+article_id;
-        }
-
-        fd.append("file", markupdata);
-        fd.append("htmlfile", htmldata, "article_text.html");
-        fd.append("article_title_html", titledatatext);
-        fd.append("article_abstract_html", abstractdatatext);
-        fd.append('article_id', article_id);
-        fd.append('article_title', article_title);
-        fd.append('article_abstract', article_abstract);
-        fd.append('featuredimages', featuredImagesSrc);
-        fd.append('keywords', keywords.toString());
-        fd.append('categories', categories.toString());
-        fd.append('article_url', canonicalUrlText);
-        // send data
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', '/markdownsave', true);       
-        
-    } else { // if review
-        var article_id = document.querySelector('meta[name="review_id"]').content
-        var result = document.getElementById('review_result').value
-        var standby = document.getElementById('review_standby').value
-        var rebel = document.getElementById('review_rebel').value
-        fd.append("file", markupdata, "article_text.md");
-        fd.append("htmlfile", htmldata, "article_text.html");
-        fd.append('review_id', article_id);
-        fd.append('result', result);
-        fd.append('standby', standby);
-        fd.append('rebel', rebel);
-        // send data
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', '/reviewsave', true);
+    // values just for Article type
+    // the article id
+    var article_id = document.querySelector('meta[name="article_id"]').content
+    // the article abstract and title, later this need to change as they need to be editable
+    var article_title = document.getElementById("title-source").value
+    var article_abstract = document.getElementById("abstact-source").value
+    var featuredImagesSrc = "";
+    var featuredimages = document.getElementsByClassName("feature_image")[0];
+    if ( featuredimages.src != featuredimages.baseURI ) {
+        featuredImagesSrc = featuredimages.src;
     }
+    var keywords = keywordlist();
+    var categories = categorylist();
+    // url
+    var canonicalUrlText = document.getElementById('canonicalUrlText').value
+    if ( canonicalUrlText.trim().length === 0 ) {
+        canonicalUrlText = "http://mur2.co.uk/reader/"+article_id;
+    }
+
+    fd.append("file", markupdata);
+    fd.append("htmlfile", htmldata, "article_text.html");
+    fd.append("article_title_html", titledatatext);
+    fd.append("article_abstract_html", abstractdatatext);
+    fd.append('article_id', article_id);
+    fd.append('article_title', article_title);
+    fd.append('article_abstract', article_abstract);
+    fd.append('featuredimages', featuredImagesSrc);
+    fd.append('keywords', keywords.toString());
+    fd.append('categories', categories.toString());
+    fd.append('article_url', canonicalUrlText);
+    fd.append('article_textype', texttype);
+    // send data
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/markdownsave', true);        
     xhr.send(fd);
 
     alarming(xhr, "Saved!");
