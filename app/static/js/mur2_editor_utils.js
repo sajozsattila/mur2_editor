@@ -206,8 +206,15 @@ function keywordlist() {
 function categorylist() {
     var categories = [];
     var category_dom = document.getElementById("categories").getElementsByClassName("multi-search-item");
+    console.log(category_dom);
     for ( var i = category_dom.length; i--; ) {
-        categories.push(category_dom[i].firstChild.firstChild.data);
+        console.log(category_dom[i].firstChild);
+        console.log(category_dom[i].firstChild.firstChild.data);
+        try {
+            categories.push(category_dom[i].firstChild.firstChild.data);
+        } catch(err) {
+            ;
+        }
     }
     if (categories.length === 0) {
         categories.push("Uncategorized")
@@ -278,7 +285,7 @@ async function save_article(blobs) {
     xhr.open('post', '/markdownsave', true);        
     xhr.send(fd);
 
-    alarming(xhr, "Saved!");
+    alarming(xhr, _("Saved!"));
 };
 
 async function medium_connect() {
@@ -315,7 +322,7 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
             } else {
                 var mur2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
-                msgbox.innerHTML = "Published on " + mur2answer.link;
+                msgbox.innerHTML = _("Published on ") + mur2answer.link;
             }
     };
 
@@ -333,7 +340,7 @@ async function wordpress2(link, id) {
     xhr = new XMLHttpRequest();
     xhr.open('post', '/export_data', true);
     xhr.send(fd);
-    alarming(xhr, "Published on " + link);
+    alarming(xhr, _("Published on ") + link);
 }
 
 async function wordpress_on_fly(titleCollection, abstractCollection, mainCollection) {
@@ -346,7 +353,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var address = getCookie("mur2_wpc_sideid");
         if (access_token === "") {
             msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: You do not loged in in Wordpress.com";
+            msgbox.innerHTML = _("Error: You do not loged in in Wordpress.com");
         };
 
         // if it is not a new article get the id
@@ -401,11 +408,11 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         xhr.onload = function() {
             if (xhr.status != 201) { // analyze HTTP status of the response
                 msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+                msgbox.innerHTML = _("Error: ") + xhr.statusText + " - " + xhr.response;
             } else {
                 var wc2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
-                msgbox.innerHTML = "Published on " + wc2answer.link;
+                msgbox.innerHTML = _("Published on ") + wc2answer.link;
 
                 wordpress2(wc2answer.link, wc2answer.id);
             }
@@ -502,7 +509,7 @@ function multiSearchKeyup(inputElement) {
     } else if ( inputElement.value.slice(-2) == '\\n' ) {
         newcat = true;
     }
-    console.log(newcat);
+
     if(newcat) {
         var newstring = inputElement.value;
         if ( inputElement.value.slice(-2) == '\\n' ) {

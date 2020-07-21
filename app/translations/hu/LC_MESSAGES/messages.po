@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-13 16:28+0000\n"
+"POT-Creation-Date: 2020-07-21 15:24+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/__init__.py:26
+#: app/__init__.py:29
 msgid "Please log in to access this page."
 msgstr "Be kell jelentkezni az oldal megtekintéséhez."
 
@@ -100,8 +100,10 @@ msgstr "Üres fájl!"
 msgid "Upload"
 msgstr "Feltöltés"
 
-#: app/main/forms.py:68 app/main/forms.py:92 app/main/routes.py:1243
-#: app/templates/connections.html:71 app/templates/editor.html:63
+#: app/main/forms.py:68 app/main/forms.py:92 app/main/utils.py:207
+#: app/templates/connections.html:99 app/templates/connections.html:100
+#: app/templates/connections.html:109 app/templates/discovery.html:71
+#: app/templates/editor.html:63
 msgid "Title"
 msgstr "Cím"
 
@@ -110,7 +112,7 @@ msgstr "Cím"
 msgid "About"
 msgstr "Bemutatkozás"
 
-#: app/main/forms.py:71 app/main/forms.py:95 app/main/routes.py:1243
+#: app/main/forms.py:71 app/main/forms.py:95 app/main/utils.py:207
 msgid "Address"
 msgstr "Honlap"
 
@@ -126,121 +128,154 @@ msgstr "Kérjük használjon másik Url-t."
 msgid "Submit"
 msgstr "Mentés"
 
-#: app/main/routes.py:245
+#: app/main/routes.py:244
 msgid "Register Journal"
 msgstr "Online folyóirat regisztrálása"
 
-#: app/main/routes.py:314 app/templates/article.html:60
+#: app/main/routes.py:328 app/templates/article.html:60
 #: app/templates/article.html:112 app/templates/article.html:139
-#: app/templates/editor.html:114
+#: app/templates/editor.html:111
 msgid "Keywords"
 msgstr "Kulcsszavak"
 
-#: app/main/routes.py:316 app/templates/article.html:60
+#: app/main/routes.py:330 app/templates/article.html:60
 #: app/templates/article.html:112 app/templates/article.html:139
-#: app/templates/connections.html:27 app/templates/keywords.html:9
+#: app/templates/connections.html:40 app/templates/discovery.html:27
+#: app/templates/keywords.html:9
 msgid "Keyword"
 msgstr "Kulcsszó"
 
-#: app/main/routes.py:340 app/templates/article.html:54
+#: app/main/routes.py:354 app/templates/article.html:54
 #: app/templates/article.html:106 app/templates/article.html:133
 #: app/templates/editor.html:78
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: app/main/routes.py:342 app/templates/article.html:54
+#: app/main/routes.py:356 app/templates/article.html:54
 #: app/templates/article.html:106 app/templates/article.html:133
-#: app/templates/connections.html:26 app/templates/connections.html:52
+#: app/templates/connections.html:37 app/templates/connections.html:87
+#: app/templates/discovery.html:26 app/templates/discovery.html:52
 #: app/templates/keywords.html:7
 msgid "Category"
 msgstr "Kategória"
 
-#: app/main/routes.py:383
+#: app/main/routes.py:397
 msgid "You can not edit this article"
 msgstr "Nem jogosult a cikk szerkesztésére!"
 
-#: app/main/routes.py:390
+#: app/main/routes.py:404
 msgid "editor"
 msgstr "szerkesztő"
 
-#: app/main/routes.py:553
+#: app/main/routes.py:570
 msgid "The author already have Article with this title!"
 msgstr "A szerzőnek már van ilyen címen bejegyzése!"
 
-#: app/main/routes.py:670 app/main/routes.py:782 app/main/routes.py:803
+#: app/main/routes.py:694 app/main/routes.py:806 app/main/routes.py:827
 msgid "Your changes have been saved."
 msgstr "A változtatások el lettek mentve."
 
-#: app/main/routes.py:684
+#: app/main/routes.py:708
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr "A lehetséges object_type értékek: 'article', 'file' vagy 'user' "
 
-#: app/main/routes.py:695 app/main/routes.py:762
+#: app/main/routes.py:719 app/main/routes.py:786
 msgid "User no right to delete this"
 msgstr "Nincs jogosultsága, hogy törlölje ezt a "
 
-#: app/main/routes.py:695 app/templates/connections.html:29
-#: app/templates/connections.html:53
+#: app/main/routes.py:719 app/templates/connections.html:46
+#: app/templates/connections.html:88 app/templates/discovery.html:29
+#: app/templates/discovery.html:53 app/templates/editor.html:125
+#: app/templates/editor.html:127
 msgid "Article"
 msgstr "Cikk"
 
-#: app/main/routes.py:762
+#: app/main/routes.py:786
 msgid "File"
 msgstr "fájlt"
 
-#: app/main/routes.py:969
+#: app/main/routes.py:993
 msgid "Can not create Media directory for "
 msgstr "Nem lehet létrehozni a Media könyvtárat a "
 
-#: app/main/routes.py:976
+#: app/main/routes.py:1000
 msgid "No more disk space quota for "
 msgstr "Nincs több lemez kvótája az "
 
-#: app/main/routes.py:1239 app/templates/connections.html:50
+#: app/main/utils.py:203 app/templates/connections.html:85
+#: app/templates/discovery.html:50
 msgid "Tag"
 msgstr "Kulcsszó"
 
-#: app/main/routes.py:1239 app/templates/connections.html:28
-#: app/templates/connections.html:51 app/templates/user.html:47
+#: app/main/utils.py:203 app/templates/connections.html:43
+#: app/templates/connections.html:86 app/templates/discovery.html:28
+#: app/templates/discovery.html:51 app/templates/user.html:47
 msgid "Journal"
 msgstr "Folyóirat"
 
-#: app/main/routes.py:1241
+#: app/main/utils.py:205
 msgid "labels"
 msgstr "cimkék"
 
-#: app/main/routes.py:1243 app/templates/editor.html:76
+#: app/main/utils.py:207 app/templates/editor.html:76
 msgid "Abstract"
 msgstr "Kivonat"
 
-#: app/main/routes.py:1243 app/templates/connections.html:59
-#: app/templates/connections.html:70
+#: app/main/utils.py:207 app/templates/connections.html:93
+#: app/templates/connections.html:108 app/templates/discovery.html:59
+#: app/templates/discovery.html:70
 msgid "Name"
 msgstr "Név"
 
-#: app/main/routes.py:1243
+#: app/main/utils.py:207
 msgid "Article_number"
 msgstr "Cikkek_száma"
 
-#: app/main/routes.py:1256
+#: app/main/utils.py:220
 msgid "taged"
 msgstr "címkézet"
 
-#: app/main/routes.py:1256
+#: app/main/utils.py:220
 msgid "publisher"
 msgstr "kiadó"
 
-#: app/main/routes.py:1257
+#: app/main/utils.py:220
+msgid "proof"
+msgstr "bizonyitás"
+
+#: app/main/utils.py:221
 msgid "type"
 msgstr "tipus"
 
-#: app/main/routes.py:1260
+#: app/main/utils.py:224
 msgid "published_article_number"
 msgstr "megjelent_cikkek_száma"
 
-#: app/main/routes.py:1260
+#: app/main/utils.py:224
 msgid "number_of_article"
 msgstr "cikkek_száma"
+
+#: app/static/js/mur2_editor.js:913
+msgid "Full text"
+msgstr "Teljes szöveg"
+
+#: app/static/js/mur2_editor_utils.js:288
+msgid "Saved!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:325
+#: app/static/js/mur2_editor_utils.js:343
+#: app/static/js/mur2_editor_utils.js:415
+msgid "Published on "
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:356
+msgid "Error: You do not loged in in Wordpress.com"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:411
+msgid "Error: "
+msgstr ""
 
 #: app/templates/article.html:10
 msgid "Delete article"
@@ -297,15 +332,44 @@ msgid "Sign out"
 msgstr "Kijelentkezés"
 
 #: app/templates/base_menu.html:26 app/templates/base_menu.html:34
+#: app/templates/connections.html:60
 msgid "Search"
 msgstr "Keresés"
 
-#: app/templates/connections.html:25
+#: app/templates/connections.html:35 app/templates/discovery.html:25
 msgid "Legend"
 msgstr "Jelmagyarázat"
 
+#: app/templates/connections.html:50
+msgid "Relationship type"
+msgstr "Kapcsolat típusa"
+
+#: app/templates/connections.html:52
+msgid "Proven by"
+msgstr ""
+
+#: app/templates/connections.html:53
+msgid "Proof of"
+msgstr "X bizonyítása"
+
+#: app/templates/connections.html:54
+msgid "Theorem"
+msgstr "Tétel"
+
+#: app/templates/connections.html:55
+msgid "Lemma"
+msgstr "Lemma"
+
+#: app/templates/connections.html:56
+msgid "Conjectures"
+msgstr "Sejtés"
+
+#: app/templates/connections.html:100
+msgid "Selected article: "
+msgstr ""
+
 #: app/templates/edit_journal.html:32 app/templates/edit_profile.html:21
-#: app/templates/editor.html:182 app/templates/test.html:66
+#: app/templates/editor.html:209 app/templates/test.html:66
 msgid "Save"
 msgstr "Mentés"
 
@@ -335,192 +399,208 @@ msgstr "Nyitókép beállítása"
 msgid "Delete Featured Image"
 msgstr "Nyitókép törlése"
 
-#: app/templates/editor.html:86
+#: app/templates/editor.html:83
 msgid "Physics"
 msgstr "Fizika"
 
-#: app/templates/editor.html:87
+#: app/templates/editor.html:84
 msgid "Chemistry"
 msgstr "Kémia"
 
-#: app/templates/editor.html:88
+#: app/templates/editor.html:85
 msgid "Earth Science"
 msgstr "Földrajz"
 
-#: app/templates/editor.html:89
+#: app/templates/editor.html:86
 msgid "Space Science"
 msgstr "Űrkutatás"
 
-#: app/templates/editor.html:90
+#: app/templates/editor.html:87
 msgid "Biology"
 msgstr "Biologia"
 
-#: app/templates/editor.html:91
+#: app/templates/editor.html:88
 msgid "Molecular Biology"
 msgstr "Molekuláris biológia"
 
-#: app/templates/editor.html:92
+#: app/templates/editor.html:89
 msgid "Mathematics"
 msgstr "Matematika"
 
-#: app/templates/editor.html:93
+#: app/templates/editor.html:90
 msgid "Logic"
 msgstr "Logika"
 
-#: app/templates/editor.html:94
+#: app/templates/editor.html:91
 msgid "Statistics"
 msgstr "Statisztika"
 
-#: app/templates/editor.html:95
+#: app/templates/editor.html:92
 msgid "History"
 msgstr "Történelem"
 
-#: app/templates/editor.html:96
+#: app/templates/editor.html:93
 msgid "Economy"
 msgstr "Közgazdaságtan"
 
-#: app/templates/editor.html:97
+#: app/templates/editor.html:94
 msgid "Sociology"
 msgstr "Szociologia"
 
-#: app/templates/editor.html:98
+#: app/templates/editor.html:95
 msgid "Low"
 msgstr "Jog"
 
-#: app/templates/editor.html:99
+#: app/templates/editor.html:96
 msgid "Education"
 msgstr "Oktatás"
 
-#: app/templates/editor.html:100
+#: app/templates/editor.html:97
 msgid "Archaeology"
 msgstr "Régészet"
 
-#: app/templates/editor.html:101
+#: app/templates/editor.html:98
 msgid "Politic"
 msgstr "Politika"
 
-#: app/templates/editor.html:102
+#: app/templates/editor.html:99
 msgid "Computer science"
 msgstr "Számítástechnika"
 
-#: app/templates/editor.html:103
+#: app/templates/editor.html:100
 msgid "Civil Engineering"
 msgstr "Építészet"
 
-#: app/templates/editor.html:104
+#: app/templates/editor.html:101
 msgid "Electrical Engineering"
 msgstr "Elektronika"
 
-#: app/templates/editor.html:105
+#: app/templates/editor.html:102
 msgid "Genetic"
 msgstr "Genetica"
 
-#: app/templates/editor.html:106
+#: app/templates/editor.html:103
 msgid "Software"
 msgstr "Szoftver"
 
-#: app/templates/editor.html:107
+#: app/templates/editor.html:104
 msgid "Industrial"
 msgstr ""
 
-#: app/templates/editor.html:108
+#: app/templates/editor.html:105
 msgid "Medicine"
 msgstr "Orvostudomány"
 
-#: app/templates/editor.html:109
+#: app/templates/editor.html:106
 msgid "Pharmacy"
 msgstr "Gyógyszerészet"
 
-#: app/templates/editor.html:110
+#: app/templates/editor.html:107
 msgid "Dental"
 msgstr "Fogászat"
 
-#: app/templates/editor.html:124
+#: app/templates/editor.html:120
 msgid "Canonical Url"
 msgstr "Megjelenés Url címe"
 
-#: app/templates/editor.html:156 app/templates/test.html:45
+#: app/templates/editor.html:122
+msgid "Text Type"
+msgstr "Szöveg típusa"
+
+#: app/templates/editor.html:130 app/templates/editor.html:132
+msgid "Problem"
+msgstr "Probléma"
+
+#: app/templates/editor.html:135 app/templates/editor.html:137
+msgid "Review"
+msgstr "Kritika"
+
+#: app/templates/editor.html:183 app/templates/test.html:45
 msgid "Toolbar"
 msgstr "Eszköztár"
 
-#: app/templates/editor.html:161 app/templates/editor.html:232
+#: app/templates/editor.html:188 app/templates/editor.html:262
 #: app/templates/test.html:111
 msgid "Show side menu"
 msgstr "Oldalmenü megnyitása"
 
-#: app/templates/editor.html:170 app/templates/test.html:55
+#: app/templates/editor.html:197 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr "Eszköztár bezárása"
 
-#: app/templates/editor.html:174 app/templates/test.html:59
+#: app/templates/editor.html:201 app/templates/test.html:59
 msgid "Upload file"
 msgstr "Fájl feltöltés"
 
-#: app/templates/editor.html:178 app/templates/test.html:63
+#: app/templates/editor.html:205 app/templates/test.html:63
 msgid "Download result"
 msgstr "Eredmény letöltése"
 
-#: app/templates/editor.html:186 app/templates/test.html:69
+#: app/templates/editor.html:213 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "Szintakszis kiemelés"
 
-#: app/templates/editor.html:189
+#: app/templates/editor.html:216
 msgid "Hide input"
 msgstr "Beviteli oldal elrejtése"
 
-#: app/templates/editor.html:192 app/templates/test.html:75
+#: app/templates/editor.html:219 app/templates/test.html:75
 msgid "Show title and abstract"
 msgstr "Cím és kivonat megjelenítése"
 
-#: app/templates/editor.html:195 app/templates/test.html:72
+#: app/templates/editor.html:222 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "Előnézet elrejtése"
 
-#: app/templates/editor.html:198 app/templates/test.html:78
+#: app/templates/editor.html:225 app/templates/test.html:78
 msgid "Head"
 msgstr "Cimsor"
 
-#: app/templates/editor.html:201 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:228 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr "Kiemelés"
 
-#: app/templates/editor.html:204 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:231 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr "Kövér"
 
-#: app/templates/editor.html:207 app/templates/test.html:87
+#: app/templates/editor.html:234 app/templates/test.html:87
 msgid "Picture"
 msgstr "Kép"
 
-#: app/templates/editor.html:210 app/templates/test.html:90
+#: app/templates/editor.html:237 app/templates/test.html:90
 msgid "Link"
 msgstr "Hivatkozás"
 
-#: app/templates/editor.html:213 app/templates/test.html:93
+#: app/templates/editor.html:240 app/templates/test.html:93
 msgid "List"
 msgstr "Lista"
 
-#: app/templates/editor.html:216 app/templates/test.html:96
+#: app/templates/editor.html:243 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "Számozott lista"
 
-#: app/templates/editor.html:219 app/templates/test.html:99
+#: app/templates/editor.html:246 app/templates/test.html:99
 msgid "Footnote"
 msgstr "Lábjegyzet"
 
-#: app/templates/editor.html:222 app/templates/test.html:102
+#: app/templates/editor.html:249 app/templates/test.html:102
 msgid "Table"
 msgstr "Táblázat"
 
-#: app/templates/editor.html:225 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:252 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr "Kód"
 
-#: app/templates/editor.html:228 app/templates/test.html:108
+#: app/templates/editor.html:255 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr "LaTeX kód"
+
+#: app/templates/editor.html:258
+msgid "Embedding"
+msgstr "Beágyazás"
 
 #: app/templates/editor_side_menu.html:10
 msgid "Example of rendered HTML"
@@ -975,4 +1055,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 
 #~ msgid "Political Science"
 #~ msgstr ""
+
+#~ msgid "Proof by"
+#~ msgstr "Bizonyitva X által"
 

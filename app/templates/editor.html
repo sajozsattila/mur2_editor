@@ -4,7 +4,7 @@
         <title>{{ title }}</title>
         <meta name="author" content="{{ author }}">
 
-        <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
+
         <!-- style -->
         
         <link rel="preconnect" href="//tex.s2cms.ru" crossorigin> <!-- This make the LaTEx code rendering -->
@@ -74,12 +74,9 @@
                      </label>                     
                  </div>
                  <div>{{ _("Abstract") }}:</div>                 
-                 <textarea id="abstact-source" maxlength="1200" ></textarea>
+                 <textarea id="abstact-source" maxlength="1500" ></textarea>
                  <div>{{ _("Categories") }}:</div>   
-                 <div id="categories" class="multi-search-filter" >
-                     {% for cat in categories %}
-                     <div class="multi-search-item"><span>{{ cat }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div>
-                     </div>
+                 <div id="categories" class="multi-search-filter" >{% for cat in categories %}<div class="multi-search-item"><span>{{ cat }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div></div>
                      {% endfor %}
                      {% if categories|length < 3 %}
                      <select id = "myList"  onchange="multiSearchKeyup(this)">
@@ -114,8 +111,7 @@
                  <div>{{ _("Keywords") }}:</div>   
                  <div id="keywords" class="multi-search-filter" onclick="Array.from(this.children).find(n=>n.tagName==='INPUT').focus()">
                      {% for key in keywords %}
-                     <div class="multi-search-item"><span>{{ key }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div>
-                     </div>
+                     <div class="multi-search-item"><span>{{ key }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div></div>
                      {% endfor %}
                      {% if keywords|length < 6 %}
                      <input type="text" onkeyup="multiSearchKeyup(this)">
@@ -130,16 +126,6 @@
                      {% else %}
                      <option value = "Article">{{ _('Article') }}</option>
                      {% endif %}
-                     {% if texttype == "Conjecture" %}
-                     <option value = "Conjecture" selected>{{ _('Conjecture') }}</option>
-                     {% else %}
-                     <option value = "Conjecture">{{ _('Conjecture') }}</option>
-                     {% endif %}
-                     {% if texttype == "Proof" %}
-                     <option value = "Proof" selected>{{ _('Proof') }}</option>
-                     {% else %}
-                     <option value = "Proof">{{ _('Proof') }}</option>
-                     {% endif %}
                      {% if texttype == "Problem" %}
                      <option value = "Problem" selected>{{ _('Problem') }}</option>
                      {% else %}
@@ -150,7 +136,7 @@
                      {% else %}
                      <option value = "Review">{{ _('Review') }}</option>
                      {% endif %}
-                 </select>    
+                 </select>
             </div>
             <textarea id="main-source"></textarea>
             <div id="highlight_main" ></div>
@@ -269,7 +255,7 @@
                  <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>
                  <!-- Proof search -->
                  <input class="choice_toolbar control-input" id="id_proof" type="radio" name="source_type" >
-                 <label class="toolbar menufont" for="id_proof" title="{{ _('Proof search') }}" >P</label>
+                 <label class="toolbar menufont" for="id_proof" title="{{ _('Embedding') }}" >E</label>
               </div>
               <div>
                   <!-- Show side menu -->
@@ -314,6 +300,8 @@
         }());
                   
        </script> 
+      <script src="{{ url_for("babel_catalog") }}"></script> <!-- internation of javascript -->
+      <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
        
       <script src="/static/js/editor/markdown-it.min.js"></script>
       <script src="/static/js/editor/markdown-it-sub.min.js"></script>

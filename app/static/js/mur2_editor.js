@@ -452,6 +452,9 @@ function ParserCollection(
 
         // save the version
         updateCallback(source);
+        
+        // update embdeds
+        collapsible_listener();
     };
 
     this.getDisplayedResult = function() {
@@ -555,7 +558,8 @@ function ParserCollection(
         "article_abstract_text",
         "article_abstract_text",
         function domGetSource() {
-            return '<span id="article_abstract">\n\n' + abstactSource.value.replace(/(?:\r\n|\r|\n)/g, '') + '\n\n</span>\n';
+            return '<span id="article_abstract">\n\n' + abstactSource.value + '\n\n</span>\n';
+            
         },
         abstractImageLoader
     );
@@ -565,6 +569,7 @@ function ParserCollection(
     abstractCollection.updateResult(abstractImageLoader, true);
     titleCollection.updateResult(titleImageLoader, true);
 
+    collapsible_listener();
 
     // start the decorator we just decorate the main
     var decorator = new TextareaDecorator(mainSource, mdParser);
@@ -629,6 +634,7 @@ function ParserCollection(
             case 'main-source':
                 if (preview_on) {
                     updateMain(mainImageLoader, false);
+                    
                 }
                 break;
         }
@@ -703,7 +709,6 @@ function ParserCollection(
             updateMain(mainImageLoader, false);
             // fire inputevent manualy to update highlighted things also
             mainSource.dispatchEvent(inputevent);
-            collapsible_listener();
         } else if (selectedTextarea === 'title-source') {
             updateTitle(titleImageLoader, false);
         } else if (selectedTextarea === 'abstact-source') {
@@ -732,7 +737,7 @@ function ParserCollection(
             var article_title = fragment.getElementById("article_title") ;
             var article_abstract = fragment.getElementById("article_abstract") ;
 
-            abstactSource.value = article_abstract.innerHTML.replace("\n", "");
+            abstactSource.value = article_abstract.innerHTML;
             titleSource.value = article_title.innerHTML.replace("\n", "");
             article_title.parentNode.removeChild(article_title);
             article_abstract.parentNode.removeChild(article_abstract);
@@ -884,7 +889,7 @@ function ParserCollection(
                         var span = document.getElementById("modalClose");
 
                         var body = document.getElementsByClassName("modal-body")[0];
-                        body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/proofs" type= "text/javascript"></iframe>';
+                        body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/embedding" type= "text/javascript"></iframe>';
                         modal.style.display = "block";
 
                         // When the user clicks on <span> (x), close the modal
@@ -901,9 +906,11 @@ function ParserCollection(
                                     // set the default tile
                                     text = iframe.contentWindow.document.getElementById("selected_title").innerHTML;
                                 }
+                                // set relationtype just for infurmation, the real setting happaning in the 
+                                var relationtype = iframe.contentWindow.document.getElementById("myList").value;
                                 field.value =
                                     field.value.substring(0, start) +
-                                    '<button type="button" class="collapsible">'+text+'</button><div class="iframe_wrap"><iframe scrolling="no" src="'+elmnt.innerHTML +'"></iframe></div>'
+                                    '<button type="button" class="collapsible">'+text+'</button><div class="iframe_wrap"><iframe scrolling="no" relationtype="'+relationtype+'" src="/iframe/'+elmnt.innerHTML +'"></iframe><a href="/reader/'+elmnt.innerHTML +'">'+_("Full text")+'</a></div>' + 
                                 field.value.substring(end);                               
                                 
                                 // set focuse back
@@ -911,10 +918,7 @@ function ParserCollection(
                                 field.select();
                                 field.selectionStart = end;
                                 field.selectionEnd = end;
-                                console.log("update");
-                                update();
-                                console.log("update");
-                                // collapsible_listener();
+                                update();                                
                             }
                             modal.style.display = "none";
                         }                                                

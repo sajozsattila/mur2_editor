@@ -392,12 +392,14 @@ td a.control-item {
     padding-left: 1.685rem;    
 }
 
+/*
 .main\.categories #maintext {
     direction: ltr;
     top: 0;
     padding: unset;
     width: auto;
 }
+*/
 
 .main\.readmain > :first-child {
     left: calc( var(--verticaldistance) * 2 );
