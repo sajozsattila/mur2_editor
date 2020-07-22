@@ -485,7 +485,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 				var index = indexes[i];
 
 				var block = insertPicture(index, svg, baselineShift, index === placeholderIndex ? 'fade-in' : 'replace', prefix );
-                if ( block && i === 0) {
+                if ( block ) {
                     blockcount += 1;
                 }
 
@@ -516,7 +516,6 @@ function ImageLoader(preloader, protocol, loaderid) {
 			finalOpacity = mode == 'fade-out' ? '0.5' : '1',
 			newSvgAttrs = '<svg class="svg-preview" id="' + id + '" ';
 
-
         /* Numbering equlation
         /* check the parent is block or not 
          *   this is a hack at the moment: just check the parent have text-align: center style
@@ -526,12 +525,14 @@ function ImageLoader(preloader, protocol, loaderid) {
         if ( parentNode.style.textAlign === 'center' ) {
             // if labeled we add number otherwise not 
             var labeled = parentNode.id.match(/eq\:.*$/);
+            console.log(oldSvgNode);
             if (labeled && parentNode.childElementCount == 1) {
                 block = true
                 // add printable number
                 var labelNode = document.createElement('em');
                 labelNode.innerHTML = "("+blockcount+")";                
                 var spanNode = document.createElement('span');
+                console.log(blockcount);
                 parentNode.insertBefore(spanNode, oldSvgNode);
                 parentNode.appendChild(labelNode);            
             }                   
@@ -592,7 +593,10 @@ function ImageLoader(preloader, protocol, loaderid) {
 		if (placeholderIndex !== null) {
 			var data = preloader.getImageDataFromUrl(placeholderUrl);
 			if (data !== null && data.callback === null) {
-				insertPicture(placeholderIndex, data.svg, data.baseline, 'fade-out', this.loaderid);
+				var block = insertPicture(placeholderIndex, data.svg, data.baseline, 'fade-out', this.loaderid);
+                if ( block ) {
+                    blockcount += 1;
+                }
 			}
 		}
 
