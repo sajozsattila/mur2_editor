@@ -63,10 +63,7 @@ $$
 \text{Euler's identity: } e^{i \pi } + 1 = 0
 $${#eq:2}
 
-Block equations are numbered on the left side. This numbering is added automatically.[^numb]
-
-[^numb]: In HTML the repeated math blocks are given the same number where they are in the text. For example: if we write Euler's identity again, exactly in the same way, it will be numbered again as *(2)*.   However, this is not true in PDF, ePUB and LaTeX. There every labelled block gets a new number. 
-
+Block equations are numbered on the left side. This numbering is added automatically.
 
 You can cross-reference to these equalisations as links. Example the [integrals](#eq:1).^[If you repeat a formula multiple times, the link is ambiguous and it's browser dependant on where the link leads but it's usually the first occurrence. ]
 
