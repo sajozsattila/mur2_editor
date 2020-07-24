@@ -113,7 +113,7 @@
                      {% for key in keywords %}
                      <div class="multi-search-item"><span>{{ key }}</span><div class="fa fa-close" onclick="this.parentNode.remove()" aria-hidden="true"></div></div>
                      {% endfor %}
-                     {% if keywords|length < 6 %}
+                     {% if keywords|length < 10 %}
                      <input type="text" onkeyup="multiSearchKeyup(this)">
                      {% endif %}
                  </div>
