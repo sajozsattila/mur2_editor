@@ -208,8 +208,6 @@ function categorylist() {
     var category_dom = document.getElementById("categories").getElementsByClassName("multi-search-item");
     console.log(category_dom);
     for ( var i = category_dom.length; i--; ) {
-        console.log(category_dom[i].firstChild);
-        console.log(category_dom[i].firstChild.firstChild.data);
         try {
             categories.push(category_dom[i].firstChild.firstChild.data);
         } catch(err) {
@@ -265,7 +263,7 @@ async function save_article(blobs) {
     // url
     var canonicalUrlText = document.getElementById('canonicalUrlText').value
     if ( canonicalUrlText.trim().length === 0 ) {
-        canonicalUrlText = "http://mur2.co.uk/reader/"+article_id;
+        canonicalUrlText = "https://mur2.co.uk/reader/"+article_id;
     }
 
     fd.append("file", markupdata);
@@ -344,10 +342,11 @@ async function wordpress2(link, id) {
 }
 
 async function wordpress_on_fly(titleCollection, abstractCollection, mainCollection) {
+    console.log("1");
     var msgbox = document.getElementById("msg")
 
     var texttype = document.querySelector('meta[name="texttype"]').content;
-    if (texttype.trim() == 'article') {
+    if (texttype.trim() == 'Article') {
         // get cookies
         var access_token = getCookie("mur2_wpc_accesstoken");
         var address = getCookie("mur2_wpc_sideid");
@@ -360,16 +359,20 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var article_id = document.querySelector('meta[name="article_id"]').content
         // ???        
         
+        console.log("1");
         var htmltext = mainCollection.getHtmlImg();
         var article_title = titleCollection.getHtmlImg();
         var article_abstract = abstractCollection.getHtmlImg();
         var featuredimages = document.getElementsByClassName("feature_image")[0];
+        console.log("2");
         
         // tags        
-        var keywords = keywordlist();       
+        var keywords = keywordlist();
+        console.log("3");
         var keywordsId = [];
         // get tags            
         for ( var i = keywords.length; i--; ) {
+            console.log(keywords[i]);
             let response = await new Promise(resolve => {
                 let fd = new FormData();
                 let xhrtt = new XMLHttpRequest();
@@ -392,6 +395,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
             }
         }
 
+        console.log("publishing");
         // publish in Wordpress.com
         var fd = new FormData();
         fd.append('title', article_title);
