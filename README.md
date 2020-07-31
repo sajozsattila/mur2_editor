@@ -1,57 +1,50 @@
+# μr² digital publishing platform
 
-# Overview 
+This project aims to provide a digital publishing platform for long-form journalists and academic writers. 
 
-The aim of this project to provide a lightweight editor for long-form journalist and academic writers. An editor which help them to concentrate on the *most important* part of the publication: *the text*.  
+We have created a platform that is easy to use while making the creation of online content simple and efficient. It can then be exported in various popular formats. 
 
-Most of the part of the editor is written in Javascript and it works in browsers, except math equations and specific export file generation. The editor stores your text in the browser to prevent the loss of your work in case of software or hardware failures. It is also secure as your work store on your computer.   
+## The μr² editor
 
-# Why the [μr² editor](https://mur2.co.uk/editor)?
-## Designed for long-form
+A key part of any publishing platform is the editor. It needs to be easy to use and versatile yet comprehensive enough to allow for creative writing. The μr² Javascript-based Markdown editor does exactly this.
 
-The aim of this project to provide a lightweight online editor for long-form bloggers, journalist and academic writers.
+### Why Markdown?
+Markdown uses a plain text formatting syntax aimed at making writing easier. The philosophy behind it; a document should be readable without tags everywhere but still be able to add text modifiers such as lists, bold text and italics quickly. It's an alternative to WYSIWYG (what you see is what you get) editors.^[Like Microsoft Word, Apple’s Pages or Google Docs]
 
-Clearly separate the content from the format of your document. As a writer, this gives you the opportunity to focus on the "what", the creative part of your work, rather than the "how" is it going to look on the webpage or paper. The μr² creates a clean, simple and distraction-free writing environment for when you really need to focus on your words:
+Here’s a quick example of how to emphasize words with Markdown, you simply enclose them in * (asterisks). So, \*emphasize word* would look like *emphasize word* in the final document.
 
-![μr² in focus mode](https://mur2.co.uk/_uploads/photos/1/mur2_focuse_mode_en.png) 
+Reasons to try Markdown:
 
-## Markdown and more
++ It's very simple to learn; the syntax is so simple one can barely call it "_syntax_"
++ It’s fast; the simple formatting saves a significant amount of time over an ordinary word processor or "WYSIWYG" editor.
++ It’s portable; your documents are cross-platform by nature. You can edit them in any text-capable application and on any operating system. Transporting files requires no zip compression or archiving, and the file size is already as small as it can possibly be.
 
-Why Markdown? Markdown is a plain text formatting syntax aimed at making writing easier. The philosophy behind it: a document should be readable without tags mussing everything up, but there should still be ways to add text modifiers like lists, bold, italics, etc. It is an alternative to WYSIWYG (what you see is what you get) editors.^[Like Microsoft Word, Apple’s Pages or Google Docs]
+We also help if you are new to markdown or can't remember any of the syntaxes. You can use the toolbar controls within the editor or open up the Markdown cheatsheet in the menu.
 
-Here’s a quick example: to make words emphasize using Markdown, you simply enclose them in * (asterisks). So, *\*emphasize word\** would look like emphasize word when everything is said and done.
+### Why Javascript?
+There is usually a tradeoff between security and usability with two general approaches:
 
-You should try Markdown because:
-+ It is dead simple to learn: the syntax is so simple you can barely call it "syntax." 
-+ It’s fast: the simple formatting saves a significant amount of time over a word processor or WYSIWYG editor.
-+ It’s portable: your documents are cross-platform by nature. You can edit them in any text-capable application on any operating system. Transporting files requires no zipping or archiving, and the file size is as small as it can possibly get. 
-+ It's Futureproof: For as long as plain text is the standard (which it will be for a long, long time), Markdown will be usable and openable by modern programs. Compare this to Microsoft Word, which has 8 different filetypes. Keeping things plain text ensures there will never be an outdated version, so the software doesn’t need to update to keep up with the format.
++ The data in digital publications are stored on a remote server and delivered over the internet via a web browser. Is this secure? At μr² we say that it isn't and we are not just referring to 'man-in-the-middle' attacks. If your provider goes offline, all of your work will be lost. It is useable?  Yes, you can access your data from anywhere with an internet connection.
++ Download and install the platform locally. It is secure? Yes, it is definitely more secure than the previous option, however, you need to install the platform on every device.
 
-But this is not all. The μr² more than a plain Markdown editor. Switching is always hard, and we give you a lot of help to do. There is a live "Live preview" in the editor to see what you do:
+Using Javascript helps μr² to better answer these questions. The editor can only be accessed via HTTPS (secure communication over a computer network) from anywhere with an internet connection, so you do not need to install anything. However, the big difference is that your work is stored locally.
 
-We help also if you do not remember some syntax. You can use the WYSIWYG controls in the editor, or open up the Markdown cheatsheet in the menu.
+### Academic writing
+We aim to support academic quality writing which is a huge task that very few publication platforms offer.  We support LaTeX type mathematical input, footnotes, crossreference and equation numbering to name a few.
 
-## Mathematical expressions in <img src="https://tex.s2cms.ru/svg/%5Cmu%20r%5E2" alt="\mu r^2" /> 
-Do you want a block formatted mathematical expression, which is automatically numbered and linkable? [Here](#eq:1) you are:
+### Publishing
+
+Your work is finished and it's time to publish. At the moment you are definitely reading one of the published versions of this document. Probably the [original post](https://mur2.co.uk/reader/96), or on [WordPress ](https://sajozsattila.home.blog/2020/07/30/%ce%bcr%c2%b2-digital-publishing-platform/) or [Medium ](https://medium.com/@attilazsoltsajo/%CE%BCr%C2%B2-digital-publishing-platform-6df608c2dbe) republishing. In μr² you can post directly onto these platforms. Maybe you want to publish in an Academic Journal and need LaTeX?^[Lot of Academic Journals are happy to receive your paper in LaTeX. You can see a selection of them [here](https://fr.overleaf.com/latex/templates/tagged/academic-journal). ]  All of these methods are as easy as creating a [PDF](https://mur2.co.uk//_uploads/photos/pdf/96.pdf) or an [ePUB](https://mur2.co.uk/_uploads/photos/epub/96.epub): one-click.
 
 
-<img src="https://tex.s2cms.ru/svg/%20%5Ctext%7BEuler's%20identity%3A%20%7D%20e%5E%7Bi%20%5Cpi%20%7D%20%2B%201%20%3D%200%20" alt=" \text{Euler's identity: } e^{i \pi } + 1 = 0 " />
+### Self online publishing 
 
-It is a simple task, but to do actually. In most of the editor take a lot of steps, if even possible. In    μr² just write the expression: 
-```
-$$ \text{Euler's identity: } e^{i \pi } + 1 = 0 $$
-```
+Your work is finished but you don't have to place to publish it. At μr² we have a free to use [webpage](https://mur2.co.uk) where work can publish and we also provide extra features for registered users. 
 
-Easy isn't it? Of course, you can write inline math code also: <img src="https://tex.s2cms.ru/svg/%20%5Cmu%20r%5E2%20" alt=" \mu r^2 " />, even in the headers, as above.
+### The μr² browser
 
-## Publish
+Writings do not exist independently they are all connected. One writing can share the same topic or inspire another. The μr² project has developed a new kind of browser experience. [Our browser](https://mur2.co.uk/discovery) uses a graph representation of Articles which are published on the μr² platform which enables users to visualise the relationship between different writings, topics and publishers, and navigate between them by simply double-clicking on them.
 
-You finished your work, time to publish. At the moment you definitely reading one of the published version of this document. Probably the [original post](https://mur2.co.uk/reader/18), or the Wordpress or on Medium republishing.  In μr² you can post straight on these platforms. Or you want to publish in an Academic Journal and need [LaTeX]()?^[A a lot of Academic Journal happy to receive your paper in LaTeX. You can see a selection of them [here](https://fr.overleaf.com/latex/templates/tagged/academic-journal). ]  All of this same hard than get a [PDF]() or an [ePUB](): one-click.
+### Access you work from anywhere
 
-## Internationalization and Localization
-We are different, and it is good. We do not just speak different languages but we think differently on beauty also. A big part of the μr² is to translate and format the text in the right way. It is just the beginning the all frontend fully supporting translation. But there are automatic localisations also in the Markdown processing. An obvious example, but not the only, is the quotation mark. 
-
-Quotation marks have a variety of forms in different languages. In American writing, quotation marks are normally the double kind in the primary level. On the μr² we follow this marking style on the Markdown input. However, the rendered output is localised. Example in a Hungarian output they will be rendered as „ and ”.
-
-If you publish your work on the μr² server, there are more localisation happening. When a reader opens a post, the server loads the best display settings for the Article language. It means different fonts, different paragraph indents etc. 
-
-The μr² also take care of the PDF, ePUB and LaTeX localization. In these files all of the keywords^[Like Abstract, Table, Picture etc., which exact section of the document.] will be translated to the language of the document. It also loads the best typographical rules for the language.  
+We have explained the benefits of the μr² Javascript editor but what if you want to edit work from a different device. If you register on [mur2.co.uk](https://mur2.co.uk/auth/register) you can save your document online and access it from any web browser capable device. ^[You will still keep a copy of your document locally in your browser, also.]

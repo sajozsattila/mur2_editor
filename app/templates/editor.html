@@ -105,6 +105,7 @@
                          <option value = "{{ _('Medicine') }}\n">{{ _('Medicine') }}</option>
                          <option value = "{{ _('Pharmacy') }}\n">{{ _('Pharmacy') }}</option>
                          <option value = "{{ _('Dental') }}\n">{{ _('Dental') }}</option>
+                         <option value = "μr²\n">μr²</option>
                      </select>                     
                      {% endif %}
                  </div>
@@ -120,7 +121,7 @@
                  <div>{{ _("Canonical Url") }}:</div>  
                  <textarea id="canonicalUrlText"  maxlength="200"  spellcheck="false" >{{ canonicalUrlText }}</textarea>
                  <div>{{ _("Text Type") }}:</div>
-                 <select id = "textype">
+                 <select id = "textype" onchange="textypesettings(this)">
                      {% if texttype == "Article" %}
                      <option value = "Article" selected>{{ _('Article') }}</option>
                      {% else %}
@@ -137,6 +138,11 @@
                      <option value = "Review">{{ _('Review') }}</option>
                      {% endif %}
                  </select>
+                 <div id="reviewsettings">
+                     <div>{{ _('Article') }}<input id="reviewdArticle" type="text"><button onclick="selectReviewedID()" >Select</button></div>
+                     <div>{{ _('Standby') }}<input id="reviewStandby" type="number"  min="1" max="100" ></div>
+                     <div>{{ _('Rebel') }}<input id="reviewRebel" type="checkbox"></div>
+                 </div>
             </div>
             <textarea id="main-source"></textarea>
             <div id="highlight_main" ></div>
@@ -160,13 +166,24 @@
          </div>
       </div> <!-- maintext -->
         
-     <!-- Modal -->
+     <!-- Modals -->
      <div id="editorModal" class="modal">
          <!-- Modal content -->
          <div class="modal-content">
              <div class="modal-header">
                  <span id="modalClose">&times;</span>
                  <h2>Connect Article</h2>
+             </div>
+             <div class="modal-body">
+             </div>
+         </div>
+     </div>
+     <div id="reviewModal" class="modal">
+         <!-- Modal content -->
+         <div class="modal-content">
+             <div class="modal-header">
+                 <span id="modalCloseReview">&times;</span>
+                 <h2>Reviwed Article</h2>
              </div>
              <div class="modal-body">
              </div>
@@ -261,12 +278,11 @@
                   <!-- Show side menu -->
                  <label class="toolbar fontawsome fas fa-bars" for="id_side_menu" title="{{ _('Show side menu') }}" ></label>
               </div>
-          </div> <!-- editor_toolbar -->
-          
-          </div> <!-- menu -->            
+          </div> <!-- editor_toolbar -->          
+      </div> <!-- menu -->            
             
       <!-- set the markdown editor contents -->
-       <script>
+      <script>
         (function () {
             if ( {{ article_id }} !== -1 ) {
                 // load the local files
@@ -300,46 +316,53 @@
         }());
                   
        </script> 
-      <script src="{{ url_for("babel_catalog") }}"></script> <!-- internation of javascript -->
-      <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
+       <script src="{{ url_for("babel_catalog") }}"></script> <!-- internation of javascript -->
+       <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
        
-      <script src="/static/js/editor/markdown-it.min.js"></script>
-      <script src="/static/js/editor/markdown-it-sub.min.js"></script>
-      <script src="/static/js/editor/markdown-it-sup.min.js"></script>
-      <script src="/static/js/editor/FileSaver.js"></script>
-      <script src="/static/js/editor/draggabilly.pkgd.js"></script>
-      <script src="/static/js/editor/TextareaDecorator.js"></script>
-      <script src="/static/js/highlight.js/highlight.pack.js"></script>
-      <script src="/static/js/editor/utils.js"></script>
-      <script src="/static/js/editor/markdown-it-s2-tex.js"></script>
-      <script src="/static/js/editor/markdown-it-footnote.js"></script>
-      <script src="/static/js/editor/markdown-it-ins.js"></script>
-      <script src="/static/js/editor/markdown-it-implicit-figures.js"></script>
-      <script src="/static/js/editor/markdown-it-attrs.browser.js"></script>
-      <script src="/static/js/editor/parser.js"></script>
-      <script src="/static/js/mur2_editor_utils.js"></script>
-      <script src="/static/js/mur2_editor.js"></script>
-            <script>
-        // retrieve the access token from the URL
-        var params = window.location.hash.substr(1),
-            token = params.substr( params.indexOf( 'access_token' ) )
+       <script src="/static/js/editor/markdown-it.min.js"></script>
+       <script src="/static/js/editor/markdown-it-sub.min.js"></script>
+       <script src="/static/js/editor/markdown-it-sup.min.js"></script>
+       <script src="/static/js/editor/FileSaver.js"></script>
+       <script src="/static/js/editor/draggabilly.pkgd.js"></script>
+       <script src="/static/js/editor/TextareaDecorator.js"></script>
+       <script src="/static/js/highlight.js/highlight.pack.js"></script>
+       <script src="/static/js/editor/utils.js"></script>
+       <script src="/static/js/editor/markdown-it-s2-tex.js"></script>
+       <script src="/static/js/editor/markdown-it-footnote.js"></script>
+       <script src="/static/js/editor/markdown-it-ins.js"></script>
+       <script src="/static/js/editor/markdown-it-implicit-figures.js"></script>
+       <script src="/static/js/editor/markdown-it-attrs.browser.js"></script>
+       <script src="/static/js/editor/parser.js"></script>
+       <script src="/static/js/mur2_editor_utils.js"></script>
+       <script src="/static/js/mur2_editor.js"></script>
+       <script>
+           // retrieve the access token from the URL
+           var params = window.location.hash.substr(1),
+               token = params.substr( params.indexOf( 'access_token' ) )
                    .split( '&' )[0]
                    .split( '=' )[1],
-            siteID = params.substr( params.indexOf( 'site_id' ) )
+               siteID = params.substr( params.indexOf( 'site_id' ) )
                      .split( '&' )[0]
                      .split( '=' )[1];
 
-        if ( token && siteID ) {            
-            // save in cookie
-            var value = getCookie("mur2_wpc_accesstoken");
-            if (value == "") {
-                setCookie("mur2_wpc_accesstoken", token, 365);
-                setCookie("mur2_wpc_sideid", siteID, 365);
-                window.location = window.location.href.split("#").slice(0,1);
-            }
-        }
-    </script>
-        </div><!-- horizontal_box -->
+           if ( token && siteID ) {            
+               // save in cookie
+               var value = getCookie("mur2_wpc_accesstoken");
+               if (value == "") {
+                   setCookie("mur2_wpc_accesstoken", token, 365);
+                   setCookie("mur2_wpc_sideid", siteID, 365);
+                   window.location = window.location.href.split("#").slice(0,1);
+               }
+           }
+       </script>    
+       <script>
+           /* Function for Review*/
+          function textypesettings(data) {
+               data.setAttribute("selectedvalue", data.value); 
+           }
+           
+       </script>
+       </div><!-- horizontal_box -->
     </body>        
 </html>
 

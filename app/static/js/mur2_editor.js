@@ -900,13 +900,13 @@ function ParserCollection(
                         
                             if ( elmnt.innerHTML.length > 0 ) {                            
                                 
-                                // if there is selection this willl be the title
+                                // if there is selection this will be the title
                                 var text = field.value.substring(start, end);
                                 if ( text.length  === 0 ) {
                                     // set the default tile
                                     text = iframe.contentWindow.document.getElementById("selected_title").innerHTML;
                                 }
-                                // set relationtype just for infurmation, the real setting happaning in the 
+                                // set relationtype just for information, the real setting happaning in the 
                                 var relationtype = iframe.contentWindow.document.getElementById("myList").value;
                                 field.value =
                                     field.value.substring(0, start) +

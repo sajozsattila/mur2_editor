@@ -239,10 +239,26 @@ async function save_article(blobs) {
     // type of the text
     // var texttype = document.querySelector('meta[name="texttype"]').content.trim()
     var texttype = document.getElementById('textype').value
+    console.log(texttype);
     if ( texttype.length === 0 ) {
         // the default value
         texttype = "Article";
     }
+    // if review 
+    if (texttype === 'Review' ) {
+        reviewed = document.getElementById('reviewdArticle')
+        if ( reviewed == null  || isNaN(reviewed.value) ) {
+            alert("Need choise the Article which you are reviewing!");
+            return;
+        }
+        standby = document.getElementById('reviewStandby')
+        if ( standby == null || isNaN(standby.value) ) {
+            alert("Need to set the Standby!");
+            return;
+        }
+        rebel = document.getElementById('reviewRebel').value
+    }
+    
     
     // transform the Blob to Form as this easier to process for the 
     var fd = new FormData();
@@ -278,6 +294,11 @@ async function save_article(blobs) {
     fd.append('categories', categories.toString());
     fd.append('article_url', canonicalUrlText);
     fd.append('article_textype', texttype);
+    if (texttype === 'Review' ) {
+        fd.append('reviewed', reviewed.value);
+        fd.append('standby', standby.value);
+        fd.append('rebel', rebel);
+    }
     // send data
     var xhr = new XMLHttpRequest();
     xhr.open('post', '/markdownsave', true);        
@@ -531,5 +552,35 @@ function multiSearchKeyup(inputElement) {
         const close = `<div class="fa fa-close" onclick="this.parentNode.remove()"></div>`;
         item.innerHTML = span+close;
         return item;
+    }
+}
+
+// make the modal for the Review to select the Article
+function selectReviewedID() {
+    var modal = document.getElementById("reviewModal");
+    // Get the <span> element that closes the modal
+    var span = document.getElementById("modalCloseReview");
+        
+    var body = modal.getElementsByClassName("modal-body")[0];
+    body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/embedding" type= "text/javascript"></iframe>';
+    modal.style.display = "block";
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        // the the chosed Article
+        var iframe = document.getElementById("editor_iframe");                       
+        var elmnt = iframe.contentWindow.document.getElementById("selected");
+        // set the value 
+        reviewdArticle = document.getElementById("reviewdArticle");
+        reviewdArticle.value = elmnt.innerHTML;
+        // hide modal
+        modal.style.display = "none";
+    }    
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }
