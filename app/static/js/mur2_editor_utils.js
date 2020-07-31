@@ -239,20 +239,20 @@ async function save_article(blobs) {
     // type of the text
     // var texttype = document.querySelector('meta[name="texttype"]').content.trim()
     var texttype = document.getElementById('textype').value
-    console.log(texttype);
     if ( texttype.length === 0 ) {
         // the default value
         texttype = "Article";
     }
     // if review 
     if (texttype === 'Review' ) {
+        console.log("in");
         reviewed = document.getElementById('reviewdArticle')
-        if ( reviewed == null  || isNaN(reviewed.value) ) {
+        if ( reviewed.value.length == 0 ||  isNaN(reviewed.value) ) {
             alert("Need choise the Article which you are reviewing!");
             return;
         }
         standby = document.getElementById('reviewStandby')
-        if ( standby == null || isNaN(standby.value) ) {
+        if ( standby.value.length == 0 || isNaN(standby.value) ) {
             alert("Need to set the Standby!");
             return;
         }
