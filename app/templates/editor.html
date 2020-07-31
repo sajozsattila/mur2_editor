@@ -139,9 +139,21 @@
                      {% endif %}
                  </select>
                  <div id="reviewsettings">
+                     {% if reviewed > 0 %}
+                     <div>{{ _('Article') }}<input id="reviewdArticle" type="text" value="{{ reviewed }}"><button onclick="selectReviewedID()" >Select</button></div>
+                     {% else %}
                      <div>{{ _('Article') }}<input id="reviewdArticle" type="text"><button onclick="selectReviewedID()" >Select</button></div>
-                     <div>{{ _('Standby') }}<input id="reviewStandby" type="number"  min="1" max="100" ></div>
+                     {% endif %}
+                     {% if standby is not none  %}
+                     <div>{{ _('Standby') }}<input id="reviewStandby" type="number"  min="-100" max="100" value="{{ standby }}"></div>
+                     {% else %}
+                     <div>{{ _('Standby') }}<input id="reviewStandby" type="number"  min="-100" max="100" ></div>
+                     {% endif %}
+                     {% if rebel %}
+                     <div>{{ _('Rebel') }}<input id="reviewRebel" type="checkbox" checked></div>
+                     {% else %}
                      <div>{{ _('Rebel') }}<input id="reviewRebel" type="checkbox"></div>
+                     {% endif %}
                  </div>
             </div>
             <textarea id="main-source"></textarea>
@@ -357,7 +369,9 @@
        </script>    
        <script>
            /* Function for Review*/
-          function textypesettings(data) {
+           currenttextype = document.getElementById('textype');
+           textypesettings(currenttextype);
+           function textypesettings(data) {
                data.setAttribute("selectedvalue", data.value); 
            }
            
