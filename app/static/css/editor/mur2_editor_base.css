@@ -503,6 +503,14 @@ textarea,
 }
 
 
+#textype + #reviewsettings {
+    display: none;
+}
+#textype[selectedvalue="Review"] + #reviewsettings {
+    display: block;
+}
+
+
 /* **********************************************
  * Media settings
 */
