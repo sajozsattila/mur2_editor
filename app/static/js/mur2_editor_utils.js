@@ -256,7 +256,8 @@ async function save_article(blobs) {
             alert("Need to set the Standby!");
             return;
         }
-        rebel = document.getElementById('reviewRebel').value
+        rebel = document.getElementById('reviewRebel').checked
+        console.log(rebel);
     }
     
     
@@ -529,13 +530,17 @@ async function generate_from_md(destination, mainCollection) {
 /* keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords */
 function multiSearchKeyup(inputElement) {
     var newcat = false
-    if ( event.keyCode === 13 ) {
+    var remove = false
+    if ( inputElement.classList.contains('fa-close') ) {
+        remove = true;
+    } else if ( event.keyCode === 13 ) {
         newcat = true;
     } else if ( inputElement.value.slice(-2) == '\\n' ) {
         newcat = true;
     }
-
-    if(newcat) {
+    
+    
+    if(newcat) {                
         var newstring = inputElement.value;
         if ( inputElement.value.slice(-2) == '\\n' ) {
             newstring = inputElement.value.slice(0,-2);
@@ -544,12 +549,26 @@ function multiSearchKeyup(inputElement) {
             .insertBefore(createFilterItem(newstring), inputElement)
             ;
         inputElement.value = "";
+        
+        // check how many keyword is defined already
+        childrenNumber = inputElement.parentNode.getElementsByClassName("multi-search-item") 
+        // max 10 keywords are allowed
+        if ( childrenNumber.length >= 10 ) {
+            inputElement.parentNode.getElementsByTagName("input")[0].style.display = 'none'; 
+        }
+    } else if ( remove ) {
+        // check input ready
+        if ( inputElement.parentNode.parentNode.getElementsByTagName("input")[0].style.display === 'none' ) {
+            inputElement.parentNode.parentNode.getElementsByTagName("input")[0].style.display = 'inline'; 
+        }
+        // remove item
+        inputElement.parentNode.remove()
     }
     function createFilterItem(text) {
         const item = document.createElement("div");
         item.setAttribute("class", "multi-search-item");
         const span = `<span>${text}</span>`;
-        const close = `<div class="fa fa-close" onclick="this.parentNode.remove()"></div>`;
+        const close = `<div class="fa fa-close" onclick="multiSearchKeyup(this)"></div>`;
         item.innerHTML = span+close;
         return item;
     }
