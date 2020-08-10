@@ -420,6 +420,9 @@ and (max-device-width : 767px){
     }
     
     #maintext,
+    .main\.categories #maintext,
+    .main\.keywords #maintext,
+    .main\.search #maintext,    
     .main\.user #maintext,
     .main\.root #maintext,
     .main\.edit_profile #maintext {
@@ -488,6 +491,10 @@ and (max-device-width : 767px){
 /* 5/4 desktop */
 @media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
     #maintext,
+    .main\.categories #maintext,
+    .main\.keywords #maintext,
+    .main\.search #maintext,
+    .main\.user #maintext,
     .main\.root #maintext,
     .main\.user #maintext {
         padding-left: 15.25rem;
@@ -513,6 +520,10 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
     #maintext,
+    .main\.categories #maintext,
+    .main\.keywords #maintext,
+    .main\.search #maintext,
+    .main\.user #maintext,
     .main\.root #maintext, 
     .main\.user #maintext {
         padding-left: 3.37rem;
@@ -548,6 +559,10 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
     #maintext,
+    .main\.categories #maintext,
+    .main\.keywords #maintext,
+    .main\.search #maintext,
+    .main\.user #maintext,
     .main\.root #maintext,
     .main\.user #maintext {
         padding-left: 1.685rem;
@@ -579,6 +594,10 @@ and (orientation : portrait) {
 @media only screen and (max-width: 900px), 
 (height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape) {
     #maintext,
+    .main\.categories #maintext,
+    .main\.keywords #maintext,
+    .main\.search #maintext,
+    .main\.user #maintext,
     .main\.root #maintext.
     .main\.user #maintext {
         padding-left: 15.25rem;
