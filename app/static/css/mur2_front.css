@@ -165,7 +165,7 @@ td a.control-item {
     font-weight: bold;
     color: #333;   
     position: fixed;
-    left: 0;
+    left: 0.845rem;
     top: calc( 2.8rem + 0.8425rem );
     text-align: center;
     transform: rotate(180deg);
