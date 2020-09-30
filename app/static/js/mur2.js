@@ -69,3 +69,25 @@ function collapsible_listener() {
     } 
 }
 collapsible_listener();
+
+// random text generator
+function randomtext(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+// base64 encoding the unicode string
+function encodeUnicode(str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+                                                function toSolidBytes(match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
+}

@@ -28,6 +28,12 @@
             gtag('config', 'UA-165583882-1');
         </script>
         
+        <!-- convergence -->
+        <script src="https://cdn.jsdelivr.net/npm/rxjs@6.5.4/bundles/rxjs.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@convergence/convergence@1.0.0-rc.5/convergence.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@convergence/input-element-bindings@0.3.4/browser/convergence-input-element-bindings.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@convergence/html-text-collab-ext/umd/html-text-collab-ext.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@convergence/color-assigner/umd/color-assigner.js"></script>
 
         <!-- style -->
         <!-- <link rel="stylesheet" href="/static/css/mur2.css"> -->
@@ -342,6 +348,7 @@
        <script src="/static/js/editor/parser.js"></script>
        <script src="/static/js/mur2_editor_utils.js"></script>
        <script src="/static/js/mur2_editor.js"></script>
+       
        <script>
            // retrieve the access token from the URL
            var params = window.location.hash.substr(1),
@@ -371,6 +378,68 @@
            }
            
        </script>
+        <!-- convergence -->
+        <script src="/static/js/editor/convergence.js"></script>
+        <script type="text/javascript">
+            // get the username
+            username =  encodeUnicode("{{ author }}")+randomtext(6);
+                        
+            var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";                       
+            
+            // 1. Connect to the domain anonymously.
+            Convergence.connectAnonymously(domainUrl)
+                .then(initApp)
+                .catch((error) => {
+                console.log("Could not connect: " + error);
+            });
+            
+            // 2. Initializes the application after connecting by opening a model.
+            function initApp(domain) {
+                const modelService = domain.models();
+                modelService.openAutoCreate({
+                    collection: "{{ title }}",
+                    id: "{{ article_id }}",
+                    data: { text: document.getElementById('main-source').value }
+                })
+                    .then(initModel)
+                    .then(listener)
+                    .catch((error) => {
+                    console.log("Could not open model: " + error);
+                });
+            }
+
+            // 3. Initializes the model once the model is open.
+            function initModel(model) {
+                const stringModel = model.elementAt("text");
+                const textArea = document.getElementById("main-source");
+
+                // Sets the value of the text area and performs a two-way-binding.
+                ConvergenceInputElementBinder.bindTextInput(textArea, stringModel);
+                
+                return model;
+            }
+            
+            function listener(model) {
+                var textArea = document.getElementById("main-source");
+                var convevent = new CustomEvent('conv', { detail: "main-source" });
+                var inputevent = new Event("input");
+                var article_input_side = document.querySelector('#article_input_side');
+                // listen the changes
+                model.events().subscribe(e => {
+                    switch (e.name) {
+                        case "version_changed":
+                           console.log("change"); 
+                            // update input side
+                           textArea.dispatchEvent(inputevent);
+                            // update rendered side
+                           article_input_side.dispatchEvent(convevent);
+                           break;
+                        default:
+                    }
+                } );
+            }
+            
+        </script>
        </div><!-- horizontal_box -->
     </body>        
 </html>
