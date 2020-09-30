@@ -613,7 +613,49 @@ function ParserCollection(
     //      we can add three event listener, but better one event listener on 
     //      we can do this by organising them under one parent, and use event delegation
     let article_input_side = document.querySelector('#article_input_side');
+    ['input','conv'].forEach( evt => 
+        article_input_side.addEventListener(evt, (event) => {
+            console.log(event);
+            var target;
+            if (event.type == "input") {
+                // catch direct user input
+                target = event.target.id;
+            } else {
+                // catch convegent input
+                target = event.detail;
+            }
+            console.log(target);
+            var preview_on = g_preview_on;
+            // mark as selected area
+            g_selectedTextarea = target;
+            // switching depending which textfiled was an input
+            switch (target) {
+                case 'title-source':
+                    // if we do not show preview no point to update
+                    if (preview_on) {
+                        updateTitle(titleImageLoader, false);
+                    }
+                    break;
+                case 'abstact-source':
+                    if (preview_on) {
+                        updateAbstract(abstractImageLoader, false);
+                    }
+                    break;
+                case 'main-source':
+                    console.log("in")
+                    if (preview_on) {
+                        console.log("in2")
+                        updateMain(mainImageLoader, false);
+                        
+                    }
+                    break;
+            }
+        })
+    );
+    
+    /*
     article_input_side.addEventListener('input', (event) => {
+        console.log(event);
         let target = event.target;
         var preview_on = g_preview_on;
         // mark as selected area
@@ -632,13 +674,16 @@ function ParserCollection(
                 }
                 break;
             case 'main-source':
+                console.log("in")
                 if (preview_on) {
+                    console.log("in2")
                     updateMain(mainImageLoader, false);
                     
                 }
                 break;
         }
     });
+    */
 
     // action to roll on main 
     mainSource.addEventListener('touchstart', syncScroll.switchScrollToSrc);
