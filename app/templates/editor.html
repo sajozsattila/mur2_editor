@@ -161,9 +161,9 @@
                  <div>{{ _("Authors") }}:</div> 
                  <div id="articale_authors">
                      {% for a in author %}
-                     <div>{{ a[0] }} <button onclick='addNewAuthor("remove", {{ a[1] }})' >Remove</button></div>
+                     <div>{{ a[0] }} – Workshare: <input class="workshare" original="{{ a[2] }}" userid="{{ a[1] }}" type="number" min="0" max="100" value="{{ a[2] }}"><button onclick='addNewAuthor("remove", {{ a[1] }})' >Remove</button></div>
                      {% endfor %}
-                     <div><input id="newauthor" type="text"><button onclick='addNewAuthor("add")' >Add</button></div>
+                     <div><input id="newauthor" type="text"> – Workshare: <input class="workshare" type="number"  min="0" max="100"><button onclick='addNewAuthor("add")' >Add</button></div>
                  </div>
                  {% endif %}
             </div>
