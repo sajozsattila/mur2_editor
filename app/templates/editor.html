@@ -2,7 +2,7 @@
 <html lang="{{ language }}">
     <head>
         <title>{{ title }}</title>
-        <meta name="author" content="{{ author }}">
+        <meta name="author" content="{{author[0][0]}}{%if author|length > 1 %}{% for a in author[1:] %},{{ a[0] }}{% endfor %}{%endif %}">
 
 
         <!-- style -->
@@ -13,7 +13,7 @@
         <meta name="description" content="Lightweight online editor for long-form journalist and academic writers">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- set some mur2 atrtriput which we will use later to send data to the server -->
-        <meta name="article_id" content='{{ article_id }}'>
+        <meta name="article_id" content='{{ article_id|string }}'>
         <meta name="texttype" content='{{  texttype }}'>
         <meta name="endnotetext" content={{ _("Endnotes") }}>
         <meta name="mur2language" content='{{ language }}'>
@@ -156,6 +156,16 @@
                      <div>{{ _('Rebel') }}<input id="reviewRebel" type="checkbox"></div>
                      {% endif %}
                  </div>
+                 {% if article_id > 0 %}
+                 <!-- manage authors -->
+                 <div>{{ _("Authors") }}:</div> 
+                 <div id="articale_authors">
+                     {% for a in author %}
+                     <div>{{ a[0] }} <button onclick='addNewAuthor("remove", {{ a[1] }})' >Remove</button></div>
+                     {% endfor %}
+                     <div><input id="newauthor" type="text"><button onclick='addNewAuthor("add")' >Add</button></div>
+                 </div>
+                 {% endif %}
             </div>
             <textarea id="main-source"></textarea>
             <div id="highlight_main" ></div>
@@ -301,22 +311,22 @@
                 // load the local files
                 try {
                     // read timestamp
-                    var dataTime = parseInt(localStorage.getItem("{{ "mur2_main_content"+article_id+"_time" }}"))/1000;
-                    var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id+"_time" }}"))/1000;
-                    var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id+"_time" }}"))/1000;
-                    var data_fImageTime = parseInt(localStorage.getItem("{{"mur2_featured_image"+ article_id+"_time" }}"))/1000;                    
+                    var dataTime = parseInt(localStorage.getItem("{{ "mur2_main_content"+article_id|string+"_time" }}"))/1000;
+                    var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id|string+"_time" }}"))/1000;
+                    var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id|string+"_time" }}"))/1000;
+                    var data_fImageTime = parseInt(localStorage.getItem("{{"mur2_featured_image"+ article_id|string+"_time" }}"))/1000;                    
 
                     if ( dataTime > {{ articleTimestamp }} ) {
-                        var data = localStorage.getItem("{{ "mur2_main_content"+article_id }}");
+                        var data = localStorage.getItem("{{ "mur2_main_content"+article_id|string }}");
                     }
                     if ( data_titleTime > {{ articleTimestamp }} ) {
-                        var data_title = localStorage.getItem("{{ "mur2_title_content"+ article_id }}");
+                        var data_title = localStorage.getItem("{{ "mur2_title_content"+ article_id|string }}");
                     }
                     if ( data_abstractTime > {{ articleTimestamp }} ) {
-                        var data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id }}");
+                        var data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id|string }}");
                     }
                     if ( data_fImageTime > {{ articleTimestamp }} ) {
-                        document.getElementsByClassName("feature_image")[0].src = localStorage.getItem("{{"mur2_featured_image"+ article_id }}");
+                        document.getElementsByClassName("feature_image")[0].src = localStorage.getItem("{{"mur2_featured_image"+ article_id|string }}");
                     }
                 }
                 catch (e) {console.log(e)};
@@ -379,66 +389,66 @@
            
        </script>
         <!-- convergence -->
-        <script src="/static/js/editor/convergence.js"></script>
         <script type="text/javascript">
-            // get the username
-            username =  encodeUnicode("{{ author }}")+randomtext(6);
+            // just saved articla can be shared
+            if ( {{ article_id }} > 0 ){
+                // get the username
+                username =  encodeUnicode("{{ thisuser[0] }}")+randomtext(6);
                         
-            var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";                       
+                var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";                       
             
-            // 1. Connect to the domain anonymously.
-            Convergence.connectAnonymously(domainUrl)
-                .then(initApp)
-                .catch((error) => {
-                console.log("Could not connect: " + error);
-            });
-            
-            // 2. Initializes the application after connecting by opening a model.
-            function initApp(domain) {
-                const modelService = domain.models();
-                modelService.openAutoCreate({
-                    collection: "{{ title }}",
-                    id: "{{ article_id }}",
-                    data: { text: document.getElementById('main-source').value }
-                })
-                    .then(initModel)
-                    .then(listener)
+                // 1. Connect to the domain anonymously.
+                Convergence.connectAnonymously(domainUrl)
+                    .then(initApp)
                     .catch((error) => {
-                    console.log("Could not open model: " + error);
+                    console.log("Could not connect: " + error);
                 });
-            }
-
-            // 3. Initializes the model once the model is open.
-            function initModel(model) {
-                const stringModel = model.elementAt("text");
-                const textArea = document.getElementById("main-source");
-
-                // Sets the value of the text area and performs a two-way-binding.
-                ConvergenceInputElementBinder.bindTextInput(textArea, stringModel);
-                
-                return model;
-            }
             
-            function listener(model) {
-                var textArea = document.getElementById("main-source");
-                var convevent = new CustomEvent('conv', { detail: "main-source" });
-                var inputevent = new Event("input");
-                var article_input_side = document.querySelector('#article_input_side');
-                // listen the changes
-                model.events().subscribe(e => {
-                    switch (e.name) {
-                        case "version_changed":
-                           console.log("change"); 
-                            // update input side
-                           textArea.dispatchEvent(inputevent);
-                            // update rendered side
-                           article_input_side.dispatchEvent(convevent);
-                           break;
-                        default:
-                    }
-                } );
-            }
+                // 2. Initializes the application after connecting by opening a model.
+                function initApp(domain) {
+                    const modelService = domain.models();
+                    modelService.openAutoCreate({
+                        collection: "{{ title }}",
+                        id: "{{ article_id|string }}",
+                        data: { text: document.getElementById('main-source').value }
+                    })
+                        .then(initModel)
+                        .then(listener)
+                        .catch((error) => {
+                        console.log("Could not open model: " + error);
+                    });
+                }
+
+                // 3. Initializes the model once the model is open.
+                function initModel(model) {
+                    const stringModel = model.elementAt("text");
+                    const textArea = document.getElementById("main-source");
+
+                    // Sets the value of the text area and performs a two-way-binding.
+                    ConvergenceInputElementBinder.bindTextInput(textArea, stringModel);
+                    
+                    return model;
+                }
             
+                function listener(model) {
+                    var textArea = document.getElementById("main-source");
+                    var convevent = new CustomEvent('conv', { detail: "main-source" });
+                    var inputevent = new Event("input");
+                    var article_input_side = document.querySelector('#article_input_side');
+                    // listen the changes
+                    model.events().subscribe(e => {
+                        switch (e.name) {
+                            case "version_changed":
+                               // update input side
+                               textArea.dispatchEvent(inputevent);
+                               // update rendered side
+                               article_input_side.dispatchEvent(convevent);
+                               break;
+                            default:
+                        }
+                    } );
+                }
+            }            
         </script>
        </div><!-- horizontal_box -->
     </body>        

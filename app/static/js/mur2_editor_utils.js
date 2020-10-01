@@ -603,3 +603,36 @@ function selectReviewedID() {
         }
     }
 }
+
+// select new author for user
+function addNewAuthor(action, id) {
+    var newauthor ;
+    if ( action === "remove" ) {
+        newauthor = id;
+    } else {
+        // the new author id
+        newauthor= document.getElementById('newauthor').value;
+    }
+    // the article id
+    var articleid = document.querySelector('meta[name="article_id"]').content
+    
+    // send data to frontend
+    var fd = new FormData();
+    fd.append("newauthor", newauthor);
+    fd.append("articleid", articleid);
+    fd.append("action", action);
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/addauthor', true);
+    xhr.send(fd);
+    
+    xhr.onload = function() {
+        if (xhr.status != 200) { // analyze HTTP status of the response
+            var msgbox = document.getElementById("msg")
+            msgbox.style.color = "red";
+            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+        } else {
+            // update the page
+            location.reload();
+        }
+    };
+}
