@@ -606,6 +606,7 @@ function selectReviewedID() {
 
 // select new author for user
 function addNewAuthor(action, id) {
+    var msgbox = document.getElementById("msg")
     var newauthor ;
     if ( action === "remove" ) {
         newauthor = id;
@@ -616,23 +617,55 @@ function addNewAuthor(action, id) {
     // the article id
     var articleid = document.querySelector('meta[name="article_id"]').content
     
-    // send data to frontend
-    var fd = new FormData();
-    fd.append("newauthor", newauthor);
-    fd.append("articleid", articleid);
-    fd.append("action", action);
-    var xhr = new XMLHttpRequest();
-    xhr.open('post', '/addauthor', true);
-    xhr.send(fd);
+    // check workshare add up 
+    workshares = document.getElementsByClassName("workshare");
+    // the users who workshare changed
+    let allworkshare = 0
+    var changeworkshare = {};
+    for (var i = 0; i<workshares.length; i++) {
+        if ( workshares[i].value !== "" ) {
+            if ( action === "remove" ) {
+                // do not count the users which we removing
+                if ( parseInt(workshares[i].getAttribute("userid")) !== id  ) {
+                    allworkshare += parseInt(workshares[i].value);
+                    // check workshare changed
+                    if ( parseInt(workshares[i].getAttribute("original")) !== parseInt(workshares[i].value) ) {
+                        changeworkshare[parseInt(workshares[i].getAttribute("userid"))] = parseInt(workshares[i].value) ;
+                    }
+                }
+            } else {
+                allworkshare += parseInt(workshares[i].value);
+                if ( parseInt(workshares[i].getAttribute("original")) !== parseInt(workshares[i].value) ) {
+                    changeworkshare[parseInt(workshares[i].getAttribute("userid"))] = parseInt(workshares[i].value) ;
+                }
+            }
+        }    
+    }
+    if ( allworkshare !== 100 ) {
+        console.log(allworkshare);
+        msgbox.style.color = "red";
+        msgbox.innerHTML = "Error: The sum of the workshare is not 100!"
+    } else {
+        
+        // send data to frontend
+        var fd = new FormData();
+        fd.append("newauthor", newauthor);
+        fd.append("articleid", articleid);
+        fd.append("action", action);
+        fd.append("workshare", JSON.stringify(changeworkshare));
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', '/addauthor', true);
+        xhr.send(fd);
     
-    xhr.onload = function() {
-        if (xhr.status != 200) { // analyze HTTP status of the response
-            var msgbox = document.getElementById("msg")
-            msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
-        } else {
-            // update the page
-            location.reload();
+        xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                
+                msgbox.style.color = "red";
+                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+            } else {
+                // update the page
+                location.reload();
         }
     };
+    }
 }
