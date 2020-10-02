@@ -669,3 +669,32 @@ function addNewAuthor(action, id) {
     };
     }
 }
+
+// get version from the fronend DB
+function getArticleversion() {
+    var msgbox = document.getElementById("msg")
+    // get the selected version
+    var e = document.getElementById("id_rollback_article_list");
+    var value = e.options[e.selectedIndex].value;
+    value = value.split("_");
+    var fd = new FormData();
+    fd.append("version", value[0]);
+    fd.append("article", value[1]);    
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/getarticleversions', true);
+    xhr.send(fd);
+    xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response                
+                msgbox.style.color = "red";
+                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+            } else {
+                var versiondata = JSON.parse(xhr.response);
+                document.getElementById('title-source').value = versiondata.title;
+                document.getElementById('abstact-source').value = versiondata.abstract;
+                document.getElementById('main-source').value = versiondata.main;
+                var textArea = document.getElementById("main-source");
+                var inputevent2 = new Event("input");
+                textArea.dispatchEvent(inputevent2);
+            }
+    }
+}

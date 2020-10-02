@@ -1023,6 +1023,12 @@ function ParserCollection(
             medium_on_fly(titleCollection, abstractCollection,  mainCollection);
         } else if (target.id === "id_medium_connect") {
             medium_connect();
+        } else if (target.id === "id_rollback_article") {
+            getArticleversion();
+            // fire up an update                        
+            updateMain(mainImageLoader, true);            
+            updateTitle(titleImageLoader, false);
+            updateAbstract(abstractImageLoader, false);
         } else if (target.id === "id_wpc_clear") {
             clear_cookies("wpc");
         }  else if (target.id === "id_medium_clear") {
