@@ -159,12 +159,19 @@
                  {% if article_id > 0 %}
                  <!-- manage authors -->
                  <div>{{ _("Authors") }}:</div> 
-                 <div id="articale_authors">
+                 <div id="articale_authors">                     
                      {% for a in author %}
-                     <div>{{ a[0] }} – Workshare: <input class="workshare" original="{{ a[2] }}" userid="{{ a[1] }}" type="number" min="0" max="100" value="{{ a[2] }}"><button onclick='addNewAuthor("remove", {{ a[1] }})' >Remove</button></div>
+                         {% if owner %}
+                     <div>{{ a[0] }} <button onclick='addNewAuthor("remove", {{ a[1] }})' >Remove</button> – Workshare: <input class="workshare" original="{{ a[2] }}" userid="{{ a[1] }}" type="number" min="0" max="100" value="{{ a[2] }}"></div>
+                         {% else %}
+                     <div>{{ a[0] }} – Workshare: {{ a[2] }} </div>
+                         {% endif %}
                      {% endfor %}
+                     {% if owner %}
                      <div><input id="newauthor" type="text"> – Workshare: <input class="workshare" type="number"  min="0" max="100"><button onclick='addNewAuthor("add")' >Add</button></div>
+                     {% endif %}                     
                  </div>
+                     
                  {% endif %}
             </div>
             <textarea id="main-source"></textarea>
@@ -243,7 +250,7 @@
                  <!-- Download result -->
                  <input class="choice_toolbar control-input" id="id_download" type="radio" name="source_type" >
                  <label class=" fontawsome fas fa-file-download toolbar" for="id_download" title="{{ _('Download result') }}" ></label>        
-                 {% if not current_user.is_anonymous %}
+                 {% if not current_user.is_anonymous and ( owner or article_id == -1 ) %}
                  <!-- Save -->
                  <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-save fontawsome " for="id_save" title="{{ _('Save') }}" ></label>
@@ -433,14 +440,14 @@
                 function listener(model) {
                     var textArea = document.getElementById("main-source");
                     var convevent = new CustomEvent('conv', { detail: "main-source" });
-                    var inputevent = new Event("input");
+                    var inputeventl = new Event("input");
                     var article_input_side = document.querySelector('#article_input_side');
                     // listen the changes
                     model.events().subscribe(e => {
                         switch (e.name) {
                             case "version_changed":
                                // update input side
-                               textArea.dispatchEvent(inputevent);
+                               textArea.dispatchEvent(inputeventl);
                                // update rendered side
                                article_input_side.dispatchEvent(convevent);
                                break;

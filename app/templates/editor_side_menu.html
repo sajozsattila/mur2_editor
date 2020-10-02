@@ -45,7 +45,23 @@
 					<label class="control-item " for="id_habr" title="{{ _('A kind of HTML markup for habr.com') }}" data-result-as="habr">H</label>
 				</div>
 			</div>
+            
+            
             {% if not current_user.is_anonymous and article_status == "editing" %}
+            <div id="rollback_editing">
+                <div class="headsidebar">
+                    <form id="id_rollback_article_form">
+                        <input class="control-input" type="button" id="id_rollback_article" value="Roll back">
+                        <label class="control-item" for="id_rollback_article" title="{{ _('Roll back') }}" >{{ _('Roll back') }}</label>                        
+                    </form> 
+                    <select name="versions" id="id_rollback_article_list">
+                            <option value="-1_{{ article_id|string }}">{{ _("Last saved") }}</option>
+                            {% for version in versions %}
+                            <option value="{{ version[1] }}_{{ article_id|string }}">{{ version[1] }} -- {{ version[2].strftime('%Y-%m-%d %H:%M:%S') }} </option>
+                            {% endfor %}
+                     </select>
+                </div>
+            </div>
             <div id="finish_editing"> 
                 <div class="headsidebar">
                 <!-- closs editing -->

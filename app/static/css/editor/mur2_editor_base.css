@@ -106,7 +106,8 @@
 
 #finish_editing,
 #mcs,
-#side_export {
+#side_export,
+#rollback_editing {
     padding-left: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
