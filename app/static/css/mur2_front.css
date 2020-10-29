@@ -222,6 +222,82 @@ td a.control-item {
   animation-duration: 0.4s
 }
 
+.main\.root  #pages table {
+    height: 100%;
+    width: 100%
+}
+
+.main\.root #pages td {
+    border-right: 1px solid #666;
+    width: 14.24%;
+    text-align: center;
+    font-size: 120px;
+    font-weight: bold;
+    line-height: 20%;
+}
+
+.main\.root #pages tr {
+    border: 1px solid #666;
+    height: 20%;
+}
+
+/* v3 */
+
+.pagetitle1, 
+.pagetitle2 {
+    font-size: xxx-large;
+    font-family: 'Ibarra Real Nova', serif;
+}
+
+.pagetitle1 {
+    writing-mode: sideways-lr;
+    position: relative;
+    right: 1rem;
+    width: min-content;
+    border-right: solid 1px red;
+    padding-top: 5rem;
+    top: -4rem;
+    z-index: 3;
+}
+
+.pagetitle2 {
+     border-bottom: solid 1px red;
+    padding-left: 4rem;
+    width: min-content;    
+}
+
+#stack2 {
+    position: relative;
+    top: -12rem;
+    left: 5rem;
+}
+
+#stack2 img,
+#stack1 img {
+    width: 60%;
+    height: auto;
+    z-index: 2;
+    position: relative;
+    left: -8rem;
+    border-radius: 30%;
+    shape-outside: circle();
+    float: left;
+    margin: 0 1.685rem 0.8425rem 0;       
+}
+
+.main\.root #maintext {
+    direction: ltr;
+    top: 3rem;
+    height: 100%;
+    width: calc(100% - 27.5275rem - 34.315rem );
+    padding-left: 20%;
+    background-color: #000;
+}
+
+.main\.root #maintext #pages #page1 {
+    color: white;
+}
+
 /*
  ****************************************
  * special setting for login 
