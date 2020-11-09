@@ -133,8 +133,9 @@ td a.control-item {
 }
 
 .main\.root #side_menu {
-    width: 33%;
-    max-width: 45rem;  
+    display: none;
+    width: 100%;
+    min-width: 50%;  
     border-left: 1px solid #666;
 }
 
@@ -146,10 +147,12 @@ td a.control-item {
     font-weight: bold;
 }
 
-.main\.root #side_menu  #side_top {
-    height: calc(100% - 2.8rem - 2.6rem - 0.8425rem );
+.main\.root #side_menu  #side_top {    
     border-left: 0;
+    max-width: 45rem;
+    padding-left: calc( var(--verticaldistance) * 2);
 }
+
 
 .frontpages {
     display: flex;
@@ -166,14 +169,12 @@ td a.control-item {
     width: 100%;
     height: calc(100% - 2.8rem - 2.6rem - 0.8425rem );
     display: inline-block;
-    left: 0.845rem;
-    top: calc( 2.8rem + 0.8425rem );
-    text-align: center;
+    text-align: left;
     text-transform: initial;    
-    position: absolute;
     opacity: 0;
     animation-duration: 3s;
     -webkit-animation-duration: 3s;
+    letter-spacing: 0;
 }
 
 .showdetails {
@@ -272,30 +273,20 @@ td a.control-item {
     left: 5rem;
 }
 
-#stack2 img,
-#stack1 img {
-    width: 60%;
-    height: auto;
-    z-index: 2;
-    position: relative;
-    left: -8rem;
-    border-radius: 30%;
-    shape-outside: circle();
-    float: left;
-    margin: 0 1.685rem 0.8425rem 0;       
-}
-
 .main\.root #maintext {
-    direction: ltr;
-    top: 3rem;
-    height: 100%;
-    width: calc(100% - 27.5275rem - 34.315rem );
-    padding-left: 20%;
-    background-color: #000;
+    /* a full cover of background image */
+    /* background-image: url("../images/mur2_revis_4.jpg"); */
+    background-image: url("https://sajozsattilahome.files.wordpress.com/2020/11/mur2_revis_4.jpg");
+    background-repeat: no-repeat;
+    min-width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 0rem;
+    width: 100%;
 }
-
 .main\.root #maintext #pages #page1 {
-    color: white;
+    ;
 }
 
 /*
