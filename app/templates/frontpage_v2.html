@@ -41,11 +41,24 @@
                     <div id="frontendimage" class="menupage"></div>
                     <div id="details_page1" class="details menupage">
                         <p><a onclick="hidedetails()" href="#">X</a></p>
-                        Some more desription long long
+                         <h3>Who are we?</h3>
+                          <p></p>
+                         <h3>What makes us different?</h3>
+                          <p>Simple. We put writers first.</p>
+                         <h3>How can we help?</h3>
+                          <p>Efficiency and flexibility are key so our editor can preview the finished article as you type or not depending on your preference.</p><p>We have also simplified article collaboration where up to 5? writers can contribute to your article, simultaneously and in real time.</p>
                     </div>
                     <div id="details_page2" class="details menupage">
                         <p><a onclick="hidedetails()" href="#">X</a></p>
                         Some more desription long long 2
+                    </div>
+                    <div id="details_page3" class="details menupage">
+                        <p><a onclick="hidedetails()" href="#">X</a></p>
+                        <p>!Registration form goes here!</p>
+                    </div>
+                    <div id="details_page4" class="details menupage">
+                        <p><a onclick="hidedetails()" href="#">X</a></p>
+                        <p>!Contact form goes here!</p>
                     </div>
                 </div>
                 <div id="foot"   > 
@@ -73,20 +86,36 @@
                 <div id="pages">
                     <div id="page1" class="frontpages">                        
                         <div class="pagetitle">
-                            <h1>Title 1</h1>
-                            <p>One sentence abstract1</p>
-                            <a onclick="showdetails()" href="#">Learn more</a>
+                            <h1>Welcome to mur2</h1>
+                            <p>A new platform for writers to express creatively...with fewer distractions.</p>
+                            <a onclick="showdetails()" href="#">Click here to learn more</a>
                         </div>
-                        <div class="pagenumber">01</div>
+                        <div class="pagenumber">HOME</div>
                     </div>
                     <div id="page2" class="frontpages hide">                        
                         <div class="pagetitle">
-                            <h1>Title 2</h1>
-                            <p>One sentence abstract2</p>
-                            <a onclick="showdetails()" href="#">Learn more</a>                            
+                            <h1>About Us</h1>
+                            <p>mur2 was founded in 2019 with the aim of utilizing AI and Machine Learning to benifit writers</p>
+                            <a onclick="showdetails()" href="#">What to know more, click here</a>                            
                         </div>
-                        <div class="pagenumber">02</div>
-                    </div> 
+                        <div class="pagenumber">ABOUT</div>
+                    </div>
+                    <div id="page3" class="frontpages hide">                        
+                        <div class="pagetitle">
+                            <h1>Become a member</h1>
+                            <p>Signup is free and gives you access to an advanced Markdown editor and searchable reference database powered by Machine Learning.</p>
+                            <a onclick="showdetails()" href="#">Click here to Register</a>
+                        </div>
+                        <div class="pagenumber">SIGNUP</div>
+                    </div>
+                    <div id="page4" class="frontpages hide">                        
+                        <div class="pagetitle">
+                            <h1>Contact Us</h1>
+                            <p>Got a comment or question?</p>
+                            <a onclick="showdetails()" href="#">Click here to get in touch</a>
+                        </div>
+                        <div class="pagenumber">CONTACT</div>
+                    </div>
                 </div>
 
                 <!-- fit username to box -->
@@ -114,9 +143,10 @@
                 // this indacete which page we are
                 var delta = 0;
                 // how many page we have
-                var pagenumber = 2;
+                var pagenumber = 4;
                 // how many roll a full page change
-                var onepage = 12
+                // Prevously 12
+                var onepage = 3
                 
                 if (!event) event = window.event;
                 
