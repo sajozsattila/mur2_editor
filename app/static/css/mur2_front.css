@@ -111,12 +111,24 @@ td a.control-item {
  * frontpage 
  */
 
-.main\.root #maintext {
-    direction: ltr;
-    top: 3rem;
-    height: 100%;
-    width: calc(100% - 27.5275rem - 34.315rem );
-    padding-left: 20%;
+.main\.root #details {
+    position: absolute;
+    left: 50%;
+    top: 5rem;
+    border-radius: 10rem;
+    background-color: red;
+    height: 5rem;
+    width: 5rem;
+    text-align: center;
+    z-index: 3;
+}
+
+.main\.root #details a {
+    position: relative;
+    top: 36%;
+    text-decoration: none;
+    color: white;
+    letter-spacing: 0.7px;
 }
 
 .main\.root #pages {
@@ -128,29 +140,27 @@ td a.control-item {
     opacity: 0;
 }
 
-.main\.root .details {
-    width: 100%;
-}
-
 .main\.root #side_menu {
     display: none;
-    width: 100%;
-    min-width: 50%;  
+    min-width: calc(50% - 5rem) ; 
     border-left: 1px solid #666;
+    z-index: 2;
 }
 
 .pagenumber {
     font-family: liberation-serif, serif;
-    font-size: 320px;
-    text-shadow: -1px 0 #888, 0 1px #888, 1px 0 #888, 0 -1px #888;
-    color: white;
+    font-size: 4em ; 
+    /* text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red; */
+    color: red;
     font-weight: bold;
+    top: calc(50% + 1.2rem);
+    left: calc(3% + 4.2rem);
 }
 
 .main\.root #side_menu  #side_top {    
     border-left: 0;
     max-width: 45rem;
-    padding-left: calc( var(--verticaldistance) * 2);
+    padding-left: calc( var(--verticaldistance) * 2 + 2.5rem);
 }
 
 
@@ -244,29 +254,6 @@ td a.control-item {
 
 /* v3 */
 
-.pagetitle1, 
-.pagetitle2 {
-    font-size: xxx-large;
-    font-family: 'Ibarra Real Nova', serif;
-}
-
-.pagetitle1 {
-    writing-mode: sideways-lr;
-    position: relative;
-    right: 1rem;
-    width: min-content;
-    border-right: solid 1px red;
-    padding-top: 5rem;
-    top: -4rem;
-    z-index: 3;
-}
-
-.pagetitle2 {
-     border-bottom: solid 1px red;
-    padding-left: 4rem;
-    width: min-content;    
-}
-
 #stack2 {
     position: relative;
     top: -12rem;
@@ -274,6 +261,13 @@ td a.control-item {
 }
 
 .main\.root #maintext {
+    top: 0rem;
+    width: 100%;
+    direction: ltr;
+    height: 100%;
+    padding: 0;
+}
+.main\.root #maintext #pages #page1 {
     /* a full cover of background image */
     /* background-image: url("../images/mur2_revis_4.jpg"); */
     background-image: url("https://sajozsattilahome.files.wordpress.com/2020/11/mur2_revis_4.jpg");
@@ -282,11 +276,29 @@ td a.control-item {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    top: 0rem;
+    height: 100%;
     width: 100%;
 }
-.main\.root #maintext #pages #page1 {
-    ;
+
+.main\.root .lapozo {
+    width: 5rem;
+    height: 5rem;  
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+}
+
+.main\.root .leftallow {
+    /* background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Mi4zIDUyLjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyLjMgNTIuMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOiMzQjNDM0Q7fQo8L3N0eWxlPgo8dGl0bGU+bmV4dF8xPC90aXRsZT4KPGcgaWQ9IkViZW5lXzIiPgoJPGcgaWQ9IkViZW5lXzEtMiI+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTE5LjcsMjYuMmgxMy42IE01MS42LDI2LjJMMjYuMiw1MS42TDAuNywyNi4yTDI2LjIsMC43TDUxLjYsMjYuMnogTTI5LjMsMjIuNGw0LDMuN2wtNCwzLjdsNC0zLjdMMjkuMywyMi40CgkJCXoiLz4KCTwvZz4KPC9nPgo8L3N2Zz4K); */
+   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Mi4zIDUyLjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyLjMgNTIuMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOnJlZDt9Cjwvc3R5bGU+Cjx0aXRsZT5uZXh0XzE8L3RpdGxlPgo8ZyBpZD0iRWJlbmVfMiI+Cgk8ZyBpZD0iRWJlbmVfMS0yIj4KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTkuNywyNi4yaDEzLjYgTTUxLjYsMjYuMkwyNi4yLDUxLjZMMC43LDI2LjJMMjYuMiwwLjdMNTEuNiwyNi4yeiBNMjkuMywyMi40bDQsMy43bC00LDMuN2w0LTMuN0wyOS4zLDIyLjQKCQkJeiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPg==);
+    top: calc(50% - 2.2rem) ;
+    left: calc(3% + 1.05rem);
+}
+
+.main\.root .rightallow {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Mi4zIDUyLjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyLjMgNTIuMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOnJlZDt9Cjwvc3R5bGU+Cjx0aXRsZT5wcmV2PC90aXRsZT4KPGcgaWQ9IkViZW5lXzIiPgoJPGcgaWQ9IkViZW5lXzEtMiI+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTMyLjYsMjYuMkgxOSBNMC43LDI2LjJMMjYuMiwwLjdsMjUuNSwyNS40TDI2LjIsNTEuNkwwLjcsMjYuMnogTTIzLDI5LjlsLTQtMy43bDQtMy43bC00LDMuN0wyMywyOS45eiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPg==);
+    top: calc(50% + 2.2rem) ;
+    left: calc(3% - 1.05rem);
 }
 
 /*
