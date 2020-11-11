@@ -48,3 +48,154 @@ Writings do not exist independently they are all connected. One writing can shar
 ### Access you work from anywhere
 
 We have explained the benefits of the μr² Javascript editor but what if you want to edit work from a different device. If you register on [mur2.co.uk](https://mur2.co.uk/auth/register) you can save your document online and access it from any web browser capable device. ^[You will still keep a copy of your document locally in your browser, also.]
+
+# Start
+```
+cd /Mur2/Python/Frontend
+nohup flask run --host=0.0.0.0 --port=8081 &
+```
+
+# Basic Flask app and login
+It is based on [Miguel Grinberg -- The Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
+
+# Search engine
+The implementation based on 
+
+It is using Elasticsearch engine, which need to install and start as a service on the inux box:
+``` bash
+sudo apt install apt-transport-https
+sudo apt install openjdk-8-jdk
+# install the repository
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+# install the app
+sudo apt update
+sudo apt install elasticsearch
+# start the app
+sudo systemctl enable elasticsearch.service
+sudo systemctl start elasticsearch.service
+# test
+curl -X GET "localhost:9200/"
+```
+
+## Python example
+
+``` python
+from elasticsearch import Elasticsearch
+# connect
+es = Elasticsearch('http://localhost:9200')
+# first test doc
+es.index(index='my_index', id=1, body={'text': 'this is a test'})
+# second test doc
+es.index(index='my_index', id=2, body={'text': 'a second test'})
+# search example
+es.search(index='my_index', body={'query': {'match': {'text': 'this test'}}})
+```
+
+## Flask
+Do not forget to start the search engine on the Linux box before applying this.
+
+We need to add ```__searchable__``` to the model.py to the column which we want to search
+``` python
+class Article(SearchableMixin, db.Model):
+     markdown = db.Column(db.String(500))
+    __searchable__ = ['markdown']
+```
+
+
+
+# DB
+
+## DB iniciale
+``` bash
+export FLASK_APP=mur2.py
+flask db init
+```
+
+This create a DB in the ``` ./migrations ``` directory, where is the configuration file is the: ```./migrations/alembic.ini```.
+
+Next step to create the tables:
+```
+python
+```
+And in the Python:
+``` python
+from app import db
+db.create_all()
+exit()
+```
+
+## DB update
+The DB table defination in the models.py. If we change this we need to update the DB. For this need to run the bellow commands:
+ 
+```
+flask db migrate -m "add article.neo4jid"
+flask db upgrade
+```
+Or:
+
+``` bash
+python mur2.py db stamp head
+python mur2.py db migrate
+python mur2.py db upgrade
+```
+
+## SQLite
+
+The db actually is the `app.db` file. There is a command line tools to acces the DB.
+
+```
+$ sqlite3
+
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+
+sqlite> .open app.db
+
+sqlite> .tables
+alembic_version     article             user                writerrelationship
+
+sqlite> .schema writerrelationship
+CREATE TABLE writerrelationship (
+        id INTEGER NOT NULL,
+        confirmed BOOLEAN,
+        password VARCHAR(40),
+        neo4jid INTEGER,
+        article_id INTEGER,
+        writer_id INTEGER,
+        PRIMARY KEY (id),
+        FOREIGN KEY(article_id) REFERENCES article (id),
+        FOREIGN KEY(writer_id) REFERENCES user (id),
+        CHECK (confirmed IN (0, 1))
+);
+
+sqlite> .exit 0
+```
+
+# Internation language support
+doc: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiii-i18n-and-l10n
+
+Babel commands.
+
+Inicial a translateion:
+``` bash
+# extract all the texts to the .pot file
+pybabel extract -F babel.cfg -k _l -o messages.pot .
+
+# make translation 
+pybabel init -i messages.pot -d app/translations -l hu
+
+# edit the translateion
+vi app/translations/hu/LC_MESSAGES/messages.po
+
+#  start using these translated texts
+pybabel compile -d app/translations
+```
+
+Update a translateion
+``` bash
+pybabel extract -F babel.cfg -k _l -o messages.pot .
+pybabel update -i messages.pot -d app/translations
+```
