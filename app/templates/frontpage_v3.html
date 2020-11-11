@@ -63,13 +63,13 @@ This system could be beneficial for everybody except for the monopolies.</p>
                 <!-- the first page -->
                 <div id="pages">                    
                     <div id="page1" class="frontpages">
-                        <div class="lapozo leftallow" ></div>
-                        <div class="lapozo rightallow" ></div>
+                        <div class="lapozo leftallow" onclick="lapozo(2)" ></div>
+                        <div class="lapozo rightallow" onclick="lapozo(2)" ></div>
                         <div class="lapozo pagenumber" >1</div>
                     </div>
                     <div id="page2" class="frontpages hide">
-                        <div class="lapozo leftallow" ></div>
-                        <div class="lapozo rightallow" ></div>
+                        <div class="lapozo leftallow" onclick="lapozo(1)" ></div>
+                        <div class="lapozo rightallow" onclick="lapozo(1)" ></div>
                         <div class="lapozo pagenumber" >2</div>
                         <div class="info" id="demo"><a  onclick="details()" href="#">Demo</a></div>
                     </div>                   
@@ -89,6 +89,21 @@ This system could be beneficial for everybody except for the monopolies.</p>
             // to keep track what page we are 
             var pageposition = 0;
             var currentpage = 1;
+            
+            // go to the certain page
+            function lapozo(newpage) {
+                var previos = document.getElementById("page"+currentpage);
+                previos.classList.add("hide");
+                // hide previous page details
+                hidedetails(currentpage);
+                
+                // step the page number
+                currentpage =  newpage;
+                    
+                // show the next page
+                var next = document.getElementById("page"+currentpage);    
+                next.classList.remove("hide");
+            }
             
             // step between pages
             function moveObject(event){
@@ -120,19 +135,8 @@ This system could be beneficial for everybody except for the monopolies.</p>
                 
                 // set the page
                 if ( ( pageposition > (currentpage*onepage)+1 || pageposition < (currentpage-1)*onepage ) && pageposition < pagenumber*onepage && pageposition > 1 ) {
-                    // hide the previous page
-                    var previos = document.getElementById("page"+currentpage);
-                    previos.classList.add("hide");
-                    // hide previous page details
-                    hidedetails(currentpage);
-
-                    
                     // step the page number
-                    currentpage =  Math.floor( pageposition/onepage)+1;
-                    
-                    // show the next page
-                    var next = document.getElementById("page"+currentpage);    
-                    next.classList.remove("hide");
+                    lapozo(Math.floor( pageposition/onepage)+1)                    
                 }               
 
             };
