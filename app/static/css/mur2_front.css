@@ -225,20 +225,7 @@ td a.control-item {
   to {opacity:0}
 }
 
-#putinfront {
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
 /* v3 */
-
-#stack2 {
-    position: relative;
-    top: -12rem;
-    left: 5rem;
-}
 
 .main\.root #maintext {
     top: 0rem;
@@ -282,7 +269,6 @@ td a.control-item {
 }
 
 .main\.root .leftallow {
-    /* background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Mi4zIDUyLjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyLjMgNTIuMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOiMzQjNDM0Q7fQo8L3N0eWxlPgo8dGl0bGU+bmV4dF8xPC90aXRsZT4KPGcgaWQ9IkViZW5lXzIiPgoJPGcgaWQ9IkViZW5lXzEtMiI+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTE5LjcsMjYuMmgxMy42IE01MS42LDI2LjJMMjYuMiw1MS42TDAuNywyNi4yTDI2LjIsMC43TDUxLjYsMjYuMnogTTI5LjMsMjIuNGw0LDMuN2wtNCwzLjdsNC0zLjdMMjkuMywyMi40CgkJCXoiLz4KCTwvZz4KPC9nPgo8L3N2Zz4K); */
    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Mi4zIDUyLjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyLjMgNTIuMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOnJlZDt9Cjwvc3R5bGU+Cjx0aXRsZT5uZXh0XzE8L3RpdGxlPgo8ZyBpZD0iRWJlbmVfMiI+Cgk8ZyBpZD0iRWJlbmVfMS0yIj4KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTkuNywyNi4yaDEzLjYgTTUxLjYsMjYuMkwyNi4yLDUxLjZMMC43LDI2LjJMMjYuMiwwLjdMNTEuNiwyNi4yeiBNMjkuMywyMi40bDQsMy43bC00LDMuN2w0LTMuN0wyOS4zLDIyLjQKCQkJeiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPg==);
     top: calc(80% - 2.2rem) ;
     left: calc(3% + 1.05rem);
@@ -292,6 +278,11 @@ td a.control-item {
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Mi4zIDUyLjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyLjMgNTIuMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOnJlZDt9Cjwvc3R5bGU+Cjx0aXRsZT5wcmV2PC90aXRsZT4KPGcgaWQ9IkViZW5lXzIiPgoJPGcgaWQ9IkViZW5lXzEtMiI+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTMyLjYsMjYuMkgxOSBNMC43LDI2LjJMMjYuMiwwLjdsMjUuNSwyNS40TDI2LjIsNTEuNkwwLjcsMjYuMnogTTIzLDI5LjlsLTQtMy43bDQtMy43bC00LDMuN0wyMywyOS45eiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPg==);
     top: calc(80% + 2.2rem) ;
     left: calc(3% - 1.05rem);
+}
+
+.main\.root .leftallow:hover,
+.main\.root .rightallow:hover {
+    cursor: pointer;
 }
 
 /*
@@ -607,7 +598,6 @@ and (max-device-width : 767px){
     .main\.keywords #maintext,
     .main\.search #maintext,    
     .main\.user #maintext,
-    .main\.root #maintext,
     .main\.edit_profile #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 1.685rem - 1.685rem);
@@ -624,6 +614,22 @@ and (max-device-width : 767px){
         top: 3rem;
         z-index: 2;
         position: relative;
+    }
+    
+    .main\.root #maintext {
+        position: fixed;
+        z-index: 0;
+    }
+    .main\.root #side_menu  #side_top {    
+        padding-left: calc( var(--verticaldistance) * 2 );
+    }
+    .main\.root #details {
+        left: calc(3% + 5rem);
+        top: 5rem;
+    }
+    .main\.root #side_menu {        
+        min-width: calc(97% - 10rem);
+        background-color: white;
     }
     
     #side_menu {
@@ -678,7 +684,6 @@ and (max-device-width : 767px){
     .main\.keywords #maintext,
     .main\.search #maintext,
     .main\.user #maintext,
-    .main\.root #maintext,
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
@@ -707,7 +712,6 @@ and (orientation : landscape) {
     .main\.keywords #maintext,
     .main\.search #maintext,
     .main\.user #maintext,
-    .main\.root #maintext, 
     .main\.user #maintext {
         padding-left: 3.37rem;
         width: calc(100% - 17.5275rem - 3.37rem);
@@ -718,6 +722,17 @@ and (orientation : landscape) {
         width: calc(100% - 17.5275rem );
         direction: ltr;
         top: 0;
+    }
+    
+    .main\.root #side_menu  #side_top {    
+        padding-left: calc( var(--verticaldistance) * 2 );
+    }
+    .main\.root #details {
+        left: calc(3% + 5rem);
+        top: 5rem;
+    }
+    .main\.root #side_menu {        
+        min-width: calc(97% - 10rem);
     }
     
     #side_menu {
@@ -746,7 +761,6 @@ and (orientation : portrait) {
     .main\.keywords #maintext,
     .main\.search #maintext,
     .main\.user #maintext,
-    .main\.root #maintext,
     .main\.user #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 17.5275rem - 1.685rem);
@@ -757,6 +771,17 @@ and (orientation : portrait) {
         width: calc(100% - 17.5275rem );
         direction: ltr;
         top: 0;
+    }
+    
+    .main\.root #side_menu  #side_top {    
+        padding-left: calc( var(--verticaldistance) * 2 );
+    }
+    .main\.root #details {
+        left: calc(3% + 5rem);
+        top: 5rem;
+    }
+    .main\.root #side_menu {        
+        min-width: calc(97% - 10rem);
     }
     
     #side_menu {
@@ -780,8 +805,6 @@ and (orientation : portrait) {
     .main\.categories #maintext,
     .main\.keywords #maintext,
     .main\.search #maintext,
-    .main\.user #maintext,
-    .main\.root #maintext.
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
