@@ -484,6 +484,8 @@ async function generate_from_md(destination, mainCollection) {
     xhr.open('post', '/export_data', true);
     xhr.send(fd)
 
+   
+    
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
 
@@ -494,13 +496,19 @@ async function generate_from_md(destination, mainCollection) {
             var blob = this.response;
             window.URL = window.URL || window.webkitURL;
             var fileURL = window.URL.createObjectURL(blob);
-            if (destination === "latex" || destination === "epub" ) {
+            if (destination === "latex" || destination === "epub" || destination === "msw" ) {
                 var a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
+                
+                // replece white spaces in ttile for use as file name
+                article_title = article_title.replace(/\s/g, "_");
+                
                 if (destination === "latex" ) {                    
-                    a.download = "mur2.tex";
+                    a.download = article_title+".tex";
+                } else if ( destination === "msw" ) {
+                    a.download = article_title+".doc";
                 } else {
-                    a.download = "mur2.epub";
+                    a.download = article_title+".epub";
                 }
                 a.style.display = 'none';
                 document.body.appendChild(a);

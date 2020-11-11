@@ -112,6 +112,10 @@
 				<div>
 					<input id="id_epub" type="radio" class="control-input" name="source_type">
 					<label class="control-item" for="id_epub" title="{{ _('Generate ePUB') }}">ePUB</label>
+				</div>
+                <div>
+					<input id="id_msw" type="radio" class="control-input" name="source_type">
+					<label class="control-item" for="id_msw" title="{{ _('Generate Microsoft Word') }}">Microsoft Word</label>
 				</div>{% if desktop %}
 				<div>
 					<input id="id_latex_export" type="radio" class="control-input" name="source_type">
@@ -144,8 +148,7 @@
 					<label class="control-item " for="id_mcs" title="{{ _('Markdown cheatsheet') }}">{{ _("Markdown cheatsheet") }}</label>
                 </div>    
                 <div>
-                    <input onclick="window.location.href = '{{ url_for('main.editormanual') }}';" class="control-input" id="id_mur2_manual" type="radio" name="source_type">
-                    <label class="control-item " for="id_mur2_manual" title="{{ _('Editor manual') }}">{{ _("Editor manual") }}</label>
+                    <a class="control-item " href="https://mur2.co.uk/editormanual"  target="_blank" rel="noopener noreferrer">{{ _("Editor manual") }}</a>                    
 				</div>
 			</div>
 		</div><!-- first_menu -->

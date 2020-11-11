@@ -49,13 +49,7 @@ This system could be beneficial for everybody except for the monopolies.</p>
 
                     </div>
                     <div id="details_page2" class="details menupage hidedetails">                      
-                    </div>
-                    <div id="details_page3" class="details menupage hidedetails">
-                        <p>!Registration form goes here!</p>
-                    </div>
-                    <div id="details_page4" class="details menupage hidedetails">
-                        <p>!Contact form goes here!</p>
-                    </div>
+                    </div>                    
                 </div>
                 <div id="foot"   > 
                     <a href="https://mur2.co.uk/reader/21" class="control-item">© 2020 μr²</a>
@@ -64,34 +58,21 @@ This system could be beneficial for everybody except for the monopolies.</p>
             </div>
             <div class="menufont topmenu">
             </div>
-            <div id="details"><a  onclick="details()" href="#">Details</a></div>
+            <div  class="info"  id="details"><a  onclick="details()" href="#">Details</a></div>
             <div id="maintext">  
                 <!-- the first page -->
                 <div id="pages">                    
                     <div id="page1" class="frontpages">
                         <div class="lapozo leftallow" ></div>
                         <div class="lapozo rightallow" ></div>
-                        <div class="lapozo pagenumber" >1<div>
+                        <div class="lapozo pagenumber" >1</div>
                     </div>
                     <div id="page2" class="frontpages hide">
-                        <div  class="pagetitle2">Review</div>
-                        <div class="pagetitle1">Publish </div>                        
-                        <div id="stack2">                            
-                        </div>
-                        <a onclick="showdetails()" href="#">see details</a>
-                    </div>
-                    <div id="page3" class="frontpages hide">                        
-                        <div class="pagetitle">                            
-                        </div>
-                        <div class="pagenumber">3</div>
-                    </div>
-                    <div id="page4" class="frontpages hide">                        
-                        <div class="pagetitle">
-                            <h1>Join!</h1>
-                            <a onclick="showdetails()" href="#">Click here to get in touch</a>
-                        </div>
-                        <div class="pagenumber">4</div>
-                    </div>
+                        <div class="lapozo leftallow" ></div>
+                        <div class="lapozo rightallow" ></div>
+                        <div class="lapozo pagenumber" >2</div>
+                        <div class="info" id="demo"><a  onclick="details()" href="#">Demo</a></div>
+                    </div>                   
                 </div>
                 
             </div>            
@@ -114,7 +95,7 @@ This system could be beneficial for everybody except for the monopolies.</p>
                 // this indacete which page we are
                 var delta = 0;
                 // how many page we have
-                var pagenumber = 1;
+                var pagenumber = 2;
                 // how many roll a full page change
                 // Prevously 12
                 var onepage = 6 // can not be smaller than 4 as this is one mouse roll step
@@ -143,7 +124,7 @@ This system could be beneficial for everybody except for the monopolies.</p>
                     var previos = document.getElementById("page"+currentpage);
                     previos.classList.add("hide");
                     // hide previous page details
-                    hidedetails();
+                    hidedetails(currentpage);
 
                     
                     // step the page number
@@ -156,21 +137,28 @@ This system could be beneficial for everybody except for the monopolies.</p>
 
             };
             
-            function details() {
+            function hidedetails(details, side) {
                 var detail = document.getElementById("details_page"+currentpage);
                 var side = document.getElementById("side_menu");
+                // hide details
+                detail.classList.remove("showdetails");
+                detail.classList.add("hidedetails");
+                detail.setAttribute("style", "opacity:0;");
+                side.setAttribute("style", "display:none;");
+            }
+            
+            function details() {
+                console.log(currentpage)
+                var detail = document.getElementById("details_page"+currentpage);
                 if (detail.classList.contains("hidedetails")) {
+                    var side = document.getElementById("side_menu");
                     // show details
                     detail.classList.remove("hidedetails");
                     detail.classList.add("showdetails");
                     detail.setAttribute("style", "opacity:1;z-index: 1;");
                     side.setAttribute("style", "display:inline;z-index: 1;");
                 } else {
-                    // hide details
-                    detail.classList.remove("showdetails");
-                    detail.classList.add("hidedetails");
-                    detail.setAttribute("style", "opacity:0;");
-                    side.setAttribute("style", "display:none;");
+                    hidedetails(currentpage)
                 }
             }            
         </script>
