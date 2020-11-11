@@ -158,6 +158,7 @@ and (orientation : landscape) {
   max-width: 90%;
   position: relative;
   color: #fff;
+  display: inline;
 }
 [id^="lightbox-"] .content:hover > a.close,
 [id^="lightbox-"] .content:hover label.control-item {
