@@ -153,6 +153,7 @@ td a.control-item {
     min-width: calc(50% - 5rem) ; 
     border-left: 1px solid #666;
     z-index: 2;
+    flex-direction: column;
 }
 
 .pagenumber {
@@ -186,10 +187,8 @@ td a.control-item {
 .main\.root  .menupage {
     width: 100%;
     height: calc(100% - 2.8rem - 2.6rem - 0.8425rem );
-    display: inline-block;
     text-align: left;
     text-transform: initial;    
-    opacity: 0;
     animation-duration: 3s;
     -webkit-animation-duration: 3s;
     letter-spacing: 0;
@@ -213,6 +212,7 @@ td a.control-item {
 .hidedetails {
     -webkit-animation-name: animateout;    
     animation-name: animateout;
+    display: none;
 }
 /* Add Animation */
 @-webkit-keyframes animateout {
@@ -687,7 +687,13 @@ and (max-device-width : 767px){
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
-    }     
+    }
+    
+    .main\.journal  #user_username,
+    .main\.user  #user_username {
+        width: 12.5rem;
+    }
+    
     .main\.discovery #maintext {
         flex-direction: column;
         padding-left: 1.685rem;

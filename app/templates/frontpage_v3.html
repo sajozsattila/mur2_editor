@@ -48,7 +48,24 @@ This system could be beneficial for everybody except for the monopolies.</p>
                         <p>Soon! The journey has already begun.  The first step was to develop an <a href="https://mur2.co.uk/editor">editor </a> where it’s possible to write and collaborate on Articles.  The second step was to match unpublished Articles with potential peer-reviewers using AI, and the final step is to build a community around the μr² project. <a href="https://mur2.co.uk/auth/register">This is where you come in.</a></p>
 
                     </div>
-                    <div id="details_page2" class="details menupage hidedetails">                      
+                    <div id="details_page2" class="details menupage hidedetails"> 
+                        <h2></h2>
+                        <p>Do you need an easy to use, a versatile and comprehensive text editor for academic writing with equations and diagrams? The μr² editor does exactly this by extending Markdown with LaTeX equation support.<br>
+</br>Reasons to <a href="https://mur2.co.uk/editor">try our editor</a>:</p>
+<ul>
+<li>It’s fast; the simple formatting saves a significant amount of time over other word processors</li>
+<li>It’s easy to learn; Markdown syntax is so simple one can barely call it “syntax”</li>
+<li>The user interface is minimal, helping to focus on what you are writing</li>
+<li>Fully supports LaTeX math input</li>
+<li>Easily export your document to PDF, Microsoft Word, ePuB, LaTeX and HTML</li>
+<li>Alternatively, publish your work directly to Wordpress.com, Medium.com or in our page</li>
+</ul>
+<p>The editor uses plain text formatting syntax aimed at making writing simple.  The philosophy behind it; a document should be readable without tags everywhere but still be able to add text modifiers such as lists, bold text and italics quickly.  Here’s a quick example; to emphasize words, you simply enclose them in * (asterisks). So, *emphasize word* would look like <em>emphasize word</em> in the final document. If you are new to Markdown or need help with the syntax do not worry.  You can use the toolbar controls within the editor or open up a Markdown cheatsheet from the menu.
+</br>
+</br>
+Most academic articles are the result of shared effort by multiple Writers.  To help Writers work together the μr² supports collaborative real-time editing.  Any registered user can be invited to work on your document and you will be able to edit it simultaneously.</p>
+
+
                     </div>                    
                 </div>
                 <div id="foot"   > 
@@ -71,7 +88,7 @@ This system could be beneficial for everybody except for the monopolies.</p>
                         <div class="lapozo leftallow" onclick="lapozo(1)" ></div>
                         <div class="lapozo rightallow" onclick="lapozo(1)" ></div>
                         <div class="lapozo pagenumber" >2</div>
-                        <div class="info" id="demo"><a  onclick="details()" href="#">Demo</a></div>
+                        <!-- <div class="info" id="demo"><a  onclick="details()" href="#">Demo</a></div> -->
                     </div>                   
                 </div>
                 
@@ -122,15 +139,18 @@ This system could be beneficial for everybody except for the monopolies.</p>
                     // IE and Opera
                     delta = event.wheelDelta ;
                 } else if (event.deltaY) {
-                    // W3C
-                    if ( pageposition > pagenumber*onepage ) {
-                        pageposition = pagenumber*onepage ;
-                    } else if ( pageposition < 0 ) {
-                        pageposition = 0;
-                    } else {
-                        pageposition += event.deltaY ;
-                    }
-                    
+                    // if detail page is open we not score
+                    var detail = document.getElementById("details_page"+currentpage);
+                    if ( ! detail.classList.contains("showdetails") ) {
+                        // W3C
+                        if ( pageposition > pagenumber*onepage ) {
+                            pageposition = pagenumber*onepage ;
+                        } else if ( pageposition < 0 ) {
+                            pageposition = 0;
+                        } else {
+                            pageposition += event.deltaY ;
+                        }
+                    }                    
                 }
                 
                 // set the page
@@ -147,7 +167,7 @@ This system could be beneficial for everybody except for the monopolies.</p>
                 // hide details
                 detail.classList.remove("showdetails");
                 detail.classList.add("hidedetails");
-                detail.setAttribute("style", "opacity:0;");
+                detail.setAttribute("style", "display:none;");
                 side.setAttribute("style", "display:none;");
             }
             
@@ -159,8 +179,8 @@ This system could be beneficial for everybody except for the monopolies.</p>
                     // show details
                     detail.classList.remove("hidedetails");
                     detail.classList.add("showdetails");
-                    detail.setAttribute("style", "opacity:1;z-index: 1;");
-                    side.setAttribute("style", "display:inline;z-index: 1;");
+                    detail.setAttribute("style", "display:inline;z-index: 1;");
+                    side.setAttribute("style", "display:flex;z-index: 1;");
                 } else {
                     hidedetails(currentpage)
                 }
