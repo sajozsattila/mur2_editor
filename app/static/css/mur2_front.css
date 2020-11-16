@@ -27,6 +27,7 @@
 }
 
 .main\.proofs #maintext,
+.main\.oa_browser #maintext,
 .main\.discovery #maintext {
     flex-direction: column;
     padding-left: 1.685rem;
