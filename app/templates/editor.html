@@ -250,7 +250,7 @@
                  <!-- Download result -->
                  <input class="choice_toolbar control-input" id="id_download" type="radio" name="source_type" >
                  <label class=" fontawsome fas fa-file-download toolbar" for="id_download" title="{{ _('Download result') }}" ></label>        
-                 {% if not current_user.is_anonymous and ( owner or article_id == -1 ) %}
+                 {% if not current_user.is_anonymous and ( owner or article_id > -1 ) %}
                  <!-- Save -->
                  <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-save fontawsome " for="id_save" title="{{ _('Save') }}" ></label>

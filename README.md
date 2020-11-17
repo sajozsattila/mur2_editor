@@ -174,6 +174,52 @@ CREATE TABLE writerrelationship (
 sqlite> .exit 0
 ```
 
+# Neo4j
+
+Two Neo4j db is used: one from the fornedn and one from the Open Acces Articles.  
+
+Both of them based on the same docker images, but mount different directories for the system.
+
+## Update
+
+Just update the docker, do not forget to download the "apoc" plugin, which is matching with the DB version. 
+
+## Full text search
+
+The neo4j have an effective build in full text search engine. For details see: [documentation](https://neo4j.com/docs/cypher-manual/current/administration/indexes-for-full-text-search/)
+
+### define and index
+```
+CALL db.index.fulltext.createNodeIndex("titlesAndAbstract",["Article"],["Title", "Abstract"])
+```
+
+### search
+
+```
+CALL db.index.fulltext.queryNodes("titlesAndAbstract", "chrystal-orientation fabric") YIELD node, score
+RETURN node.Abstract, node.Title, score;
+```
+
+# SSH cert
+
+https://certbot.eff.org/lets-encrypt/ubuntufocal-other
+
+
+Need to set the firewall also, the normal port forwarding is 80->8081 and 443->8443. this need to set to 80->80 and 443->443.
+
+After:
+``` bash 
+cd /Mur2/Git/Frontend
+docker stop mur2_frontend mur2_redirect
+sudo certbot certonly --standalone 
+sudo cp /etc/letsencrypt/live/mur2.co.uk/privkey.pem key.pem
+sudo cp /etc/letsencrypt/live/mur2.co.uk/fullchain.pem cert.pem
+docker start mur2_frontend mur2_redirect
+```
+
+
+
+
 # Internation language support
 doc: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiii-i18n-and-l10n
 
