@@ -217,7 +217,18 @@ sudo cp /etc/letsencrypt/live/mur2.co.uk/fullchain.pem cert.pem
 docker start mur2_frontend mur2_redirect
 ```
 
+Do not forgot you need to build a new Convergence docker also with the new keys:
 
+```
+cp /Mur2/Git/Frontend/key.pem /Mur2/Git/Convergence/Source/
+cp /Mur2/Git/Frontend/cert.pem /Mur2/Git/Convergence/Source/
+cd /Mur2/Git/Convergence
+bash build.sh
+cd /Mur2/Mur2_builder
+docker-compose stop conv && docker-compose rm conv && docker-compose up -d conv
+```
+
+Basically you need to copy the `key.pem` and `cert.pem` files to the `/Mur2/Git/Convergence/Source` directory, and run t
 
 
 # Internation language support
