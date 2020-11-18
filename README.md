@@ -228,8 +228,6 @@ cd /Mur2/Mur2_builder
 docker-compose stop conv && docker-compose rm conv && docker-compose up -d conv
 ```
 
-Basically you need to copy the `key.pem` and `cert.pem` files to the `/Mur2/Git/Convergence/Source` directory, and run t
-
 
 # Internation language support
 doc: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiii-i18n-and-l10n

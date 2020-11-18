@@ -376,7 +376,7 @@ function g_domFindScrollMarks() {
             image.classList.remove("hide");
             // save the image localy
             localStorage.setItem("mur2_featured_image"+article_id, image.src);
-            localStorage.setItem("mur2_featured_image"+article_id+'_time', +new Date);
+            localStorage.setItem("mur2_featured_image"+article_id+'_time', +new Date.getUTCDate() );
         };
         // you have to declare the file loading
         reader.readAsDataURL(file);     

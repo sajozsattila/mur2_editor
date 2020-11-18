@@ -33,7 +33,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@convergence/convergence@1.0.0-rc.5/convergence.global.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@convergence/input-element-bindings@0.3.4/browser/convergence-input-element-bindings.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@convergence/html-text-collab-ext/umd/html-text-collab-ext.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@convergence/color-assigner/umd/color-assigner.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@convergence/color-assigner/umd/color-assigner.js"></script> -->
 
         <!-- style -->
         <!-- <link rel="stylesheet" href="/static/css/mur2.css"> -->
@@ -250,7 +250,7 @@
                  <!-- Download result -->
                  <input class="choice_toolbar control-input" id="id_download" type="radio" name="source_type" >
                  <label class=" fontawsome fas fa-file-download toolbar" for="id_download" title="{{ _('Download result') }}" ></label>        
-                 {% if not current_user.is_anonymous and ( owner or article_id > -1 ) %}
+                 {% if not current_user.is_anonymous and ( owner or article_id >= -1 ) %}
                  <!-- Save -->
                  <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-save fontawsome " for="id_save" title="{{ _('Save') }}" ></label>
@@ -342,7 +342,7 @@
             document.getElementById('main-source').value = data || '{{ article_markdown }}'.replace(/&lt;/g, '<')  ;
             document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace(/'&lt;/g, '<')  ;
             document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace(/&lt;/g, '<')  ;
-            
+                                    
         }());
                   
        </script> 
@@ -401,12 +401,13 @@
             // just saved articla can be shared
             if ( {{ article_id }} > 0 ){
                 // get the username
-                username =  encodeUnicode("{{ thisuser[0] }}")+randomtext(6);
+                var username =  encodeUnicode("{{ thisuser[0] }}");
                         
-                var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";                       
+                var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";
+                // var domainUrl = "https://mur2.co.uk:9000/api/realtime/mur2.co.uk/"+{{ article_id }};
             
                 // 1. Connect to the domain anonymously.
-                Convergence.connectAnonymously(domainUrl)
+                Convergence.connectAnonymously(domainUrl, username)
                     .then(initApp)
                     .catch((error) => {
                     console.log("Could not connect: " + error);
@@ -458,6 +459,14 @@
                 }
             }            
         </script>
+        <script type="text/javascript">
+           // add focuse on the main area
+            var field = document.getElementById('main-source');
+            field.focus();
+            field.select();
+            field.selectionStart = 0;
+            field.selectionEnd = 0
+       </script>
        </div><!-- horizontal_box -->
     </body>        
 </html>

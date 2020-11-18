@@ -288,6 +288,20 @@ td a.control-item {
 
 /*
  ****************************************
+ * special setting for oa 
+ */
+
+.main\.oareader .articleinfo {
+    width: calc( var(--verticaldistance) * 4 );
+}
+
+.main\.oareader .articleinforow {
+    display: flex;
+    flex-direction: row;
+}
+
+/*
+ ****************************************
  * special setting for login 
  */
 
