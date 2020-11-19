@@ -2,7 +2,7 @@
 <html lang="{{ language }}">
     <head>
         <title>{{ title }}</title>
-        <meta name="author" content="{{author[0][0]}}{%if author|length > 1 %}{% for a in author[1:] %},{{ a[0] }}{% endfor %}{%endif %}">
+        <meta name="author" content="{{author[0][0]}}{%if author|length > 1 %}{% for a in author[1:] %}, {{ a[0] }}{% endfor %}{%endif %}">
 
 
         <!-- style -->
@@ -401,7 +401,7 @@
             // just saved articla can be shared
             if ( {{ article_id }} > 0 ){
                 // get the username
-                var username =  encodeUnicode("{{ thisuser[0] }}");
+                var username =  encodeUnicode("{{ thisuser[0] }}")+randomtext(6);
                         
                 var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";
                 // var domainUrl = "https://mur2.co.uk:9000/api/realtime/mur2.co.uk/"+{{ article_id }};

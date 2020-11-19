@@ -291,10 +291,12 @@ td a.control-item {
  * special setting for oa 
  */
 
+.main\.reader .articleinfo,
 .main\.oareader .articleinfo {
     width: calc( var(--verticaldistance) * 4 );
 }
 
+.main\.reader .articleinforow,
 .main\.oareader .articleinforow {
     display: flex;
     flex-direction: row;
