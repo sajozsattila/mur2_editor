@@ -547,7 +547,7 @@ function multiSearchKeyup(inputElement) {
         newcat = true;
     }
     
-    
+    // we add a newcat
     if(newcat) {                
         var newstring = inputElement.value;
         if ( inputElement.value.slice(-2) == '\\n' ) {
@@ -565,10 +565,7 @@ function multiSearchKeyup(inputElement) {
             inputElement.parentNode.getElementsByTagName("input")[0].style.display = 'none'; 
         }
     } else if ( remove ) {
-        // check input ready
-        if ( inputElement.parentNode.parentNode.getElementsByTagName("input")[0].style.display === 'none' ) {
-            inputElement.parentNode.parentNode.getElementsByTagName("input")[0].style.display = 'inline'; 
-        }
+        // we not add a new element so we remove one        
         // remove item
         inputElement.parentNode.remove()
     }
@@ -634,27 +631,29 @@ function addNewAuthor(action, id) {
         if ( workshares[i].value !== "" ) {
             if ( action === "remove" ) {
                 // do not count the users which we removing
-                if ( parseInt(workshares[i].getAttribute("userid")) !== id  ) {
+                if ( workshares[i].getAttribute("userid") !== id  ) {
                     allworkshare += parseInt(workshares[i].value);
                     // check workshare changed
                     if ( parseInt(workshares[i].getAttribute("original")) !== parseInt(workshares[i].value) ) {
-                        changeworkshare[parseInt(workshares[i].getAttribute("userid"))] = parseInt(workshares[i].value) ;
+                        changeworkshare[workshares[i].getAttribute("userid")] = parseInt(workshares[i].value) ;
                     }
                 }
             } else {
                 allworkshare += parseInt(workshares[i].value);
                 if ( parseInt(workshares[i].getAttribute("original")) !== parseInt(workshares[i].value) ) {
-                    changeworkshare[parseInt(workshares[i].getAttribute("userid"))] = parseInt(workshares[i].value) ;
+                    changeworkshare[workshares[i].getAttribute("userid")] = parseInt(workshares[i].value) ;
                 }
             }
         }    
     }
+    console.log(JSON.stringify(changeworkshare));
+    console.log(newauthor);
+    console.log(articleid);
+    console.log(action);
     if ( allworkshare !== 100 ) {
-        console.log(allworkshare);
         msgbox.style.color = "red";
         msgbox.innerHTML = "Error: The sum of the workshare is not 100!"
     } else {
-        
         // send data to frontend
         var fd = new FormData();
         fd.append("newauthor", newauthor);
@@ -673,8 +672,8 @@ function addNewAuthor(action, id) {
             } else {
                 // update the page
                 location.reload();
-        }
-    };
+            }
+        };        
     }
 }
 

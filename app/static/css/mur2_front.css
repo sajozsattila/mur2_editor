@@ -302,6 +302,10 @@ td a.control-item {
     flex-direction: row;
 }
 
+.main\.oareader .similar {
+    padding-bottom: 0.8425rem;
+}
+
 /*
  ****************************************
  * special setting for login 

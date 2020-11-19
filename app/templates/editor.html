@@ -86,6 +86,7 @@
                      {% endfor %}
                      {% if categories|length < 3 %}
                      <select id = "myList"  onchange="multiSearchKeyup(this)">
+                         <option hidden disabled selected value>{{ _('Select a category') }}</option>
                          <option value = "{{ _('Physics') }}\n">{{ _('Physics') }}</option>
                          <option value = "{{ _('Chemistry') }}\n">{{ _('Chemistry') }}</option>
                          <option value = "{{ _('Earth Science') }}\n">{{ _('Earth Science') }}</option>
@@ -162,7 +163,7 @@
                  <div id="articale_authors">                     
                      {% for a in author %}
                          {% if owner %}
-                     <div>{{ a[0] }} <button onclick='addNewAuthor("remove", {{ a[1] }})' >Remove</button> – Workshare: <input class="workshare" original="{{ a[2] }}" userid="{{ a[1] }}" type="number" min="0" max="100" value="{{ a[2] }}"></div>
+                     <div>{{ a[0] }} <button onclick='addNewAuthor("remove", "{{ a[0] }}")' >Remove</button> – Workshare: <input class="workshare" original="{{ a[2] }}" userid="{{ a[0] }}" type="number" min="0" max="100" value="{{ a[2] }}"></div>
                          {% else %}
                      <div>{{ a[0] }} – Workshare: {{ a[2] }} </div>
                          {% endif %}
