@@ -254,3 +254,20 @@ Update a translateion
 pybabel extract -F babel.cfg -k _l -o messages.pot .
 pybabel update -i messages.pot -d app/translations
 ```
+
+# ML
+
+To make more Memory available for the ML scripts:
+
+Free up memory buffer:
+```
+ free -h && sudo sysctl -w vm.drop_caches=3 && sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches && free -h
+ ```
+ 
+ More aggressive swapping. Default 60, which mean it is starting swaping if less than 60% of the memmory left free.
+ ```
+ cat /proc/sys/vm/swappiness
+ sudo bash -c "echo 'vm.swappiness = 95' >> /etc/sysctl.conf"
+ sudo sysctl -p
+ cat /proc/sys/vm/swappiness
+ ```
