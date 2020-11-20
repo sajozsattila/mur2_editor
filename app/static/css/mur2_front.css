@@ -627,6 +627,11 @@ and (max-device-width : 767px){
         top: 3rem;
     }
     
+    .main\.reader .articleinfo, 
+    .main\.oareader .articleinfo {
+        width: calc( var(--verticaldistance) * 6 );
+    }
+    
     .main\.discovery #maintext {
         flex-direction: column;
         padding-left: 1.685rem;
