@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="maintitle">        
+        {% if searchtype == "category" %}
+        <h1>{{ _('Category') }}: {{ term }}</h1>
+        <div><a href="/discovery?type=Category&object={{ keyword }}">{{ _("Category") }} {{ _("Discovery") }}</a></div>
+        {% elif searchtype == "keyword" %}
+        <h1>{{ _('Keyword') }}: {{ term }}</h1>
+        <div><a href="/discovery?type=Tag&object={{ keyword }}">{{ _("Keyword") }} {{ _("Discovery") }}</a></div>
+        {% elif searchtype == "search" %}
+        <h1>{{ _('Search') }}: {{ term }}</h1>
+        {% endif %}
+    </div>
+    
+    {% for article in articles %}
+        {% include 'article2.html' %}
+    {% endfor %}
+
+    <div id="lapozo"> 
+        {% if beforelabel %}
+        <a href="{{ url_for('main.keywords', searchtype=searchtype) }}?term={{ term }}&page={{page-1}}&pagesize={{pagesize}}">{{ _('Before') }}</a>
+        {% else %}
+        <p></p>
+        {% endif %}
+        {% if nextlabel %}
+        <a href="{{ url_for('main.keywords', searchtype=searchtype) }}?term={{ term }}&page={{page+1}}&pagesize={{pagesize}}">{{ _('Next') }}</a>
+        {% else %}
+        <p></p>        
+        {% endif %}
+    </div>
+    
+
+{% endblock %}
