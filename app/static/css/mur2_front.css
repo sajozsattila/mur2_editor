@@ -294,6 +294,7 @@ td a.control-item {
 .main\.reader .articleinfo,
 .main\.oareader .articleinfo {
     width: calc( var(--verticaldistance) * 4 );
+    flex-shrink: 0;
 }
 
 .main\.reader .articleinforow,
@@ -370,7 +371,6 @@ td a.control-item {
 }
 
 
-.main\.categories #maintext,
 .main\.keywords #maintext,
 .main\.search #maintext,
 .main\.user #maintext,
@@ -387,7 +387,6 @@ td a.control-item {
 }
 
 .main\.journal .usertitle,
-.main\.categories .usertitle,
 .main\.keywords .usertitle,
 .main\.search .usertitle ,
 .main\.root .usertitle ,
@@ -405,9 +404,7 @@ td a.control-item {
 }
 
 .main\.journal .usertitle a,
-.main\.categories .usertitle a,
 .main\.keywords .usertitle a,
-.main\.search .usertitle a,
 .main\.root .usertitle a,
 .main\.user .usertitle a {
     text-decoration: none;
@@ -416,12 +413,8 @@ td a.control-item {
 
 .main\.journal .usertitle,
 .main\.journal .userabstract,
-.main\.categories .usertitle,
-.main\.categories .userabstract,
 .main\.keywords .usertitle,
 .main\.keywords .userabstract,
-.main\.search .usertitle,
-.main\.search .userabstract,
 .main\.root .usertitle,
 .main\.root .userabstract,
 .main\.user .usertitle,
@@ -432,9 +425,7 @@ td a.control-item {
 }
 
 .main\.journal .userabstract,
-.main\.categories  .userabstract ,
 .main\.keywords  .userabstract ,
-.main\.search  .userabstract ,
 .main\.root .userabstract,
 .main\.user .userabstract {
     display: flex;
@@ -442,9 +433,7 @@ td a.control-item {
 } 
 
 .main\.journal   .user_articles,
-.main\.categories   .user_articles,
 .main\.keywords   .user_articles, 
-.main\.search   .user_articles, 
 .main\.root   .user_articles, 
 .main\.user .user_articles {
     padding-bottom: 3.37rem;
@@ -454,12 +443,8 @@ td a.control-item {
 
 .main\.journal  .userabstracttext p,
 .main\.journal  .usertitle p,
-.main\.categories  .userabstracttext p,
-.main\.categories  .usertitle p,
 .main\.keywords  .userabstracttext p,
 .main\.keywords  .usertitle p,
-.main\.search  .userabstracttext p,
-.main\.search  .usertitle p,
 .main\.root  .userabstracttext p,
 .main\.root  .usertitle p,
 .main\.user .userabstracttext p ,
@@ -469,9 +454,7 @@ td a.control-item {
 }
 
 .main\.journal  .article_action,
-.main\.categories  .article_action,
 .main\.keywords  .article_action,
-.main\.search  .article_action,
 .main\.root  .article_action,
 .main\.user .article_action{
     opacity: 0;
@@ -481,9 +464,7 @@ td a.control-item {
 }
 
 .main\.journal  .article_action:hover,
-.main\.categories  .article_action:hover,
 .main\.keywords  .article_action:hover,
-.main\.search  .article_action:hover,
 .main\.root  .article_action:hover,
 .main\.user .article_action:hover{
     opacity: 1;
@@ -507,9 +488,7 @@ td a.control-item {
  ****************************************
  * special setting for search 
  */
-.main\.categories #maintext h1, 
-.main\.keywords #maintext h1, 
-.main\.search #maintext h1 {
+.main\.keywords #maintext h1 {
     direction: ltr;
     margin: unset;
     left: 1.685rem;
@@ -520,9 +499,7 @@ td a.control-item {
     width: calc(100% + 1.685rem);
 }
 
-.main\.categories #maintext,
-.main\.keywords #maintext,
-.main\.search #maintext {
+.main\.keywords #maintext {
     padding-top: calc(2.4215rem + 1px);
 }
 
@@ -615,9 +592,7 @@ and (max-device-width : 767px){
     }
     
     #maintext,
-    .main\.categories #maintext,
-    .main\.keywords #maintext,
-    .main\.search #maintext,    
+    .main\.keywords #maintext,    
     .main\.user #maintext,
     .main\.edit_profile #maintext {
         padding-left: 1.685rem;
@@ -706,9 +681,7 @@ and (max-device-width : 767px){
 /* 5/4 desktop */
 @media screen and (min-device-width : 1025px) and (max-device-width : 1440px) and (min-aspect-ratio: 5/4) { 
     #maintext,
-    .main\.categories #maintext,
     .main\.keywords #maintext,
-    .main\.search #maintext,
     .main\.user #maintext,
     .main\.user #maintext {
         padding-left: 15.25rem;
@@ -740,9 +713,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
     #maintext,
-    .main\.categories #maintext,
     .main\.keywords #maintext,
-    .main\.search #maintext,
     .main\.user #maintext,
     .main\.user #maintext {
         padding-left: 3.37rem;
@@ -789,9 +760,7 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
     #maintext,
-    .main\.categories #maintext,
     .main\.keywords #maintext,
-    .main\.search #maintext,
     .main\.user #maintext,
     .main\.user #maintext {
         padding-left: 1.685rem;
@@ -834,9 +803,7 @@ and (orientation : portrait) {
 @media only screen and (max-width: 900px), 
 (height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape) {
     #maintext,
-    .main\.categories #maintext,
     .main\.keywords #maintext,
-    .main\.search #maintext,
     .main\.user #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);

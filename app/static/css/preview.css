@@ -108,7 +108,7 @@ body h1#article_title + div {
 #article_preview_side div#article_title, 
 body h1#article_title,
 body h2#article_title {
-    line-height: calc( var(--verticaldistance) * 3 );
+    line-height: calc( var(--verticaldistance) * 4 );
     font-size: 4.2999em;
 }
 
