@@ -11,6 +11,9 @@
         {% elif searchtype == "search" %}
         <h1>{{ _('Search') }}: {{ term }}</h1>
         {% endif %}
+        {% if searchtype == "journal" %}
+        <h1>{{ _('Journal') }}: {{ title }}</h1>
+        {% endif %}
     </div>
     
     {% for article in articles %}
@@ -18,17 +21,33 @@
     {% endfor %}
 
     <div id="lapozo"> 
-        {% if beforelabel %}
-        <a href="{{ url_for('main.keywords', searchtype=searchtype) }}?term={{ term }}&page={{page-1}}&pagesize={{pagesize}}">{{ _('Before') }}</a>
-        {% else %}
-        <p></p>
-        {% endif %}
         {% if nextlabel %}
         <a href="{{ url_for('main.keywords', searchtype=searchtype) }}?term={{ term }}&page={{page+1}}&pagesize={{pagesize}}">{{ _('Next') }}</a>
         {% else %}
         <p></p>        
         {% endif %}
+        {% if beforelabel %}
+        <a href="{{ url_for('main.keywords', searchtype=searchtype) }}?term={{ term }}&page={{page-1}}&pagesize={{pagesize}}">{{ _('Before') }}</a>
+        {% else %}
+        <p></p>
+        {% endif %}        
     </div>
+
+    <!-- math support with MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
     
 
 {% endblock %}
