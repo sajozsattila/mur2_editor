@@ -108,9 +108,11 @@ body h1#article_title + div {
 #article_preview_side div#article_title, 
 body h1#article_title,
 body h2#article_title {
-    line-height: calc( var(--verticaldistance) * 4 );
+    line-height: calc( var(--verticaldistance) * 3 );
     font-size: 4.2999em;
 }
+
+
 
 body h2#article_title + div,
 body h1#article_title + div {
@@ -135,6 +137,7 @@ and (max-device-width : 767px){
     body h1#article_title, 
     body h1#article_title + div {
         left: 0rem;
+        line-height: calc( var(--verticaldistance) * 4 );
         /* max-width: 41rem; */
     }
     div#article_abstract_div, 
@@ -142,7 +145,7 @@ and (max-device-width : 767px){
     #article_main li,
     #article_main h1 {
         max-width: unset;    
-    }
+    }   
     
     .main\.discovery #side_menu,
     .main\.root #side_menu ,

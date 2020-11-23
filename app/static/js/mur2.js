@@ -91,3 +91,11 @@ function encodeUnicode(str) {
         return String.fromCharCode('0x' + p1);
     }));
 }
+
+function validateEmail(mail) {
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
+        return (true)
+    }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
