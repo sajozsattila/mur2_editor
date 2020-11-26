@@ -327,7 +327,9 @@ td a.control-item {
 
 .main\.edit_journal #maintext ,
 .main\.edit_profile #maintext ,
-.auth\.login #maintext {
+.auth\.login #maintext,
+.auth\.register #maintext, 
+.auth\.reset_password_request #maintext {
     border-right: 1px solid #666;
     z-index: 30;
     padding-right: 1.685rem;
