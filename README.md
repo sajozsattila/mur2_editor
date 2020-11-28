@@ -200,6 +200,36 @@ CALL db.index.fulltext.queryNodes("titlesAndAbstract", "chrystal-orientation fab
 RETURN node.Abstract, node.Title, score;
 ```
 
+### DB cleanup
+Deduplicate Keywords
+```
+MATCH (k:Keyword) WITH tolower(trim(k.Name)) as kname, count(k) as knum, collect(id(k)) as kid WHERE knum > 1 
+WITH kid, kname LIMIT 1000
+WITH kid, kname
+MATCH (k:Keyword)--(a:Article) WHERE id(k) in kid
+WITH kname, kid, collect(id(a)) as aid
+CREATE (k:Keyword {Name: kname})
+WITH k, kid, aid
+UNWIND(aid) as aaid
+WITH aaid, k, kid
+MATCH (a:Article) WHERE Id(a) = aaid
+MERGE p=(k)-[r:keyword]->(a)
+WITH kid,p,k
+MATCH (kk:Keyword) WHERE id(kk) in kid
+DETACH DELETE kk
+RETURN count(k)
+```
+
+"None" keyword
+```
+MATCH (k:Keyword) WHERE k.Name = "None" DETACH DELETE k;
+```
+
+Articles without Doi. Most of time they have in reality DOI, just some reason we do not harvested, so need to set manually.
+```
+MATCH (a:Article) WHERE a.DOI = "" RETURN a
+```
+
 # SSH cert
 
 https://certbot.eff.org/lets-encrypt/ubuntufocal-other

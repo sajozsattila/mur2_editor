@@ -338,7 +338,8 @@ td a.control-item {
     text-align: right;
 }
 
-
+.auth\.register #maintext  h1, 
+.auth\.reset_password_request #maintext  h1, 
 .auth\.login #maintext h1 {
     border-top: solid 1px #666;
     padding-right: 3.37rem;
@@ -348,15 +349,21 @@ td a.control-item {
     left: 0;
 }
 
+.auth\.register #foot, 
+.auth\.reset_password_request #foot,
 .auth\.login #foot {
     border-left: 1px solid #666; 
     padding-left: 1.685rem;
 }
 
+.auth\.register #mur2menu_link, 
+.auth\.reset_password_request #mur2menu_link,
 .auth\.login #mur2menu_link {
     padding-left: 1.685rem;
 }
 
+.auth\.register #side_menu #mur2menutop, 
+.auth\.reset_password_request #side_menu #mur2menutop,
 .auth\.login #side_menu #mur2menutop {
     border-bottom: solid 1px #666;
 }
@@ -673,9 +680,14 @@ and (max-device-width : 767px){
         z-index: 3;
     }
     
+    .auth\.reset_password_request #side_menu,
+    .auth\.register #side_menu,
     .auth\.login #side_menu {
         display: none;
     }
+    
+    .auth\.reset_password_request #maintext,
+    .auth\.register #maintext,
     .auth\.login #maintext {
         padding-right: 5.055rem;
     }
