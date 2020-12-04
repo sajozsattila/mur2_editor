@@ -66,7 +66,24 @@ This system could be beneficial for everybody except for the monopolies.</p>
 Most academic articles are the result of shared effort by multiple Writers.  To help Writers work together the μr² supports collaborative real-time editing.  Any registered user can be invited to work on your document and you will be able to edit it simultaneously.</p>
 
 
-                    </div>                    
+                    </div>
+                    <div id="details_page3" class="details menupage hidedetails"> 
+                        <h2>Open-Access Article search engine</h2>
+<p>Tens of thousands of Open-Access scientific Articles are published every year and this raises two questions:</p>
+<ul>
+<li>How can one easily keep up to date?</li>
+<li>And how can one find good quality Articles in a sea of publications?</li>
+</ul>
+<p>Our search engine and Open-Acces Article database aims to answer these questions.</p>
+<p>First, we make a strict selection of over 250 000 Articles from 430 Journals<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> in <em>Math</em>, <em>AI</em>, <em>Biology</em> and <em>Geographical</em> areas.  This helps reduce “noise” and means that users only see good quality Articles.</p>
+<p>Second, is our Artificial Intelligence running in the background.  It finds <a href="https://mur2.co.uk/oa_browser?type=start">related Articles</a> based on the contents of the abstract.  This leads to a much more accurate search experience than any keyword-based approach - <a href="https://search.mur2.co.uk">try it here</a>.  Moreover, if an Article is of interest, it can be subscribed to, and when a new article is published that the AI thinks is similar, you will receive an email notification. With this, you can keep up to date with minimal effort!</p>
+<div class="separator"></div>
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>All of these Journals are in the Web of Science:  <em>Science Citation Index Expanded</em> or  <em>Emerging Sources Citation Index</em>. However, if you think a Journal is missing, please do not hesitate to contact us on our <a href="https://github.com/sajozsattila/Journal_monitor">Github project page</a>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+                    </div>
                 </div>
                 <div id="foot"   > 
                     <a href="https://mur2.co.uk/reader/21" class="control-item">© 2020 μr²</a>
@@ -81,15 +98,21 @@ Most academic articles are the result of shared effort by multiple Writers.  To 
                 <div id="pages">                    
                     <div id="page1" class="frontpages">
                         <div class="lapozo leftallow" onclick="lapozo(2)" ></div>
-                        <div class="lapozo rightallow" onclick="lapozo(2)" ></div>
+                        <div class="lapozo rightallow" onclick="lapozo(3)" ></div>
                         <div class="lapozo pagenumber" >1</div>
                     </div>
                     <div id="page2" class="frontpages hide">
-                        <div class="lapozo leftallow" onclick="lapozo(1)" ></div>
+                        <div class="lapozo leftallow" onclick="lapozo(3)" ></div>
                         <div class="lapozo rightallow" onclick="lapozo(1)" ></div>
                         <div class="lapozo pagenumber" >2</div>
                         <!-- <div class="info" id="demo"><a  onclick="details()" href="#">Demo</a></div> -->
-                    </div>                   
+                    </div> 
+                    <div id="page3" class="frontpages hide">
+                        <div class="lapozo leftallow" onclick="lapozo(1)" ></div>
+                        <div class="lapozo rightallow" onclick="lapozo(2)" ></div>
+                        <div class="lapozo pagenumber" >3</div>
+                        <!-- <div class="info" id="demo"><a  onclick="details()" href="#">Demo</a></div> -->
+                    </div> 
                 </div>
                 
             </div>            
@@ -127,7 +150,7 @@ Most academic articles are the result of shared effort by multiple Writers.  To 
                 // this indacete which page we are
                 var delta = 0;
                 // how many page we have
-                var pagenumber = 2;
+                var pagenumber = 3;
                 // how many roll a full page change
                 // Prevously 12
                 var onepage = 6 // can not be smaller than 4 as this is one mouse roll step

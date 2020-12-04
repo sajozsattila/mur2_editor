@@ -248,6 +248,19 @@ td a.control-item {
     width: 100%;
 }
 
+.main\.root #maintext #pages #page3 {
+    /* a full cover of background image */
+    /* background-image: url("../images/mur2_revis_4.jpg"); */
+    background-image: url("https://sajozsattilahome.files.wordpress.com/2020/12/dscf3865.jpg");
+    background-repeat: no-repeat;
+    min-width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+}
+
 .main\.root #maintext #pages #page2 {
     /* a full cover of background image */
     /* background-image: url("../images/mur2_revis_4.jpg"); */
