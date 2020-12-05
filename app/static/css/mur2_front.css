@@ -44,6 +44,10 @@
     /* */
     border-bottom: solid black 1px;
 }
+.main\.searchstart #maintext .control-item:hover {
+    /* */
+    border-bottom: none;
+}
 
 /* user profile */
 #user_profil_overview {
@@ -340,6 +344,7 @@ td a.control-item {
 
 .main\.edit_journal #maintext ,
 .main\.edit_profile #maintext ,
+.main\.searchstart  #maintext ,
 .auth\.login #maintext,
 .auth\.register #maintext, 
 .auth\.reset_password_request #maintext {

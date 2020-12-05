@@ -4,15 +4,16 @@
     <div id="maintitle">        
         {% if searchtype == "category" %}
         <h1>{{ _('Category') }}: {{ term }}</h1>
-        <div><a href="/discovery?type=Category&object={{ keyword }}">{{ _("Category") }} {{ _("Discovery") }}</a></div>
+        <div><a href="/oa_browser?type=Category&object={{ term }}">{{ _("Category") }} {{ _("Discovery") }}</a></div>
         {% elif searchtype == "keyword" %}
         <h1>{{ _('Keyword') }}: {{ term }}</h1>
-        <div><a href="/discovery?type=Tag&object={{ keyword }}">{{ _("Keyword") }} {{ _("Discovery") }}</a></div>
+        <div><a href="/oa_browser?type=Tag&object={{ term }}">{{ _("Keyword") }} {{ _("Discovery") }}</a></div>
         {% elif searchtype == "search" %}
         <h1>{{ _('Search') }}: {{ term }}</h1>
         {% endif %}
         {% if searchtype == "journal" %}
         <h1>{{ _('Journal') }}: {{ title }}</h1>
+        <div><a href="/oa_browser?type=Journal&object={{ title }}">{{ _("Journal") }} {{ _("Discovery") }}</a></div>
         {% endif %}
     </div>
     
