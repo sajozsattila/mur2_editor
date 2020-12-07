@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-19 16:06+0000\n"
+"POT-Creation-Date: 2020-12-07 12:16+0000\n"
 "PO-Revision-Date: 2020-05-04 20:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/__init__.py:30
+#: app/__init__.py:27
 msgid "Please log in to access this page."
 msgstr "请登录查看此页"
 
@@ -38,7 +38,7 @@ msgstr "密码"
 msgid "Remember Me"
 msgstr "记住我"
 
-#: app/auth/forms.py:12 app/auth/routes.py:57 app/templates/auth/login.html:7
+#: app/auth/forms.py:12 app/auth/routes.py:64 app/templates/auth/login.html:7
 #: app/templates/base_menu.html:20
 msgid "Sign In"
 msgstr "登录"
@@ -52,7 +52,7 @@ msgstr "电邮地址"
 msgid "Repeat Password"
 msgstr "确定密码"
 
-#: app/auth/forms.py:22 app/auth/routes.py:100
+#: app/auth/forms.py:22 app/auth/routes.py:107
 msgid "Register"
 msgstr "注册"
 
@@ -60,7 +60,7 @@ msgstr "注册"
 msgid "Please use a different username."
 msgstr "请使用别的用户名"
 
-#: app/auth/forms.py:32 app/main/forms.py:101 app/main/forms.py:134
+#: app/auth/forms.py:32 app/main/forms.py:101 app/main/forms.py:139
 msgid "Please use a different email address."
 msgstr "请使用别的电邮地址"
 
@@ -68,23 +68,23 @@ msgstr "请使用别的电邮地址"
 msgid "Request Password Reset"
 msgstr "申请密码重置"
 
-#: app/auth/routes.py:31
+#: app/auth/routes.py:38
 msgid "Invalid username or password"
 msgstr "无效用户名或密码"
 
-#: app/auth/routes.py:98
+#: app/auth/routes.py:105
 msgid "Congratulations, you are now a registered user!"
 msgstr "恭喜，你已成为注册用户"
 
-#: app/auth/routes.py:114
+#: app/auth/routes.py:121
 msgid "Check your email for the instructions to reset your password"
 msgstr "请查看电邮以重置你的密码"
 
-#: app/auth/routes.py:117 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:124 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
 msgstr "重置密码"
 
-#: app/auth/routes.py:131
+#: app/auth/routes.py:139
 msgid "Your password has been reset."
 msgstr "密码已重置"
 
@@ -102,8 +102,8 @@ msgstr ""
 
 #: app/main/forms.py:87 app/main/forms.py:111 app/main/utils.py:230
 #: app/templates/connections.html:99 app/templates/connections.html:100
-#: app/templates/connections.html:109 app/templates/discovery.html:64
-#: app/templates/discovery.html:88 app/templates/editor.html:69
+#: app/templates/connections.html:109 app/templates/discovery.html:65
+#: app/templates/discovery.html:92 app/templates/editor.html:69
 msgid "Title"
 msgstr "标题"
 
@@ -116,11 +116,11 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: app/main/forms.py:96 app/main/forms.py:128
+#: app/main/forms.py:96 app/main/forms.py:133
 msgid "Please use a different title."
 msgstr ""
 
-#: app/main/forms.py:106 app/main/forms.py:140
+#: app/main/forms.py:106 app/main/forms.py:145
 msgid "Please use a different address."
 msgstr ""
 
@@ -128,141 +128,140 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: app/main/routes.py:256
+#: app/main/forms.py:181 app/templates/read2.html:120
+msgid "email"
+msgstr ""
+
+#: app/main/forms.py:187
+msgid "Action should be \"on\" or \"off\"!"
+msgstr ""
+
+#: app/main/routes.py:155
+msgid "Not a valid journal name!"
+msgstr ""
+
+#: app/main/routes.py:231
 msgid "Register Journal"
 msgstr ""
 
-#: app/main/routes.py:304 app/templates/article.html:64
-#: app/templates/article.html:116 app/templates/article.html:143
-#: app/templates/editor.html:119
-msgid "Keywords"
-msgstr ""
-
-#: app/main/routes.py:306 app/main/utils.py:226 app/templates/article.html:64
-#: app/templates/article.html:116 app/templates/article.html:143
-#: app/templates/connections.html:40 app/templates/discovery.html:27
-#: app/templates/discovery.html:54 app/templates/keywords.html:9
-msgid "Keyword"
-msgstr ""
-
-#: app/main/routes.py:330 app/templates/article.html:58
-#: app/templates/article.html:110 app/templates/article.html:137
-#: app/templates/editor.html:84
-msgid "Categories"
-msgstr ""
-
-#: app/main/routes.py:332 app/templates/article.html:58
-#: app/templates/article.html:110 app/templates/article.html:137
-#: app/templates/connections.html:37 app/templates/connections.html:87
-#: app/templates/discovery.html:26 app/templates/discovery.html:56
-#: app/templates/keywords.html:7
-msgid "Category"
-msgstr ""
-
-#: app/main/routes.py:377
-msgid "You can not edit this article"
-msgstr "你无权编辑此文章"
-
-#: app/main/routes.py:384
+#: app/main/routes.py:285
 msgid "editor"
 msgstr "编辑器"
 
-#: app/main/routes.py:620
+#: app/main/routes.py:521
 msgid "The author already have Article with this title!"
 msgstr ""
 
-#: app/main/routes.py:805 app/main/routes.py:939 app/main/routes.py:964
-#: app/main/routes.py:1443
-msgid "Your changes have been saved."
-msgstr "改变已保存"
-
-#: app/main/routes.py:819
+#: app/main/routes.py:719
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:830 app/main/routes.py:901
+#: app/main/routes.py:730 app/main/routes.py:801
 msgid "User no right to delete this"
 msgstr "用户无权删除此文章"
 
-#: app/main/routes.py:830 app/templates/connections.html:46
-#: app/templates/connections.html:88 app/templates/discovery.html:29
-#: app/templates/discovery.html:57 app/templates/editor.html:133
+#: app/main/routes.py:730 app/templates/connections.html:46
+#: app/templates/connections.html:88 app/templates/discovery.html:30
+#: app/templates/discovery.html:58 app/templates/editor.html:133
 #: app/templates/editor.html:135 app/templates/editor.html:145
 #: app/templates/editor.html:147
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:901
+#: app/main/routes.py:801
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:1143
+#: app/main/routes.py:839 app/main/routes.py:864 app/main/routes.py:1327
+msgid "Your changes have been saved."
+msgstr "改变已保存"
+
+#: app/main/routes.py:1027
 msgid "Can not create Media directory for "
 msgstr ""
 
-#: app/main/routes.py:1150
+#: app/main/routes.py:1034
 msgid "No more disk space quota for "
 msgstr "空间配额不足"
 
-#: app/main/routes.py:1272
+#: app/main/routes.py:1156
 msgid "article already confimed"
 msgstr ""
 
-#: app/main/routes.py:1298
+#: app/main/routes.py:1182
 msgid "Can not confirm Relationship. "
 msgstr ""
 
-#: app/main/routes.py:1317
+#: app/main/routes.py:1201
 msgid "User not right to confirm publishing"
 msgstr ""
 
-#: app/main/routes.py:1414 app/main/routes.py:1750
+#: app/main/routes.py:1298 app/main/routes.py:1651
 msgid "The user is not the Author"
 msgstr ""
 
-#: app/main/routes.py:1419
+#: app/main/routes.py:1303
 msgid "The "
 msgstr ""
 
-#: app/main/routes.py:1419
+#: app/main/routes.py:1303
 msgid " Journal do not exist!"
 msgstr ""
 
-#: app/main/routes.py:1424
+#: app/main/routes.py:1308
 msgid "The Article has not issued"
 msgstr ""
 
-#: app/main/routes.py:1477
+#: app/main/routes.py:1340 app/main/routes.py:1592 app/main/routes.py:1606
+msgid "Not a valid objectype!"
+msgstr ""
+
+#: app/main/routes.py:1366
 msgid "User can not download this Article!"
 msgstr ""
 
-#: app/main/routes.py:1512
+#: app/main/routes.py:1401
 msgid "User Have not got Facebook account!"
 msgstr ""
 
-#: app/main/routes.py:1559
+#: app/main/routes.py:1448
 msgid "User do not exist!"
 msgstr ""
 
-#: app/main/routes.py:1564
+#: app/main/routes.py:1453
 msgid "Article do not exist!"
 msgstr ""
 
-#: app/main/routes.py:1575
+#: app/main/routes.py:1464
 msgid "The action should be 'add' or 'remove'!"
 msgstr ""
 
-#: app/main/routes.py:1580
+#: app/main/routes.py:1469
 msgid "You can not add or remove yourself!"
 msgstr ""
 
-#: app/main/routes.py:1587
+#: app/main/routes.py:1476
 msgid "The author already writer of this Article!"
 msgstr ""
 
-#: app/main/utils.py:226 app/templates/connections.html:43
-#: app/templates/connections.html:86 app/templates/discovery.html:28
-#: app/templates/discovery.html:55 app/templates/user.html:47
+#: app/main/routes.py:1723
+msgid "Not a valid search address"
+msgstr ""
+
+#: app/main/utils.py:226 app/templates/article.html:62
+#: app/templates/article.html:114 app/templates/article.html:141
+#: app/templates/article2.html:30 app/templates/connections.html:40
+#: app/templates/discovery.html:28 app/templates/discovery.html:55
+#: app/templates/keywords.html:9 app/templates/keywords2.html:9
+#: app/templates/keywords2.html:10 app/templates/read2.html:70
+msgid "Keyword"
+msgstr ""
+
+#: app/main/utils.py:226 app/templates/article2.html:20
+#: app/templates/connections.html:43 app/templates/connections.html:86
+#: app/templates/discovery.html:29 app/templates/discovery.html:56
+#: app/templates/keywords2.html:15 app/templates/keywords2.html:16
+#: app/templates/read2.html:50 app/templates/user.html:47
 msgid "Journal"
 msgstr ""
 
@@ -275,8 +274,8 @@ msgid "Abstract"
 msgstr "摘要"
 
 #: app/main/utils.py:230 app/templates/connections.html:93
-#: app/templates/connections.html:108 app/templates/discovery.html:66
-#: app/templates/discovery.html:87
+#: app/templates/connections.html:108 app/templates/discovery.html:67
+#: app/templates/discovery.html:91
 msgid "Name"
 msgstr ""
 
@@ -308,26 +307,60 @@ msgstr ""
 msgid "number_of_article"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:520 app/templates/read2.html:47
+#: app/static/js/mur2_editor.js:520 app/templates/read2.html:80
 msgid "Full text"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:308
+#: app/static/js/mur2_editor_utils.js:98
+msgid "Please enter URL for the link"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:107
+msgid "Please enter URL for picture"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:161
+msgid "No field selected!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:176
+#: app/static/js/mur2_editor_utils.js:346
+#: app/static/js/mur2_editor_utils.js:442
+msgid "Error: "
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:240
+msgid "You can just save in Preview mode!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:256
+msgid "Need choise the Article which you are reviewing!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:261
+msgid "Need to set the Standby!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:313
 msgid "Saved!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:345
-#: app/static/js/mur2_editor_utils.js:363
-#: app/static/js/mur2_editor_utils.js:441
+#: app/static/js/mur2_editor_utils.js:350
+#: app/static/js/mur2_editor_utils.js:368
+#: app/static/js/mur2_editor_utils.js:446
 msgid "Published on "
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:377
+#: app/static/js/mur2_editor_utils.js:382
 msgid "Error: You do not loged in in Wordpress.com"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:437
-msgid "Error: "
+#: app/static/js/mur2_editor_utils.js:473
+msgid "Working"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:660
+msgid "Error: The sum of the workshare is not 100!"
 msgstr ""
 
 #: app/templates/article.html:8
@@ -346,17 +379,42 @@ msgstr ""
 msgid "Send to Journal"
 msgstr ""
 
-#: app/templates/article.html:54 app/templates/article.html:106
-#: app/templates/article.html:133 app/templates/read.html:52
+#: app/templates/article.html:52 app/templates/article.html:104
+#: app/templates/article.html:131 app/templates/read.html:52
 msgid "Publihed in"
 msgstr ""
 
-#: app/templates/article.html:80
+#: app/templates/article.html:56 app/templates/article.html:108
+#: app/templates/article.html:135 app/templates/article2.html:25
+#: app/templates/editor.html:84 app/templates/read2.html:55
+msgid "Categories"
+msgstr ""
+
+#: app/templates/article.html:56 app/templates/article.html:108
+#: app/templates/article.html:135 app/templates/article2.html:25
+#: app/templates/connections.html:37 app/templates/connections.html:87
+#: app/templates/discovery.html:27 app/templates/discovery.html:57
+#: app/templates/keywords.html:7 app/templates/keywords2.html:6
+#: app/templates/keywords2.html:7 app/templates/read2.html:57
+msgid "Category"
+msgstr ""
+
+#: app/templates/article.html:62 app/templates/article.html:114
+#: app/templates/article.html:141 app/templates/article2.html:30
+#: app/templates/editor.html:119 app/templates/read2.html:68
+msgid "Keywords"
+msgstr ""
+
+#: app/templates/article.html:78
 msgid "Accept for Publishing"
 msgstr ""
 
-#: app/templates/article.html:87 app/templates/article.html:95
+#: app/templates/article.html:85 app/templates/article.html:93
 msgid "Reject Publishing"
+msgstr ""
+
+#: app/templates/article2.html:20
+msgid "Journals"
 msgstr ""
 
 #: app/templates/base_menu.html:5
@@ -391,12 +449,13 @@ msgstr "媒体"
 msgid "Sign out"
 msgstr "退出"
 
-#: app/templates/base_menu.html:26 app/templates/base_menu.html:34
-#: app/templates/connections.html:60 app/templates/discovery.html:32
+#: app/templates/base_menu.html:27 app/templates/base_menu.html:36
+#: app/templates/connections.html:60 app/templates/discovery.html:33
+#: app/templates/keywords2.html:12
 msgid "Search"
 msgstr "搜索"
 
-#: app/templates/connections.html:35 app/templates/discovery.html:25
+#: app/templates/connections.html:35 app/templates/discovery.html:26
 msgid "Legend"
 msgstr ""
 
@@ -813,8 +872,17 @@ msgid "Please enter the title of the Journal"
 msgstr ""
 
 #: app/templates/keywords.html:7 app/templates/keywords.html:9
-#: app/templates/user.html:47
+#: app/templates/keywords2.html:7 app/templates/keywords2.html:10
+#: app/templates/keywords2.html:16 app/templates/user.html:47
 msgid "Discovery"
+msgstr ""
+
+#: app/templates/keywords2.html:26
+msgid "Next"
+msgstr ""
+
+#: app/templates/keywords2.html:31
+msgid "Before"
 msgstr ""
 
 #: app/templates/md_cheatsheet.html:2
@@ -992,15 +1060,15 @@ msgstr ""
 msgid "Download ePUB"
 msgstr ""
 
-#: app/templates/read.html:34 app/templates/read2.html:24
+#: app/templates/read.html:34 app/templates/read2.html:30
 msgid "Writers"
 msgstr ""
 
-#: app/templates/read.html:36 app/templates/read2.html:26
+#: app/templates/read.html:36 app/templates/read2.html:32
 msgid "Writer"
 msgstr ""
 
-#: app/templates/read.html:45
+#: app/templates/read.html:45 app/templates/read2.html:51
 msgid "Date"
 msgstr ""
 
@@ -1020,8 +1088,20 @@ msgstr ""
 msgid "Keyword:"
 msgstr ""
 
-#: app/templates/read2.html:50
+#: app/templates/read2.html:83
 msgid "Similar Article"
+msgstr ""
+
+#: app/templates/read2.html:84
+msgid "Do you want to be up to date?"
+msgstr ""
+
+#: app/templates/read2.html:84
+msgid "Sign up for email update."
+msgstr ""
+
+#: app/templates/read2.html:120
+msgid "Please enter your email:"
 msgstr ""
 
 #: app/templates/registerjournal.html:8
@@ -1092,19 +1172,19 @@ msgstr ""
 msgid "New Article"
 msgstr "新的文章"
 
-#: app/templates/auth/login.html:27
+#: app/templates/auth/login.html:29
 msgid "Forgot Your Password?"
 msgstr "忘记密码？"
 
-#: app/templates/auth/login.html:28
+#: app/templates/auth/login.html:30
 msgid "Click to Reset"
 msgstr "点击重置"
 
-#: app/templates/auth/login.html:31
+#: app/templates/auth/login.html:32
 msgid "New User?"
 msgstr "新用户？"
 
-#: app/templates/auth/login.html:31
+#: app/templates/auth/login.html:32
 msgid "Click to Register"
 msgstr "点击注册"
 
@@ -1207,4 +1287,7 @@ msgstr "已通知网站管理员。抱歉给您带来的不便"
 
 #~ msgid "Problem"
 #~ msgstr ""
+
+#~ msgid "You can not edit this article"
+#~ msgstr "你无权编辑此文章"
 

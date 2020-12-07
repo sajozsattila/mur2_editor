@@ -95,7 +95,7 @@ function editorToolbarAction(action) {
             wrap = "$$ "
             wrap2 = " $$"
         } else if (action === "link") {
-            var userinput = prompt("Please enter URL for the link", "");
+            var userinput = prompt(_("Please enter URL for the link"), "");
             if (userinput != null) {
                 if (text) {
                     wrap = "[" + text + "](" + userinput + ")";
@@ -104,7 +104,7 @@ function editorToolbarAction(action) {
                 }
             }
         } else if (action === "picture") {
-            var userinput = prompt("Please enter URL for picture", "");
+            var userinput = prompt(_("Please enter URL for picture"), "");
             if (userinput != null) {
                 if (text) {
                     wrap = "![" + text + "](" + userinput + ")";
@@ -158,7 +158,7 @@ function editorToolbarAction(action) {
             }
         }
     } else {
-        alert("no field selected");
+        alert(_("No field selected!"));
     }
 }
 
@@ -173,7 +173,7 @@ async function alarming(xhr, sucessmsg) {
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
             msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+            msgbox.innerHTML = _("Error: ") + xhr.statusText + " - " + xhr.response;
         } else { // show the result   
             msgbox.style.color = "green";
             msgbox.innerHTML = sucessmsg;
@@ -229,12 +229,17 @@ async function save_article(blobs) {
         type: 'text/html; charset=UTF-8'
     });
 
-    var htmldatatext = document.getElementById('article_main').innerHTML;
-    var htmldata = new Blob([htmldatatext], {
-        type: 'text/html; charset=UTF-8'
-    });
-    var abstractdatatext = document.getElementById('article_abstract').innerHTML;
-    var titledatatext = document.getElementById('article_title').innerHTML;
+    try {
+        var htmldatatext = document.getElementById('article_main').innerHTML;
+        var htmldata = new Blob([htmldatatext], {
+            type: 'text/html; charset=UTF-8'
+        });
+        var abstractdatatext = document.getElementById('article_abstract').innerHTML;
+        var titledatatext = document.getElementById('article_title').innerHTML;
+    } catch(err) {
+        alert(_("You can just save in Preview mode!"));
+        return;
+    }
     
     // type of the text
     // var texttype = document.querySelector('meta[name="texttype"]').content.trim()
@@ -248,12 +253,12 @@ async function save_article(blobs) {
         console.log("in");
         reviewed = document.getElementById('reviewdArticle')
         if ( reviewed.value.length == 0 ||  isNaN(reviewed.value) ) {
-            alert("Need choise the Article which you are reviewing!");
+            alert(_("Need choise the Article which you are reviewing!"));
             return;
         }
         standby = document.getElementById('reviewStandby')
         if ( standby.value.length == 0 || isNaN(standby.value) ) {
-            alert("Need to set the Standby!");
+            alert(_("Need to set the Standby!"));
             return;
         }
         rebel = document.getElementById('reviewRebel').checked
@@ -338,7 +343,7 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
     xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
                 msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+                msgbox.innerHTML = _("Error: ") + xhr.statusText + " - " + xhr.response;
             } else {
                 var mur2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
@@ -465,7 +470,7 @@ async function generate_from_md(destination, mainCollection) {
     var fd = new FormData();
 
     var msgbox = document.getElementById("msg")
-    msgbox.innerHTML = "Working";
+    msgbox.innerHTML = _("Working");
     msgbox.style.color = "green";
     
     // author
@@ -652,7 +657,7 @@ function addNewAuthor(action, id) {
     console.log(action);
     if ( allworkshare !== 100 ) {
         msgbox.style.color = "red";
-        msgbox.innerHTML = "Error: The sum of the workshare is not 100!"
+        msgbox.innerHTML = _("Error: The sum of the workshare is not 100!")
     } else {
         // send data to frontend
         var fd = new FormData();
