@@ -12,7 +12,7 @@
 					<div>
 						<input class="preview-format control-input" id="id_src" type="radio" name="source_type">
 						<input class="preview-format control-input" id="id_htmltex" type="radio" name="source_type">
-						<label class="control-item " for="id_src" title="{{ _('HTML with img-equations') }}" data-result-as="src">Html</label>
+						<label class="control-item " for="id_src" title="{{ _('HTML with equations images') }}" data-result-as="src">Html</label>
 						<label class="control-item " for="id_htmltex" title="{{ _('HTML with raw LaTeX equations') }}" data-result-as="htmltex">+
 							<svg style="vertical-align: middle; fill: white" height="16" viewBox="1872.02 1482.97 29.568 10.0474" width="49.465" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 								<defs>
@@ -39,7 +39,7 @@
 						<input class="preview-format control-input" id="id_mdp" type="radio" name="source_type">
 						<label class="control-item " for="id_mdp" title="{{ _('Markdown, same as in the input') }}" data-result-as="mdp">Markdown</label>
 						<input class="preview-format control-input" id="id_md" type="radio" name="source_type">
-						<label class="control-item " for="id_md" title="{{ _('Markdown with imgage equations') }}" data-result-as="md">+ {{ _('Image') }}</label>
+						<label class="control-item " for="id_md" title="{{ _('Markdown with equations imgage') }}" data-result-as="md">+ {{ _('Image') }}</label>
 					</div>
 					<input class="preview-format control-input" id="id_habr" type="radio" name="source_type">
 					<label class="control-item " for="id_habr" title="{{ _('A kind of HTML markup for habr.com') }}" data-result-as="habr">H</label>
@@ -100,13 +100,13 @@
 					<input id="id_medium_clear" class="control-input" type="radio" name="source_type">
 					<label class="control-item " for="id_medium_clear" title="{{ _('Clear Medium.com cookies') }}">{{ _("Clear cookies") }}</label>{% else %}
 					<input id="id_medium_connect" class="control-input" type="radio" name="source_type">
-					<label class="control-item  fab fa-medium" for="id_medium_connect" title="{{ _('Connect Medium.com') }}"> <span class="normalfont">{{ _("Connect") }}</span>
+					<label class="control-item  fab fa-medium" for="id_medium_connect" title="{{ _('Connect to Medium.com') }}"> <span class="normalfont">{{ _("Connect") }}</span>
 					</label>{% endif %}</div>
 				<!-- Medium -->
 				<div>
 					<!-- file export -->
 					<input id="id_pdf" type="radio" class="control-input" name="source_type">
-					<label class="control-item fas fa-file-pdf " for="id_pdf" title="{{ _('Generate pdf') }}"><span class="normalfont"> PDF</span>
+					<label class="control-item fas fa-file-pdf " for="id_pdf" title="{{ _('Generate PDF') }}"><span class="normalfont"> PDF</span>
 					</label>
 				</div>
 				<div>

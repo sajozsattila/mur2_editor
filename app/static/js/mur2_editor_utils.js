@@ -95,7 +95,7 @@ function editorToolbarAction(action) {
             wrap = "$$ "
             wrap2 = " $$"
         } else if (action === "link") {
-            var userinput = prompt(_("Please enter URL for the link"), "");
+            var userinput = prompt(_("Please enter a URL for the link."), "");
             if (userinput != null) {
                 if (text) {
                     wrap = "[" + text + "](" + userinput + ")";
@@ -104,7 +104,7 @@ function editorToolbarAction(action) {
                 }
             }
         } else if (action === "picture") {
-            var userinput = prompt(_("Please enter URL for picture"), "");
+            var userinput = prompt(_("Please enter a URL for image."), "");
             if (userinput != null) {
                 if (text) {
                     wrap = "![" + text + "](" + userinput + ")";
@@ -237,7 +237,7 @@ async function save_article(blobs) {
         var abstractdatatext = document.getElementById('article_abstract').innerHTML;
         var titledatatext = document.getElementById('article_title').innerHTML;
     } catch(err) {
-        alert(_("You can just save in Preview mode!"));
+        alert(_("You can only save in Preview mode!"));
         return;
     }
     
@@ -253,7 +253,7 @@ async function save_article(blobs) {
         console.log("in");
         reviewed = document.getElementById('reviewdArticle')
         if ( reviewed.value.length == 0 ||  isNaN(reviewed.value) ) {
-            alert(_("Need choise the Article which you are reviewing!"));
+            alert(_("Choose the Article which you are reviewing!"));
             return;
         }
         standby = document.getElementById('reviewStandby')
@@ -379,7 +379,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var address = getCookie("mur2_wpc_sideid");
         if (access_token === "") {
             msgbox.style.color = "red";
-            msgbox.innerHTML = _("Error: You do not loged in in Wordpress.com");
+            msgbox.innerHTML = _("Error: You are not logged into Wordpress.com");
         };
 
         // if it is not a new article get the id
@@ -470,7 +470,7 @@ async function generate_from_md(destination, mainCollection) {
     var fd = new FormData();
 
     var msgbox = document.getElementById("msg")
-    msgbox.innerHTML = _("Working");
+    msgbox.innerHTML = _("Working...");
     msgbox.style.color = "green";
     
     // author

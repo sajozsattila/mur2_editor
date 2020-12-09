@@ -39,6 +39,14 @@ div#article_abstract_div,
     margin-top: var(--verticaldistance);
     border-collapse: collapse;
 }
+
+#article_main td, 
+#article_main th {
+    margin-right: 1rem;
+    padding-left: 1.68rem;
+    text-align: left;
+}
+
 #article_main thead {
     border-bottom: 1px solid #666;
 }
