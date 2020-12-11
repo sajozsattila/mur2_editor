@@ -75,6 +75,10 @@ table {
     width: 90%;
 }
 
+.main\.oastat table {
+    width: 100%;
+}
+
 #horizontal_box {
     width: 100%;
     display: flex ;
