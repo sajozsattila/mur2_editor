@@ -525,14 +525,12 @@ function ImageLoader(preloader, protocol, loaderid) {
         if ( parentNode.style.textAlign === 'center' ) {
             // if labeled we add number otherwise not 
             var labeled = parentNode.id.match(/eq\:.*$/);
-            console.log(oldSvgNode);
             if (labeled && parentNode.childElementCount == 1) {
                 block = true
                 // add printable number
                 var labelNode = document.createElement('em');
                 labelNode.innerHTML = "("+blockcount+")";                
                 var spanNode = document.createElement('span');
-                console.log(blockcount);
                 parentNode.insertBefore(spanNode, oldSvgNode);
                 parentNode.appendChild(labelNode);            
             }                   
@@ -571,7 +569,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 	 * @returns {string}
 	 */
 	this.getHtmlStub = function (formula) {
-		curItems[n] = protocol + '//tex.s2cms.ru/svg/' + encodeURIComponent(formula);
+		curItems[n] = protocol + '//mur2.co.uk:8005/svg/' + encodeURIComponent(formula);
 
 		var html = '<span id="'+this.loaderid+'s2tex_' + n + '"></span>';
 

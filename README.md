@@ -224,6 +224,8 @@ RETURN count(k)
 ```
 MATCH (k:Keyword) WHERE k.Name = "None" DETACH DELETE k;
 MATCH (K:Keyword) where K.Name = "" DETACH DELETE K;
+MATCH (k:Keyword) WHERE k.Name = "null" DETACH DELETE k;
+MATCH (k:Keyword) WHERE k.Name = "n/a" DETACH DELETE k;
 ```
 
 Articles without Doi. Most of time they have in reality DOI, just some reason we do not harvested, so need to set manually.

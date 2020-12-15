@@ -155,6 +155,7 @@ and (max-device-width : 767px){
         max-width: unset;    
     }   
     
+    .main\.oastat #side_menu,    
     .main\.discovery #side_menu,
     .main\.root #side_menu ,
     .main\.media #side_menu ,
@@ -166,6 +167,7 @@ and (max-device-width : 767px){
         background-color: rgba(0,0,0,0);
     }
     
+    .main\.oastat #side_menu .control-item,
     .main\.discovery #side_menu .control-item,
     .main\.root #side_menu .control-item,
     .main\.media #side_menu .control-item,
