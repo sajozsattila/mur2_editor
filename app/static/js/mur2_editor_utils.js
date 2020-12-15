@@ -206,7 +206,6 @@ function keywordlist() {
 function categorylist() {
     var categories = [];
     var category_dom = document.getElementById("categories").getElementsByClassName("multi-search-item");
-    console.log(category_dom);
     for ( var i = category_dom.length; i--; ) {
         try {
             categories.push(category_dom[i].firstChild.firstChild.data);

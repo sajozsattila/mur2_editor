@@ -283,7 +283,7 @@ function ParserCollection(
      * Habrahabr hack for numerating formulas
      */
     _mdHtmlHabrAndImages.renderer.rules.math_number = function(tokens, idx) {
-        return '<img align="right" src="//tex.s2cms.ru/svg/' + tokens[idx].content + '" />';
+        return '<img align="right" src="//mur2.co.uk:8005/svg/' + tokens[idx].content + '" />';
     };
 
     /**
@@ -351,7 +351,7 @@ function ParserCollection(
                 imageLoader.fixDom();
                 break;
             case 'htmltex':
-                domSetHighlightedContent(result_destination_pre, '<script src="https://tex.s2cms.ru/latex.js"></script>\n' + _mdHtmlAndTex.render(source), 'html');
+                domSetHighlightedContent(result_destination_pre, '<script src="https://mur2.co.uk:8005/latex.js"></script>\n' + _mdHtmlAndTex.render(source), 'html');
                 break;
             case 'habr':
                 domSetHighlightedContent(result_destination_pre, getHabraMarkup(source), 'html');
@@ -382,7 +382,7 @@ function ParserCollection(
             case 'habr':
                 return _mdHtmlHabrAndImages.render(source);
             case 'htmltex':
-                return '<script src="https://tex.s2cms.ru/latex.js"></script>\n' + _mdHtmlAndTex.render(source);
+                return '<script src="https://mur2.co.uk:8005/latex.js"></script>\n' + _mdHtmlAndTex.render(source);
             case 'md':
                 return _mdMdAndImages.renderInline(source);
             case 'mdp':
