@@ -531,8 +531,10 @@ function ImageLoader(preloader, protocol, loaderid) {
                 var labelNode = document.createElement('em');
                 labelNode.innerHTML = "("+blockcount+")";                
                 var spanNode = document.createElement('span');
-                parentNode.insertBefore(spanNode, oldSvgNode);
-                parentNode.appendChild(labelNode);            
+                // parentNode.insertBefore(spanNode, oldSvgNode);
+                parentNode.insertBefore(labelNode, oldSvgNode);
+                parentNode.appendChild(spanNode);
+                //parentNode.appendChild(labelNode);            
             }                   
         }
         var lheight = svg.match(/ height="[\.\d]+" /g)[0].trim().split("=")[1].replace(/"/g, '')

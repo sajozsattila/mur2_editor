@@ -356,6 +356,9 @@ function g_domFindScrollMarks() {
             decorator.update();
             fileInput.value = fileInput.defaultValue;
             fragment = null;
+            // upload title and abstract
+            updateTitle(titleImageLoader, true);
+            updateAbstract(abstractImageLoader, true);
         };
         reader.readAsText(this.files[0]);
     });

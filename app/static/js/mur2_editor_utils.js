@@ -486,9 +486,7 @@ async function generate_from_md(destination, mainCollection) {
     /* need to receive file back */
     xhr.responseType = 'blob';
     xhr.open('post', '/export_data', true);
-    xhr.send(fd)
-
-   
+    xhr.send(fd)   
     
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
@@ -650,10 +648,6 @@ function addNewAuthor(action, id) {
             }
         }    
     }
-    console.log(JSON.stringify(changeworkshare));
-    console.log(newauthor);
-    console.log(articleid);
-    console.log(action);
     if ( allworkshare !== 100 ) {
         msgbox.style.color = "red";
         msgbox.innerHTML = _("Error: The sum of the workshare is not 100!")

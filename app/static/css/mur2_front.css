@@ -577,6 +577,7 @@ td a.control-item {
 .journalid {
     font-style: italic;
     padding-top: 0.8425rem;
+    max-width: 41rem;
 }
 
 .categoryid + .keywordsid ,
