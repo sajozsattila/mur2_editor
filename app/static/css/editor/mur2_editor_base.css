@@ -154,6 +154,12 @@ textarea,
     /* */
 }
 
+
+#slider:hover {
+    /* */
+    background-color: #666;
+}
+
 #article_main_pre, 
 #article_main {
     overflow-y: auto;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-09 15:44+0000\n"
+"POT-Creation-Date: 2020-12-21 11:49+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: app/__init__.py:27
 msgid "Please login to access this page."
-msgstr ""
+msgstr "Kérjük jelentkezzen be, hogy ezt a lapot megtekinthesse."
 
 #: app/auth/email.py:12
 msgid "Reset Your Password"
-msgstr "Jelszó újboli beállítása"
+msgstr "Jelszó újbóli beállítása"
 
 #: app/auth/forms.py:9 app/auth/forms.py:16 app/templates/edit_profile.html:8
 msgid "Username"
@@ -58,7 +58,7 @@ msgstr "Regisztráció"
 
 #: app/auth/forms.py:27
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Válaszon másik felhasználónevet!"
 
 #: app/auth/forms.py:32 app/main/forms.py:101 app/main/forms.py:139
 msgid "Please use a different email address."
@@ -70,17 +70,17 @@ msgstr "Jelszó visszaállítása"
 
 #: app/auth/routes.py:38
 msgid "Invalid username or password."
-msgstr ""
+msgstr "A felhasználónév vagy a jelszó nem egyezik."
 
 #: app/auth/routes.py:105
 msgid "Congratulations, you are now registered!"
-msgstr ""
+msgstr "Gratulálunk ön regisztrált!"
 
 #: app/auth/routes.py:121
 msgid ""
 "Check your email (including junk) for instructions on how to reset your "
 "password."
-msgstr ""
+msgstr "Emailben elküldtük a jelszó helyreállítási utasításokat."
 
 #: app/auth/routes.py:124 app/templates/auth/reset_password_request.html:4
 msgid "Reset Password"
@@ -88,15 +88,15 @@ msgstr "Jelszó visszaállítása"
 
 #: app/auth/routes.py:139
 msgid "Your password has been reset."
-msgstr "Az új jelszó beállítottuk."
+msgstr "Az új jelszót beállítottuk."
 
 #: app/main/forms.py:74
 msgid "Images only!"
-msgstr ""
+msgstr "Csak kép formátum engedélyezett!"
 
 #: app/main/forms.py:74
 msgid "File is empty!"
-msgstr ""
+msgstr "A fájl üres!"
 
 #: app/main/forms.py:75
 msgid "Upload"
@@ -124,7 +124,7 @@ msgstr "Kérjük használjon másik címet!"
 
 #: app/main/forms.py:106
 msgid "Please use a different URL."
-msgstr ""
+msgstr "Kérjük használjon másik URL címet."
 
 #: app/main/forms.py:115
 msgid "Submit"
@@ -136,37 +136,37 @@ msgstr "Kérjük használjon másik Url-t."
 
 #: app/main/forms.py:181 app/templates/read2.html:120
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: app/main/forms.py:187
 msgid "Action should be \"on\" or \"off\"!"
 msgstr ""
 
-#: app/main/routes.py:155
+#: app/main/routes.py:157
 msgid "Not a valid journal name!"
-msgstr ""
+msgstr "Nem létező folyóirat név!"
 
-#: app/main/routes.py:231
+#: app/main/routes.py:233
 msgid "Register Journal"
 msgstr "Online folyóirat regisztrálása"
 
-#: app/main/routes.py:285
+#: app/main/routes.py:287
 msgid "editor"
 msgstr "szerkesztő"
 
-#: app/main/routes.py:521
+#: app/main/routes.py:523
 msgid "The author already has Article with this title!"
-msgstr ""
+msgstr "A szerzőnek már van ilyen című cikke!"
 
-#: app/main/routes.py:719
+#: app/main/routes.py:721
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr "A lehetséges object_type értékek: 'article', 'file' vagy 'user' "
 
-#: app/main/routes.py:730
+#: app/main/routes.py:732
 msgid "User not permitted to delete "
-msgstr ""
+msgstr "Ezt a felhasználó nem törölheti "
 
-#: app/main/routes.py:730 app/templates/connections.html:46
+#: app/main/routes.py:732 app/templates/connections.html:46
 #: app/templates/connections.html:88 app/templates/discovery.html:28
 #: app/templates/discovery.html:56 app/templates/editor.html:133
 #: app/templates/editor.html:135 app/templates/editor.html:145
@@ -174,89 +174,89 @@ msgstr ""
 msgid "Article"
 msgstr "Cikk"
 
-#: app/main/routes.py:801
+#: app/main/routes.py:803
 msgid "User no right to delete this"
-msgstr "Nincs jogosultsága, hogy törlölje ezt a "
+msgstr "Nincs jogosultsága, hogy törölje ezt a "
 
-#: app/main/routes.py:801
+#: app/main/routes.py:803
 msgid "File"
 msgstr "fájlt"
 
-#: app/main/routes.py:839 app/main/routes.py:864 app/main/routes.py:1327
+#: app/main/routes.py:841 app/main/routes.py:866 app/main/routes.py:1329
 msgid "Your changes have been saved."
 msgstr "A változtatások el lettek mentve."
 
-#: app/main/routes.py:1027
+#: app/main/routes.py:1029
 msgid "Can't create Media directory for "
-msgstr ""
+msgstr "Nem lehet Media könyvtárat létrehozni a felhasználónak:"
 
-#: app/main/routes.py:1034
+#: app/main/routes.py:1036
 msgid "No more disk space quota for "
 msgstr "Nincs több lemez kvótája az "
 
-#: app/main/routes.py:1156
+#: app/main/routes.py:1158
 msgid "Article already confimed."
-msgstr ""
+msgstr "Cikk már meg lett erősítve."
 
-#: app/main/routes.py:1182
+#: app/main/routes.py:1184
 msgid "Can't confirm Relationship. "
-msgstr ""
+msgstr "Nem lehet megerősíteni a Kapcsolatot."
 
-#: app/main/routes.py:1201
+#: app/main/routes.py:1203
 msgid "User not permitted to confirm publishing."
-msgstr ""
+msgstr "Felhasználónak nem engedélyezett a publikálás megerősítése."
 
-#: app/main/routes.py:1298 app/main/routes.py:1653
+#: app/main/routes.py:1300 app/main/routes.py:1660
 msgid "User is not the Author"
-msgstr ""
+msgstr "Felhasználó nem a szerző."
 
-#: app/main/routes.py:1303
+#: app/main/routes.py:1305
 msgid "The "
 msgstr "A "
 
-#: app/main/routes.py:1303
+#: app/main/routes.py:1305
 msgid " Journal does not exist!"
-msgstr ""
+msgstr "Folyóirat nem létezik!"
 
-#: app/main/routes.py:1308
+#: app/main/routes.py:1310
 msgid "Article has not been issued."
-msgstr ""
+msgstr "Cikk nincs \"issued\" állapotban."
 
-#: app/main/routes.py:1340 app/main/routes.py:1593 app/main/routes.py:1607
+#: app/main/routes.py:1342 app/main/routes.py:1595 app/main/routes.py:1609
 msgid "Not a valid objecttype!"
-msgstr ""
+msgstr "Nem támogatott objectype!"
 
-#: app/main/routes.py:1366
+#: app/main/routes.py:1368
 msgid "User cannot download this Article!"
-msgstr ""
+msgstr "Felhasználó nem töltheti le a cikket!"
 
-#: app/main/routes.py:1401
+#: app/main/routes.py:1403
 msgid "Facebook account does not exist!"
-msgstr ""
+msgstr "Facebook fiók nem létezik!"
 
-#: app/main/routes.py:1448
+#: app/main/routes.py:1450
 msgid "User does not exist!"
-msgstr ""
+msgstr "Felhasználó nem létezik!"
 
-#: app/main/routes.py:1453
+#: app/main/routes.py:1455
 msgid "Article does not exist!"
-msgstr ""
+msgstr "Cikk nem létezik!"
 
-#: app/main/routes.py:1464
+#: app/main/routes.py:1466
 msgid "The action should be 'add' or 'remove'!"
 msgstr "Az 'action' vagy 'add' vagy 'remove'!"
 
-#: app/main/routes.py:1469
+#: app/main/routes.py:1471
 msgid "You cannot add or remove yourself!"
-msgstr ""
+msgstr "Nem adhatja vagy törölheti önmagát!"
 
-#: app/main/routes.py:1476
+#: app/main/routes.py:1478
 msgid "The author is already a writer of this Article!"
-msgstr ""
+msgstr "A szerző már az írója ennek a Cikknek!"
 
-#: app/main/routes.py:1725
+#: app/main/routes.py:1733
 msgid "Not a valid search address."
-msgstr ""
+msgstr "Nem valós keresési cím."
 
 #: app/main/utils.py:226 app/templates/article.html:62
 #: app/templates/article.html:114 app/templates/article.html:141
@@ -277,7 +277,7 @@ msgstr "Folyóirat"
 
 #: app/main/utils.py:228
 msgid "labels"
-msgstr "cimkék"
+msgstr "címkék"
 
 #: app/main/utils.py:230 app/templates/editor.html:82
 msgid "Abstract"
@@ -307,15 +307,15 @@ msgstr "kulcsszó"
 
 #: app/main/utils.py:254
 msgid "publish"
-msgstr "pulikálás"
+msgstr "publikálás"
 
 #: app/main/utils.py:254
 msgid "proof"
-msgstr "bizonyitás"
+msgstr "bizonyítás"
 
 #: app/main/utils.py:255
 msgid "type"
-msgstr "tipus"
+msgstr "típus"
 
 #: app/main/utils.py:258
 msgid "published_article_number"
@@ -325,61 +325,90 @@ msgstr "megjelent_cikkek_száma"
 msgid "number_of_article"
 msgstr "cikkek_száma"
 
-#: app/static/js/mur2_editor.js:520 app/templates/read2.html:80
+#: app/static/js/mur2_editor.js:523 app/static/js/mur2_editor.min.js:1
+#: app/templates/read2.html:80
 msgid "Full text"
 msgstr "Teljes szöveg"
 
-#: app/static/js/mur2_editor_utils.js:98
+#: app/static/js/mur2_editor_utils.js:102
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Please enter a URL for the link."
-msgstr ""
+msgstr "Kérjük adja meg a hivatkozás URL címét."
 
-#: app/static/js/mur2_editor_utils.js:107
+#: app/static/js/mur2_editor_utils.js:111
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Please enter a URL for image."
-msgstr ""
+msgstr "Kérjük adja meg a kép URL címét."
 
-#: app/static/js/mur2_editor_utils.js:161
+#: app/static/js/mur2_editor_utils.js:165
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "No field selected!"
 msgstr "Nincs kijelölt mező!"
 
-#: app/static/js/mur2_editor_utils.js:176
-#: app/static/js/mur2_editor_utils.js:346
-#: app/static/js/mur2_editor_utils.js:442
+#: app/static/js/mur2_editor_utils.js:180
+#: app/static/js/mur2_editor_utils.js:349
+#: app/static/js/mur2_editor_utils.js:445
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: "
 msgstr "Hiba: "
 
-#: app/static/js/mur2_editor_utils.js:240
+#: app/static/js/mur2_editor_utils.js:243
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "You can only save in Preview mode!"
-msgstr ""
+msgstr "Csak előnézeti módban lehet menteni!"
 
-#: app/static/js/mur2_editor_utils.js:256
+#: app/static/js/mur2_editor_utils.js:259
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Choose the Article which you are reviewing!"
-msgstr ""
+msgstr "Válaszon egy cikket, amit véleményezni szeretne!"
 
-#: app/static/js/mur2_editor_utils.js:261
+#: app/static/js/mur2_editor_utils.js:264
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Need to set the Standby!"
 msgstr "Standby-t be kell állítani/"
 
-#: app/static/js/mur2_editor_utils.js:313
+#: app/static/js/mur2_editor_utils.js:316
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Saved!"
 msgstr "Mentve!"
 
-#: app/static/js/mur2_editor_utils.js:350
-#: app/static/js/mur2_editor_utils.js:368
-#: app/static/js/mur2_editor_utils.js:446
+#: app/static/js/mur2_editor_utils.js:353
+#: app/static/js/mur2_editor_utils.js:371
+#: app/static/js/mur2_editor_utils.js:449
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Published on "
 msgstr "Megjelent a "
 
-#: app/static/js/mur2_editor_utils.js:382
+#: app/static/js/mur2_editor_utils.js:385
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: You are not logged into Wordpress.com"
-msgstr ""
+msgstr "Hiba: Nincs a Wordpress.com-ba bejelentkezve."
 
-#: app/static/js/mur2_editor_utils.js:473
+#: app/static/js/mur2_editor_utils.js:476
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Working..."
-msgstr ""
+msgstr "Folyamatban..."
 
-#: app/static/js/mur2_editor_utils.js:660
+#: app/static/js/mur2_editor_utils.js:657
 msgid "Error: The sum of the workshare is not 100!"
 msgstr "Hiba: Az írok részesedése összeadva nem 100%!"
+
+#: app/static/js/editor/markdown-it.min.js:404
+msgid ""
+"{|}~-\".split(\"\").forEach(function(e){Me[e.charCodeAt(0)]=1});function "
+"Ne(e,r){var "
+"t,n,s,o,i,a=[],c=r.length;for(t=0;t<c;t++)126===(s=r[t]).marker&&-1!==s.end&&(o=r[s.end],(i=e.tokens[s.token]).type=\"s_open\",i.tag=\"s\",i.nesting=1,i.markup=\"~~\",i.content=\"\",(i=e.tokens[o.token]).type=\"s_close\",i.tag=\"s\",i.nesting=-1,i.markup=\"~~\",i.content=\"\",\"text\"===e.tokens[o.token-1].type&&\"~\"===e.tokens[o.token-1].content&&a.push(o.token-1));for(;a.length;){for(n=(t=a.pop())+1;n<e.tokens.length&&\"s_close\"===e.tokens[n].type;)n++;t!==--n&&(i=e.tokens[n],e.tokens[n]=e.tokens[t],e.tokens[t]=i)}}var"
+" Oe={tokenize:function(e,r){var "
+"t,n,s,o,i=e.pos,a=e.src.charCodeAt(i);if(r)return!1;if(126!==a)return!1;if(s=(n=e.scanDelims(e.pos,!0)).length,o=String.fromCharCode(a),s<2)return!1;for(s%2&&(e.push(\"text\",\"\",0).content=o,s--),t=0;t<s;t+=2)e.push(\"text\",\"\",0).content=o+o,e.delimiters.push({marker:a,length:0,jump:t,token:e.tokens.length-1,end:-1,open:n.can_open,close:n.can_close});return"
+" e.pos+=n.length,!0},postProcess:function(e){var "
+"r,t=e.tokens_meta,n=e.tokens_meta.length;for(Ne(e,e.delimiters),r=0;r<n;r++)t[r]&&t[r].delimiters&&Ne(e,t[r].delimiters)}};function"
+" Pe(e,r){var "
+"t,n,s,o,i,a;for(t=r.length-1;t>=0;t--)95!==(n=r[t]).marker&&42!==n.marker||-1!==n.end&&(s=r[n.end],a=t>0&&r[t-1].end===n.end+1&&r[t-1].token===n.token-1&&r[n.end+1].token===s.token+1&&r[t-1].marker===n.marker,i=String.fromCharCode(n.marker),(o=e.tokens[n.token]).type=a?\"strong_open\":\"em_open\",o.tag=a?\"strong\":\"em\",o.nesting=1,o.markup=a?i+i:i,o.content=\"\",(o=e.tokens[s.token]).type=a?\"strong_close\":\"em_close\",o.tag=a?\"strong\":\"em\",o.nesting=-1,o.markup=a?i+i:i,o.content=\"\",a&&(e.tokens[r[t-1].token].content=\"\",e.tokens[r[n.end+1].token].content=\"\",t--))}var"
+" je={tokenize:function(e,r){var "
+"t,n,s=e.pos,o=e.src.charCodeAt(s);if(r)return!1;if(95!==o&&42!==o)return!1;for(n=e.scanDelims(e.pos,42===o),t=0;t<n.length;t++)e.push(\"text\",\"\",0).content=String.fromCharCode(o),e.delimiters.push({marker:o,length:n.length,jump:t,token:e.tokens.length-1,end:-1,open:n.can_open,close:n.can_close});return"
+" e.pos+=n.length,!0},postProcess:function(e){var "
+"r,t=e.tokens_meta,n=e.tokens_meta.length;for(Pe(e,e.delimiters),r=0;r<n;r++)t[r]&&t[r].delimiters&&Pe(e,t[r].delimiters)}},Ue=E.normalizeReference,Ve=E.isSpace,Ze=E.normalizeReference,Ge=E.isSpace,$e=/^([a-zA-Z0-9.!#$%&'*+/=?^_"
+msgstr ""
 
 #: app/templates/article.html:8
 msgid "Download article"
@@ -391,7 +420,7 @@ msgstr "Cikk törlése"
 
 #: app/templates/article.html:26
 msgid "Reopen editing"
-msgstr "Cikk újranyítása"
+msgstr "Cikk újra nyitása"
 
 #: app/templates/article.html:40
 msgid "Send to Journal"
@@ -433,11 +462,11 @@ msgstr "Kiadás elutasítása"
 
 #: app/templates/article2.html:20
 msgid "Journals"
-msgstr ""
+msgstr "Folyóiratok"
 
 #: app/templates/base_menu.html:5
 msgid "Close Side Menu"
-msgstr "Oldalmenű bezárása"
+msgstr "Oldalmenü bezárása"
 
 #: app/templates/base_menu.html:10
 msgid "Home"
@@ -445,7 +474,7 @@ msgstr "Kezdőlap"
 
 #: app/templates/base_menu.html:11
 msgid "Open-Access Journal Browser"
-msgstr ""
+msgstr "Nyílt hozzáférésű folyóiratok böngésző"
 
 #: app/templates/base_menu.html:11
 msgid "Browser"
@@ -520,7 +549,7 @@ msgstr "Profil szerkesztése"
 
 #: app/templates/edit_profile.html:15
 msgid "Displayname"
-msgstr "Megjelenitett név"
+msgstr "Megjelenített név"
 
 #: app/templates/edit_profile.html:22
 msgid "Facebook"
@@ -540,7 +569,7 @@ msgstr ""
 
 #: app/templates/edit_profile.html:54
 msgid "Delete user"
-msgstr "Felhasználó tőrlése"
+msgstr "Felhasználó törlése"
 
 #: app/templates/editor.html:18
 msgid "Endnotes"
@@ -578,7 +607,7 @@ msgstr "Űrkutatás"
 
 #: app/templates/editor.html:94
 msgid "Biology"
-msgstr "Biologia"
+msgstr "Biológia"
 
 #: app/templates/editor.html:95
 msgid "Molecular Biology"
@@ -606,10 +635,10 @@ msgstr "Közgazdaságtan"
 
 #: app/templates/editor.html:101
 msgid "Sociology"
-msgstr "Szociologia"
+msgstr "Szociológia"
 
 #: app/templates/editor.html:102
-msgid "Low"
+msgid "Law"
 msgstr "Jog"
 
 #: app/templates/editor.html:103
@@ -638,7 +667,7 @@ msgstr "Elektronika"
 
 #: app/templates/editor.html:109
 msgid "Genetics"
-msgstr ""
+msgstr "Genetika"
 
 #: app/templates/editor.html:110
 msgid "Software"
@@ -646,7 +675,7 @@ msgstr "Szoftver"
 
 #: app/templates/editor.html:111
 msgid "Industrial"
-msgstr ""
+msgstr "Termelés"
 
 #: app/templates/editor.html:112
 msgid "Medicine"
@@ -662,7 +691,7 @@ msgstr "Fogászat"
 
 #: app/templates/editor.html:128
 msgid "Canonical URL"
-msgstr ""
+msgstr "Eredeti URL"
 
 #: app/templates/editor.html:130
 msgid "Text Type"
@@ -691,7 +720,7 @@ msgstr "Eszköztár"
 #: app/templates/editor.html:236 app/templates/editor.html:310
 #: app/templates/test.html:111
 msgid "Show Side Menu"
-msgstr ""
+msgstr "Oldalmenü megnyitása"
 
 #: app/templates/editor.html:245 app/templates/test.html:55
 msgid "Close Toolbar"
@@ -777,11 +806,11 @@ msgstr "HTML előnézet"
 
 #: app/templates/editor_side_menu.html:10
 msgid "Preview"
-msgstr "Elönézet"
+msgstr "Előnézet"
 
 #: app/templates/editor_side_menu.html:15
 msgid "HTML with equations images"
-msgstr ""
+msgstr "HTML, matematikai képekkel"
 
 #: app/templates/editor_side_menu.html:16
 msgid "HTML with raw LaTeX equations"
@@ -793,7 +822,7 @@ msgstr "Ugyanaz a Markdown mint a beviteli oldalon"
 
 #: app/templates/editor_side_menu.html:42
 msgid "Markdown with equations imgage"
-msgstr ""
+msgstr "MArkdown, matematikai képekkel"
 
 #: app/templates/editor_side_menu.html:42
 msgid "Image"
@@ -849,11 +878,11 @@ msgstr "Medium.com sütik törlése"
 
 #: app/templates/editor_side_menu.html:103
 msgid "Connect to Medium.com"
-msgstr ""
+msgstr "Kapcsolodás a Medium.com-hoz"
 
 #: app/templates/editor_side_menu.html:109
 msgid "Generate PDF"
-msgstr ""
+msgstr "PDF létrehozása"
 
 #: app/templates/editor_side_menu.html:114
 msgid "Generate ePUB"
@@ -897,11 +926,11 @@ msgstr "Böngésző"
 
 #: app/templates/keywords2.html:26
 msgid "Next"
-msgstr ""
+msgstr "Következő"
 
 #: app/templates/keywords2.html:31
 msgid "Before"
-msgstr ""
+msgstr "Előző"
 
 #: app/templates/md_cheatsheet.html:2
 msgid "Close Markdown cheatsheet"
@@ -925,7 +954,7 @@ msgstr "Alalszakasz cím"
 
 #: app/templates/md_cheatsheet.html:7
 msgid "Styling"
-msgstr "Stilus"
+msgstr "Stílus"
 
 #: app/templates/md_cheatsheet.html:8
 msgid "emphasize"
@@ -958,7 +987,7 @@ msgstr "Elem"
 
 #: app/templates/md_cheatsheet.html:25
 msgid "Item 1"
-msgstr "Elso elem"
+msgstr "Első elem"
 
 #: app/templates/md_cheatsheet.html:26
 msgid "Item 2"
@@ -966,7 +995,7 @@ msgstr "Második elem"
 
 #: app/templates/md_cheatsheet.html:28
 msgid "Item 52"
-msgstr "Ötvenketedik elem"
+msgstr "Ötvenkettedik elem"
 
 #: app/templates/md_cheatsheet.html:29
 msgid "Item 53"
@@ -1070,21 +1099,29 @@ msgstr "Euler-összefüggés:"
 msgid "Delete file"
 msgstr "Fájl törlése"
 
-#: app/templates/oastat.html:10
+#: app/templates/oastat.html:6
+msgid "Open-Access Article database statistic"
+msgstr ""
+
+#: app/templates/oastat.html:14
 msgid "Journal title"
-msgstr ""
+msgstr "Folyóirat címe"
 
-#: app/templates/oastat.html:11
+#: app/templates/oastat.html:15
+msgid "Publisher"
+msgstr "Kiadó"
+
+#: app/templates/oastat.html:16
 msgid "Electronic ISSN"
-msgstr ""
+msgstr "Electronikus ISSN"
 
-#: app/templates/oastat.html:12
+#: app/templates/oastat.html:17
 msgid "Paper ISSN"
-msgstr ""
+msgstr "Nyomtatott ISSN"
 
-#: app/templates/oastat.html:13
+#: app/templates/oastat.html:18
 msgid "Number of Article"
-msgstr ""
+msgstr "Cikkek száma"
 
 #: app/templates/read.html:14
 msgid "Download PDF"
@@ -1124,15 +1161,15 @@ msgstr "Hasonló cikkek"
 
 #: app/templates/read2.html:84
 msgid "This list is updated regularly,"
-msgstr ""
+msgstr "Ez a lista rendszeresen frissül,"
 
 #: app/templates/read2.html:84
 msgid "sign up for email notification."
-msgstr ""
+msgstr "iratkozzon fel email értesítésre"
 
 #: app/templates/read2.html:120
 msgid "Please enter your email:"
-msgstr ""
+msgstr "Kérjük adja meg az email címét:"
 
 #: app/templates/registerjournal.html:8
 msgid "Journal Title"
@@ -1148,11 +1185,11 @@ msgstr "Keresés"
 
 #: app/templates/search.html:7
 msgid "Result for"
-msgstr ""
+msgstr "Eredmény:"
 
 #: app/templates/search.html:9
 msgid "Results for"
-msgstr ""
+msgstr "Eredmények:"
 
 #: app/templates/search.html:20
 msgid "Next results"
@@ -1161,6 +1198,10 @@ msgstr "Következő találatok"
 #: app/templates/search.html:27
 msgid "Previous results"
 msgstr "Korábbi találatok"
+
+#: app/templates/searchstart.html:6
+msgid "Open-Access Article search"
+msgstr ""
 
 #: app/templates/show_profile.html:8
 msgid "Last seen on"
@@ -1172,23 +1213,23 @@ msgstr "Végjegyzet"
 
 #: app/templates/test.html:39
 msgid "Close Menu"
-msgstr "Menű bezárása"
+msgstr "Menü bezárása"
 
 #: app/templates/test.html:48
 msgid "Menu"
-msgstr "Menű"
+msgstr "Menü"
 
 #: app/templates/test.html:81
 msgid "Italic"
-msgstr "Dölt"
+msgstr "Dőlt"
 
 #: app/templates/test.html:87
 msgid "Images"
-msgstr ""
+msgstr "Kép"
 
 #: app/templates/test.html:149
 msgid "Close side menu"
-msgstr "Oldalmenű bezárása"
+msgstr "Oldalmenü bezárása"
 
 #: app/templates/test.html:154
 msgid "preview"
@@ -1216,11 +1257,11 @@ msgstr "Új cikk"
 
 #: app/templates/auth/login.html:29
 msgid "Forgot Your Password?"
-msgstr "Elfelejtete a jelszavát?"
+msgstr "Elfelejtette a jelszavát?"
 
 #: app/templates/auth/login.html:30
 msgid "Click to Reset"
-msgstr "Katincson ide, hogy újra megadja!"
+msgstr "Kattitson ide, hogy újra megadja!"
 
 #: app/templates/auth/login.html:32
 msgid "New User?"
@@ -1279,7 +1320,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgid "Edit your profile"
 #~ msgstr "Profil szerkesztése"
 
-#~ msgid "Media files"
+#~ msgid "Media files\"Köszönjü"
 #~ msgstr "Média fájlok"
 
 #~ msgid "Newer posts"
@@ -1307,7 +1348,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Bizonyitva X által"
 
 #~ msgid "taged"
-#~ msgstr "címkézet"
+#~ msgstr "cimkézet"
 
 #~ msgid "publisher"
 #~ msgstr "kiadó"
@@ -1325,16 +1366,16 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Válasszon másik felhasználónevet!"
 
 #~ msgid "Invalid username or password"
-#~ msgstr "A felhasznlónév vagy a jelszó nem jó"
+#~ msgstr "A felhasználónév vagy a jelszó nem jó"
 
 #~ msgid "Congratulations, you are now a registered user!"
-#~ msgstr "Graturálunk, őn regisztrált!"
+#~ msgstr "Gratulálunk, őn regisztrált!"
 
 #~ msgid "Check your email for the instructions to reset your password"
-#~ msgstr "Levélben elküldtsük a jelszó újbóli beállításnak lépéseit."
+#~ msgstr "Levélben elküldtük a jelszó újbóli beállításnak lépéseit."
 
 #~ msgid "Image only!"
-#~ msgstr "Kizárolag képfájl!"
+#~ msgstr "Kizárólag képfájl!"
 
 #~ msgid "File was empty!"
 #~ msgstr "Üres fájl!"
@@ -1346,7 +1387,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Nem lehet létrehozni a Media könyvtárat a "
 
 #~ msgid "article already confimed"
-#~ msgstr "cikk megerösített"
+#~ msgstr "cikk megerősített"
 
 #~ msgid "Can not confirm Relationship. "
 #~ msgstr "Kapcsolatot nem lehet megerősíteni."
@@ -1382,7 +1423,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Nem tudja saját magát hozzáadni vagy eltávolítani!"
 
 #~ msgid "The author already writer of this Article!"
-#~ msgstr "A felhasználó már íroja ennek a dokumentumnak!"
+#~ msgstr "A felhasználó már írója ennek a dokumentumnak!"
 
 #~ msgid "Not a valid search address"
 #~ msgstr "Nem létező keresési cím."
@@ -1394,10 +1435,10 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Adja meg a kép címét:"
 
 #~ msgid "You can just save in Preview mode!"
-#~ msgstr "Csak Elönézeti módban lehet menteni!"
+#~ msgstr "Csak Előnézeti módban lehet menteni!"
 
 #~ msgid "Need choise the Article which you are reviewing!"
-#~ msgstr "Ki kell választani egy Cikket amit reviewing"
+#~ msgstr "Ki kell választani egy cikket, amit reviewing"
 
 #~ msgid "Error: You do not loged in in Wordpress.com"
 #~ msgstr "Hiba: Nincs bejelentkezve a Wordpress.com-ba."
@@ -1424,7 +1465,7 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Markdown, a LaTeX kifejezések képként szerepelnek"
 
 #~ msgid "Connect Medium.com"
-#~ msgstr "CSatlakozás a Medium.com-hoz"
+#~ msgstr "Csatlakozás a Medium.com-hoz"
 
 #~ msgid "Do you want to be up to date?"
 #~ msgstr ""
@@ -1434,4 +1475,10 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 
 #~ msgid "result for"
 #~ msgstr "találat a következő kifejezésre"
+
+#~ msgid "Categories\"KöszönjükKöszönjü"
+#~ msgstr "Kategóriák"
+
+#~ msgid "Low"
+#~ msgstr "Jog"
 
