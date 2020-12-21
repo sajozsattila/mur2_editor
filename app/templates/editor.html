@@ -3,7 +3,7 @@
     <head>
         <title>{{ title }}</title>
         <meta name="author" content="{{author[0][0]}}{%if author|length > 1 %}{% for a in author[1:] %}, {{ a[0] }}{% endfor %}{%endif %}">
-
+       <link rel="icon" type="image/png" href="/static/images/favicon.png">
 
         <!-- style -->
         
@@ -99,7 +99,7 @@
                          <option value = "{{ _('History') }}\n">{{ _('History') }}</option>
                          <option value = "{{ _('Economy') }}\n">{{ _('Economy') }}</option>
                          <option value = "{{ _('Sociology') }}\n">{{ _('Sociology') }}</option>
-                         <option value = "{{ _('Low') }}\n">{{ _('Low') }}</option>
+                         <option value = "{{ _('Law') }}\n">{{ _('Law') }}</option>
                          <option value = "{{ _('Education') }}\n">{{ _('Education') }}</option>
                          <option value = "{{ _('Archaeology') }}\n">{{ _('Archaeology') }}</option>
                          <option value = "{{ _('Politics') }}\n">{{ _('Politics') }}</option>

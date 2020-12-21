@@ -633,6 +633,7 @@ and (max-device-width : 767px){
     }
     
     #maintext,
+    .main\.searchstart #maintext,
     .main\.keywords #maintext,    
     .main\.user #maintext,
     .main\.edit_profile #maintext {

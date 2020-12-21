@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-09 15:44+0000\n"
+"POT-Creation-Date: 2020-12-21 11:49+0000\n"
 "PO-Revision-Date: 2020-05-29 06:45+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -142,31 +142,31 @@ msgstr ""
 msgid "Action should be \"on\" or \"off\"!"
 msgstr ""
 
-#: app/main/routes.py:155
+#: app/main/routes.py:157
 msgid "Not a valid journal name!"
 msgstr ""
 
-#: app/main/routes.py:231
+#: app/main/routes.py:233
 msgid "Register Journal"
 msgstr ""
 
-#: app/main/routes.py:285
+#: app/main/routes.py:287
 msgid "editor"
 msgstr "編輯器"
 
-#: app/main/routes.py:521
+#: app/main/routes.py:523
 msgid "The author already has Article with this title!"
 msgstr ""
 
-#: app/main/routes.py:719
+#: app/main/routes.py:721
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:730
+#: app/main/routes.py:732
 msgid "User not permitted to delete "
 msgstr ""
 
-#: app/main/routes.py:730 app/templates/connections.html:46
+#: app/main/routes.py:732 app/templates/connections.html:46
 #: app/templates/connections.html:88 app/templates/discovery.html:28
 #: app/templates/discovery.html:56 app/templates/editor.html:133
 #: app/templates/editor.html:135 app/templates/editor.html:145
@@ -174,87 +174,87 @@ msgstr ""
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:801
+#: app/main/routes.py:803
 msgid "User no right to delete this"
 msgstr "用戶無權刪除此文章"
 
-#: app/main/routes.py:801
+#: app/main/routes.py:803
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:839 app/main/routes.py:864 app/main/routes.py:1327
+#: app/main/routes.py:841 app/main/routes.py:866 app/main/routes.py:1329
 msgid "Your changes have been saved."
 msgstr "改變已保存"
 
-#: app/main/routes.py:1027
+#: app/main/routes.py:1029
 msgid "Can't create Media directory for "
 msgstr ""
 
-#: app/main/routes.py:1034
+#: app/main/routes.py:1036
 msgid "No more disk space quota for "
 msgstr "空間配額不足"
 
-#: app/main/routes.py:1156
+#: app/main/routes.py:1158
 msgid "Article already confimed."
 msgstr ""
 
-#: app/main/routes.py:1182
+#: app/main/routes.py:1184
 msgid "Can't confirm Relationship. "
 msgstr ""
 
-#: app/main/routes.py:1201
+#: app/main/routes.py:1203
 msgid "User not permitted to confirm publishing."
 msgstr ""
 
-#: app/main/routes.py:1298 app/main/routes.py:1653
+#: app/main/routes.py:1300 app/main/routes.py:1660
 msgid "User is not the Author"
 msgstr ""
 
-#: app/main/routes.py:1303
+#: app/main/routes.py:1305
 msgid "The "
 msgstr ""
 
-#: app/main/routes.py:1303
+#: app/main/routes.py:1305
 msgid " Journal does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1308
+#: app/main/routes.py:1310
 msgid "Article has not been issued."
 msgstr ""
 
-#: app/main/routes.py:1340 app/main/routes.py:1593 app/main/routes.py:1607
+#: app/main/routes.py:1342 app/main/routes.py:1595 app/main/routes.py:1609
 msgid "Not a valid objecttype!"
 msgstr ""
 
-#: app/main/routes.py:1366
+#: app/main/routes.py:1368
 msgid "User cannot download this Article!"
 msgstr ""
 
-#: app/main/routes.py:1401
+#: app/main/routes.py:1403
 msgid "Facebook account does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1448
+#: app/main/routes.py:1450
 msgid "User does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1453
+#: app/main/routes.py:1455
 msgid "Article does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1464
+#: app/main/routes.py:1466
 msgid "The action should be 'add' or 'remove'!"
 msgstr ""
 
-#: app/main/routes.py:1469
+#: app/main/routes.py:1471
 msgid "You cannot add or remove yourself!"
 msgstr ""
 
-#: app/main/routes.py:1476
+#: app/main/routes.py:1478
 msgid "The author is already a writer of this Article!"
 msgstr ""
 
-#: app/main/routes.py:1725
+#: app/main/routes.py:1733
 msgid "Not a valid search address."
 msgstr ""
 
@@ -325,60 +325,89 @@ msgstr ""
 msgid "number_of_article"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:520 app/templates/read2.html:80
+#: app/static/js/mur2_editor.js:523 app/static/js/mur2_editor.min.js:1
+#: app/templates/read2.html:80
 msgid "Full text"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:98
+#: app/static/js/mur2_editor_utils.js:102
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Please enter a URL for the link."
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:107
+#: app/static/js/mur2_editor_utils.js:111
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Please enter a URL for image."
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:161
+#: app/static/js/mur2_editor_utils.js:165
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "No field selected!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:176
-#: app/static/js/mur2_editor_utils.js:346
-#: app/static/js/mur2_editor_utils.js:442
+#: app/static/js/mur2_editor_utils.js:180
+#: app/static/js/mur2_editor_utils.js:349
+#: app/static/js/mur2_editor_utils.js:445
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: "
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:240
+#: app/static/js/mur2_editor_utils.js:243
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "You can only save in Preview mode!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:256
+#: app/static/js/mur2_editor_utils.js:259
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Choose the Article which you are reviewing!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:261
+#: app/static/js/mur2_editor_utils.js:264
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Need to set the Standby!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:313
+#: app/static/js/mur2_editor_utils.js:316
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Saved!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:350
-#: app/static/js/mur2_editor_utils.js:368
-#: app/static/js/mur2_editor_utils.js:446
+#: app/static/js/mur2_editor_utils.js:353
+#: app/static/js/mur2_editor_utils.js:371
+#: app/static/js/mur2_editor_utils.js:449
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Published on "
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:382
+#: app/static/js/mur2_editor_utils.js:385
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: You are not logged into Wordpress.com"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:473
+#: app/static/js/mur2_editor_utils.js:476
+#: app/static/js/mur2_editor_utils.min.js:1
 msgid "Working..."
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:660
+#: app/static/js/mur2_editor_utils.js:657
 msgid "Error: The sum of the workshare is not 100!"
+msgstr ""
+
+#: app/static/js/editor/markdown-it.min.js:404
+msgid ""
+"{|}~-\".split(\"\").forEach(function(e){Me[e.charCodeAt(0)]=1});function "
+"Ne(e,r){var "
+"t,n,s,o,i,a=[],c=r.length;for(t=0;t<c;t++)126===(s=r[t]).marker&&-1!==s.end&&(o=r[s.end],(i=e.tokens[s.token]).type=\"s_open\",i.tag=\"s\",i.nesting=1,i.markup=\"~~\",i.content=\"\",(i=e.tokens[o.token]).type=\"s_close\",i.tag=\"s\",i.nesting=-1,i.markup=\"~~\",i.content=\"\",\"text\"===e.tokens[o.token-1].type&&\"~\"===e.tokens[o.token-1].content&&a.push(o.token-1));for(;a.length;){for(n=(t=a.pop())+1;n<e.tokens.length&&\"s_close\"===e.tokens[n].type;)n++;t!==--n&&(i=e.tokens[n],e.tokens[n]=e.tokens[t],e.tokens[t]=i)}}var"
+" Oe={tokenize:function(e,r){var "
+"t,n,s,o,i=e.pos,a=e.src.charCodeAt(i);if(r)return!1;if(126!==a)return!1;if(s=(n=e.scanDelims(e.pos,!0)).length,o=String.fromCharCode(a),s<2)return!1;for(s%2&&(e.push(\"text\",\"\",0).content=o,s--),t=0;t<s;t+=2)e.push(\"text\",\"\",0).content=o+o,e.delimiters.push({marker:a,length:0,jump:t,token:e.tokens.length-1,end:-1,open:n.can_open,close:n.can_close});return"
+" e.pos+=n.length,!0},postProcess:function(e){var "
+"r,t=e.tokens_meta,n=e.tokens_meta.length;for(Ne(e,e.delimiters),r=0;r<n;r++)t[r]&&t[r].delimiters&&Ne(e,t[r].delimiters)}};function"
+" Pe(e,r){var "
+"t,n,s,o,i,a;for(t=r.length-1;t>=0;t--)95!==(n=r[t]).marker&&42!==n.marker||-1!==n.end&&(s=r[n.end],a=t>0&&r[t-1].end===n.end+1&&r[t-1].token===n.token-1&&r[n.end+1].token===s.token+1&&r[t-1].marker===n.marker,i=String.fromCharCode(n.marker),(o=e.tokens[n.token]).type=a?\"strong_open\":\"em_open\",o.tag=a?\"strong\":\"em\",o.nesting=1,o.markup=a?i+i:i,o.content=\"\",(o=e.tokens[s.token]).type=a?\"strong_close\":\"em_close\",o.tag=a?\"strong\":\"em\",o.nesting=-1,o.markup=a?i+i:i,o.content=\"\",a&&(e.tokens[r[t-1].token].content=\"\",e.tokens[r[n.end+1].token].content=\"\",t--))}var"
+" je={tokenize:function(e,r){var "
+"t,n,s=e.pos,o=e.src.charCodeAt(s);if(r)return!1;if(95!==o&&42!==o)return!1;for(n=e.scanDelims(e.pos,42===o),t=0;t<n.length;t++)e.push(\"text\",\"\",0).content=String.fromCharCode(o),e.delimiters.push({marker:o,length:n.length,jump:t,token:e.tokens.length-1,end:-1,open:n.can_open,close:n.can_close});return"
+" e.pos+=n.length,!0},postProcess:function(e){var "
+"r,t=e.tokens_meta,n=e.tokens_meta.length;for(Pe(e,e.delimiters),r=0;r<n;r++)t[r]&&t[r].delimiters&&Pe(e,t[r].delimiters)}},Ue=E.normalizeReference,Ve=E.isSpace,Ze=E.normalizeReference,Ge=E.isSpace,$e=/^([a-zA-Z0-9.!#$%&'*+/=?^_"
 msgstr ""
 
 #: app/templates/article.html:8
@@ -609,7 +638,7 @@ msgid "Sociology"
 msgstr ""
 
 #: app/templates/editor.html:102
-msgid "Low"
+msgid "Law"
 msgstr ""
 
 #: app/templates/editor.html:103
@@ -1070,19 +1099,27 @@ msgstr "欧拉恒等式"
 msgid "Delete file"
 msgstr "刪除文件"
 
-#: app/templates/oastat.html:10
+#: app/templates/oastat.html:6
+msgid "Open-Access Article database statistic"
+msgstr ""
+
+#: app/templates/oastat.html:14
 msgid "Journal title"
 msgstr ""
 
-#: app/templates/oastat.html:11
+#: app/templates/oastat.html:15
+msgid "Publisher"
+msgstr ""
+
+#: app/templates/oastat.html:16
 msgid "Electronic ISSN"
 msgstr ""
 
-#: app/templates/oastat.html:12
+#: app/templates/oastat.html:17
 msgid "Paper ISSN"
 msgstr ""
 
-#: app/templates/oastat.html:13
+#: app/templates/oastat.html:18
 msgid "Number of Article"
 msgstr ""
 
@@ -1161,6 +1198,10 @@ msgstr "下一頁"
 #: app/templates/search.html:27
 msgid "Previous results"
 msgstr "上一頁"
+
+#: app/templates/searchstart.html:6
+msgid "Open-Access Article search"
+msgstr ""
 
 #: app/templates/show_profile.html:8
 msgid "Last seen on"
@@ -1403,5 +1444,8 @@ msgstr "已通知網站管理員。抱歉給您帶來的不便"
 #~ msgstr ""
 
 #~ msgid "result for"
+#~ msgstr ""
+
+#~ msgid "Low"
 #~ msgstr ""
 

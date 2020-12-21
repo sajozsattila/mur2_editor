@@ -25,10 +25,14 @@ function upload_source() {
 
 async function download_result(blobs) {
     var result = "";
-    for (var b = blobs.length; b--;) {
+    var title = document.getElementById('title-source').value.replace(/\s/g, '_').toLowerCase();
+    
+    for (var b = blobs.length; b--;) {        
         var bodytext = blobs[b].getDisplayedResult();
         result += "\n\n" + bodytext;
     }
+    
+    
 
     // get what is the current preview format
     var outputformat = g_view;
@@ -40,7 +44,7 @@ async function download_result(blobs) {
         });
         var a = document.createElement('a');
         a.href = window.URL.createObjectURL(blob);
-        a.download = outputformat + ".html";
+        a.download = title + ".html";
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click(); //this is probably the key - simulating a click on a download link
@@ -51,7 +55,7 @@ async function download_result(blobs) {
         });
         var a = document.createElement('a');
         a.href = window.URL.createObjectURL(blob);
-        a.download = outputformat + ".md";
+        a.download = title + ".md";
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click(); //this is probably the key - simulating a click on a download link
