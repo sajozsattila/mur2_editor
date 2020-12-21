@@ -197,6 +197,9 @@ td a.control-item {
     animation-duration: 3s;
     -webkit-animation-duration: 3s;
     letter-spacing: 0;
+    overflow: visible;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .showdetails {
@@ -718,10 +721,11 @@ and (max-device-width : 767px){
         transform: unset;
         position: relative;
         height: 6.74rem;
+        left: 0.8425rem;
         text-align: left;
+        width: 100%;
         top: -1.685rem;
         width: 100%;
-        left: 1.685rem;
     }
 }
 
@@ -795,8 +799,11 @@ and (orientation : landscape) {
         transform: unset;
         position: relative;
         height: 6.74rem;
-        text-align: right;
+        left: 0.8425rem;
+        text-align: left;
+        width: 100%;
         top: -1.685rem;
+        width: 100%;
     }
     
 }
@@ -842,8 +849,11 @@ and (orientation : portrait) {
         transform: unset;
         position: relative;
         height: 6.74rem;
-        text-align: right;
+        left: 0.8425rem;
+        text-align: left;
+        width: 100%;
         top: -1.685rem;
+        width: 100%;
     }
 }
 
