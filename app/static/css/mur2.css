@@ -192,6 +192,9 @@ table {
     display: flex;
     flex-direction: column;
 }
+.main\.root #side_top{
+    display: unset;
+}
 
 #mur2menutop {
     /* */

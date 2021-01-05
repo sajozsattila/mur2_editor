@@ -288,6 +288,11 @@ pybabel extract -F babel.cfg -k _l -o messages.pot .
 pybabel update -i messages.pot -d app/translations
 ```
 
+# Convergence
+The solution is based on the [Convefgence.io](https://convergence.io/). They have a Docker container: [convergence-omnibus](https://github.com/convergencelabs/convergence-omnibus-container). We use this docker. 
+
+We use JWTS for connection, which is JWT+SSL certification. The certification need to add manualy to the Docker on the [Console](https://mur2.co.uk:9000/console/domain/convergence/default/authentication/). The private key need to save in the convergence.pem file in the Frontend root container.
+
 # ML
 
 To make more Memory available for the ML scripts:

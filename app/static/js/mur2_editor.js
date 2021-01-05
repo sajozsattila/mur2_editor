@@ -396,7 +396,60 @@ function g_domFindScrollMarks() {
             localStorage.setItem("mur2_featured_image"+article_id, image.src);
             localStorage.setItem("mur2_featured_image"+article_id+'_time', +new Date);
         };
-    });    
+    });
+    
+    // upload image
+    document.getElementById('pictureElem').addEventListener('change', function() {
+        // A file has been chosen
+        if (!this.files || !FileReader) {
+            return;
+        }
+
+        var reader = new FileReader(),
+            fileInput = this;
+
+        reader.onload = function() {
+            var msgbox = document.getElementById("msg")
+            var status = 200;
+            // if filetype not right
+            if ( ['jpg', 'jpeg', 'png', 'xcf' ].includes(filetype) ) {
+                var filecontent = new Blob([this.result], {
+                    type: 'imgage/'+filetype
+                });
+            
+                // upload the file in the media directory
+                var fd = new FormData();
+                fd.append("photo", filecontent, filename);
+                fd.append("mediapage", false);
+                var xhr = new XMLHttpRequest();
+                xhr.open('post', '/media', true);
+                xhr.send(fd);
+    
+                xhr.onload = function() {
+                    if (xhr.status != 200) { // analyze HTTP status of the response                
+                        msgbox.style.color = "red";   
+                        status = xhr.status;
+                        msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+                    } else {
+                        var response = JSON.parse(xhr.response);
+                        editorToolbarAction("picture", response.url); 
+                        update();
+                    }
+                };        
+                // return the new file address
+            } else {
+                status = 400;
+                msgbox.style.color = "red";
+                msgbox.innerHTML = "Error: Not supported image format!" 
+            }
+            msgclear(status);
+        };
+        
+        reader.readAsArrayBuffer(this.files[0]);
+        var filename = this.files[0].name;
+        var filetype = this.files[0].name.split('.').pop().toLowerCase()
+         
+    });
 
     // other event delegator for menu and toolbar
     let editor_toolbar = document.querySelector('#menu');
@@ -561,8 +614,7 @@ function g_domFindScrollMarks() {
                     update();
                     break;
                 case 'id_picture':
-                    editorToolbarAction("picture");
-                    update();
+                    upload_picture();
                     break;
                 case 'id_link':
                     editorToolbarAction("link");
