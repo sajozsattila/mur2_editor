@@ -23,6 +23,23 @@ function upload_source() {
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
 
+function upload_picture() {
+    var eNode = document.getElementById('pictureElem');
+    // Fire click on file input
+    (eNode.onclick || eNode.click || function() {}).call(eNode);
+};
+            
+async function msgclear(status){
+    var msgbox = document.getElementById("msg")
+    if (status != 200) {
+        await sleep(5000);
+    } else {
+        await sleep(2000);
+    }
+
+    // clear msg
+    msgbox.innerHTML = "";
+}
 async function download_result(blobs) {
     var result = "";
     var title = document.getElementById('title-source').value.replace(/\s/g, '_').toLowerCase();
@@ -63,7 +80,7 @@ async function download_result(blobs) {
     }
 };
 
-function editorToolbarAction(action) {
+function editorToolbarAction(action, kwarg) {
     if (g_selectedTextarea !== null) {
         var field = document.getElementById(g_selectedTextarea);
         var start = field.selectionStart;
@@ -108,13 +125,10 @@ function editorToolbarAction(action) {
                 }
             }
         } else if (action === "picture") {
-            var userinput = prompt(_("Please enter a URL for image."), "");
-            if (userinput != null) {
-                if (text) {
-                    wrap = "![" + text + "](" + userinput + ")";
-                } else {
-                    wrap = "![kep](" + userinput + ")";
-                }
+            if (text) {
+                wrap = "![" + text + "](" + kwarg + ")";
+            } else {
+                wrap = "![kep](" + kwarg + ")";
             }
         } else if (action === "list") {
             re = /\n/g;
@@ -386,19 +400,15 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         };
 
         // if it is not a new article get the id
-        var article_id = document.querySelector('meta[name="article_id"]').content
-        // ???        
+        var article_id = document.querySelector('meta[name="article_id"]').content     
         
-        console.log("1");
         var htmltext = mainCollection.getHtmlImg();
         var article_title = titleCollection.getHtmlImg();
         var article_abstract = abstractCollection.getHtmlImg();
         var featuredimages = document.getElementsByClassName("feature_image")[0];
-        console.log("2");
         
         // tags        
         var keywords = keywordlist();
-        console.log("3");
         var keywordsId = [];
         // get tags            
         for ( var i = keywords.length; i--; ) {
@@ -425,7 +435,6 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
             }
         }
 
-        console.log("publishing");
         // publish in Wordpress.com
         var fd = new FormData();
         fd.append('title', article_title);
@@ -595,7 +604,7 @@ function selectReviewedID() {
     body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/embedding" type= "text/javascript"></iframe>';
     modal.style.display = "block";
     
-    // When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x), close the model
     span.onclick = function() {
         // the the chosed Article
         var iframe = document.getElementById("editor_iframe");                       
