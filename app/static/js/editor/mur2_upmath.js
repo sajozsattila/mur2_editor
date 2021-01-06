@@ -72,6 +72,7 @@ function ParserCollection(
     };
                
     var _mdPreview = markdownit(defaults)
+        .use(markdownitCriticmarkup)
         .use(markdownItAttrs, {})
         .use(implicitFigures, {
             figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
@@ -84,6 +85,7 @@ function ParserCollection(
         .use(markdownitIns);
 
     var _mdHtmlAndImages = markdownit(defaults)
+        .use(markdownitCriticmarkup)
         .use(markdownItAttrs, {})
         .use(implicitFigures, {
             figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
@@ -96,6 +98,7 @@ function ParserCollection(
         .use(markdownitIns);
 
     var _mdHtmlAndTex = markdownit(defaults)
+        .use(markdownitCriticmarkup)
         .use(markdownItAttrs, {})
         .use(implicitFigures, {
             figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
@@ -110,6 +113,7 @@ function ParserCollection(
         .use(markdownitIns);
 
     var _mdHtmlHabrAndImages = markdownit(defaults)
+        .use(markdownitCriticmarkup)
         .use(markdownitS2Tex, defaults._habr)
         .use(markdownitSub)
         .use(markdownitSup)
