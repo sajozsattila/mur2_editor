@@ -514,8 +514,9 @@ async function generate_from_md(destination, mainCollection) {
             if (destination === "latex" || destination === "epub" || destination === "msw" ) {
                 var a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
+                console.log(a.href);
                 
-                // replece white spaces in ttile for use as file name
+                // replece white spaces in title for use as file name
                 article_title = article_title.replace(/\s/g, "_");
                 
                 if (destination === "latex" ) {                    
