@@ -3,6 +3,8 @@
  *
  * (c) Roman Parpalak, 2015
  * Based on code by Colin Kuebler, 2012
+ * Updated by Sajó, Zsolt Attila, 2021 for mur2 editor 
+ *     -- add CritiMarkup 
  */
 
 function MarkdownParser(i) {
@@ -252,6 +254,11 @@ mdParser
 		link:       /\[.+?\][\(\[].*?[\)\]]/,
 		bold:       /(?:\s|^)__[\s\S]*?\S__|\*\*[\s\S]*?\S\*\*/,
 		italic:     /(?:\s|^)_[\s\S]*?[^\\\s]_|\*[^\\\s]\*|\*\S[\s\S]*?[^\\\s]\*/,
+        ec_substitutions:    /\{~~.+?~~\}/,
+        ec_hlight: /\{==.+?==\}/,
+        ec_delete:  /\{--.+?--\}/,
+        ec_add:     /\{\+\+.+?\+\+\}/,
+        ec_comment:     /\{>>.+?<<\}/,
 		strike:     /~~.+?~~/,
 		sup:        /\^.+?\^/,
 		sub:        /~.+?~/,
