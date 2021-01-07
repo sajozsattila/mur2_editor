@@ -1,0 +1,32 @@
+.ec_substitutions {
+    color: #ff8600;
+}
+
+mark,
+.ec_hlight {
+    background-color: yellow;
+    color: #aa53a9
+}
+
+del,
+.ec_delete {
+    color: red;
+}
+
+ins,
+.ec_add {
+    color: #00bb00;
+}
+
+aside, 
+.ec_comment {
+    color: #0000bb
+}
+
+/* for Editorial changes */
+del, aside {
+    display: inline;
+}
+ins {
+    text-decoration: underline;     
+}

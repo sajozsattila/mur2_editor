@@ -64,6 +64,19 @@ body h5 {
     width: auto !important ;    
 }
 
+/* for Editorial changes */
+del, aside {
+    display: none;
+}
+ins {
+    text-decoration: none;     
+}
+mark {
+    background-color: unset;
+    color: #333;
+}
+
+
 a {
     background: 0 0;
     color: #115B7A;

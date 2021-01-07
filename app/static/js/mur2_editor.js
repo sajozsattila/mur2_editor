@@ -13,6 +13,8 @@ var g_focusmode_switch = false;
 var g_preview_on = true;
 // which textareai is selected
 var g_selectedTextarea = null;
+// editor changes show 
+var g_echange_on = false;
 
 //////////
 // set a DOM content, with highlighting or not 
@@ -600,6 +602,19 @@ function g_domFindScrollMarks() {
                     }
 
 
+                    break;
+                case 'id_echange':
+                    if (g_echange_on !== true ) {
+                        document.getElementById('editor_changes').disabled = false;
+                        g_echange_on = true;
+                        // set color of the bottom
+                        document.getElementById('id_echange_botton').style.color =  '#c62641';
+                    } else {
+                        // disable the css file
+                        document.getElementById('editor_changes').disabled = true;
+                        g_echange_on = false;
+                        document.getElementById('id_echange_botton').style.color =  'white';
+                    }
                     break;
                 case 'id_head':
                     editorToolbarAction("heading");

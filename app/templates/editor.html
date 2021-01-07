@@ -43,6 +43,7 @@
         <link rel="stylesheet" href="/static/css/editor/mur2_editor_base.css">
         <link rel="stylesheet" href="/static/css/editor/source_md_highlight.css">
         <link rel="stylesheet" href="/static/css/preview.css">
+        <link id ="editor_changes" rel="stylesheet" type = 'text/css' href="/static/css/editor_changes.css" disabled="">
         
         {% include 'language_selector.html' %}
         
@@ -305,6 +306,9 @@
                  <!-- Proof search -->
                  <input class="choice_toolbar control-input" id="id_proof" type="radio" name="source_type" >
                  <label class="toolbar menufont" for="id_proof" title="{{ _('Embedding') }}" >E</label>
+                 <!-- Editorial changes -->
+                 <input class="choice_toolbar control-input" id="id_echange" type="checkbox" name="source_type" >
+                 <label id="id_echange_botton" class="toolbar fontawsome fas fa-i-cursor" for="id_echange" title="{{ _('Editorial changes') }}" ></label>
               </div>
               <div>
                   <!-- Show side menu -->
@@ -365,7 +369,7 @@
        <script src="/static/js/editor/markdown-it-implicit-figures.min.js"></script>
        <script src="/static/js/editor/markdown-it-attrs.browser.min.js"></script>
        <script src="/static/js/editor/markdown-it-criticmarkup.js"></script>
-       <script src="/static/js/editor/parser.min.js"></script>       
+       <script src="/static/js/editor/parser.js"></script>       
        <script src="/static/js/editor/mur2_upmath.js"></script>
        <script src="/static/js/mur2_editor_utils.js"></script>
        <script src="/static/js/mur2_editor.js"></script>
