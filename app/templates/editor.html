@@ -243,6 +243,7 @@
                  <div>
                  <div class="toolbar-button" style="display:none"><input type="file" id="fileElem" ></div>
                  <div class="toolbar-button" style="display:none"><input type="file" id="pictureElem" ></div>                     
+                 <div class="toolbar-button" style="display:none"><input type="file" id="bibliography" ></div>
                  <!-- close editor toolbar -->
                  <label class=" toolbar" for="id_editor_toolbar" title="{{ _('Close Toolbar') }}" >T</label>
                  
@@ -257,31 +258,31 @@
                  <!-- Save -->
                  <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-save fontawsome " for="id_save" title="{{ _('Save') }}" ></label>
-                 {% endif %}
-                 <!-- Syntax highlighting -->
-                 <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
-                 <label class="toolbar fontawsome fab fa-markdown fontawsome " for="id_syntax_hl" title="{{ _('Syntax highlighting') }}" ></label>
+                 {% endif %}                 
                  <!-- Hide input -->
                  <input class="choice_toolbar control-input" id="id_hide_input" type="checkbox" name="source_type" >
                  <label class="toolbar fontawsome far fa-arrow-alt-circle-left " for="id_hide_input" title="{{ _('Hide input') }}"  ></label>
                  <!-- Show title and abstract -->
                  <input class="choice_toolbar control-input" id="id_show_title" type="checkbox" name="source_type" >
-                 <label class="toolbar fontawsome far fa-arrow-alt-circle-down toolbar" for="id_show_title" title="{{ _('Show title and abstract') }}" ></label>
+                 <label class="toolbar fontawsome far fa-arrow-alt-circle-down" for="id_show_title" title="{{ _('Document settings') }}" ></label>
                  <!-- Hide preview -->
                  <input class="choice_toolbar control-input" id="id_hide_preview" type="checkbox" name="source_type" >
-                 <label class="toolbar fontawsome far fa-arrow-alt-circle-right toolbar" for="id_hide_preview" title="{{ _('Hide preview') }}"  ></label>
+                 <label class="toolbar fontawsome far fa-arrow-alt-circle-right" for="id_hide_preview" title="{{ _('Hide preview') }}"  ></label>
+                 <!-- Syntax highlighting -->
+                 <input class="choice_toolbar control-input focusmode" id="id_syntax_hl" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fab fa-markdown fontawsome " for="id_syntax_hl" title="{{ _('Syntax highlighting') }}" ></label>
                  <!-- Head -->
                  <input class="choice_toolbar control-input" id="id_head" type="radio" name="source_type" >
-                 <label class="toolbar fontawsome fas fa-heading toolbar" for="id_head" title="{{ _('Head') }}" ></label>
+                 <label class="toolbar fontawsome fas fa-heading" for="id_head" title="{{ _('Head') }}" ></label>
                  <!-- Italic -->
                  <input class="choice_toolbar control-input" id="id_italic" type="radio" name="source_type" >
-                 <label class="toolbar fontawsome fas fa-italic toolbar" for="id_italic" title="{{ _('Emphasize') }}" ></label>
+                 <label class="toolbar fontawsome fas fa-italic" for="id_italic" title="{{ _('Emphasize') }}" ></label>
                  <!-- Strong -->
                  <input class="choice_toolbar control-input" id="id_strong" type="radio" name="source_type" >
-                 <label class="toolbar fontawsome fas fa-bold toolbar" for="id_strong" title="{{ _('Strong') }}" ></label>
+                 <label class="toolbar fontawsome fas fa-bold" for="id_strong" title="{{ _('Strong') }}" ></label>
                  <!-- Picture -->
                  <input class="choice_toolbar control-input" id="id_picture" type="radio" name="source_type" >
-                 <label class="toolbar fontawsome far fa-image toolbar" for="id_picture" title="{{ _('Picture') }}" ></label>
+                 <label class="toolbar fontawsome far fa-image" for="id_picture" title="{{ _('Picture') }}" ></label>
                  <!-- Link -->
                  <input class="choice_toolbar control-input" id="id_link" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-link " for="id_link" title="{{ _('Link') }}" ></label>
@@ -300,15 +301,20 @@
                  <!-- Code -->
                  <input class="choice_toolbar control-input" id="id_code" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-code" for="id_code" title="{{ _('Code') }}" ></label>
+                 <!-- Editorial changes -->
+                 <input class="choice_toolbar control-input" id="id_echange" type="checkbox" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-i-cursor" for="id_echange" title="{{ _('Editorial changes') }}" ></label>
+                 <!-- bibliography -->
+                 <input class="choice_toolbar control-input" id="id_bib" type="checkbox" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-book" for="id_bib" title="{{ _('Add Bibliography ') }}" ></label>
                  <!-- LaTeX -->
                  <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
                  <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>
                  <!-- Proof search -->
+                 <!--
                  <input class="choice_toolbar control-input" id="id_proof" type="radio" name="source_type" >
                  <label class="toolbar menufont" for="id_proof" title="{{ _('Embedding') }}" >E</label>
-                 <!-- Editorial changes -->
-                 <input class="choice_toolbar control-input" id="id_echange" type="checkbox" name="source_type" >
-                 <label id="id_echange_botton" class="toolbar fontawsome fas fa-i-cursor" for="id_echange" title="{{ _('Editorial changes') }}" ></label>
+                 -->
               </div>
               <div>
                   <!-- Show side menu -->
@@ -368,11 +374,11 @@
        <script src="/static/js/editor/markdown-it-ins.min.js"></script>
        <script src="/static/js/editor/markdown-it-implicit-figures.min.js"></script>
        <script src="/static/js/editor/markdown-it-attrs.browser.min.js"></script>
-       <script src="/static/js/editor/markdown-it-criticmarkup.js"></script>
-       <script src="/static/js/editor/parser.js"></script>       
-       <script src="/static/js/editor/mur2_upmath.js"></script>
-       <script src="/static/js/mur2_editor_utils.js"></script>
-       <script src="/static/js/mur2_editor.js"></script>
+       <script src="/static/js/editor/markdown-it-criticmarkup.min.js"></script>
+       <script src="/static/js/editor/parser.min.js"></script>       
+       <script src="/static/js/editor/mur2_upmath.min.js"></script>
+       <script src="/static/js/mur2_editor_utils.min.js"></script>
+       <script src="/static/js/mur2_editor.min.js"></script>
        
        <script>
            // retrieve the access token from the URL
@@ -402,168 +408,11 @@
                data.setAttribute("selectedvalue", data.value); 
            }           
        </script>
-
-        <script type="text/javascript">
-            // just saved article can be shared
-            if ( {{ article_id }} > 0 ){                        
-                var domainUrl = "https://mur2.co.uk:9000/api/realtime/convergence/default";
-            
-                // 1. Connect to the domain anonymously.
-                Convergence.connectWithJwt(domainUrl, "{{cjwt}}")
-                    .then(initApp)
-                    // .then(chat) # commented out as there is a bug in Convergence
-                    .catch((error) => {
-                    console.log("Could not connect: " + error);
-                });
-            
-                // 2. Initializes the application after connecting by opening a model.
-                function initApp(domain) {                                                          
-                    const modelService = domain.models();
-                    modelService.openAutoCreate({
-                        collection: "{{ title }}",
-                        id: "{{ article_id|string }}",
-                        data: { text: document.getElementById('main-source').value }
-                    })
-                        .then(initModel)
-                        .then(listener)
-                        .catch((error) => {
-                        console.log("Could not open model: " + error);
-                    });
-                    
-                    return domain
-                };
-
-                // 3. Initializes the model once the model is open.
-                function initModel(model) {
-                    const stringModel = model.elementAt("text");
-                    const textArea = document.getElementById("main-source");
-
-                    // Sets the value of the text area and performs a two-way-binding.
-                    ConvergenceInputElementBinder.bindTextInput(textArea, stringModel);
-                    
-                    return model;
-                };
-            
-                function listener(model) {
-                    var textArea = document.getElementById("main-source");
-                    var convevent = new CustomEvent('conv', { detail: "main-source" });
-                    var inputeventl = new Event("input");
-                    var article_input_side = document.querySelector('#article_input_side');
-                    // listen the changes
-                    model.events().subscribe(e => {
-                        switch (e.name) {
-                            case "version_changed":
-                               // update input side
-                               textArea.dispatchEvent(inputeventl);
-                               // update rendered side
-                               article_input_side.dispatchEvent(convevent);
-                               break;
-                            default:
-                        }
-                    } );
-                };  
-                
-                function displaychatmsg(inputdata){
-                    console.log(inputdata);
-                    // create new post
-                    var post = document.createElement("li");
-                    var user = document.createElement("span");
-                    user.className += 'chatuser';
-                    user.innerText = inputdata['user'];
-                    post.appendChild(user);
-                    var msg = document.createElement("p");
-                    msg.innerText  = inputdata['msg'];
-                    post.appendChild(msg);
-                    
-                    // Get the chat window
-                    var windows = document.getElementById("chatposts");
-                    windows.appendChild(post);
-                }
-                
-                /* connect ot chat */
-                // Create chat
-                function chat(domain) {    
-                    this.domain = domain;
-                    
-                    var identityService = domain.identity();
-                    var user = identityService.session().user();
-                    console.log(user);
-                            
-                    
-                    const chatService = domain.chat();                    
-                    // Create a room 
-                    chatService.create({
-                        // a unique ID for the chat room
-                        id: 'articles{{article_id}}', 
-                        // either "room" or "channel"
-                        type: "channel", 
-                        name: 'articles{{article_id}}', 
-                        topic: 'Chat about Article {{article_id}}',
-                        // Either "public" or "private".  Room chats must be public
-                        membership: "public", 
-                        // by default, if a room with this ID already exists, an Error is thrown.  Setting
-                        // this flag to true avoids this error.                          
-                        ignoreExistsError: true
-                    }).then(chatId => {
-                        // Join the room
-                        return chatService.join(chatId);
-                    }).then(room => {
-                        this.channel = room;
-                        
-                        // Listen for incoming messages
-                        room.on("Message", evt => {
-                            displaychatmsg({
-                                msg:  evt.message.split(":").slice(1).join(':'),
-                                user: evt.message.split(":")[0]
-                            });
-                        });
-                        
-                        /* get history */
-                        /* this have a bug in so at the moment the chat is not active */
-                        room.getHistory({
-                            startEvent: 0,
-                            limit: 10,
-                            forward: true
-                        }).then(response => {
-                            console.log(response);
-                            if ( response.length > 0 ) {
-                                response.data.forEach(event => {
-                                    console.log(event);
-                                });
-                            }
-                        }).catch(error => {
-                            console.log("No history: " + error);
-                        });
-                        
-
-                        // Send a message
-                        room.send(this.domain.session().user().displayName+": OMG no. So much text: I'm dreaming in Markdown");
-
-                    }).catch(e => {
-                        console.log(e);
-                    });
-                    
-                };                                           
-                
-                // monitor chat input filed
-                function chatinput(event) {
-                    if (event.keyCode === 13) {
-                        try {
-                           this.channel.send(
-                               this.domain.session().user().displayName+":"+document.getElementById("chatinput").value
-                           );
-                        } catch (e) {
-                            // handle errors.  say, the user isn't currently connected
-                            console.log(e);
-                        }
-                   
-                        // clear value
-                        document.getElementById("chatinput").value = "";
-                    }
-                };                              
-            }            
-        </script>
-        <script type="text/javascript">
+       <!-- collaborative editing --> 
+       <script src="/static/js/mur2_editor_collaborative.js"></script>
+       <script>collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")</script>
+        
+       <script>
            // add focuse on the main area
             var field = document.getElementById('main-source');
             field.focus();

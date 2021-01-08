@@ -68,6 +68,7 @@ and (orientation : landscape) {
   height: calc(100vh - 10px);
   grid-template: repeat(6, 1fr)/repeat(6, 1fr);
   grid-gap: 0.5em;
+  overflow: auto;
 }
 @media (max-width: 800px) {
   #gallery {

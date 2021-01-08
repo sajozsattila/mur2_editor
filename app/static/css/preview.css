@@ -9,6 +9,12 @@
     max-width: 47rem;
 }
 
+/* bib */
+.csl-entry {
+    text-indent: calc(-1*var(--verticaldistance));
+    padding-left: var(--verticaldistance);
+}
+
 #article_main figure img {
     max-width: 100%;
 }
@@ -27,6 +33,8 @@
 
 div#article_abstract_div, 
 #article_main p,
+#article_main div,
+#article_main hr,
 #article_main li,
 #article_main h1
 {

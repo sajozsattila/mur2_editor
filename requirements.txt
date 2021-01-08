@@ -18,6 +18,7 @@ Flask-JWT==0.3.2
 Flask-Login==0.5.0
 Flask-Mail==0.9.1
 Flask-Migrate==2.5.3
+Flask-HTMLmin==2.0.0
 Flask-RESTful==0.3.8
 Flask-SQLAlchemy==2.4.4
 Flask-Uploads==0.2.1

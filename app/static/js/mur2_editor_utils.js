@@ -28,6 +28,12 @@ function upload_picture() {
     // Fire click on file input
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
+
+function upload_bib() {
+    var eNode = document.getElementById('bibliography');
+    // Fire click on file input
+    (eNode.onclick || eNode.click || function() {}).call(eNode);
+};
             
 async function msgclear(status){
     var msgbox = document.getElementById("msg")
@@ -514,7 +520,6 @@ async function generate_from_md(destination, mainCollection) {
             if (destination === "latex" || destination === "epub" || destination === "msw" ) {
                 var a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
-                console.log(a.href);
                 
                 // replece white spaces in title for use as file name
                 article_title = article_title.replace(/\s/g, "_");
@@ -531,6 +536,7 @@ async function generate_from_md(destination, mainCollection) {
                 a.click(); //this is probably the key - simulating a click on a download link
                 delete a;
             } else {
+                // ipad pdf need to open different way
                 if (navigator.userAgent.indexOf("iPad") != -1 || navigator.userAgent.indexOf("Macintosh") != -1) {
                     // on iPad we open in same window
                     window.location.href = fileURL;
@@ -717,3 +723,5 @@ function getArticleversion() {
             }
     }
 }
+
+

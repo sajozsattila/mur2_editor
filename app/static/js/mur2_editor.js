@@ -414,7 +414,7 @@ function g_domFindScrollMarks() {
             var msgbox = document.getElementById("msg")
             var status = 200;
             // if filetype not right
-            if ( ['jpg', 'jpeg', 'png', 'xcf' ].includes(filetype) ) {
+            if ( ['jpg', 'jpeg', 'png', 'gif' ].includes(filetype) ) {
                 var filecontent = new Blob([this.result], {
                     type: 'imgage/'+filetype
                 });
@@ -451,6 +451,59 @@ function g_domFindScrollMarks() {
         var filename = this.files[0].name;
         var filetype = this.files[0].name.split('.').pop().toLowerCase()
          
+    });
+    
+    // add Bibliography 
+    document.getElementById('bibliography').addEventListener('change', function() {
+        // A file has been chosen
+        if (!this.files || !FileReader) {
+            return;
+        }
+
+        var reader = new FileReader(),
+            fileInput = this;
+
+        reader.onload = function() {
+            var msgbox = document.getElementById("msg")
+            var status = 200;
+            // if filetype right
+            if ( ['bib' ].includes(filetype) ) {
+                var filecontent = new Blob([this.result], {
+                    type: 'text/plain'
+                });
+            
+                // upload the file in the media directory
+                var fd = new FormData();
+                fd.append("bibliography", filecontent, 'bibliography.bib');
+                var xhr = new XMLHttpRequest();
+                xhr.open('post', '/bibliography', true);
+                xhr.send(fd);
+    
+                xhr.onload = function() {
+                    if (xhr.status != 200) { // analyze HTTP status of the response                
+                        msgbox.style.color = "red";   
+                        status = xhr.status;
+                        msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+                    } else {
+                        // the HTML file
+                        var response = JSON.parse(xhr.response);
+                        console.log(response);
+                        var source = document.getElementById('main-source');
+                        // append html toe end of the main source
+                        source.value = source.value + "\n" + response.bib;
+                        update();
+                    }
+                };        
+                // return the new file address
+            } else {
+                status = 400;
+                msgbox.style.color = "red";
+                msgbox.innerHTML = "Error: Not supported image format!" 
+            }
+            msgclear(status);
+        };        
+        reader.readAsArrayBuffer(this.files[0]);
+        var filetype = this.files[0].name.split('.').pop().toLowerCase()
     });
 
     // other event delegator for menu and toolbar
@@ -615,6 +668,9 @@ function g_domFindScrollMarks() {
                         g_echange_on = false;
                         document.getElementById('id_echange_botton').style.color =  'white';
                     }
+                    break;
+                case 'id_bib':
+                    upload_bib();
                     break;
                 case 'id_head':
                     editorToolbarAction("heading");

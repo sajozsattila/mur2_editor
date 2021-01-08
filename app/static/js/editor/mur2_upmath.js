@@ -128,7 +128,7 @@ function ParserCollection(
     var languageFootnote = document.querySelector('meta[name="endnotetext"]').content
     for (var i = 0; i < mdsnames.length; i++) {
         mdsnames[i].renderer.rules.footnote_block_open = () => (
-            '<h3 class="mt-3">' + languageFootnote + '</h3>\n' +
+            '<h1 class="mt-1">' + languageFootnote + '</h1>\n' +
             '<section class="footnotes">\n' +
             '<ol class="footnotes-list">\n'
         );
