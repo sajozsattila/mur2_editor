@@ -254,7 +254,7 @@
                  <!-- Download result -->
                  <input class="choice_toolbar control-input" id="id_download" type="radio" name="source_type" >
                  <label class=" fontawsome fas fa-file-download toolbar" for="id_download" title="{{ _('Download result') }}" ></label>        
-                 {% if not current_user.is_anonymous and edit and ( owner or article_id >= -1 ) %}
+                 {% if not current_user.is_anonymous and ( edit or article_id == -1 ) and ( owner or article_id >= -1 ) %}
                  <!-- Save -->
                  <input class="choice_toolbar control-input" id="id_save" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fas fa-save fontawsome " for="id_save" title="{{ _('Save') }}" ></label>
@@ -377,8 +377,8 @@
        <script src="/static/js/editor/markdown-it-criticmarkup.min.js"></script>
        <script src="/static/js/editor/parser.min.js"></script>       
        <script src="/static/js/editor/mur2_upmath.min.js"></script>
-       <script src="/static/js/mur2_editor_utils.min.js"></script>
-       <script src="/static/js/mur2_editor.min.js"></script>
+       <script src="/static/js/mur2_editor_utils.js"></script>
+       <script src="/static/js/mur2_editor.js"></script>
        
        <script>
            // retrieve the access token from the URL
@@ -409,7 +409,7 @@
            }           
        </script>
        <!-- collaborative editing --> 
-       <script src="/static/js/mur2_editor_collaborative.js"></script>
+       <script src="/static/js/mur2_editor_collaborative.min.js"></script>
        <script>collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")</script>
         
        <script>

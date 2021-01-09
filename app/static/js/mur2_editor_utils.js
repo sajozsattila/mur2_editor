@@ -300,7 +300,9 @@ async function save_article(blobs) {
     var article_abstract = document.getElementById("abstact-source").value
     var featuredImagesSrc = "";
     var featuredimages = document.getElementsByClassName("feature_image")[0];
-    if ( featuredimages.src != featuredimages.baseURI ) {
+    const pageurl = new URL(featuredimages.baseURI);
+    const featureurl = new URL(featuredimages.src);
+    if ( featureurl.pathname != pageurl.pathname ) {
         featuredImagesSrc = featuredimages.src;
     }
     var keywords = keywordlist();

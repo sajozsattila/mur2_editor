@@ -526,6 +526,10 @@ textarea,
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
+    #article_preview_side {
+        padding-left: 0rem;
+    }
+    
     #article_input_side.previewoff,
     #article_preview_side.inputoff {
         /* */
@@ -544,6 +548,10 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
+    #article_preview_side {
+        padding-left: 0rem;
+    }
+    
     #article_input_side.previewoff, 
     #article_preview_side.inputoff {
         /* */
