@@ -641,7 +641,7 @@ and (max-device-width : 767px){
     .main\.user #maintext,
     .main\.edit_profile #maintext {
         padding-left: 1.685rem;
-        width: calc(100% - 1.685rem - 1.685rem);
+        width: calc(100% - var(--verticaldistance) - var(--verticaldistance));
         z-index: 2;
         position: relative;
         top: 3rem;
@@ -651,11 +651,12 @@ and (max-device-width : 767px){
     .main\.oareader .articleinfo {
         width: calc( var(--verticaldistance) * 6 );
     }
-    
+    .main\.proofs #maintext,
+    .main\.oa_browser #maintext,
     .main\.discovery #maintext {
         flex-direction: column;
         padding-left: 1.685rem;
-        width: calc(100% - 1.685rem  );
+        width: calc(100% - var(--verticaldistance)  );
         direction: ltr;
         top: 3rem;
         z-index: 2;
@@ -679,8 +680,8 @@ and (max-device-width : 767px){
     }
     
     #side_menu {
-        width: calc(100% - 1.685rem);
-        min-width: calc(100% - 1.685rem);  
+        width: calc(100% - var(--verticaldistance));
+        min-width: calc(100% - var(--verticaldistance));  
         z-index: 1;
         font-size: 2rem;
     }
@@ -695,8 +696,18 @@ and (max-device-width : 767px){
         opacity: 1;        
     }
     
+    #discovery_legends,
+    .sidebarLinks, 
     #mur2menu_link {
-        color: rgba(0,0,0,0) ;
+        color: rgba(0,0,0,0) ;        
+    }
+    
+    #nodesearch {
+        border: none;
+    }
+    
+    .discovery_legend_color {
+        background: unset !important  ;
     }
     
     #id_side_menu:checked ~ #side_menu {
@@ -743,10 +754,11 @@ and (max-device-width : 767px){
     .main\.user  #user_username {
         width: 12.5rem;
     }
-    
+    .main\.proofs #maintext,
+    .main\.oa_browser #maintext,
     .main\.discovery #maintext {
         flex-direction: column;
-        padding-left: 1.685rem;
+        padding-left: var(--verticaldistance);
         width: calc(100% - 17.5275rem );
         direction: ltr;
         top: 0;
@@ -768,8 +780,11 @@ and (orientation : landscape) {
     .main\.user #maintext,
     .main\.user #maintext {
         padding-left: 3.37rem;
-        width: calc(100% - 17.5275rem - 3.37rem);
+        width: calc(100% - 17.5275rem - 2 * var(--verticaldistance));
     }
+    
+    .main\.proofs #maintext,
+    .main\.oa_browser #maintext,
     .main\.discovery #maintext {
         flex-direction: column;
         padding-left: 1.685rem;
@@ -799,10 +814,10 @@ and (orientation : landscape) {
         transform: unset;
         position: relative;
         height: 6.74rem;
-        left: 0.8425rem;
+        left: calc(var(--verticaldistance) / 2);
         text-align: left;
         width: 100%;
-        top: -1.685rem;
+        top: calc( -1 * var(--verticaldistance));
         width: 100%;
     }
     
@@ -818,8 +833,11 @@ and (orientation : portrait) {
     .main\.user #maintext,
     .main\.user #maintext {
         padding-left: 1.685rem;
-        width: calc(100% - 17.5275rem - 1.685rem);
-    }   
+        width: calc(100% - 17.5275rem - var(--verticaldistance));
+    }
+    
+    .main\.proofs #maintext,
+    .main\.oa_browser #maintext,
     .main\.discovery #maintext {
         flex-direction: column;
         padding-left: 1.685rem;
@@ -849,31 +867,11 @@ and (orientation : portrait) {
         transform: unset;
         position: relative;
         height: 6.74rem;
-        left: 0.8425rem;
+        left: calc(var(--verticaldistance) / 2);
         text-align: left;
         width: 100%;
-        top: -1.685rem;
+        top: calc( -1 * var(--verticaldistance));
         width: 100%;
     }
 }
 
-@media only screen and (max-width: 900px), 
-(height: 1024px) and (width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: landscape) {
-    #maintext,
-    .main\.keywords #maintext,
-    .main\.user #maintext {
-        padding-left: 15.25rem;
-        width: calc(100% - 17.5275rem - 15.25rem);
-    }  
-    .main\.discovery #maintext {
-        flex-direction: column;
-        padding-left: 1.685rem;
-        width: calc(100% - 17.5275rem );
-        direction: ltr;
-        top: 0;
-    }
-    #side_menu {
-        width: 15rem;
-        min-width: 15rem;
-    }       
-}
