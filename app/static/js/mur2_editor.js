@@ -686,7 +686,17 @@ function g_domFindScrollMarks() {
                     update();
                     break;
                 case 'id_picture':
-                    upload_picture();
+                    // different handli for free editor and registered users editor  
+                    console.log(window.location.pathname);
+                    if (window.location.pathname === '/editor') {
+                        var userinput = prompt(_("Please enter a URL for image."), "");
+                        if (userinput != null) {                            
+                            editorToolbarAction("picture", userinput );                            
+                            update();
+                        }
+                    } else {
+                        upload_picture();                      
+                    }
                     break;
                 case 'id_link':
                     editorToolbarAction("link");
