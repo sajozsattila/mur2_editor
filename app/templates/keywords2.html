@@ -7,7 +7,7 @@
         <div><a href="/oa_browser?type=Category&object={{ term }}">{{ _("Category") }} {{ _("Discovery") }}</a></div>
         {% elif searchtype == "keyword" %}
         <h1>{{ _('Keyword') }}: {{ term }}</h1>
-        <div><a href="/oa_browser?type=Tag&object={{ term }}">{{ _("Keyword") }} {{ _("Discovery") }}</a></div>
+        <div><a href="/oa_browser?type=Keyword&object={{ term }}">{{ _("Keyword") }} {{ _("Discovery") }}</a></div>
         {% elif searchtype == "search" %}
         <h1>{{ _('Search') }}: {{ term }}</h1>
         {% endif %}

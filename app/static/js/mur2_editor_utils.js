@@ -130,7 +130,7 @@ function editorToolbarAction(action, kwarg) {
                     wrap = "[link](" + userinput + ")";
                 }
             }
-        } else if (action === "picture") {
+        } else if (action === "picture") {            
             if (text) {
                 wrap = "![" + text + "](" + kwarg + ")";
             } else {
