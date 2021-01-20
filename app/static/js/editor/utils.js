@@ -571,7 +571,7 @@ function ImageLoader(preloader, protocol, loaderid) {
 	 * @returns {string}
 	 */
 	this.getHtmlStub = function (formula) {
-		curItems[n] = protocol + '//mur2.co.uk:8005/svg/' + encodeURIComponent(formula);
+		curItems[n] = protocol + '//mur2.co.uk/math/svg/' + encodeURIComponent(formula);
 
 		var html = '<span id="'+this.loaderid+'s2tex_' + n + '"></span>';
 
