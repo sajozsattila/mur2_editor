@@ -173,7 +173,7 @@
 					;
 				}
 
-				var url      = protocol + '//mur2.co.uk:8005/svg/' + encodeURIComponent(formula),
+				var url      = protocol + '//mur2.co.uk/math/svg/' + encodeURIComponent(formula),
 					isInline = "tex-inline" === tokens[idx].tag;
 
 				return isInline
