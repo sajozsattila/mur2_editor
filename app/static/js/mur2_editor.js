@@ -429,10 +429,9 @@ function g_domFindScrollMarks() {
                 xhr.send(fd);
     
                 xhr.onload = function() {
-                    if (xhr.status != 200) { // analyze HTTP status of the response                
-                        msgbox.style.color = "red";   
+                    if (xhr.status != 200) { // analyze HTTP status of the response
+                        alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
                         status = xhr.status;
-                        msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
                     } else {
                         var response = JSON.parse(xhr.response);
                         editorToolbarAction("picture", response.url); 
@@ -442,8 +441,7 @@ function g_domFindScrollMarks() {
                 // return the new file address
             } else {
                 status = 400;
-                msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: Not supported image format!" 
+                alert( _("Error: ") + _("Not supported image format!") );
             }
             msgclear(status);
         };
@@ -481,10 +479,9 @@ function g_domFindScrollMarks() {
                 xhr.send(fd);
     
                 xhr.onload = function() {
-                    if (xhr.status != 200) { // analyze HTTP status of the response                
-                        msgbox.style.color = "red";   
+                    if (xhr.status != 200) { // analyze HTTP status of the response
+                        alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
                         status = xhr.status;
-                        msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
                     } else {
                         // the HTML file
                         var response = JSON.parse(xhr.response);
@@ -497,9 +494,8 @@ function g_domFindScrollMarks() {
                 };        
                 // return the new file address
             } else {
+                alert( _("Error: ") + _("Not supported file format!" ) );
                 status = 400;
-                msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: Not supported image format!" 
             }
             msgclear(status);
         };        
@@ -804,8 +800,7 @@ function g_domFindScrollMarks() {
             iframe.addEventListener('load', Handler);
             function Handler() {
                 window.location.reload(true); 
-            }
-            
+            }            
         }
 
     });

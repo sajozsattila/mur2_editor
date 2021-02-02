@@ -196,8 +196,7 @@ async function alarming(xhr, sucessmsg) {
     var msgbox = document.getElementById("msg")
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
-            msgbox.style.color = "red";
-            msgbox.innerHTML = _("Error: ") + xhr.statusText + " - " + xhr.response;
+            alert( _("Error: ") + xhr.statusText + " - " + xhr.response ); 
         } else { // show the result   
             msgbox.style.color = "green";
             msgbox.innerHTML = sucessmsg;
@@ -273,7 +272,6 @@ async function save_article(blobs) {
     }
     // if review 
     if (texttype === 'Review' ) {
-        console.log("in");
         reviewed = document.getElementById('reviewdArticle')
         if ( reviewed.value.length == 0 ||  isNaN(reviewed.value) ) {
             alert(_("Choose the Article which you are reviewing!"));
@@ -284,6 +282,11 @@ async function save_article(blobs) {
             alert(_("Need to set the Standby!"));
             return;
         }
+        if ( standby.value < -100 ||  standby.value > 100 ) {
+            alert(_("Standby should be between +100 and -100!"));
+            return;
+        }
+        
         rebel = document.getElementById('reviewRebel').checked
         console.log(rebel);
     }
@@ -367,8 +370,7 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
     xhr.send(fd);
     xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
-                msgbox.style.color = "red";
-                msgbox.innerHTML = _("Error: ") + xhr.statusText + " - " + xhr.response;
+                alert(  _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 var mur2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
@@ -403,8 +405,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var access_token = getCookie("mur2_wpc_accesstoken");
         var address = getCookie("mur2_wpc_sideid");
         if (access_token === "") {
-            msgbox.style.color = "red";
-            msgbox.innerHTML = _("Error: You are not logged into Wordpress.com");
+            alert(  _("Error: You are not logged into Wordpress.com") );
         };
 
         // if it is not a new article get the id
@@ -458,8 +459,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         xhr.send(fd);
         xhr.onload = function() {
             if (xhr.status != 201) { // analyze HTTP status of the response
-                msgbox.style.color = "red";
-                msgbox.innerHTML = _("Error: ") + xhr.statusText + " - " + xhr.response;
+                alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 var wc2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
@@ -511,10 +511,7 @@ async function generate_from_md(destination, mainCollection) {
     
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
-
-            msgbox.style.color = "red";
-            msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
-
+            alert(  _("Error: ") + xhr.statusText + " - " + xhr.response );
         } else { // save the result   
             var blob = this.response;
             window.URL = window.URL || window.webkitURL;
@@ -610,7 +607,7 @@ function selectReviewedID() {
     var span = document.getElementById("modalCloseReview");
         
     var body = modal.getElementsByClassName("modal-body")[0];
-    body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/embedding" type= "text/javascript"></iframe>';
+    body.innerHTML = '<iframe id="editor_iframe" allowTransparency="true" frameborder="0" scrolling="yes"  src="/search" type= "text/javascript"></iframe>';
     modal.style.display = "block";
     
     // When the user clicks on <span> (x), close the model
@@ -671,8 +668,7 @@ function addNewAuthor(action, id) {
         }    
     }
     if ( allworkshare !== 100 ) {
-        msgbox.style.color = "red";
-        msgbox.innerHTML = _("Error: The sum of the workshare is not 100!")
+        alert( _("Error: The sum of the workshare is not 100!") );
     } else {
         // send data to frontend
         var fd = new FormData();
@@ -686,9 +682,7 @@ function addNewAuthor(action, id) {
     
         xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
-                
-                msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+                alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 // update the page
                 location.reload();
@@ -711,9 +705,8 @@ function getArticleversion() {
     xhr.open('post', '/getarticleversions', true);
     xhr.send(fd);
     xhr.onload = function() {
-            if (xhr.status != 200) { // analyze HTTP status of the response                
-                msgbox.style.color = "red";
-                msgbox.innerHTML = "Error: " + xhr.statusText + " - " + xhr.response;
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 var versiondata = JSON.parse(xhr.response);
                 document.getElementById('title-source').value = versiondata.title;
