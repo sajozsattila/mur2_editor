@@ -516,6 +516,14 @@ textarea,
 #textype[selectedvalue="Review"] + #reviewsettings {
     display: block;
 }
+#textype[selectedvalue="Review"] + #reviewsettings + #articlesettings {
+    display: none;
+}
+#textype[selectedvalue="Article"] + #reviewsettings + #articlesettings {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
 
 /* **********************************************

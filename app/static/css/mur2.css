@@ -16,6 +16,9 @@ button.collapsible {
     left: calc( var(--verticaldistance) * -2);
     max-width: 44.37rem;
 }
+button.collapsible {
+    margin-top: 0;
+}
 
 body h1 {
     font-size: 2.488em;
@@ -26,8 +29,7 @@ body h1 {
     height:  calc( 2.488 * var(--latex_height) ) !important ;
     width: auto !important ;    
 }
-body h2,
-button.collapsible {
+body h2 {
     font-size: 2.074em !important;
     line-height: 2.5275rem !important;
 }
@@ -36,7 +38,8 @@ button.collapsible {
     height:  calc( 2.074 * var(--latex_height) ) !important ;
     width: auto !important ;    
 }
-body h3 {
+body h3,
+button.collapsible {
     font-size: 1.728em;
     line-height: 2.5275rem;
 }
@@ -326,6 +329,9 @@ iframe {
     overflow: hidden; 
     scrollbar-color: #c62641 white;
     scrollbar-width: thin;
+    left: calc( var(--verticaldistance) * -2);
+    position: relative;
+    padding-left: calc( var(--verticaldistance) * 2);
 }
 
 iframe img {

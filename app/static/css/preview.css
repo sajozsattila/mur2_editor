@@ -33,12 +33,17 @@
 
 div#article_abstract_div, 
 #article_main p,
-#article_main div,
 #article_main hr,
 #article_main li,
 #article_main h1
 {
     max-width: 41rem;    
+}
+
+
+#article_text{
+    scrollbar-width: thin;
+    /* overflow: scroll; */
 }
 
 #article_main table {
@@ -173,6 +178,9 @@ and (max-device-width : 767px){
     .main\.oa_browser #side_menu ,
     .main\.oareader #side_menu,
     .main\.keywords #side_menu,
+    .main\.journal #side_menu,
+    .main\.edit_journal #side_menu,
+    .main\.edit_profile #side_menu,
     .main\.reader #side_menu {
         background-color: rgba(0,0,0,0);
     }
@@ -186,6 +194,9 @@ and (max-device-width : 767px){
     .main\.oareader #side_menu .control-item,
     .main\.oa_browser #side_menu .control-item,
     .main\.keywords #side_menu .control-item,
+    .main\.journal #side_menu .control-item,
+    .main\.edit_journal #side_menu .control-item,
+    .main\.edit_profile #side_menu .control-item,
     .main\.reader #side_menu .control-item {
         color:  rgba(0,0,0,0);
     }

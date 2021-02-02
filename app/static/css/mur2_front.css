@@ -418,7 +418,7 @@ td a.control-item {
 .main\.search #maintext,
 .main\.user #maintext,
 .main\.journal #maintext {
-    width: calc(100% - 27.5275rem - 34.315rem );
+    /* width: calc(100% - 27.5275rem - 34.315rem ); */
     top: 1rem;    
 }
 
@@ -433,6 +433,7 @@ td a.control-item {
 .main\.keywords .usertitle,
 .main\.search .usertitle ,
 .main\.root .usertitle ,
+.main\.review .usertitle ,
 .main\.user .usertitle {
     text-transform: uppercase;
     font-weight: bold;
@@ -446,6 +447,7 @@ td a.control-item {
     padding-bottom: 0.845rem;
 }
 
+.main\.review .usertitle a,
 .main\.journal .usertitle a,
 .main\.keywords .usertitle a,
 .main\.root .usertitle a,
@@ -454,6 +456,8 @@ td a.control-item {
     color: #333;
 }
 
+.main\.review .usertitle,
+.main\.review .userabstract,
 .main\.journal .usertitle,
 .main\.journal .userabstract,
 .main\.keywords .usertitle,
@@ -467,6 +471,7 @@ td a.control-item {
     
 }
 
+.main\.review  .userabstract ,
 .main\.journal .userabstract,
 .main\.keywords  .userabstract ,
 .main\.root .userabstract,
@@ -475,6 +480,7 @@ td a.control-item {
     flex-direction: row;
 } 
 
+.main\.review   .user_articles, 
 .main\.journal   .user_articles,
 .main\.keywords   .user_articles, 
 .main\.root   .user_articles, 
@@ -484,6 +490,8 @@ td a.control-item {
     direction: ltr;
 }
 
+.main\.review  .userabstracttext p,
+.main\.review  .usertitle p,
 .main\.journal  .userabstracttext p,
 .main\.journal  .usertitle p,
 .main\.keywords  .userabstracttext p,
@@ -496,6 +504,7 @@ td a.control-item {
     max-width: calc( 41rem + 5 * 1.685rem);;
 }
 
+.main\.review  .article_action,
 .main\.journal  .article_action,
 .main\.keywords  .article_action,
 .main\.root  .article_action,
@@ -506,6 +515,7 @@ td a.control-item {
     width: 3.37rem;
 }
 
+.main\.review  .article_action:hover,
 .main\.journal  .article_action:hover,
 .main\.keywords  .article_action:hover,
 .main\.root  .article_action:hover,
@@ -531,6 +541,7 @@ td a.control-item {
  ****************************************
  * special setting for search 
  */
+.main\.review #maintext h1,
 .main\.keywords #maintext h1 {
     direction: ltr;
     margin: unset;
@@ -542,6 +553,7 @@ td a.control-item {
     width: calc(100% + 1.685rem);
 }
 
+.main\.review #maintext,
 .main\.keywords #maintext {
     padding-top: calc(2.4215rem + 1px);
 }
@@ -608,9 +620,17 @@ td a.control-item {
     padding-left: 1.685rem;    
 }
 
-.main\.readmain > :first-child {
-    left: calc( var(--verticaldistance) * 2 );
-    position: relative;
+/****************************************
+ * iframe settings
+ */
+
+.main\.readmain {
+    margin: 0;    
+}
+
+.main\.readmain :is(h1, h2, h3, h4, h5, h6) {
+    left: 0;
+    margin: 0;
 }
 
 /****************************************
@@ -639,7 +659,9 @@ and (max-device-width : 767px){
     .main\.searchstart #maintext,
     .main\.keywords #maintext,    
     .main\.user #maintext,
-    .main\.edit_profile #maintext {
+    .main\.journal #maintext,
+    .main\.edit_profile #maintext, 
+    .main\.edit_journal #maintext {
         padding-left: 1.685rem;
         width: calc(100% - var(--verticaldistance) - var(--verticaldistance));
         z-index: 2;
@@ -727,6 +749,7 @@ and (max-device-width : 767px){
     }
     
     .main\.root  #user_username,
+    .main\.journal #user_username,
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;
@@ -745,7 +768,7 @@ and (max-device-width : 767px){
     #maintext,
     .main\.keywords #maintext,
     .main\.user #maintext,
-    .main\.user #maintext {
+    .main\.journal #maintext {
         padding-left: 15.25rem;
         width: calc(100% - 17.5275rem - 15.25rem);
     }
@@ -777,7 +800,7 @@ and (max-device-width : 1024px)
 and (orientation : landscape) {
     #maintext,
     .main\.keywords #maintext,
-    .main\.user #maintext,
+    .main\.journal #maintext,
     .main\.user #maintext {
         padding-left: 3.37rem;
         width: calc(100% - 17.5275rem - 2 * var(--verticaldistance));
@@ -809,6 +832,7 @@ and (orientation : landscape) {
         min-width: 15rem;
     }  
     .main\.root  #user_username,
+    .main\.journal   #user_username,
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;
@@ -830,7 +854,7 @@ and (max-device-width : 1024px)
 and (orientation : portrait) {
     #maintext,
     .main\.keywords #maintext,
-    .main\.user #maintext,
+    .main\.journal #maintext,
     .main\.user #maintext {
         padding-left: 1.685rem;
         width: calc(100% - 17.5275rem - var(--verticaldistance));
@@ -862,6 +886,7 @@ and (orientation : portrait) {
         min-width: 15rem;
     }
     .main\.root  #user_username,
+    .main\.journal #user_username,
     .main\.user  #user_username {
         writing-mode: lr;
         transform: unset;

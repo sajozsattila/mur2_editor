@@ -1,4 +1,4 @@
-body, button input, select, button.collapsible {
+body, button input, select {
   /* */
     font-family: liberation-serif, serif;
     font-weight: 400;
@@ -13,7 +13,8 @@ body h1,
 body h2,
 body h3,
 body h4,
-body h5 {
+body h5,
+button.collapsible {
     font-family: 'Ibarra Real Nova', serif; 
     font-weight: 400;
     letter-spacing: -0.01em;
