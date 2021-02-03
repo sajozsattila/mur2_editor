@@ -1,21 +1,21 @@
 # Translations template for PROJECT.
-# Copyright (C) 2020 ORGANIZATION
+# Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-21 11:49+0000\n"
+"POT-Creation-Date: 2021-02-03 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: app/__init__.py:27
 msgid "Please login to access this page."
@@ -42,8 +42,8 @@ msgstr ""
 msgid "Sign In"
 msgstr ""
 
-#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:89
-#: app/main/forms.py:113 app/templates/registerjournal.html:15
+#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:90
+#: app/main/forms.py:114 app/templates/registerjournal.html:15
 msgid "Email"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Please choose a different username."
 msgstr ""
 
-#: app/auth/forms.py:32 app/main/forms.py:101 app/main/forms.py:139
+#: app/auth/forms.py:32 app/main/forms.py:102 app/main/forms.py:140
 msgid "Please use a different email address."
 msgstr ""
 
@@ -97,47 +97,47 @@ msgstr ""
 msgid "File is empty!"
 msgstr ""
 
-#: app/main/forms.py:75
+#: app/main/forms.py:76
 msgid "Upload"
 msgstr ""
 
-#: app/main/forms.py:87 app/main/forms.py:111 app/main/utils.py:230
+#: app/main/forms.py:88 app/main/forms.py:112 app/main/utils.py:303
 #: app/templates/connections.html:99 app/templates/connections.html:100
 #: app/templates/connections.html:109 app/templates/discovery.html:63
-#: app/templates/discovery.html:90 app/templates/editor.html:69
+#: app/templates/discovery.html:90 app/templates/editor.html:71
 msgid "Title"
 msgstr ""
 
-#: app/main/forms.py:88 app/main/forms.py:112
+#: app/main/forms.py:89 app/main/forms.py:113
 #: app/templates/registerjournal.html:29
 msgid "About"
 msgstr ""
 
-#: app/main/forms.py:90 app/main/forms.py:114 app/main/utils.py:230
+#: app/main/forms.py:91 app/main/forms.py:115 app/main/utils.py:303
 msgid "Address"
 msgstr ""
 
-#: app/main/forms.py:96 app/main/forms.py:133
+#: app/main/forms.py:97 app/main/forms.py:134
 msgid "Please use a different title."
 msgstr ""
 
-#: app/main/forms.py:106
+#: app/main/forms.py:107
 msgid "Please use a different URL."
 msgstr ""
 
-#: app/main/forms.py:115
+#: app/main/forms.py:116
 msgid "Submit"
 msgstr ""
 
-#: app/main/forms.py:145
+#: app/main/forms.py:146
 msgid "Please use a different address."
 msgstr ""
 
-#: app/main/forms.py:181 app/templates/read2.html:120
+#: app/main/forms.py:182 app/templates/read2.html:122
 msgid "email"
 msgstr ""
 
-#: app/main/forms.py:187
+#: app/main/forms.py:188
 msgid "Action should be \"on\" or \"off\"!"
 msgstr ""
 
@@ -149,246 +149,275 @@ msgstr ""
 msgid "Register Journal"
 msgstr ""
 
-#: app/main/routes.py:287
+#: app/main/routes.py:291
 msgid "editor"
 msgstr ""
 
-#: app/main/routes.py:523
+#: app/main/routes.py:501
+msgid "Reviewed Article do not exist!"
+msgstr ""
+
+#: app/main/routes.py:560
 msgid "The author already has Article with this title!"
 msgstr ""
 
-#: app/main/routes.py:721
+#: app/main/routes.py:755
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:732
+#: app/main/routes.py:766
 msgid "User not permitted to delete "
 msgstr ""
 
-#: app/main/routes.py:732 app/templates/connections.html:46
+#: app/main/routes.py:766 app/templates/connections.html:46
 #: app/templates/connections.html:88 app/templates/discovery.html:28
-#: app/templates/discovery.html:56 app/templates/editor.html:133
-#: app/templates/editor.html:135 app/templates/editor.html:145
-#: app/templates/editor.html:147
+#: app/templates/discovery.html:56 app/templates/editor.html:88
+#: app/templates/editor.html:90 app/templates/editor.html:100
+#: app/templates/editor.html:102
 msgid "Article"
 msgstr ""
 
-#: app/main/routes.py:803
+#: app/main/routes.py:837
 msgid "User no right to delete this"
 msgstr ""
 
-#: app/main/routes.py:803
+#: app/main/routes.py:837
 msgid "File"
 msgstr ""
 
-#: app/main/routes.py:841 app/main/routes.py:866 app/main/routes.py:1329
+#: app/main/routes.py:875 app/main/routes.py:900 app/main/routes.py:1380
 msgid "Your changes have been saved."
 msgstr ""
 
-#: app/main/routes.py:1029
+#: app/main/routes.py:1070
 msgid "Can't create Media directory for "
 msgstr ""
 
-#: app/main/routes.py:1036
+#: app/main/routes.py:1076
 msgid "No more disk space quota for "
 msgstr ""
 
-#: app/main/routes.py:1158
+#: app/main/routes.py:1082
+msgid "Cannot save image!"
+msgstr ""
+
+#: app/main/routes.py:1209
 msgid "Article already confimed."
 msgstr ""
 
-#: app/main/routes.py:1184
+#: app/main/routes.py:1235
 msgid "Can't confirm Relationship. "
 msgstr ""
 
-#: app/main/routes.py:1203
+#: app/main/routes.py:1254
 msgid "User not permitted to confirm publishing."
 msgstr ""
 
-#: app/main/routes.py:1300 app/main/routes.py:1660
+#: app/main/routes.py:1351 app/main/routes.py:1714 app/main/routes.py:1721
 msgid "User is not the Author"
 msgstr ""
 
-#: app/main/routes.py:1305
+#: app/main/routes.py:1356
 msgid "The "
 msgstr ""
 
-#: app/main/routes.py:1305
+#: app/main/routes.py:1356
 msgid " Journal does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1310
+#: app/main/routes.py:1361
 msgid "Article has not been issued."
 msgstr ""
 
-#: app/main/routes.py:1342 app/main/routes.py:1595 app/main/routes.py:1609
+#: app/main/routes.py:1393 app/main/routes.py:1648 app/main/routes.py:1662
 msgid "Not a valid objecttype!"
 msgstr ""
 
-#: app/main/routes.py:1368
+#: app/main/routes.py:1419
 msgid "User cannot download this Article!"
 msgstr ""
 
-#: app/main/routes.py:1403
+#: app/main/routes.py:1454
 msgid "Facebook account does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1450
+#: app/main/routes.py:1501
 msgid "User does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1455
+#: app/main/routes.py:1506
 msgid "Article does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1466
+#: app/main/routes.py:1517
 msgid "The action should be 'add' or 'remove'!"
 msgstr ""
 
-#: app/main/routes.py:1471
+#: app/main/routes.py:1522
 msgid "You cannot add or remove yourself!"
 msgstr ""
 
-#: app/main/routes.py:1478
+#: app/main/routes.py:1529
 msgid "The author is already a writer of this Article!"
 msgstr ""
 
-#: app/main/routes.py:1733
+#: app/main/routes.py:1812
 msgid "Not a valid search address."
 msgstr ""
 
-#: app/main/utils.py:226 app/templates/article.html:62
+#: app/main/utils.py:235
+msgid "Bibliography"
+msgstr ""
+
+#: app/main/utils.py:299 app/templates/article.html:62
 #: app/templates/article.html:114 app/templates/article.html:141
 #: app/templates/article2.html:30 app/templates/connections.html:40
 #: app/templates/discovery.html:26 app/templates/discovery.html:53
-#: app/templates/keywords.html:9 app/templates/keywords2.html:9
-#: app/templates/keywords2.html:10 app/templates/read2.html:70
+#: app/templates/keywords.html:9 app/templates/keywords.html:10
+#: app/templates/read2.html:72
 msgid "Keyword"
 msgstr ""
 
-#: app/main/utils.py:226 app/templates/article2.html:20
+#: app/main/utils.py:299 app/templates/article2.html:20
 #: app/templates/connections.html:43 app/templates/connections.html:86
 #: app/templates/discovery.html:27 app/templates/discovery.html:54
-#: app/templates/keywords2.html:15 app/templates/keywords2.html:16
-#: app/templates/read2.html:50 app/templates/user.html:47
+#: app/templates/keywords.html:14 app/templates/keywords.html:15
+#: app/templates/read2.html:52 app/templates/user.html:47
 msgid "Journal"
 msgstr ""
 
-#: app/main/utils.py:228
+#: app/main/utils.py:301
 msgid "labels"
 msgstr ""
 
-#: app/main/utils.py:230 app/templates/editor.html:82
+#: app/main/utils.py:303 app/templates/editor.html:117
 msgid "Abstract"
 msgstr ""
 
-#: app/main/utils.py:230 app/templates/connections.html:93
+#: app/main/utils.py:303 app/templates/connections.html:93
 #: app/templates/connections.html:108 app/templates/discovery.html:65
 #: app/templates/discovery.html:89
 msgid "Name"
 msgstr ""
 
-#: app/main/utils.py:230
+#: app/main/utils.py:303
 msgid "Article_number"
 msgstr ""
 
-#: app/main/utils.py:230 app/templates/read.html:36 app/templates/read2.html:32
+#: app/main/utils.py:303 app/templates/read.html:39 app/templates/read2.html:34
 msgid "Writer"
 msgstr ""
 
-#: app/main/utils.py:230
+#: app/main/utils.py:303
 msgid "Publishdate"
 msgstr ""
 
-#: app/main/utils.py:254
+#: app/main/utils.py:327
 msgid "keyword"
 msgstr ""
 
-#: app/main/utils.py:254
+#: app/main/utils.py:327
 msgid "publish"
 msgstr ""
 
-#: app/main/utils.py:254
+#: app/main/utils.py:327
 msgid "proof"
 msgstr ""
 
-#: app/main/utils.py:255
+#: app/main/utils.py:328
 msgid "type"
 msgstr ""
 
-#: app/main/utils.py:258
+#: app/main/utils.py:331
 msgid "published_article_number"
 msgstr ""
 
-#: app/main/utils.py:258
+#: app/main/utils.py:331
 msgid "number_of_article"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:523 app/static/js/mur2_editor.min.js:1
-#: app/templates/read2.html:80
-msgid "Full text"
-msgstr ""
-
-#: app/static/js/mur2_editor_utils.js:102
-#: app/static/js/mur2_editor_utils.min.js:1
-msgid "Please enter a URL for the link."
-msgstr ""
-
-#: app/static/js/mur2_editor_utils.js:111
-#: app/static/js/mur2_editor_utils.min.js:1
-msgid "Please enter a URL for image."
-msgstr ""
-
-#: app/static/js/mur2_editor_utils.js:165
-#: app/static/js/mur2_editor_utils.min.js:1
-msgid "No field selected!"
-msgstr ""
-
-#: app/static/js/mur2_editor_utils.js:180
-#: app/static/js/mur2_editor_utils.js:349
-#: app/static/js/mur2_editor_utils.js:445
+#: app/static/js/mur2_editor.js:433 app/static/js/mur2_editor.js:444
+#: app/static/js/mur2_editor.js:483 app/static/js/mur2_editor.js:497
+#: app/static/js/mur2_editor.min.js:1 app/static/js/mur2_editor_utils.js:199
+#: app/static/js/mur2_editor_utils.js:373
+#: app/static/js/mur2_editor_utils.js:462
+#: app/static/js/mur2_editor_utils.js:514
+#: app/static/js/mur2_editor_utils.js:685
+#: app/static/js/mur2_editor_utils.js:709
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: "
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:243
+#: app/static/js/mur2_editor.js:444 app/static/js/mur2_editor.min.js:1
+msgid "Not supported image format!"
+msgstr ""
+
+#: app/static/js/mur2_editor.js:497 app/static/js/mur2_editor.min.js:1
+msgid "Not supported file format!"
+msgstr ""
+
+#: app/static/js/mur2_editor.js:628 app/static/js/mur2_editor.min.js:1
+#: app/templates/read2.html:82
+msgid "Full text"
+msgstr ""
+
+#: app/static/js/mur2_editor.js:688 app/static/js/mur2_editor.min.js:1
+msgid "Please enter a URL for image."
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:125
+#: app/static/js/mur2_editor_utils.min.js:1
+msgid "Please enter a URL for the link."
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:185
+#: app/static/js/mur2_editor_utils.min.js:1
+msgid "No field selected!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:262
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "You can only save in Preview mode!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:259
+#: app/static/js/mur2_editor_utils.js:277
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Choose the Article which you are reviewing!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:264
+#: app/static/js/mur2_editor_utils.js:282
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Need to set the Standby!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:316
+#: app/static/js/mur2_editor_utils.js:286
+#: app/static/js/mur2_editor_utils.min.js:1
+msgid "Standby should be between +100 and -100!"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:341
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Saved!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:353
-#: app/static/js/mur2_editor_utils.js:371
-#: app/static/js/mur2_editor_utils.js:449
+#: app/static/js/mur2_editor_utils.js:377
+#: app/static/js/mur2_editor_utils.js:395
+#: app/static/js/mur2_editor_utils.js:466
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Published on "
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:385
+#: app/static/js/mur2_editor_utils.js:408
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: You are not logged into Wordpress.com"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:476
+#: app/static/js/mur2_editor_utils.js:493
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Working..."
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:657
+#: app/static/js/mur2_editor_utils.js:671
 msgid "Error: The sum of the workshare is not 100!"
 msgstr ""
 
@@ -426,13 +455,13 @@ msgid "Send to Journal"
 msgstr ""
 
 #: app/templates/article.html:52 app/templates/article.html:104
-#: app/templates/article.html:131 app/templates/read.html:52
+#: app/templates/article.html:131 app/templates/read.html:56
 msgid "Publihed in"
 msgstr ""
 
 #: app/templates/article.html:56 app/templates/article.html:108
 #: app/templates/article.html:135 app/templates/article2.html:25
-#: app/templates/editor.html:84 app/templates/read2.html:55
+#: app/templates/editor.html:119 app/templates/read2.html:57
 msgid "Categories"
 msgstr ""
 
@@ -440,14 +469,14 @@ msgstr ""
 #: app/templates/article.html:135 app/templates/article2.html:25
 #: app/templates/connections.html:37 app/templates/connections.html:87
 #: app/templates/discovery.html:25 app/templates/discovery.html:55
-#: app/templates/keywords.html:7 app/templates/keywords2.html:6
-#: app/templates/keywords2.html:7 app/templates/read2.html:57
+#: app/templates/keywords.html:6 app/templates/keywords.html:7
+#: app/templates/read2.html:59
 msgid "Category"
 msgstr ""
 
 #: app/templates/article.html:62 app/templates/article.html:114
 #: app/templates/article.html:141 app/templates/article2.html:30
-#: app/templates/editor.html:119 app/templates/read2.html:68
+#: app/templates/editor.html:155 app/templates/read2.html:70
 msgid "Keywords"
 msgstr ""
 
@@ -497,7 +526,7 @@ msgstr ""
 
 #: app/templates/base_menu.html:27 app/templates/base_menu.html:36
 #: app/templates/connections.html:60 app/templates/discovery.html:31
-#: app/templates/keywords2.html:12
+#: app/templates/keywords.html:12
 msgid "Search"
 msgstr ""
 
@@ -538,7 +567,7 @@ msgid "Selected article: "
 msgstr ""
 
 #: app/templates/edit_journal.html:32 app/templates/edit_profile.html:49
-#: app/templates/editor.html:257 app/templates/test.html:66
+#: app/templates/editor.html:270 app/templates/test.html:66
 msgid "Save"
 msgstr ""
 
@@ -570,232 +599,240 @@ msgstr ""
 msgid "Delete user"
 msgstr ""
 
-#: app/templates/editor.html:18
+#: app/templates/editor.html:19
 msgid "Endnotes"
 msgstr ""
 
-#: app/templates/editor.html:72 app/templates/editor.html:73
-#: app/templates/editor.html:74
+#: app/templates/editor.html:74 app/templates/editor.html:75
+#: app/templates/editor.html:76
 msgid "Set Featured Image"
 msgstr ""
 
-#: app/templates/editor.html:77 app/templates/editor.html:78
-#: app/templates/editor.html:79
+#: app/templates/editor.html:79 app/templates/editor.html:80
+#: app/templates/editor.html:81
 msgid "Delete Featured Image"
 msgstr ""
 
-#: app/templates/editor.html:89
-msgid "Select a category"
-msgstr ""
-
-#: app/templates/editor.html:90
-msgid "Physics"
-msgstr ""
-
-#: app/templates/editor.html:91
-msgid "Chemistry"
-msgstr ""
-
-#: app/templates/editor.html:92
-msgid "Earth Science"
-msgstr ""
-
-#: app/templates/editor.html:93
-msgid "Space Science"
-msgstr ""
-
-#: app/templates/editor.html:94
-msgid "Biology"
-msgstr ""
-
-#: app/templates/editor.html:95
-msgid "Molecular Biology"
-msgstr ""
-
-#: app/templates/editor.html:96
-msgid "Mathematics"
-msgstr ""
-
-#: app/templates/editor.html:97
-msgid "Logic"
-msgstr ""
-
-#: app/templates/editor.html:98
-msgid "Statistics"
-msgstr ""
-
-#: app/templates/editor.html:99
-msgid "History"
-msgstr ""
-
-#: app/templates/editor.html:100
-msgid "Economy"
-msgstr ""
-
-#: app/templates/editor.html:101
-msgid "Sociology"
-msgstr ""
-
-#: app/templates/editor.html:102
-msgid "Law"
-msgstr ""
-
-#: app/templates/editor.html:103
-msgid "Education"
-msgstr ""
-
-#: app/templates/editor.html:104
-msgid "Archaeology"
-msgstr ""
-
-#: app/templates/editor.html:105
-msgid "Politics"
-msgstr ""
-
-#: app/templates/editor.html:106
-msgid "Computer science"
-msgstr ""
-
-#: app/templates/editor.html:107
-msgid "Civil Engineering"
-msgstr ""
-
-#: app/templates/editor.html:108
-msgid "Electrical Engineering"
-msgstr ""
-
-#: app/templates/editor.html:109
-msgid "Genetics"
-msgstr ""
-
-#: app/templates/editor.html:110
-msgid "Software"
-msgstr ""
-
-#: app/templates/editor.html:111
-msgid "Industrial"
-msgstr ""
-
-#: app/templates/editor.html:112
-msgid "Medicine"
-msgstr ""
-
-#: app/templates/editor.html:113
-msgid "Pharmacy"
-msgstr ""
-
-#: app/templates/editor.html:114
-msgid "Dental"
-msgstr ""
-
-#: app/templates/editor.html:128
-msgid "Canonical URL"
-msgstr ""
-
-#: app/templates/editor.html:130
+#: app/templates/editor.html:85
 msgid "Text Type"
 msgstr ""
 
-#: app/templates/editor.html:138 app/templates/editor.html:140
+#: app/templates/editor.html:93 app/templates/editor.html:95
 msgid "Review"
 msgstr ""
 
-#: app/templates/editor.html:150 app/templates/editor.html:152
+#: app/templates/editor.html:105 app/templates/editor.html:107
 msgid "Standby"
 msgstr ""
 
-#: app/templates/editor.html:155 app/templates/editor.html:157
+#: app/templates/editor.html:110 app/templates/editor.html:112
 msgid "Rebel"
 msgstr ""
 
-#: app/templates/editor.html:162
+#: app/templates/editor.html:124
+msgid "Select a category"
+msgstr ""
+
+#: app/templates/editor.html:125
+msgid "Physics"
+msgstr ""
+
+#: app/templates/editor.html:126
+msgid "Chemistry"
+msgstr ""
+
+#: app/templates/editor.html:127
+msgid "Earth Science"
+msgstr ""
+
+#: app/templates/editor.html:128
+msgid "Space Science"
+msgstr ""
+
+#: app/templates/editor.html:129
+msgid "Biology"
+msgstr ""
+
+#: app/templates/editor.html:130
+msgid "Molecular Biology"
+msgstr ""
+
+#: app/templates/editor.html:131
+msgid "Mathematics"
+msgstr ""
+
+#: app/templates/editor.html:132
+msgid "Logic"
+msgstr ""
+
+#: app/templates/editor.html:133
+msgid "Statistics"
+msgstr ""
+
+#: app/templates/editor.html:134
+msgid "History"
+msgstr ""
+
+#: app/templates/editor.html:135
+msgid "Economy"
+msgstr ""
+
+#: app/templates/editor.html:136
+msgid "Sociology"
+msgstr ""
+
+#: app/templates/editor.html:137
+msgid "Law"
+msgstr ""
+
+#: app/templates/editor.html:138
+msgid "Education"
+msgstr ""
+
+#: app/templates/editor.html:139
+msgid "Archaeology"
+msgstr ""
+
+#: app/templates/editor.html:140
+msgid "Politics"
+msgstr ""
+
+#: app/templates/editor.html:141
+msgid "Computer science"
+msgstr ""
+
+#: app/templates/editor.html:142
+msgid "Civil Engineering"
+msgstr ""
+
+#: app/templates/editor.html:143
+msgid "Electrical Engineering"
+msgstr ""
+
+#: app/templates/editor.html:144
+msgid "Genetics"
+msgstr ""
+
+#: app/templates/editor.html:145
+msgid "Software"
+msgstr ""
+
+#: app/templates/editor.html:146
+msgid "Industrial"
+msgstr ""
+
+#: app/templates/editor.html:147
+msgid "Medicine"
+msgstr ""
+
+#: app/templates/editor.html:148
+msgid "Pharmacy"
+msgstr ""
+
+#: app/templates/editor.html:149
+msgid "Dental"
+msgstr ""
+
+#: app/templates/editor.html:166
+msgid "Canonical URL"
+msgstr ""
+
+#: app/templates/editor.html:173
 msgid "Authors"
 msgstr ""
 
-#: app/templates/editor.html:231 app/templates/test.html:45
+#: app/templates/editor.html:242 app/templates/test.html:45
 msgid "Toolbar"
 msgstr ""
 
-#: app/templates/editor.html:236 app/templates/editor.html:310
+#: app/templates/editor.html:247 app/templates/editor.html:331
 #: app/templates/test.html:111
 msgid "Show Side Menu"
 msgstr ""
 
-#: app/templates/editor.html:245 app/templates/test.html:55
+#: app/templates/editor.html:258 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr ""
 
-#: app/templates/editor.html:249 app/templates/test.html:59
+#: app/templates/editor.html:262 app/templates/test.html:59
 msgid "Upload file"
 msgstr ""
 
-#: app/templates/editor.html:253 app/templates/test.html:63
+#: app/templates/editor.html:266 app/templates/test.html:63
 msgid "Download result"
 msgstr ""
 
-#: app/templates/editor.html:261 app/templates/test.html:69
-msgid "Syntax highlighting"
-msgstr ""
-
-#: app/templates/editor.html:264
+#: app/templates/editor.html:274
 msgid "Hide input"
 msgstr ""
 
-#: app/templates/editor.html:267 app/templates/test.html:75
-msgid "Show title and abstract"
+#: app/templates/editor.html:277
+msgid "Document settings"
 msgstr ""
 
-#: app/templates/editor.html:270 app/templates/test.html:72
+#: app/templates/editor.html:280 app/templates/test.html:72
 msgid "Hide preview"
 msgstr ""
 
-#: app/templates/editor.html:273 app/templates/test.html:78
+#: app/templates/editor.html:283 app/templates/test.html:69
+msgid "Syntax highlighting"
+msgstr ""
+
+#: app/templates/editor.html:286 app/templates/test.html:78
 msgid "Head"
 msgstr ""
 
-#: app/templates/editor.html:276 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:289 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr ""
 
-#: app/templates/editor.html:279 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:292 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr ""
 
-#: app/templates/editor.html:282
+#: app/templates/editor.html:295
 msgid "Picture"
 msgstr ""
 
-#: app/templates/editor.html:285 app/templates/test.html:90
+#: app/templates/editor.html:298 app/templates/test.html:90
 msgid "Link"
 msgstr ""
 
-#: app/templates/editor.html:288 app/templates/test.html:93
+#: app/templates/editor.html:301 app/templates/test.html:93
 msgid "List"
 msgstr ""
 
-#: app/templates/editor.html:291 app/templates/test.html:96
+#: app/templates/editor.html:304 app/templates/test.html:96
 msgid "Numbered list"
 msgstr ""
 
-#: app/templates/editor.html:294 app/templates/test.html:99
+#: app/templates/editor.html:307 app/templates/test.html:99
 msgid "Footnote"
 msgstr ""
 
-#: app/templates/editor.html:297 app/templates/test.html:102
+#: app/templates/editor.html:310 app/templates/test.html:102
 msgid "Table"
 msgstr ""
 
-#: app/templates/editor.html:300 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:313 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr ""
 
-#: app/templates/editor.html:303 app/templates/test.html:108
+#: app/templates/editor.html:316
+msgid "Editorial changes"
+msgstr ""
+
+#: app/templates/editor.html:319
+msgid "Add Bibliography "
+msgstr ""
+
+#: app/templates/editor.html:322 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr ""
 
-#: app/templates/editor.html:306
+#: app/templates/editor.html:326
 msgid "Embedding"
 msgstr ""
 
@@ -903,31 +940,20 @@ msgstr ""
 msgid "Editor manual"
 msgstr ""
 
-#: app/templates/frontpage.html:14 app/templates/keywords.html:19
-#: app/templates/user.html:68
-msgid "Newer Articles"
-msgstr ""
-
-#: app/templates/frontpage.html:19 app/templates/keywords.html:24
-#: app/templates/user.html:73
-msgid "Older Articles"
-msgstr ""
-
-#: app/templates/frontpage.html:47 app/templates/user.html:101
-msgid "Please enter the title of the Journal"
-msgstr ""
-
-#: app/templates/keywords.html:7 app/templates/keywords.html:9
-#: app/templates/keywords2.html:7 app/templates/keywords2.html:10
-#: app/templates/keywords2.html:16 app/templates/user.html:47
+#: app/templates/keywords.html:7 app/templates/keywords.html:10
+#: app/templates/keywords.html:15 app/templates/user.html:47
 msgid "Discovery"
 msgstr ""
 
-#: app/templates/keywords2.html:26
+#: app/templates/keywords.html:17
+msgid "Article waiting for Peer-review"
+msgstr ""
+
+#: app/templates/keywords.html:27
 msgid "Next"
 msgstr ""
 
-#: app/templates/keywords2.html:31
+#: app/templates/keywords.html:32
 msgid "Before"
 msgstr ""
 
@@ -1122,51 +1148,59 @@ msgstr ""
 msgid "Number of Article"
 msgstr ""
 
-#: app/templates/read.html:14
+#: app/templates/read.html:16
 msgid "Download PDF"
 msgstr ""
 
-#: app/templates/read.html:17
+#: app/templates/read.html:19
 msgid "Download ePUB"
 msgstr ""
 
-#: app/templates/read.html:34 app/templates/read2.html:30
+#: app/templates/read.html:37 app/templates/read2.html:32
 msgid "Writers"
 msgstr ""
 
-#: app/templates/read.html:45 app/templates/read2.html:51
+#: app/templates/read.html:48 app/templates/read2.html:53
 msgid "Date"
 msgstr ""
 
-#: app/templates/read.html:56
+#: app/templates/read.html:60
 msgid "Categories:"
 msgstr ""
 
-#: app/templates/read.html:56
+#: app/templates/read.html:60
 msgid "Category:"
 msgstr ""
 
-#: app/templates/read.html:62
+#: app/templates/read.html:66
 msgid "Keywords:"
 msgstr ""
 
-#: app/templates/read.html:62
+#: app/templates/read.html:66
 msgid "Keyword:"
 msgstr ""
 
-#: app/templates/read2.html:83
+#: app/templates/read.html:77
+msgid "Reviews"
+msgstr ""
+
+#: app/templates/read.html:83
+msgid "Reviewed Article"
+msgstr ""
+
+#: app/templates/read2.html:85
 msgid "Similar Article"
 msgstr ""
 
-#: app/templates/read2.html:84
+#: app/templates/read2.html:86
 msgid "This list is updated regularly,"
 msgstr ""
 
-#: app/templates/read2.html:84
+#: app/templates/read2.html:86
 msgid "sign up for email notification."
 msgstr ""
 
-#: app/templates/read2.html:120
+#: app/templates/read2.html:122
 msgid "Please enter your email:"
 msgstr ""
 
@@ -1218,6 +1252,10 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
+#: app/templates/test.html:75
+msgid "Show title and abstract"
+msgstr ""
+
 #: app/templates/test.html:81
 msgid "Italic"
 msgstr ""
@@ -1252,6 +1290,18 @@ msgstr ""
 
 #: app/templates/user.html:55
 msgid "New Article"
+msgstr ""
+
+#: app/templates/user.html:68
+msgid "Newer Articles"
+msgstr ""
+
+#: app/templates/user.html:73
+msgid "Older Articles"
+msgstr ""
+
+#: app/templates/user.html:101
+msgid "Please enter the title of the Journal"
 msgstr ""
 
 #: app/templates/auth/login.html:29
