@@ -9,8 +9,10 @@
     - [Bibliography](#bib)
   + [Document settings](#docs)
     + [Title and abstract](#ta)
+    + [Categories and Keywords](#ck)
     + [Canonical URL](#curl)
     + [Authors](#authors)
+    + [Article, Standby and Rebel](#asr)
   + [Side menu](#sidebar)
     + [Preview formats](#preview)
     + [Version control](#vc)
@@ -150,18 +152,39 @@ These bibliography entries don't just appear at the end of the document but also
 
 To open the Document settings, click on the toolbar <span class="fontawsome far fa-arrow-alt-circle-down"></span>. This will hide the main editing window and display the settings. You can go back to the main section by clicking again on the <span class="fontawsome far fa-arrow-alt-circle-down"></span>.
 
+Two different types of document you can create: Article and Review. The formal one is designed for longer original text on certain topics. The latter for a shorter summary or evaluation of someone else's writing. You can choose between them by the "Text Type" dropdown:
+
+![Text Type dropdown](https://mur2.co.uk/_uploads/photos/1/text_type_review_article.png)
+
+These document types have different settings:
+
++ Article:
+  + [Title](#ta)
+  + [Abstract](#ta)
+  + [Category](#ck)
+  + [Keyword](#ck)
+  + [Canonical URL](#curl) 
+  + [Authors](#authors)
++ Review
+  + [Title](#ta)
+  + [Article](#asr)
+  + [Standby](#asr)
+  + [Rebel](#asr)
+  + [Canonical URL](#curl) 
+  + [Authors](#authors)
+
+
+
 ### Title and abstract {#ta}
 
 These files are self-explaining.  If you are a [registered user](#fru), you cannot save a document without a title. This is to prevent possible confusion or repetition in document creation. The Abstract is a short summary of the main text. When you export your document, the Abstract will be placed in front of the main text.
 
-### Categories and Keywords
+### Categories and Keywords {#ck}
 
 These fields are self-explaining too. The difference between them: the Categories is a predefined list, while the Keywords are free to choose.  
 
 ### Canonical URL {#curl}
 When posting content to multiple platforms at the same time (such as your website, [WordPress ](#wp) or [Medium](#medium)), it is important to make sure that a single source of that content is the ultimate authority. Search engines use canonical links to determine and prioritize the ultimate source of content, removing confusion when there are multiple copies of the same document in different locations. Sites that publish an overabundance of duplicate content without indicating a canonical link may be penalized in search engine rankings.
-
-### Text type
 
 ### Authors {#authors}
 If you are [registered user](#fru), you can add or remove authors for an Article.  The μr² is a [Collaborative real-time editor](#cor). You can add new Authors by adding their usernames to the bottom of the section and setting they workshare:
@@ -173,6 +196,13 @@ The Workshare measures the individual Authors' contribution to the Article in pe
 
 To remove an Author, you should first click the Remove bottom next to his name. Then you need to redistribute the Workshare between the remaining Authors. 
 
+### Article, Standby and Rebel {#asr}
+
+*Article* is μr² id of the Article which we are reviewing. It is a mandatory attribute for Reviews.
+
+*Standby* is indicating how much the Authors agree with the Article. It's valued between -100 and +100. If it is a positive number the Reviewer Accept the Article.
+
+*Rebel* is a flag. It is used to indicate the Reviewer strongly determinant in her/his opinion. It is introduced to the μr² system, as Reviewing is a responsible act in our ecosystem. Every Writer has a score, we call Trusfullness, which depends on his Articles and Reviews. The Article Writer Trusfullness changing regarding the Reviews on her/his Article, but the Review Writer's Trusfullness also change, if they opinion going against other Reviews on the same Article.  If somebody makes biased Reviews either direction they Trustfurness will drop on the μr². But we know a good resource Article can be dividing, the Rebel flag to handle this. If a Review marked with this flag, its Writer won't be affected if the Review going against the general opinion.
 
 ## Side menu {#sidebar}
 
@@ -289,7 +319,7 @@ You can delete and Article by clicking on the <span class="fas fa-trash"></span>
 
 ### Collaborative real-time editing between Writers {#cor}
 
-If you are a registered user, you can share your document with another user. The first step is to [create and save a new document](#ca). After it is saved, you can share it with another user by [adding](#authors) him as Writer. Now you are ready to collaborate with others. The Article will appear in the new Author Profile page and you can start to work together. The collaborating is in real-time, so your documents will be synchronised continuously. Example: you will see when they are typing in. Saving is not needed. 
+If you are a registered user, you can share your document with another user. The first step is to [create and save a new document](#ca). After it is saved, you can share it with another user by [adding](#authors) him as Writer. Now you are ready to collaborate with others. The Article will appear in the new Author Profile page and you can start to work together. The collaborating is in real-time, so your documents will be synchronised continuously. Example: you will see when they are typing in. Saving is not needed.
 
 # Markdown {#markdown}
 
@@ -569,4 +599,3 @@ test.. test... test..... test?..... test!....
 <span>“Getting Started: An Overview of Markdown, How It Works, and What You Can Do with It.”</span> n.d. The Markdown Guide; <a href="https://www.markdownguide.org/getting-started/">https://www.markdownguide.org/getting-started/</a>.
 </div>
 </div>
-
