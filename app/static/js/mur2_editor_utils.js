@@ -1,6 +1,6 @@
 /**
  * 
- * (c) Sajó, Zsolt Attila 2020
+ * (c) Sajó, Zsolt Attila 2021
  * 
  */
 

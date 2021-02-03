@@ -21,16 +21,26 @@
 
 #maintext {
     flex-direction: column;
-    padding-left: 34.315rem;
-    width: calc(100% - 27.5275rem - 34.315rem);
+    padding-left: 0;
+    width: calc(100% - 27.5275rem );    
     direction: rtl;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#mainright {
+    width: max-content;
+    /*  47.74rem is the width of the h1#article_title in preview.css */
+    max-width: calc( 47.74rem + var(--verticaldistance) );
+    min-width: calc( 47.74rem + var(--verticaldistance) );
 }
 
 .main\.proofs #maintext,
 .main\.oa_browser #maintext,
 .main\.discovery #maintext {
     flex-direction: column;
-    padding-left: 1.685rem;
+    padding-left: var(--verticaldistance);
     width: calc(100% - 27.5275rem);
     direction: ltr;
     top: 0;
@@ -802,7 +812,7 @@ and (orientation : landscape) {
     .main\.keywords #maintext,
     .main\.journal #maintext,
     .main\.user #maintext {
-        padding-left: 3.37rem;
+        padding-left: calc( 2 * var(--verticaldistance));
         width: calc(100% - 17.5275rem - 2 * var(--verticaldistance));
     }
     
@@ -810,7 +820,7 @@ and (orientation : landscape) {
     .main\.oa_browser #maintext,
     .main\.discovery #maintext {
         flex-direction: column;
-        padding-left: 1.685rem;
+        padding-left:  var(--verticaldistance);
         width: calc(100% - 17.5275rem );
         direction: ltr;
         top: 0;
@@ -856,7 +866,7 @@ and (orientation : portrait) {
     .main\.keywords #maintext,
     .main\.journal #maintext,
     .main\.user #maintext {
-        padding-left: 1.685rem;
+        padding-left: calc( 2 * var(--verticaldistance));
         width: calc(100% - 17.5275rem - var(--verticaldistance));
     }
     
@@ -864,7 +874,7 @@ and (orientation : portrait) {
     .main\.oa_browser #maintext,
     .main\.discovery #maintext {
         flex-direction: column;
-        padding-left: 1.685rem;
+        padding-left:  var(--verticaldistance);
         width: calc(100% - 17.5275rem );
         direction: ltr;
         top: 0;
@@ -891,7 +901,7 @@ and (orientation : portrait) {
         writing-mode: lr;
         transform: unset;
         position: relative;
-        height: 6.74rem;
+        height: calc( 4 * var(--verticaldistance));
         left: calc(var(--verticaldistance) / 2);
         text-align: left;
         width: 100%;
