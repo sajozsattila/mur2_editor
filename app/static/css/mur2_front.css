@@ -364,9 +364,8 @@ td a.control-item {
     border-right: 1px solid #666;
     z-index: 30;
     padding-right: 1.685rem;
-    overflow: visible;
-    direction: ltr;
     text-align: right;
+    justify-content: unset;
 }
 
 .auth\.register #maintext  h1, 

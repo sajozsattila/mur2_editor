@@ -243,7 +243,7 @@ Need to set the firewall also, the normal port forwarding is 80->8081 and 443->8
 After:
 ``` bash 
 cd /Mur2/Git/Frontend
-docker stop mur2_frontend mur2_redirect
+docker stop mur2_frontend 
 sudo certbot certonly --standalone 
 sudo cp /etc/letsencrypt/live/mur2.co.uk/privkey.pem key.pem
 sudo cp /etc/letsencrypt/live/mur2.co.uk/fullchain.pem cert.pem

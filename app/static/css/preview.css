@@ -40,6 +40,15 @@ div#article_abstract_div,
     max-width: 41rem;    
 }
 
+.main\.edit_journal #article_main p,
+.main\.edit_profile #article_main p,
+.main\.searchstart  #article_main p,
+.auth\.login #article_main p,
+.auth\.register #article_main p, 
+.auth\.reset_password_request #article_main p {
+    max-width: unset;
+}
+
 
 #article_text{
     scrollbar-width: thin;
