@@ -247,7 +247,7 @@ docker stop mur2_frontend
 sudo certbot certonly --standalone 
 sudo cp /etc/letsencrypt/live/mur2.co.uk/privkey.pem key.pem
 sudo cp /etc/letsencrypt/live/mur2.co.uk/fullchain.pem cert.pem
-docker start mur2_frontend mur2_redirect
+docker start mur2_frontend
 ```
 
 Do not forgot you need to build a new Convergence docker also with the new keys:
@@ -259,6 +259,16 @@ cd /Mur2/Git/Convergence
 bash build.sh
 cd /Mur2/Mur2_builder
 docker-compose stop conv && docker-compose rm conv && docker-compose up -d conv
+
+```
+
+After the Convergence we need to add a key for the JWT autentication also by the Convergence [Console](https://mur2.co.uk:9000/console/domain/convergence/default/authentication/). The key id should be 'article' and the private key need to copy Frontend convergence.pem, and rebuild the docker:
+
+``` bash
+vi convergence.pem
+bash build.sh
+cd /Mur2/Mur2_builder/
+docker-compose stop frontend && docker-compose rm  frontend && docker-compose up -d frontend
 ```
 
 
