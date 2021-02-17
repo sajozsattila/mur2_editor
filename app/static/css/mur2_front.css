@@ -39,12 +39,40 @@
 .main\.proofs #maintext,
 .main\.oa_browser #maintext,
 .main\.discovery #maintext {
-    flex-direction: column;
-    padding-left: var(--verticaldistance);
-    width: calc(100% - 27.5275rem);
+    /* flex-direction: column;
+    padding-left: var(--verticaldistance);    
     direction: ltr;
     top: 0;
+    */
+    top: 0;
+    z-index: 30;
+    padding-right: 1.685rem;
+    text-align: right;
+    justify-content: unset;
     height: 100%;
+}
+
+.main\.proofs #mainleft,
+.main\.oa_browser #mainleft,
+.main\.discovery #mainleft {
+    display: none;    
+}
+
+.main\.proofs #mainright,
+.main\.oa_browser #mainright,
+.main\.discovery #mainright {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    max-width: 100%;
+    max-height: 100%;
+    
+}
+
+.main\.proofs #article_main,
+.main\.oa_browser #article_main,
+.main\.discovery #article_main {
+    height: 100%;    
 }
 
 #maintext .control-item {
