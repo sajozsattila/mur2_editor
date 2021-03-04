@@ -233,6 +233,11 @@ Articles without Doi. Most of time they have in reality DOI, just some reason we
 MATCH (a:Article) WHERE a.DOI = "" RETURN a
 ```
 
+Remove some article which actually should be not in the DB:
+```
+MATCH (a:Article) where trim(toLower(a.Abstract)) = 'editorial' detach delete a;
+```
+
 # SSH cert
 
 https://certbot.eff.org/lets-encrypt/ubuntufocal-other

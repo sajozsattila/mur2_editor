@@ -1,4 +1,7 @@
 
+var collaboratidomain;
+var collaboratchannel;
+
 function collaborative(cjwt, title, article_id) {
             // just saved article can be shared
             if ( parseInt(article_id) > 0 ){                        
@@ -7,7 +10,7 @@ function collaborative(cjwt, title, article_id) {
                 // 1. Connect to the domain anonymously.
                 Convergence.connectWithJwt(domainUrl, cjwt)
                     .then(initApp)
-                    // .then(chat) # commented out as there is a bug in Convergence
+                    .then(chat) 
                     .catch((error) => {
                     console.log("Could not connect: " + error);
                 });
@@ -75,19 +78,9 @@ function collaborative(cjwt, title, article_id) {
                     windows.appendChild(post);
                 }
                 
-                /* connect ot chat */
-                // Create chat
-                function chat(domain) {    
-                    this.domain = domain;
-                    
-                    var identityService = domain.identity();
-                    var user = identityService.session().user();
-                    console.log(user);
-                            
-                    
-                    const chatService = domain.chat();                    
+                async function createandjoinchat(chatService){
                     // Create a room 
-                    chatService.create({
+                    var room = chatService.create({
                         // a unique ID for the chat room
                         id: 'articles' + article_id,
                         // either "room" or "channel"
@@ -95,66 +88,93 @@ function collaborative(cjwt, title, article_id) {
                         name: 'articles' + article_id,
                         topic: 'Chat about Article' + article_id,
                         // Either "public" or "private".  Room chats must be public
-                        membership: "public", 
+                        membership: "private", 
                         // by default, if a room with this ID already exists, an Error is thrown.  Setting
                         // this flag to true avoids this error.                          
                         ignoreExistsError: true
                     }).then(chatId => {
-                        // Join the room
                         return chatService.join(chatId);
+                    }).then(room => {          
+                        return room;
+                    });
+                    return room;
+                }
+                
+                /* connect ot chat */
+                // Create chat
+                function chat(domain) {    
+                    this.domain = domain;
+                    
+                    const chatService = domain.chat();                 
+                    chatService.joined(
+                    ).then(chatinfo => {
+                           var notfound = true;
+                           for(let i = 0; i < chatinfo.length; i++){
+                               if ( chatinfo[i].chatId === 'articles' + article_id ) {
+                                   notfound = false;
+                                   break;
+                               }
+                           }
+                           
+                           var channel;
+                           if (notfound) {
+                               channel = createandjoinchat(chatService).then(room => { return room });
+                           } else {
+                               channel = chatService.get('articles' + article_id).then(channel => {
+                                   return channel;
+                               }) ;
+                           }
+                           return channel;
+                    }).catch(e => {
+                        channel = createandjoinchat(chatService).then(room => { return room });                    
+                        return channel
                     }).then(room => {
                         this.channel = room;
-                        
                         // Listen for incoming messages
+
                         room.on("Message", evt => {
                             displaychatmsg({
                                 msg:  evt.message.split(":").slice(1).join(':'),
                                 user: evt.message.split(":")[0]
                             });
                         });
-                        
-                        /* get history */
-                        /* this have a bug in so at the moment the chat is not active */
-                        room.getHistory({
-                            startEvent: 0,
+                        return room;
+                    }).then( room => {
+                        var history = room.getHistory({
                             limit: 10,
-                            forward: true
-                        }).then(response => {
-                            console.log(response);
-                            if ( response.length > 0 ) {
-                                response.data.forEach(event => {
-                                    console.log(event);
+                            eventFilter: ["message"]
+                        }).then(response => { return response });
+                        return history;
+                    }).then( history => {                        
+                        if ( history.data.length > 0 ) {
+                            history.data.slice().reverse().forEach(evt => {
+                                displaychatmsg({
+                                    msg: evt.message.split(":").slice(1).join(':'),
+                                    user: evt.user.username
                                 });
-                            }
-                        }).catch(error => {
-                            console.log("No history: " + error);
-                        });
+                            });
+                        }                       
                         
-
-                        // Send a message
-                        room.send(this.domain.session().user().displayName+": OMG no. So much text: I'm dreaming in Markdown");
-
-                    }).catch(e => {
-                        console.log(e);
+                        collaboratchannel = this.channel;
+                        collaboratidomain = this.domain;
                     });
-                    
-                };                                           
-                
-                // monitor chat input filed
-                function chatinput(event) {
-                    if (event.keyCode === 13) {
-                        try {
-                           this.channel.send(
-                               this.domain.session().user().displayName+":"+document.getElementById("chatinput").value
-                           );
-                        } catch (e) {
-                            // handle errors.  say, the user isn't currently connected
-                            console.log(e);
-                        }
-                   
-                        // clear value
-                        document.getElementById("chatinput").value = "";
-                    }
-                };                              
+                };                                                                                                        
             }   
 }
+
+// monitor chat input filed
+function handleMessageSubmission(event) {
+    if (event.keyCode === 13) {
+        try {
+            collaboratchannel.send(
+                collaboratidomain.session().user().displayName+":"+document.getElementById("chatinput").value
+            );
+        } catch (e) {
+            // handle errors.  say, the user isn't currently connected
+            console.log(e);
+        }
+                   
+        // clear value
+        document.getElementById("chatinput").value = "";
+    }
+}; 
