@@ -2,6 +2,7 @@
 	<div id="side_top">
 		<!-- top -->
         <input id="id_mcs" type="checkbox" class="control-input" name="source_type">
+        <input id="id_ec" type="checkbox" class="control-input" name="source_type">
 		<div id="first_menu">{% include 'base_menu.html' %}
 			<div id="preview_format">
 				<div class='sidebarLinks'>
@@ -151,11 +152,19 @@
                     <a class="control-item " href="https://mur2.co.uk/editormanual"  target="_blank" rel="noopener noreferrer">{{ _("Editor manual") }}</a>                    
 				</div>
 			</div>
+            <div id="ec">
+                <div class="headsidebar">
+                    <label class="control-item " for="id_ec" title="{{ _('Chat') }}">{{ _("Chat") }}</label>
+                </div>    
+            </div>
 		</div><!-- first_menu -->
-        <!-- Convergence chat, commented out until bugfix -->
-        <div id="chat" class="card chat-messages"><ul id="chatposts"></ul></div>
-        <div id="chatinputdiv" class="chat-input-containers">
-            <input  id="chatinput" onkeypress="handleMessageSubmission(event)"  type="text">
+        <div id="editorchat"> 
+            <div class="headmarkdowncs"><label class="toolbar fas fa-times" for="id_ec" title="{{ _('Close Chat') }}"></label></div>
+            <!-- Convergence chat, commented out until bugfix -->
+            <div id="chat" class="card chat-messages"><ul id="chatposts"></ul></div>
+            <div id="chatinputdiv" class="chat-input-containers">
+                <input  id="chatinput" onkeypress="handleMessageSubmission(event)"  type="text">
+            </div>
         </div>
         
         {% include 'md_cheatsheet.html' %}
