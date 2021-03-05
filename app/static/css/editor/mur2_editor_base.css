@@ -107,6 +107,7 @@
 #finish_editing,
 #mcs,
 #side_export,
+#ec,
 #rollback_editing {
     padding-left: 1rem;
     padding-top: 0.5rem;
@@ -390,6 +391,52 @@ textarea,
 #article_abstract_div #article_abstract_text {
     margin: unset;
 }
+
+/**********************************
+ * editor chat
+ */
+#editorchat {
+    display: none;    
+    text-transform: initial;
+}
+
+#id_ec:checked ~ #editorchat {
+    display: block;
+    color: black;
+    opacity: 1;
+    max-height: 80%;
+}
+#id_ec:checked ~ #first_menu {
+    display: none;
+}
+
+#id_ec:checked ~ #editorchat .headmarkdowncs {
+    font-size: 14px;
+    height: calc( 2.8rem - 2px);
+}
+
+#id_ec:checked ~ #editorchat #chat {
+    height: calc(100vh - 6.8rem - var(--verticaldistance)); 
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+#id_ec:checked ~ #editorchat #chat ul li:last-child {
+    scroll-snap-align: end;
+}
+
+#chatposts {
+    background: white;
+    list-style-type: none; /* switch off bulletpoints */
+}
+
+.chatuser {
+    position: relative;
+    right: 1.685rem;
+    font-style: italic;
+    border-bottom: 1px solid #666;
+}
+
 
 /**********************************
  * keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords

@@ -9,7 +9,9 @@ function collaborative(cjwt, title, article_id) {
             
                 // 1. Connect to the domain anonymously.
                 Convergence.connectWithJwt(domainUrl, cjwt)
-                    .then(initApp)
+                    .catch((error) => {
+                        Convergence.connectWithJwt(domainUrl, cjwt)
+                    }).then(initApp)
                     .then(chat) 
                     .catch((error) => {
                     console.log("Could not connect: " + error);
@@ -88,7 +90,7 @@ function collaborative(cjwt, title, article_id) {
                         name: 'articles' + article_id,
                         topic: 'Chat about Article' + article_id,
                         // Either "public" or "private".  Room chats must be public
-                        membership: "private", 
+                        membership: "public", 
                         // by default, if a room with this ID already exists, an Error is thrown.  Setting
                         // this flag to true avoids this error.                          
                         ignoreExistsError: true
@@ -165,14 +167,14 @@ function collaborative(cjwt, title, article_id) {
 // monitor chat input filed
 function handleMessageSubmission(event) {
     if (event.keyCode === 13) {
-        try {
-            collaboratchannel.send(
+        collaboratchannel.send(
                 collaboratidomain.session().user().displayName+":"+document.getElementById("chatinput").value
-            );
-        } catch (e) {
-            // handle errors.  say, the user isn't currently connected
-            console.log(e);
-        }
+        ).catch(e => {
+            collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")
+                .then(
+                    collaboratidomain.session().user().displayName+":"+document.getElementById("chatinput").value
+                )
+        })
                    
         // clear value
         document.getElementById("chatinput").value = "";
