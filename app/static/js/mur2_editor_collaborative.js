@@ -1,6 +1,53 @@
 
 var collaboratidomain;
 var collaboratchannel;
+/* where we are with the chat history*/
+var chatpossition;
+
+/* load some more history */
+function loadhistory() {
+    var newpostion = chatpossition-25
+    if (newpostion < 1 ) {
+        limit = 25+newpostion;
+        newpostion = 0;        
+    }
+    collaboratchannel.getHistory({
+        startEvent: newpostion,
+        limit: 25,
+        eventFilter: ["message"],
+        forward: true
+    }).then(response => { 
+        /* append to the field */
+        if ( response.data.length > 0 ) {
+            eventnumbers = [];
+            // Get the chat window
+            var windows = document.getElementById("chatposts");
+            response.data.slice().reverse().forEach(evt => {
+                /* if it is a new event */
+                if ( evt.eventNumber < chatpossition ) {
+                    eventnumbers.push(evt.eventNumber);
+                    // create new post
+                    var post = document.createElement("li");
+                    var user = document.createElement("span");
+                    user.className += 'chatuser';
+                    user.innerText = evt.user.username;
+                    post.appendChild(user);
+                    var msg = document.createElement("p");
+                    msg.innerText  = evt.message.split(":").slice(1).join(':');
+                    post.appendChild(msg);
+                    windows.insertBefore(post, windows.firstChild);
+                }
+            });
+            if (eventnumbers.length > 0) {
+                chatpossition = Math.min.apply(null, eventnumbers);
+            }
+            if (newpostion === 0 ) {
+                // hide history bottom
+                document.getElementById("chathistory").style.display = "none";
+            }
+        }
+    });
+}
 
 function collaborative(cjwt, title, article_id) {
             // just saved article can be shared
@@ -89,7 +136,7 @@ function collaborative(cjwt, title, article_id) {
                         type: "channel",
                         name: 'articles' + article_id,
                         topic: 'Chat about Article' + article_id,
-                        // Either "public" or "private".  Room chats must be public
+                        // Either "public" or "private". 
                         membership: "public", 
                         // by default, if a room with this ID already exists, an Error is thrown.  Setting
                         // this flag to true avoids this error.                          
@@ -110,6 +157,7 @@ function collaborative(cjwt, title, article_id) {
                     const chatService = domain.chat();                 
                     chatService.joined(
                     ).then(chatinfo => {
+                          /* check already joined or not */
                            var notfound = true;
                            for(let i = 0; i < chatinfo.length; i++){
                                if ( chatinfo[i].chatId === 'articles' + article_id ) {
@@ -142,21 +190,25 @@ function collaborative(cjwt, title, article_id) {
                         });
                         return room;
                     }).then( room => {
+                        
                         var history = room.getHistory({
                             limit: 10,
                             eventFilter: ["message"]
                         }).then(response => { return response });
                         return history;
-                    }).then( history => {                        
+                    }).then( history => {
+                        var eventnumbers = [];
                         if ( history.data.length > 0 ) {
                             history.data.slice().reverse().forEach(evt => {
+                                // save eventnumber
+                                eventnumbers.push(evt.eventNumber);
                                 displaychatmsg({
                                     msg: evt.message.split(":").slice(1).join(':'),
                                     user: evt.user.username
                                 });
                             });
-                        }                       
-                        
+                        }     
+                        chatpossition = Math.min.apply(null, eventnumbers);
                         collaboratchannel = this.channel;
                         collaboratidomain = this.domain;
                     });
@@ -165,18 +217,31 @@ function collaborative(cjwt, title, article_id) {
 }
 
 // monitor chat input filed
-function handleMessageSubmission(event) {
+function handleMessageSubmission(event, articleid) {
     if (event.keyCode === 13) {
-        collaboratchannel.send(
+        /* check user is joined */
+        const chatService = collaboratidomain.chat()
+        chatService.joined(
+        ).then(chatinfo => {
+            var notfound = true;
+            for(let i = 0; i < chatinfo.length; i++){
+                if ( chatinfo[i].chatId === 'articles' +  articleid ) {
+                    notfound = false;
+                    break;
+                }
+            }
+            /* if not joined */
+            if (notfound) {
+                chatService.join('articles' +  articleid).then();
+            }
+        }).then( ()=> {
+            /* send msg */
+            collaboratchannel.send(
                 collaboratidomain.session().user().displayName+":"+document.getElementById("chatinput").value
-        ).catch(e => {
-            collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")
-                .then(
-                    collaboratidomain.session().user().displayName+":"+document.getElementById("chatinput").value
-                )
-        })
-                   
-        // clear value
-        document.getElementById("chatinput").value = "";
+            );
+        }).then( () => {                   
+            // clear value
+            document.getElementById("chatinput").value = "";
+        });
     }
 }; 

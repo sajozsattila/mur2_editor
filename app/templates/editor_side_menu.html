@@ -157,13 +157,16 @@
                     <label class="control-item " for="id_ec" title="{{ _('Chat') }}">{{ _("Chat") }}</label>
                 </div>    
             </div>
-		</div><!-- first_menu -->
+        </div><!-- first_menu -->
         <div id="editorchat"> 
             <div class="headmarkdowncs"><label class="toolbar fas fa-times" for="id_ec" title="{{ _('Close Chat') }}"></label></div>
             <!-- Convergence chat, commented out until bugfix -->
-            <div id="chat" class="card chat-messages"><ul id="chatposts"></ul></div>
+            <div id="chat" class="card chat-messages">
+                <input id="chathistory" type="submit" name="{{ _('Load Chat history') }}" value="{{ _('Load Chat history') }}" onclick="loadhistory()" />
+                <ul id="chatposts"></ul>
+            </div>
             <div id="chatinputdiv" class="chat-input-containers">
-                <input  id="chatinput" onkeypress="handleMessageSubmission(event)"  type="text">
+                <input  id="chatinput" onkeypress="handleMessageSubmission(event, {{article_id|string}})"  type="text">
             </div>
         </div>
         
