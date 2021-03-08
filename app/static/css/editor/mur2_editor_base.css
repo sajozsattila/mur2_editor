@@ -417,7 +417,7 @@ textarea,
 
 #id_ec:checked ~ #editorchat #chat {
     height: calc(100vh - 6.8rem - var(--verticaldistance)); 
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     overflow-y: scroll;
 }
 
