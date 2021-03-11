@@ -721,7 +721,13 @@ function g_domFindScrollMarks() {
                 case 'id_latex':
                     editorToolbarAction("latex");
                     update();
-                    break;                
+                    break;
+                case 'id_chat':
+                    // open chat
+                    document.getElementById('id_side_menu').checked = true;
+                    document.getElementById('id_ec').checked = true;
+                    msgnotice('hide');
+                    break;
             }
         }
     });

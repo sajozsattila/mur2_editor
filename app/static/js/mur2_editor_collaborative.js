@@ -49,6 +49,22 @@ function loadhistory() {
     });
 }
 
+// notice if user have a new msg
+function msgnotice(action){    
+    var chattext = document.getElementById('editorchat');
+    // there is area to show the msg
+    if (chattext !== null) {
+        var chatlog = document.getElementById('chatsign');
+        // check it is displayed if yes we do not do anything
+        if (window.getComputedStyle(chattext, null).display === 'none' && action !== "hide") {
+            // show this to indicate there is a msg
+            chatlog.style.visibility = 'visible';
+        } else {
+            chatlog.style.visibility = 'hidden';
+        }
+    }        
+}
+
 function collaborative(cjwt, title, article_id) {
             // just saved article can be shared
             if ( parseInt(article_id) > 0 ){                        
@@ -112,6 +128,11 @@ function collaborative(cjwt, title, article_id) {
                 };  
                 
                 function displaychatmsg(inputdata){
+                    if ('showmsg' in inputdata) {
+                        msgnotice(inputdata['showmsg']);
+                    } else {
+                        msgnotice();
+                    }
                     // create new post
                     var post = document.createElement("li");
                     var user = document.createElement("span");
@@ -176,12 +197,14 @@ function collaborative(cjwt, title, article_id) {
                            }
                            return channel;
                     }).catch(e => {
-                        channel = createandjoinchat(chatService).then(room => { return room });                    
+                        channel = createandjoinchat(chatService).then(room => { return room });                        
                         return channel
                     }).then(room => {
+                        // add listener to service
+                        console.log(chatService);
+                        
                         this.channel = room;
                         // Listen for incoming messages
-
                         room.on("Message", evt => {
                             displaychatmsg({
                                 msg:  evt.message.split(":").slice(1).join(':'),
@@ -204,7 +227,8 @@ function collaborative(cjwt, title, article_id) {
                                 eventnumbers.push(evt.eventNumber);
                                 displaychatmsg({
                                     msg: evt.message.split(":").slice(1).join(':'),
-                                    user: evt.user.username
+                                    user: evt.user.username,
+                                    showmsg: 'hide'
                                 });
                             });
                         }     

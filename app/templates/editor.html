@@ -320,6 +320,9 @@
                  <!-- LaTeX -->
                  <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
                  <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>
+                 <!-- Chat msg arrived -->
+                 <input class="choice_toolbar control-input" id="id_chat" type="radio" name="source_type" >
+                 <label class="toolbar fontawsome fa fa-comment" id="chatsign" for="id_chat" title="{{ _('Chat meg arrived') }}" ></label>
                  <!-- Proof search -->
                  <!--
                  <input class="choice_toolbar control-input" id="id_proof" type="radio" name="source_type" >
@@ -419,7 +422,7 @@
            }           
        </script>
        <!-- collaborative editing --> 
-       <script src="/static/js/mur2_editor_collaborative.js"></script>
+       <script src="/static/js/mur2_editor_collaborative.min.js"></script>
        <script>collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")</script>
         
        <script>
