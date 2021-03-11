@@ -437,6 +437,11 @@ textarea,
     border-bottom: 1px solid #666;
 }
 
+#chatsign {
+    visibility: hidden;
+    color: #c62641;
+}
+
 
 /**********************************
  * keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords
