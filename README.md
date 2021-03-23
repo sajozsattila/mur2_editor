@@ -1,6 +1,6 @@
 # Overview of the μr² editor
 
-The μr² editor an easy to use, versatile and comprehensive text editor for academic writing.
+The [μr² editor](https://mur2.co.uk/editor) an easy to use, versatile and comprehensive text editor for academic writing.
 
 Reasons to try:
 

@@ -19,6 +19,10 @@
     opacity: 0;
 }
 
+#mainbar {
+    width: 1rem;
+}
+
 #maintext {
     flex-direction: column;
     padding-left: 0;
@@ -437,6 +441,7 @@ td a.control-item {
 .main\.user  #user_username {
     writing-mode:  tb;
     width: 25rem;
+    overflow: hidden;
     /* mur2menutop - foot - side_menu */
     height: calc(100% - 2.8rem - 2.6rem - 0.8425rem );
     display: inline-block;
@@ -447,7 +452,7 @@ td a.control-item {
     left: 0.845rem;
     top: calc( 2.8rem + 0.8425rem );
     text-align: center;
-    transform: rotate(180deg);
+    transform: rotate(180deg);    
 }
 
 
