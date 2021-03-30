@@ -82,7 +82,8 @@ function ParserCollection(
         .use(markdownitSub)
         .use(markdownitSup)
         .use(markdownitFootnote)
-        .use(markdownitIns);
+        .use(markdownitIns)
+        .use(markdownitMultimdTable);
 
     var _mdHtmlAndImages = markdownit(defaults)
         .use(markdownitCriticmarkup)
@@ -95,7 +96,8 @@ function ParserCollection(
         .use(markdownitSub)
         .use(markdownitSup)
         .use(markdownitFootnote)
-        .use(markdownitIns);
+        .use(markdownitIns)
+        .use(markdownitMultimdTable);
 
     var _mdHtmlAndTex = markdownit(defaults)
         .use(markdownitCriticmarkup)
@@ -110,7 +112,8 @@ function ParserCollection(
         .use(markdownitSub)
         .use(markdownitSup)
         .use(markdownitFootnote)
-        .use(markdownitIns);
+        .use(markdownitIns)
+        .use(markdownitMultimdTable);
 
     var _mdHtmlHabrAndImages = markdownit(defaults)
         .use(markdownitCriticmarkup)
@@ -118,7 +121,8 @@ function ParserCollection(
         .use(markdownitSub)
         .use(markdownitSup)
         .use(markdownitFootnote)
-        .use(markdownitIns);
+        .use(markdownitIns)
+        .use(markdownitMultimdTable);
 
     var _mdMdAndImages = markdownit('zero')
         .use(markdownitS2Tex);
