@@ -69,17 +69,15 @@ DFA.prototype.execute = function (start, end) {
 };
 
 module.exports = DFA;
-console.log(module.exports);
 
 /* vim: set ts=2 sw=2 et: */
 
 },{}],2:[function(require,module,exports){
 'use strict';
 var DFA = require('./lib/dfa.js');
-console.log(DFA);    
+   
 
 module.exports = function multimd_table_latex_plugin(md, options) {
-  console.log("LaTeX module export");
   options = options || {};
 
   function scan_bound_indices(state, line) {
@@ -96,7 +94,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
 
     /* Scan for valid pipe character position */
     for (pos = start; pos < end; pos++) {
-      console.log("scan_bound_indices");
       switch (state.src.charCodeAt(pos)) {
         case 0x5c /* \ */:
           escape = true; break;
@@ -121,7 +118,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
     if (bounds[0] > start) { bounds.unshift(head - 1); }
     if (bounds[bounds.length - 1] < end - 1) { bounds.push(end); }
 
-    console.log(bounds);
     return bounds;
   }
 
@@ -140,8 +136,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
     meta.label = matches[2] || matches[1];
     meta.label = meta.label.toLowerCase().replace(/\W+/g, '');
 
-    console.log("table caption");
-    console.log(meta);
     return meta;
   }
 
@@ -168,8 +162,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
       }
     }
 
-    console.log(table_row);
-    console.log(meta);
     return meta;
   }
 
@@ -198,8 +190,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
       }
     }
     if (silent) { return true; }
-    console.log(table_separator);
-    console.log(meta);
     return meta;
   }
 
@@ -208,7 +198,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
   }
 
   function table(state, startLine, endLine, silent) {
-    console.log("table run");
     /**
      * Regex pseudo code for table:
      *     caption? header+ separator (data+ empty)* data+ caption?
@@ -308,7 +297,7 @@ module.exports = function multimd_table_latex_plugin(md, options) {
           break;
       }
     });
-
+  
     if (tableDFA.execute(startLine, endLine) === false) { return false; }
     // if (!tableToken.meta.sep) { return false; } // always evaluated true
     if (!tableToken.meta.tr.length) { return false; } // false under headerless corner case
@@ -326,75 +315,102 @@ module.exports = function multimd_table_latex_plugin(md, options) {
     tableToken.map   = tableLines = [ startLine, 0 ];
     tableToken.block = true;
     tableToken.level = state.level++;
-    console.log("tableToken");
-    console.log(tableToken);
-    //attila state.tokens.push(tableToken);
+    var wrappingspan = state.push('span_open', 'span', 1);  
+    wrappingspan.attrs    = [ [ 'class', 'mur2_latextable' ] ];
+    var latextable         = state.push('inline', '', 0);
+    latextable.content  = "\n\\begin{table}[htbp]\n\t\\begin{minipage}{\\linewidth}\n\t\t\\setlength{\\tymax}{0.5\\linewidth}\n\t\t\\centering\n\t\t\\small";
+    latextable.children = [];   
 
     // if there is head
     if (tableToken.meta.cap) {
-      
-      /* token          = state.push('caption_open', 'caption', 1); */
-      token.map      = tableToken.meta.cap.map;
-      token.attrs    = [ [ 'id', tableToken.meta.cap.label ] ];
-
-      /* token          = state.push('inline', '', 0); */
-      token.content  = tableToken.meta.cap.text;
-      token.map      = tableToken.meta.cap.map;
-      token.children = [];
-
-      /* token          = state.push('caption_close', 'caption', -1); */
-      
-      console.log(tableToken.meta.cap);
+        latextable.content  += "\n\t\t\\caption{"+tableToken.meta.cap.text+"}\n\t\t\\label{"+tableToken.meta.cap.text.replace(/ /g,'').toLowerCase()+"}"
     }
+      
+    var format = ""    // how format the columns
+    var columnnumber = 0; // column number    
+    for (r = 0; r < tableToken.meta.tr.length; r++) {  
+        trToken = tableToken.meta.tr[r];  
+        if ( trToken.meta.bounds.length > columnnumber ) {
+            columnnumber = trToken.meta.bounds.length;
+            for (c = 0; c < trToken.meta.bounds.length - 1; c++) {
+                if (tableToken.meta.sep.aligns[c]) {
+                    switch ( tableToken.meta.sep.aligns[c]) {
+                        case "center":
+                            format += "c";
+                            break;
+                        case "right":
+                            format += "r";
+                            break;
+                        default:
+                            format += "l";
+                    }  
+                } else {
+                    format += "l"
+                }
+            }
+        }
+    }
+    // start text content
+    latextable.content  += "\n\t\t\\begin{tabulary}{\\textwidth}{@{}"+format+"@{}}\n\t\t\t\\toprule\n"
 
+    // create a 2D array for the table
+    console.log(tableToken.meta.tr.length+":"+(trToken.meta.bounds.length-1));
+    var latexcontent = Array(tableToken.meta.tr.length).fill().map(() => Array(columnnumber-1).fill().map(()=> new Object() ) );  
+    // header section
+    var head = false;
     // itterate over the rows
-    for (r = 0; r < tableToken.meta.tr.length; r++) {
+    for (r = 0; r < tableToken.meta.tr.length; r++) {      
 
       // Push in thead/tbody and tr open tokens 
-      trToken = tableToken.meta.tr[r];
-      console.log(trToken.meta); // for test      
+      trToken = tableToken.meta.tr[r];   
       if (trToken.meta.grp & 0x10) {
+        tgroupLines = [ trToken.map[0], 0 ];  // array ref
         tag = (trToken.meta.type === 0x00100) ? 'thead' : 'tbody';
-        /* token     = state.push(tag + '_open', tag, 1); */
-        token.map = tgroupLines = [ trToken.map[0], 0 ];  // array ref
-        upTokens  = [];
+        console.log(tag+":"+head);
+        if ( tag === 'thead' ) {  
+            head = true;  
+            latexcontent[r][0].head = true;
+        } else {
+            head = false;
+            // add midline to front of body
+            latexcontent[r][0].midrule  = "\n\t\t\t\\midrule\n\t\t\t";
+        }                 
+      } else {
+          // still in head
+          if (head) {
+              latexcontent[r][0].head = true;
+          }
       }
       trToken.block = true;
       trToken.level = state.level++;
-      state.tokens.push(trToken);
       
-
-      // Push in th/td tokens 
+      // itterate over cols
       for (c = 0; c < trToken.meta.bounds.length - 1; c++) {
+        console.log(r+":"+c);
+        
         range = [ trToken.meta.bounds[c] + 1, trToken.meta.bounds[c + 1] ];
         text = state.src.slice.apply(state.src, range);
 
-        if (text === '') {
-          colspan = leftToken.attrGet('colspan');
-          leftToken.attrSet('colspan', colspan === null ? 2 : colspan + 1);
+        // multiple columns
+        if (text === '') { 
+          if ( latexcontent[r][c - 1].colspan ) {
+                  latexcontent[r][c - 1].colspan += 1
+          } else {
+              latexcontent[r][c - 1].colspan = 2
+          }        
           continue;
         }
-        if (options.rowspan && upTokens[c] && text.trim() === '^^') {
-          rowspan = upTokens[c].attrGet('rowspan');
-          upTokens[c].attrSet('rowspan', rowspan === null ? 2 : rowspan + 1);
+          
+        // multiple row   
+        if (options.rowspan && r !== 0 && text.trim() === '^^') {
+          if ( latexcontent[r-1][c].rowspan ) {
+                  latexcontent[r-1][c].rowspan += 1
+          } else {
+              latexcontent[r-1][c].rowspan = 2
+          }
+          latexcontent[r][c].text = '';
           continue;
-        }
-
-        tag = (trToken.meta.type === 0x00100) ? 'th' : 'td';
-        console.log("tag");
-        console.log(tag);
-        
-        /* token       = state.push(tag + '_open', tag, 1); */
-        token.map   = trToken.map;
-        token.attrs = [];
-        if (tableToken.meta.sep.aligns[c]) {
-          token.attrs.push([ 'style', 'text-align:' + tableToken.meta.sep.aligns[c] ]);
-        }
-        if (tableToken.meta.sep.wraps[c]) {
-          token.attrs.push([ 'class', 'extend' ]);
-        }
-        leftToken = upTokens[c] = token;
-        
+        }        
 
         // Multiline. Join the text and feed into markdown-it blockParser. 
         if (options.multiline && trToken.meta.multiline && trToken.meta.mbounds) {
@@ -405,46 +421,94 @@ module.exports = function multimd_table_latex_plugin(md, options) {
             range = [ trToken.meta.mbounds[b][c] + 1, trToken.meta.mbounds[b][c + 1] ];
             text.push(state.src.slice.apply(state.src, range).trimRight());
           }
-          console.log("multiline");
-          console.log(text.join('\n'));
-          /* state.md.block.parse(text.join('\n'), state.md, state.env, state.tokens); */
+          latexcontent[r][c].text  = "\\makecell{"+text.join('\\\\').replace(/\^\^/g, '')+"}";
         } else {
-          console.log("No multiline");
-          /*
-          token          = state.push('inline', '', 0);
-          token.content  = text.trim();
-          token.map      = trToken.map;
-          token.children = [];
-          */ 
+          latexcontent[r][c].text  =  text.trim() ;
         }
+      }    
+    }
+    // drop empty cells    
+    for (r = latexcontent.length-2; r >= 0 ; r--) {
+        for (c = latexcontent[r].length - 2; c >= 0 ; c--) {
+            if (Object.entries( latexcontent[r][c]).length === 0){
+                latexcontent[r].splice(c, 1);
+            }
+        }
+    }
+    // print output
+    for (r = 0; r < latexcontent.length; r++) {
+        latextable.content  += "\t\t\t"
+        // add midrule
+        if (latexcontent[r].length > 0 && latexcontent[r][0].midrule ) {
+            latextable.content  += latexcontent[r][0].midrule;
+        }
+        // need cline?
+        var cline = false;
+        for (c = 0; c < latexcontent[r].length; c++) {
+            if (latexcontent[r][c].colspan && latexcontent[r][0].head) {
+                cline = true;
+            }
+            if (latexcontent[r][c].colspan) {
+                latextable.content  += "\\multicolumn{"+latexcontent[r][c].colspan+"}{c}{";
+            }
+            if (latexcontent[r][c].rowspan) {
+                latextable.content  += "\\multirow{"+latexcontent[r][c].rowspan+"}*{";
+            }
+            if (latexcontent[r][0].head){
+                latextable.content  += "\\textbf{";
+            }
+            if ( latexcontent[r][c].text ){
+               latextable.content  += latexcontent[r][c].text;
+            }
+            if (latexcontent[r][0].head){
+                latextable.content  += "}";
+            }
+            if (latexcontent[r][c].rowspan) {
+                latextable.content  += "}";
+            }
+            if (latexcontent[r][c].colspan) {
+                latextable.content  += "}";
+            }
+            if (c === latexcontent[r].length-1) {
+                latextable.content  += "\\\\\n";
+            } else {
+                latextable.content  += "\&";
+            }
+        }
+        // add header clines
+        if (cline ){
+            var index = 0 ; // the index of the last column
+            for (c = 0; c < latexcontent[r].length; c++) {                 
+                if (latexcontent[r][c].colspan) {
+                    if ( index === 0) {
+                        index = c+1;
+                    }
+                    latextable.content  += "\t\t\t\\cmidrule{"+(index)+"-"+(index+latexcontent[r][c].colspan-1)+"}";
+                    index += latexcontent[r][c].colspan;
+                }                
+            }
+            latextable.content  += "\n"
+        }        
+    }
+      
+    latextable.content += "\n\t\t\t\\bottomrule\n\t\t\\end{tabulary}\n\t\\end{minipage}\n\\end{table}\n"
+    state.push('span_close', 'span', -1);  // close wrapping span
 
-        /* token = state.push(tag + '_close', tag, -1); */
-      }
-
-      // Push in tr and thead/tbody closed tokens 
-      /* state.push('tr_close', 'tr', -1); */
-      if (trToken.meta.grp & 0x01) {
-        console.log("close head and body");
-        tag = (trToken.meta.type === 0x00100) ? 'thead' : 'tbody';
-        /* token = state.push(tag + '_close', tag, -1); */
+   
+    if (trToken.meta.grp & 0x01) {
         tgroupLines[1] = trToken.map[1];
-      }
     }
 
+    // this need to copy the not table text
     tableLines[1] = Math.max(
       tgroupLines[1],
       tableToken.meta.sep.map[1],
       tableToken.meta.cap ? tableToken.meta.cap.map[1] : -1
-    );
-    console.log("Close table");
-    // token = state.push('table_close', 'table', -1);
-
-    // state.line = tableLines[1];
+    );    
+    state.line = tableLines[1];
     return true;
   }
-
-    
-  console.log("export end");
+   
   md.block.ruler.at('table', table, { alt: [ 'paragraph', 'reference' ] });
 };
 
