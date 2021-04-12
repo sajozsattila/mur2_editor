@@ -131,8 +131,8 @@ function ParserCollection(
         .use(markdownitFootnote)
         .use(markdownitIns)
         ;
-
-    /* tmp take out for testing
+    
+    
     var _mdHtmlHabrAndImages = markdownit(defaults)
         .use(markdownitCriticmarkup)
         .use(markdownitS2Tex, defaults._habr)
@@ -144,16 +144,15 @@ function ParserCollection(
         .use(markdownitSup)
         .use(markdownitFootnote)
         .use(markdownitIns)
-        ;
-    */
-    var _mdHtmlHabrAndImages = markdownit("zero")
+        ;   
+            
+    var _mdBackend =  markdownit("zero")
         .enable("table")
-        .use(markdownitMultimdTableLaTeX, {
+        .use(markdownitMultimdJustTable, {
             rowspan: true,
             multiline:  true
         })
         ;
-        
         
 
     var _mdMdAndImages = markdownit('zero')
@@ -255,6 +254,11 @@ function ParserCollection(
     _mdHtmlHabrAndImages.renderer.rules.heading_open = habrHeading;
     _mdHtmlHabrAndImages.renderer.rules.paragraph_open = habrParagraphOpen;
     _mdHtmlHabrAndImages.renderer.rules.paragraph_close = habrParagraphClose;
+    // same with backend
+    _mdBackend.renderer.rules.heading_open = habrHeading;
+    _mdBackend.renderer.rules.paragraph_open = habrParagraphOpen;
+    _mdBackend.renderer.rules.paragraph_close = habrParagraphClose;
+    
 
     // A copy of Markdown-it original backticks parser.
     // We want to prevent from parsing dollars inside backticks as TeX delimeters (`$$`).
@@ -313,6 +317,10 @@ function ParserCollection(
     _mdMdAndImages.renderer.rules.text = function(tokens, idx /*, options, env */ ) {
         return tokens[idx].content;
     };
+    _mdBackend.renderer.rules.text = function(tokens, idx /*, options, env */ ) {
+        return tokens[idx].content;
+    };
+        
 
     // Custom image embedding for smooth UX
     _mdPreview.renderer.rules.math_inline = function (tokens, idx) {
@@ -438,5 +446,14 @@ function ParserCollection(
         return _mdHtmlAndImages.render(source);
 
     }
+        
+    // reurn result for backend
+   this.getMdBackend = function() {
+       var source = sourceGetter();
+       var result = _mdBackend.render(source);
+       // var result = getHabraMarkup(source);
+       console.log(result);
+       return result;
+   }
 }
 

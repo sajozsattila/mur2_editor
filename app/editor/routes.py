@@ -376,9 +376,10 @@ def exportdata():
                 return send_file(error, attachment_filename='error.txt')
 
             
-        elif destination == 'latex': 
+        elif destination == 'latex':             
             # read the data which was sent from the editor.js
             mdtxt = request.files['mdfile'].read()
+            print(mdtxt)
             # some encoding 
             mdtxt = mdtxt.decode('utf-8')
             article_title = (request.form['article_title'])

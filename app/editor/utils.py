@@ -13,6 +13,385 @@ import subprocess
 from subprocess import Popen, PIPE
 from subprocess import check_output
 import copy
+from html.parser import HTMLParser
+from html.entities import name2codepoint
+
+class Mur2HTMLParser(HTMLParser):
+    out = []  # ''
+    in_pre = False   # class variables
+    in_code = False
+    in_table = False
+    in_head = False
+    in_figure = False
+    col_align = ''    # lcr...
+    col_counter = 0 # how many column
+    table_width = 0 # max width of the table
+    line_width = 0 # width of the line
+    align_ok = False
+    in_tr = 0   # for setting & out
+    headrow_cntr = 0 # how many head row
+    headcol_cntr = 0 # in a head row how many max column
+    lcr_idx = 0
+    all_col = True  # there isn't colspan
+    cmidrule = []
+    p_align = False
+    span_color = False
+
+    def __init__(self, encoding='utf-8'):
+        HTMLParser.__init__(self)
+        # self.data = []
+        self.st = self.Switcher_s()  # start tag
+        self.et = self.Switcher_e()  # end tag
+        # self.out = ""
+
+    # Multiple inner classes:
+    class Switcher_s(object):   # start tag processing
+        def set_linewidth(self, linewidth):
+            self.pc.line_width += linewidth
+
+        def get_linewidth(self):
+            return self.pc.line_width 
+        
+        def tags_to_funcs(self, tag, attrs):
+            """Dispatch method"""
+            self.pc = Mur2HTMLParser  # =parent class!!! (instance variable)
+            method_name = 'tag_' + tag
+            # Get the method from 'self'. Default to a lambda.
+            method = getattr(self, method_name,
+                             lambda: "Invalid start tag!")
+            # Call the method as we return it
+            #print('method() ===========', method)
+            try:
+                return method(attrs)
+            except:
+                return '(Tag-name-error:-' + tag + ')'
+
+        def tag_h1(self, attrs):
+            # mert a \part külön oldalon lenne! (6 mm)
+            return '\\chapter*{'
+
+        def tag_h2(self, attrs):
+            return '\\section*{'      # 4 mm
+
+        def tag_h3(self, attrs):
+            return '\\subsection*{'   # 3,5 mm
+
+        def tag_h4(self, attrs):
+            return '\\subsubsection{'  # 3 mm
+
+        def tag_h5(self, attrs):
+            return '\\paragraph{'     # 3 mm
+
+        def tag_h6(self, attrs):
+            return '\\subparagraph{'  # 3 mm
+
+        def tag_p(self, attrs):
+            tmp = [y for (x, y) in attrs if x == 'align']
+            if len(tmp):
+                self.pc.p_align = True
+            return '\n'
+
+        def tag_pre(self, attrs):   # preformatted text, monospace!
+            # tmp = [y for (x, y) in attrs if x == 'class']
+            self.pc.in_pre = True
+            return '\\begin{verbatim}'
+
+        def tag_code(self, attrs):
+            if not self.pc.in_pre:
+                return '\\texttt{'
+            self.pc.in_code = True  # kell ez?????????
+            return '\\begin{verbatim}'
+
+        def tag_span(self, attrs):
+            tmp = [y for (x, y) in attrs if x == 'style']
+            if self.pc.in_code:
+                return ''
+            if len(tmp) and tmp[0].split(':')[0] == 'color':
+                self.pc.span_color = True
+                return '\\textcolor{' + tmp[0].split(':')[1] + '}{'
+            return ''
+
+        def tag_img(self, attrs):
+            tmp = [y for (x, y) in attrs if x == 'alt']
+            if tmp[0] == "":  # ha valóban kép
+                return ''
+            elif self.pc.p_align:
+                self.pc.p_align = False
+                return '$$' + tmp[0] + '$$'
+            else:
+                return '$' + tmp[0] + '$'
+
+        def tag_ol(self, attrs):
+            tmp = [y for (x, y) in attrs if x == 'start']
+            if len(tmp):
+                enum = '\\setcounter{enumi}{' + tmp[0] + '}'
+            else:
+                enum = ''
+
+            return '\\parbox{'+"{:.2f}".format(0.9/self.pc.col_counter)+'\\textwidth}{\\begin{enumerate}[itemindent=0px,leftmargin=3px,rightmargin=3px]' + enum
+
+        def tag_ul(self, attrs):
+            return '\\parbox{'+"{:.2f}".format(0.9/self.pc.col_counter)+'\\textwidth}{\\begin{itemize}[itemindent=0px,leftmargin=3px,rightmargin=3px]'
+
+        def tag_li(self, attrs):
+            return '\\item '
+
+        def tag_em(self, attrs):
+            return '\\emph{'
+
+        def tag_strong(self, attrs):
+            return '\\textbf{'
+
+        def tag_a(self, attrs):
+            tmp = [y for (x, y) in attrs if x == 'href']
+            return '\\href{' + tmp[0] + '}{'
+
+        # -------------------------------------------------------
+        def tag_table(self, attrs):
+            self.pc.in_table = True
+            self.pc.align_ok = False
+            return '\\begin{table}[htbp]\\centering\n'
+
+        def tag_thead(self, attrs):
+            self.pc.in_head = True
+            self.pc.out.append('\\begin{tabular*}{0.9\\textwidth}{')
+            self.pc.out.append('lllll')   # placeholder
+            self.pc.lcr_idx = len(self.pc.out) - 1
+            return '}\\toprule\n'
+
+        def tag_tbody(self, attrs):
+            if self.pc.in_table:
+                return '\\midrule\n'
+            else:
+                return '\\texttt{<tbody>}'  # block in block error
+
+        def tag_tr(self, attrs):
+            self.pc.in_tr = 0
+            self.pc.headcol_cntr = 0
+            self.pc.all_col = True
+            self.pc.headrow_cntr += 1
+            self.pc.col_align = ''
+            self.pc.cmidrule = []
+            self.pc.line_width = 0
+            return ''
+
+        def tag_th(self, attrs):  # tábla fejlécben vagyunk
+            mc_str = ''
+            self.pc.in_tr += 1
+            self.pc.headcol_cntr += 1
+            if self.pc.in_tr > 1:
+                mc_str += ' & '
+            tmpst = [y for (x, y) in attrs if x == 'style']
+            tmpcs = [y for (x, y) in attrs if x == 'colspan']
+            if len(tmpcs):
+                self.pc.cmidrule.append(
+                    (self.pc.headcol_cntr, self.pc.headcol_cntr + (int(tmpcs[0]) - 1)))
+                self.pc.headcol_cntr += (int(tmpcs[0]) - 1)  # int() !!!
+                mc_str += '\\multicolumn{' + tmpcs[0] + \
+                    '}{' + tmpst[0].split(':')[1][0] + '}'
+                self.pc.all_col = False            
+            elif len(tmpst):                
+                self.pc.col_align += tmpst[0].split(':')[1][0] 
+            else:
+                self.pc.col_align += 'l'
+            # save the max number of column
+            if self.pc.headcol_cntr > self.pc.col_counter:
+                self.pc.col_counter = self.pc.headcol_cntr    
+
+            return mc_str + '{\\textbf{'
+
+        def tag_td(self, attrs):
+            mc_str = ''
+            self.pc.in_tr += 1
+            if self.pc.in_tr > 1:
+                mc_str += ' & '
+            tmpst = [y for (x, y) in attrs if x == 'style']
+            tmpcs = [y for (x, y) in attrs if x == 'colspan']
+            if len(tmpcs):
+                mc_str += '\\multicolumn{' + tmpcs[0] + \
+                    '}{' + tmpst[0].split(':')[1][0] + '}'
+            return mc_str + '{'
+
+        def tag_caption(self, attrs):
+            return '\\caption{'
+        # ------------------------------------------------------
+
+        def tag_br(self, attrs):
+            return '\\\\'
+
+        def tag_aside(self, attrs):
+            return '{'
+
+        def tag_figure(self, attrs):
+            self.pc.in_figure = True
+            return '\\begin{figure}[h!]\\centering\\includegraphics[scale=0.67]{'
+
+        def tag_figcaption(self, attrs):
+            return '\\caption{'
+
+    class Switcher_e(object):   # end tag processing
+        def pclinewidth(self, linewidth):
+            self.pc.line_width += linewidth
+        
+        def tags_to_funcs(self, tag):
+            """Dispatch method"""
+            self.pc = Mur2HTMLParser  # =parent class!!! (=top level class)
+            method_name = 'tag_' + tag
+            # Get the method from 'self'. Default to a lambda.
+            method = getattr(self, method_name, lambda: "Invalid end tag!")
+            # Call the method as we return it
+            return method()
+
+        def tag_h1(self):
+            return '}'
+
+        def tag_h2(self):
+            return '}'
+
+        def tag_h3(self):
+            return '}'
+
+        def tag_h4(self):
+            return '}'
+
+        def tag_h5(self):
+            return '}'
+
+        def tag_h6(self):
+            return '}'
+
+        def tag_p(self):
+            return '\n'
+
+        def tag_pre(self):
+            self.pc.in_pre = False
+            return '\\end{verbatim}'
+
+        def tag_code(self):
+            self.pc.in_code = False
+            if not self.pc.in_pre:
+                return '}'
+            return ''
+
+        def tag_span(self):
+            if self.pc.in_code:
+                # self.pc.in_code = False
+                return ''
+            if self.pc.span_color:
+                self.pc.span_color = False
+                return '}'
+            return ''
+
+        def tag_img(self):
+            # if tmp[0] == "":  # ha valóban kép
+            return ''
+
+        def tag_ol(self):
+            return '\\end{enumerate}}'
+
+        def tag_ul(self):
+            return '\\end{itemize}}'
+
+        def tag_li(self):
+            return ''
+
+        def tag_em(self):
+            return '}'
+
+        def tag_strong(self):
+            return '}'
+
+        def tag_a(self):
+            return '}'
+
+        def tag_table(self):
+            self.pc.in_table = False
+            return '\\bottomrule\n\\end{tabular*}\n\\end{table}'
+
+        def tag_thead(self):
+            self.pc.in_head = False
+            return ''
+
+        def tag_tbody(self):
+            return ''
+
+        def tag_tr(self):
+            tr_str = '\\\\\n'
+            if self.pc.all_col and not self.pc.align_ok:
+                # add flexible column fill
+                self.pc.out[self.pc.lcr_idx] = ''.join([ 
+                    self.pc.col_align[i]+'@{\\extracolsep{\\fill}}' if i < len(self.pc.col_align)-1 
+                    else self.pc.col_align[i]
+                    for i in range(len(self.pc.col_align)) 
+                ])
+                self.pc.align_ok = True
+            for i in range(len(self.pc.cmidrule)):
+                tr_str += '\\cmidrule{' + \
+                    str(self.pc.cmidrule[i][0]) + '-' + \
+                    str(self.pc.cmidrule[i][1]) + '}'
+            if len(self.pc.cmidrule):
+                tr_str += '\n'
+                
+            return tr_str
+
+        def tag_th(self):
+            return '}}'
+
+        def tag_td(self):
+            return '}'
+
+        def tag_caption(self):
+            return '}\n'
+
+        def tag_aside(self):
+            return '}\n'
+
+        def tag_figure(self):
+            self.pc.in_figure = False
+            return '\\end{figure}'
+
+        def tag_figcaption(self):
+            return '}'
+
+    def handle_starttag(self, tag, attrs):
+        for attr in attrs:
+            # print("     attr:", attr)
+            pass
+        self.out.append(self.st.tags_to_funcs(tag, attrs))
+
+    def handle_endtag(self, tag):
+        self.out.append(self.et.tags_to_funcs(tag))
+
+    def handle_data(self, data):
+        if data.isspace():    # ha csak whitespace van a stringben
+            return            # ha kiveszem, sok üres sor lesz!
+        if data.find('^') > -1: # multirow
+            self.out.append(data.replace('^', '\\textasciicircum'))
+            return
+        # set line width
+        self.st.set_linewidth( len(data) )
+        # update table width
+        if self.st.get_linewidth() > self.table_width:
+            self.table_width = self.st.get_linewidth()
+        self.out.append(data)
+
+    def handle_comment(self, data):
+        # print("Comment  :", data)
+        pass
+
+    def handle_entityref(self, name):
+        c = chr(name2codepoint[name])        
+
+    def handle_charref(self, name):
+        if name.startswith('x'):
+            c = chr(int(name[1:], 16))
+        else:
+            c = chr(int(name))
+        
+
+    def handle_decl(self, data):
+        # print("Decl     :", data)
+        pass
 
 # - command -- what we are runing
 # - directory -- where we are writing
@@ -31,6 +410,8 @@ def run_os_command(command, directory="/tmp"):
     
     return stdout, stderr
 
+
+
 def make_tmpdirname():
     letters = string.ascii_letters
     return '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
@@ -43,9 +424,35 @@ def make_latex(mdtxt, title, abstract, language, author):
             # save to file
             #  # generate random string for dir
             dirname = make_tmpdirname()
-            os.mkdir(dirname)
+            if not os.path.exists(dirname):
+                os.mkdir(dirname)
             mdname = os.path.join(dirname,'pdf.md')
-            file = open(mdname, 'w')
+            
+            
+            # proces HTML table in the markdown code
+            
+            # get the tables from the text 
+            if re.search('<span class="mur2_latextable">', mdtxt):
+                # find the tables
+                tables = re.findall(r'<span class="mur2_latextable">\n(.*?)\n</span>', mdtxt, flags=re.DOTALL)
+                
+                # generate the Markdown without the tables
+                mdtxt = re.sub('<span class="mur2_latextable">.*?</span>','\$murlatextable\$', mdtxt , flags=re.DOTALL)
+                
+                # process the tables
+                for t in range(len(tables)):
+                    parser = Mur2HTMLParser()
+                    parser.feed(tables[t])
+                    if parser.table_width < 45:
+                        tables[t] = ''.join(parser.out)
+                    else:
+                        # rotate 90% the page
+                        tables[t] = '\\begin{landscape}\n'+''.join(parser.out).replace("\\textwidth", "\\linewidth")+'\\end{landscape}\n'
+                    parser.close()
+                    
+            
+            # save madifiled md
+            file = open(mdname, 'w+')
             file.write(mdtxt)
             file.close()
             
@@ -74,7 +481,10 @@ def make_latex(mdtxt, title, abstract, language, author):
                     file.write(
                            "\nlang: " + language +
                            "\nmainfont: LibertinusSerif-Regular.otf\nsansfont: LibertinusSerif-Regular.otf\nmonofont: LibertinusMono-Regular.otf\nmathfont: latinmodern-math.otf" +                          
-                          "\nheader-includes:\n    - \\usepackage[autostyle=true]{csquotes}"
+                           "\nheader-includes:\n    - \\usepackage[autostyle=true]{csquotes}"+
+                           "\n    - \\usepackage{booktabs}"+
+                           "\n    - \\usepackage{enumitem}" +
+                           "\n    - \\usepackage{pdflscape}"
                           )
                     
                 file.write("\n---")
@@ -91,12 +501,22 @@ def make_latex(mdtxt, title, abstract, language, author):
                                      os.path.join(dirname,'pancritic.md'),
                                      '-f', 'markdown', 
                                      '-t',  'latex', 
-                                     '-V',  'CJKmainfont=Noto Serif CJK SC',
+                                     '-V',  '"CJKmainfont=Noto Serif CJK SC"',
                                      '--citeproc',
                                      "-F", "/opt/pandoc-crossref/bin/pandoc-crossref",
                                      '-s',                                      
-                                     '-o', os.path.join(dirname,'mur2.tex')], dirname)
-
+                                     '-o', os.path.join(dirname,'mur2.tex')], dirname)                
+                
+                
+                # add back the tables
+                latexcode = None
+                with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
+                    latexcode = file.read()            
+                for t in tables:
+                    latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
+                with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
+                    file.write(latexcode) 
+                
             return dirname, error
 
 
@@ -132,8 +552,8 @@ def pdf_generation(title, author, language, abstract, body):
         # make pdf
         result, error = run_os_command( ['/usr/bin/pandoc', 
                                      os.path.join(dirname, 'settings.txt'),
-                                     os.path.join(dirname,'pancritic.md'), 
-                                     '-f', 'markdown', 
+                                     os.path.join(dirname,'mur2.tex'), 
+                                     '-f', 'latex', 
                                      '-t',  'pdf', 
                                      '--pdf-engine=xelatex',
                                      '--citeproc',

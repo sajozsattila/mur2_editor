@@ -482,9 +482,15 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
 async function generate_from_md(destination, mainCollection) {
     var article_title = document.getElementById('title-source').value;
     var article_abstract = document.getElementById('abstact-source').value;
+    /* // v 1.7.x change to dedicated backend process 
     var mddata = new Blob([mainCollection.getSource()], {
         type: 'text/markdown;charset=utf-8'
     });
+    */
+    var mddata = new Blob([mainCollection.getMdBackend()], {
+        type: 'text/markdown;charset=utf-8'
+    });
+    console.log(mddata);
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
     var language = document.querySelector('meta[name="mur2language"]').content
     var fd = new FormData();
