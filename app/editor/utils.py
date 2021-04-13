@@ -128,10 +128,10 @@ class Mur2HTMLParser(HTMLParser):
             else:
                 enum = ''
 
-            return '\\parbox{'+"{:.2f}".format(0.9/self.pc.col_counter)+'\\textwidth}{\\begin{enumerate}[itemindent=0px,leftmargin=3px,rightmargin=3px]' + enum
+            return '\\parbox{'+"{:.2f}".format(0.9/self.pc.col_counter)+'\\textwidth}{\\begin{enumerate}[itemindent=0pt,leftmargin=3pt,rightmargin=3pt]' + enum
 
         def tag_ul(self, attrs):
-            return '\\parbox{'+"{:.2f}".format(0.9/self.pc.col_counter)+'\\textwidth}{\\begin{itemize}[itemindent=0px,leftmargin=3px,rightmargin=3px]'
+            return '\\parbox{'+"{:.2f}".format(0.9/self.pc.col_counter)+'\\textwidth}{\\begin{itemize}[itemindent=0pt,leftmargin=3pt,rightmargin=3pt]'
 
         def tag_li(self, attrs):
             return '\\item '
@@ -549,9 +549,9 @@ def pdf_generation(title, author, language, abstract, body):
     
     
     if error is None:
+        """
         # make pdf
         result, error = run_os_command( ['/usr/bin/pandoc', 
-                                     os.path.join(dirname, 'settings.txt'),
                                      os.path.join(dirname,'mur2.tex'), 
                                      '-f', 'latex', 
                                      '-t',  'pdf', 
@@ -561,6 +561,14 @@ def pdf_generation(title, author, language, abstract, body):
                                      '-V',  'CJKmainfont=Noto Serif CJK SC',
                                      '-s',                                      
                                      '-o', os.path.join(dirname,'mur2.pdf')], dirname)
+        """
+        result, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex', 
+                                         "-output-directory="+dirname,
+                                         "-interaction=nonstopmode",                                         
+                                         os.path.join(dirname,'mur2.tex'),                                         
+                                         ], dirname)
+        
+        
     return dirname, error
 
 # make EPUB and Microsof Word return the dirname where it is
