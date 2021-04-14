@@ -318,12 +318,12 @@ module.exports = function multimd_table_latex_plugin(md, options) {
     var wrappingspan = state.push('span_open', 'span', 1);  
     wrappingspan.attrs    = [ [ 'class', 'mur2_latextable' ] ];
     var latextable         = state.push('inline', '', 0);
-    latextable.content  = "\n\\begin{table}[htbp]\n\t\\begin{minipage}{\\linewidth}\n\t\t\\setlength{\\tymax}{0.5\\linewidth}\n\t\t\\centering\n\t\t\\small";
-    latextable.children = [];   
+    latextable.children = [];      
+    var caption = null;
 
     // if there is head
     if (tableToken.meta.cap) {
-        latextable.content  += "\n\t\t\\caption{"+tableToken.meta.cap.text+"}\n\t\t\\label{"+tableToken.meta.cap.text.replace(/ /g,'').toLowerCase()+"}"
+        caption = tableToken.meta.cap.text     
     }
       
     var format = ""    // how format the columns
@@ -350,11 +350,8 @@ module.exports = function multimd_table_latex_plugin(md, options) {
             }
         }
     }
-    // start text content
-    latextable.content  += "\n\t\t\\begin{tabulary}{\\textwidth}{@{}"+format+"@{}}\n\t\t\t\\toprule\n"
 
     // create a 2D array for the table
-    console.log(tableToken.meta.tr.length+":"+(trToken.meta.bounds.length-1));
     var latexcontent = Array(tableToken.meta.tr.length).fill().map(() => Array(columnnumber-1).fill().map(()=> new Object() ) );  
     // header section
     var head = false;
@@ -366,14 +363,13 @@ module.exports = function multimd_table_latex_plugin(md, options) {
       if (trToken.meta.grp & 0x10) {
         tgroupLines = [ trToken.map[0], 0 ];  // array ref
         tag = (trToken.meta.type === 0x00100) ? 'thead' : 'tbody';
-        console.log(tag+":"+head);
         if ( tag === 'thead' ) {  
             head = true;  
             latexcontent[r][0].head = true;
         } else {
             head = false;
             // add midline to front of body
-            latexcontent[r][0].midrule  = "\n\t\t\t\\midrule\n\t\t\t";
+            latexcontent[r][0].midrule  = true; 
         }                 
       } else {
           // still in head
@@ -386,11 +382,10 @@ module.exports = function multimd_table_latex_plugin(md, options) {
       
       // itterate over cols
       for (c = 0; c < trToken.meta.bounds.length - 1; c++) {
-        console.log(r+":"+c);
         
         range = [ trToken.meta.bounds[c] + 1, trToken.meta.bounds[c + 1] ];
         text = state.src.slice.apply(state.src, range);
-
+        
         // multiple columns
         if (text === '') { 
           if ( latexcontent[r][c - 1].colspan ) {
@@ -421,79 +416,25 @@ module.exports = function multimd_table_latex_plugin(md, options) {
             range = [ trToken.meta.mbounds[b][c] + 1, trToken.meta.mbounds[b][c + 1] ];
             text.push(state.src.slice.apply(state.src, range).trimRight());
           }
-          latexcontent[r][c].text  = "\\makecell{"+text.join('\\\\').replace(/\^\^/g, '')+"}";
+          latexcontent[r][c].text  = text.join('\n')
         } else {
           latexcontent[r][c].text  =  text.trim() ;
         }
       }    
     }
     // drop empty cells    
-    for (r = latexcontent.length-2; r >= 0 ; r--) {
+    for (r = latexcontent.length-1; r >= 0 ; r--) {
         for (c = latexcontent[r].length - 2; c >= 0 ; c--) {
             if (Object.entries( latexcontent[r][c]).length === 0){
                 latexcontent[r].splice(c, 1);
             }
         }
     }
-    // print output
-    for (r = 0; r < latexcontent.length; r++) {
-        latextable.content  += "\t\t\t"
-        // add midrule
-        if (latexcontent[r].length > 0 && latexcontent[r][0].midrule ) {
-            latextable.content  += latexcontent[r][0].midrule;
-        }
-        // need cline?
-        var cline = false;
-        for (c = 0; c < latexcontent[r].length; c++) {
-            if (latexcontent[r][c].colspan && latexcontent[r][0].head) {
-                cline = true;
-            }
-            if (latexcontent[r][c].colspan) {
-                latextable.content  += "\\multicolumn{"+latexcontent[r][c].colspan+"}{c}{";
-            }
-            if (latexcontent[r][c].rowspan) {
-                latextable.content  += "\\multirow{"+latexcontent[r][c].rowspan+"}*{";
-            }
-            if (latexcontent[r][0].head){
-                latextable.content  += "\\textbf{";
-            }
-            if ( latexcontent[r][c].text ){
-               latextable.content  += latexcontent[r][c].text;
-            }
-            if (latexcontent[r][0].head){
-                latextable.content  += "}";
-            }
-            if (latexcontent[r][c].rowspan) {
-                latextable.content  += "}";
-            }
-            if (latexcontent[r][c].colspan) {
-                latextable.content  += "}";
-            }
-            if (c === latexcontent[r].length-1) {
-                latextable.content  += "\\\\\n";
-            } else {
-                latextable.content  += "\&";
-            }
-        }
-        // add header clines
-        if (cline ){
-            var index = 0 ; // the index of the last column
-            for (c = 0; c < latexcontent[r].length; c++) {                 
-                if (latexcontent[r][c].colspan) {
-                    if ( index === 0) {
-                        index = c+1;
-                    }
-                    latextable.content  += "\t\t\t\\cmidrule{"+(index)+"-"+(index+latexcontent[r][c].colspan-1)+"}";
-                    index += latexcontent[r][c].colspan;
-                }                
-            }
-            latextable.content  += "\n"
-        }        
-    }
-      
-    latextable.content += "\n\t\t\t\\bottomrule\n\t\t\\end{tabulary}\n\t\\end{minipage}\n\\end{table}\n"
-    state.push('span_close', 'span', -1);  // close wrapping span
 
+    var tablecontent = {'caption': caption, 'format': format, 'content': latexcontent};
+    console.log(latexcontent);
+    latextable.content = JSON.stringify(tablecontent);
+    state.push('span_close', 'span', -1);  // close wrapping span
    
     if (trToken.meta.grp & 0x01) {
         tgroupLines[1] = trToken.map[1];
@@ -511,8 +452,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
    
   md.block.ruler.at('table', table, { alt: [ 'paragraph', 'reference' ] });
 };
-
-/* vim: set ts=2 sw=2 et: */
 
 },{"./lib/dfa.js":1}]},{},[2])(2)
 });

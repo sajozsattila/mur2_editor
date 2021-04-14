@@ -68,10 +68,10 @@ div#article_abstract_div,
     padding-left: 1.68rem;
     text-align: left;
 }
-
-#article_main thead {
-    border-bottom: 1px solid #666;
+#article_main tbody {
+    border-top: 1px solid #666;
 }
+
 #article_main table + p[id^='tbl'] {
     margin-bottom: var(--verticaldistance);
 }

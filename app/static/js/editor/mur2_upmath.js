@@ -73,12 +73,12 @@ function ParserCollection(
                
     var _mdPreview = markdownit(defaults)
         .use(markdownitCriticmarkup)
-        .use(markdownItAttrs, {})
         .use(implicitFigures, {
             figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
             tabindex: true // <figure tabindex="1+n">..., default: false
         })        
         .use(markdownitS2Tex)                
+        .use(markdownitFootnote)
         .use(markdownitMultimdTableLaTeX, {
             rowspan: true,
             multiline:  true
@@ -89,8 +89,8 @@ function ParserCollection(
         }) 
         .use(markdownitSub)
         .use(markdownitSup)
-        .use(markdownitFootnote)
         .use(markdownitIns)
+        .use(markdownItAttrs, {})
         ;
 
     var _mdHtmlAndImages = markdownit(defaults)
@@ -144,16 +144,14 @@ function ParserCollection(
         .use(markdownitSup)
         .use(markdownitFootnote)
         .use(markdownitIns)
-        ;   
-            
+        ;     
     var _mdBackend =  markdownit("zero")
         .enable("table")
-        .use(markdownitMultimdJustTable, {
+        .use(markdownitMultimdTableLaTeX, {
             rowspan: true,
             multiline:  true
         })
-        ;
-        
+    ;
 
     var _mdMdAndImages = markdownit('zero')
         .use(markdownitS2Tex);
