@@ -387,22 +387,34 @@ module.exports = function multimd_table_latex_plugin(md, options) {
         text = state.src.slice.apply(state.src, range);
         
         // multiple columns
-        if (text === '') { 
-          if ( latexcontent[r][c - 1].colspan ) {
-                  latexcontent[r][c - 1].colspan += 1
-          } else {
-              latexcontent[r][c - 1].colspan = 2
-          }        
+        if (text === '') {
+          // multiple colspan
+          // step back for the first column which have text
+          for (var cc = c; cc > 0; cc--) {
+              if  ( latexcontent[r][cc - 1].text) {
+                  if ( latexcontent[r][cc - 1].colspan ) {
+                      latexcontent[r][cc - 1].colspan += 1
+                  } else {
+                      latexcontent[r][cc - 1].colspan = 2
+                  };
+                  break;
+              }
+          }
           continue;
         }
           
         // multiple row   
         if (options.rowspan && r !== 0 && text.trim() === '^^') {
-          if ( latexcontent[r-1][c].rowspan ) {
-                  latexcontent[r-1][c].rowspan += 1
-          } else {
-              latexcontent[r-1][c].rowspan = 2
-          }
+          for (var rr = r; rr > 0; rr--) {
+              if  ( latexcontent[rr-1][c].text) {
+                  if ( latexcontent[rr-1][c].rowspan ) {
+                      latexcontent[rr-1][c].rowspan += 1
+                  } else {
+                      latexcontent[rr-1][c].rowspan = 2
+                  };
+                  break;
+              }
+          };
           latexcontent[r][c].text = '';
           continue;
         }        
@@ -424,7 +436,7 @@ module.exports = function multimd_table_latex_plugin(md, options) {
     }
     // drop empty cells    
     for (r = latexcontent.length-1; r >= 0 ; r--) {
-        for (c = latexcontent[r].length - 2; c >= 0 ; c--) {
+        for (c = latexcontent[r].length - 1; c >= 0 ; c--) {
             if (Object.entries( latexcontent[r][c]).length === 0){
                 latexcontent[r].splice(c, 1);
             }
@@ -432,7 +444,6 @@ module.exports = function multimd_table_latex_plugin(md, options) {
     }
 
     var tablecontent = {'caption': caption, 'format': format, 'content': latexcontent};
-    console.log(latexcontent);
     latextable.content = JSON.stringify(tablecontent);
     state.push('span_close', 'span', -1);  // close wrapping span
    

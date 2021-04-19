@@ -182,7 +182,7 @@ function editorToolbarAction(action, kwarg) {
             }
         }
     } else {
-        alert(_("No field selected!"));
+        swal(_("No field selected!"));
     }
 }
 
@@ -196,7 +196,7 @@ async function alarming(xhr, sucessmsg) {
     var msgbox = document.getElementById("msg")
     xhr.onload = function() {
         if (xhr.status != 200) { // analyze HTTP status of the response
-            alert( _("Error: ") + xhr.statusText + " - " + xhr.response ); 
+            swal( _("Error: ") + xhr.statusText + " - " + xhr.response ); 
         } else { // show the result   
             msgbox.style.color = "green";
             msgbox.innerHTML = sucessmsg;
@@ -259,7 +259,7 @@ async function save_article(blobs) {
         var abstractdatatext = document.getElementById('article_abstract').innerHTML;
         var titledatatext = document.getElementById('article_title').innerHTML;
     } catch(err) {
-        alert(_("You can only save in Preview mode!"));
+        swal(_("You can only save in Preview mode!"));
         return;
     }
     
@@ -274,21 +274,20 @@ async function save_article(blobs) {
     if (texttype === 'Review' ) {
         reviewed = document.getElementById('reviewdArticle')
         if ( reviewed.value.length == 0 ||  isNaN(reviewed.value) ) {
-            alert(_("Choose the Article which you are reviewing!"));
+            swal(_("Choose the Article which you are reviewing!"));
             return;
         }
         standby = document.getElementById('reviewStandby')
         if ( standby.value.length == 0 || isNaN(standby.value) ) {
-            alert(_("Need to set the Standby!"));
+            swal(_("Need to set the Standby!"));
             return;
         }
         if ( standby.value < -100 ||  standby.value > 100 ) {
-            alert(_("Standby should be between +100 and -100!"));
+            swal(_("Standby should be between +100 and -100!"));
             return;
         }
         
         rebel = document.getElementById('reviewRebel').checked
-        console.log(rebel);
     }
     
     
@@ -370,7 +369,7 @@ async function  medium_on_fly(titleCollection, abstractCollection, mainCollectio
     xhr.send(fd);
     xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
-                alert(  _("Error: ") + xhr.statusText + " - " + xhr.response );
+                swal(  _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 var mur2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
@@ -396,7 +395,6 @@ async function wordpress2(link, id) {
 }
 
 async function wordpress_on_fly(titleCollection, abstractCollection, mainCollection) {
-    console.log("1");
     var msgbox = document.getElementById("msg")
 
     var texttype = document.querySelector('meta[name="texttype"]').content;
@@ -405,7 +403,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var access_token = getCookie("mur2_wpc_accesstoken");
         var address = getCookie("mur2_wpc_sideid");
         if (access_token === "") {
-            alert(  _("Error: You are not logged into Wordpress.com") );
+            swal(  _("Error: You are not logged into Wordpress.com") );
         };
 
         // if it is not a new article get the id
@@ -421,7 +419,6 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         var keywordsId = [];
         // get tags            
         for ( var i = keywords.length; i--; ) {
-            console.log(keywords[i]);
             let response = await new Promise(resolve => {
                 let fd = new FormData();
                 let xhrtt = new XMLHttpRequest();
@@ -459,7 +456,7 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
         xhr.send(fd);
         xhr.onload = function() {
             if (xhr.status != 201) { // analyze HTTP status of the response
-                alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
+                swal( _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 var wc2answer = JSON.parse(xhr.response);
                 msgbox.style.color = "green";
@@ -479,18 +476,12 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
     }
 }
 
-async function generate_from_md(destination, mainCollection) {
+async function make_export(destination, mainCollection) {
     var article_title = document.getElementById('title-source').value;
     var article_abstract = document.getElementById('abstact-source').value;
-    /* // v 1.7.x change to dedicated backend process 
-    var mddata = new Blob([mainCollection.getSource()], {
-        type: 'text/markdown;charset=utf-8'
-    });
-    */
     var mddata = new Blob([mainCollection.getMdBackend()], {
         type: 'text/markdown;charset=utf-8'
     });
-    console.log(mddata);
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
     var language = document.querySelector('meta[name="mur2language"]').content
     var fd = new FormData();
@@ -509,6 +500,7 @@ async function generate_from_md(destination, mainCollection) {
     fd.append('endnotetext', endnotetext);
     fd.append('language', language);
     fd.append('author', author);
+    fd.append("aid", document.querySelector('meta[name="article_id"]').content);
     var xhr = new XMLHttpRequest();
     /* need to receive file back */
     xhr.responseType = 'blob';
@@ -559,6 +551,33 @@ async function generate_from_md(destination, mainCollection) {
         msgbox.innerHTML = "";
     } else {
         msgbox.innerHTML = "";
+    }    
+}
+
+async function generate_from_md(destination, mainCollection) {
+    /* Switch out msw generation, the Adobe doing better from pdf->word */
+    if ( destination === "msw" ) {
+        var result = swal( 
+            {
+                text: _("We recommend downloading the PDF version and transform it with the Adobe online PDF->World tool. This will give you the best result if you use a lot of mathematical formula or complicated tables. However, we still happy to generate ourselves also, if you wish."),
+                buttons: {
+                    here: {text:_('Generate here'), value: 'here'}, 
+                    there: {text: _('I will do on Adobe'), value: 'there'}
+                }
+            }               
+       ).then((result) => {   
+           switch  (result) {
+               case "there":
+                   window.open("https://www.adobe.com/uk/acrobat/online/pdf-to-word.html");
+                   break;
+               case "here":
+                   make_export(destination, mainCollection);
+                   break;
+           }
+           return;
+       });       
+    } else {
+        make_export(destination, mainCollection);
     }
 }
 
@@ -674,7 +693,7 @@ function addNewAuthor(action, id) {
         }    
     }
     if ( allworkshare !== 100 ) {
-        alert( _("Error: The sum of the workshare is not 100!") );
+        swal( _("Error: The sum of the workshare is not 100!") );
     } else {
         // send data to frontend
         var fd = new FormData();
@@ -688,7 +707,7 @@ function addNewAuthor(action, id) {
     
         xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
-                alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
+                swal( _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 // update the page
                 location.reload();
@@ -712,7 +731,7 @@ function getArticleversion() {
     xhr.send(fd);
     xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
-                alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
+                swal( _("Error: ") + xhr.statusText + " - " + xhr.response );
             } else {
                 var versiondata = JSON.parse(xhr.response);
                 document.getElementById('title-source').value = versiondata.title;

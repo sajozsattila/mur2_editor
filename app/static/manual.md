@@ -1,14 +1,29 @@
-# Table of content
 
+
+<span id="article_title">
+
+Editor Manual
+
+</span>
+
+
+<span id="article_abstract">
+
+The manual for the μr² Markdown editor.
+
+</span>
+
+
+# Table of content
 
 + [Guide for μr² editor](#mur2)
   + [Toolbar](#toolbar)
-    + [Different view modes](#views)
+    + [View modes](#views)
     + [Markdown shortcuts](#mshort)
     - [Editorial changes](#ec)
     - [Bibliography](#bib)
   + [Document settings](#docs)
-    + [Title and abstract](#ta)
+    + [Title and Abstract](#ta)
     + [Categories and Keywords](#ck)
     + [Canonical URL](#curl)
     + [Authors](#authors)
@@ -40,34 +55,34 @@
 
 ## Toolbar {#toolbar}
 
-The Toolbar is the top section of the editor, and looks like:
+The Toolbar is the top section of the editor, and looks like this:
 
-![Toolbar](https://mur2.co.uk/_uploads/photos/1/mur2_toolbar_2.png)
+![](https://mur2.co.uk/_uploads/photos/1/mur2_toolbar_2.png)
 
 ### Document saving and loading
 
-The basic toolbar icons for document saving and loading are as follows:
+The basic toolbar icons for document saving and loading are:
 
 <span class="fas fa-file-upload" style="display: unset;"></span> -- upload a Markdown file
 
-<span class="fontawsome fas fa-file-download" style="display: unset;"></span> -- download the [Preview](#preview). In the side menu you can choose between HTML and Markdown format, for details, see [there](#preview).
+<span class="fontawsome fas fa-file-download" style="display: unset;"></span> -- download the [Preview](#preview). In the side menu you can choose between HTML and Markdown format, for details, see [here](#preview).
 
-<span class="fontawsome fas fa-save" style="display: unset;"></span> -- save Article, just for [registered users](#ac).
+<span class="fontawsome fas fa-save" style="display: unset;"></span> -- save Article, for [registered users](#ac).
 
 
 ### Different view modes {#views}
 
-The next section in the toolbar is to control the view of the editors:
+The next section in the toolbar is to control the view of the editor:
 
-<span class="fontawsome far fa-arrow-alt-circle-left " style="display: unset;"></span> -- hide the input side, it helps previewing the document.
+<span class="fontawsome far fa-arrow-alt-circle-left " style="display: unset;"></span> -- hide the input side, this helps when reviewing the document.
 
 <span class="fontawsome far fa-arrow-alt-circle-down" style="display: unset;"></span> -- display the [Document settings](#docs)
 
-<span class="fontawsome far fa-arrow-alt-circle-right" style="display: unset;"></span> -- hide the preview side of the editor. This allows more room for working.
+<span class="fontawsome far fa-arrow-alt-circle-right" style="display: unset;"></span> -- hide the preview side of the editor. This allows more room to work.
 
 <span class="fontawsome fab fa-markdown fontawsome " style="display: unset;"></span> -- switch off Syntax highlighting in the input side
 
-It is ideal to work without distraction. This is why it's possible in the μr² editor to switch off most of the field. If you hide the preview side, switch off the Syntax highlighting and hide the toolbar, you can actually focus on the text you are writing.
+It is ideal to work without distractions. This is why it's possible in the μr² editor to switch off most of the fields. If you hide the preview side, switch off the Syntax highlighting and hide the toolbar, you can actually focus on the text you are writing.
 
 ![Focus mode](https://mur2.co.uk/_uploads/photos/1/mur2_focusemode.png)
 
@@ -81,26 +96,26 @@ The right side of the Toolbar is WYSIWYG controls for the most used Markdown syn
 
 <span class="fontawsome fas fa-bold" style="display: unset;"></span> -- bold fonts
 
-<span class="fontawsome far fa-image" style="display: unset;"></span> -- add picture, it is uploading the files in the Media page at the same time.
+<span class="fontawsome far fa-image" style="display: unset;"></span> -- add picture. Uploads are available in the Media page.
 
 <span class="fontawsome fas fa-link" style="display: unset;"></span> -- add link
 
-<span class="fontawsome fas fa-list" style="display: unset;"></span> -- add unnumbered list
+<span class="fontawsome fas fa-list" style="display: unset;"></span> -- unnumbered list
 
-<span class="fontawsome fas fa-list-ol" style="display: unset;"></span> -- add numbered list
+<span class="fontawsome fas fa-list-ol" style="display: unset;"></span> -- numbered list
 
-<span class="fontawsome fas fa-superscript" style="display: unset;"></span> -- add footnote
+<span class="fontawsome fas fa-superscript" style="display: unset;"></span> -- footnote
 
-<span class="fontawsome fas fa-th-large" style="display: unset;"></span> -- add a basic table skeleton 
+<span class="fontawsome fas fa-th-large" style="display: unset;"></span> -- basic table skeleton 
 
-<span class="fontawsome fas fa-code" style="display: unset;"></span> -- add code 
+<span class="fontawsome fas fa-code" style="display: unset;"></span> -- code syntax 
 
-**Σ** -- add mathematical expression
+**Σ** -- mathematical expression
 
 
 ### Editorial changes {#ec}
 
-The "Editorial changes" can be understood as syntax for documenting editing notes and changes. It helps the collaboration amongst coauthors. This is not part of the standard Markdown, but especially useful. The μr² editor is using the  [CriticMarkup ](http://criticmarkup.com/) syntax for this. Example:
+The "Editorial changes" can be understood as syntax for documenting editing notes and changes. It helps collaboration amongst coauthors. This is not part of the standard Markdown but it is especially useful. The μr² editor uses [CriticMarkup ](http://criticmarkup.com/) syntax for this. Example:
 
 Deletions: This is {--is --}a test.
 
@@ -112,11 +127,11 @@ Highlighting: This is a {==test==}.
 
 Comments: This is a test.{>>What is a test for?<<}
 
-These marks are hidden by default in the Preview side. If you would like to see them, click on the <span class="fontawsome  fas fa-i-cursor" style="display: unset;"></span> symbol on the toolbar. These marks can be accepted or rejected. In export file generation we assume that the writers are aware of these marks in the document and just leave those he accepted unindicated. In the exported file, all of these marks are in "accept" status and will appear as in the Preview side when the <span class="fontawsome  fas fa-i-cursor" style="display: unset;"></span> is switched off.
+These marks are hidden by default in the Preview side. If you would like to see them, click on the <span class="fontawsome  fas fa-i-cursor" style="display: unset;"></span> symbol on the toolbar. These marks can be accepted or rejected. In export file generation it is assumed that the writers are aware of these marks in the document and just leave those he accepted unindicated. In the exported file, all of these marks are in "accept" status and will appear as in the Preview side when the <span class="fontawsome  fas fa-i-cursor" style="display: unset;"></span> is switched off.
 
 ### Bibliography {#bib}
 
-The μr² editor uses [BibTeX ](http://www.bibtex.org/) file to manage the bibliography. BibTeX is a widely used bibliography management tool which makes it easy to cite sources in a consistent manner by separating bibliographic information from its presentation. Similarly, the separation of content and presentation/style is supported by Markdown and LaTeX itself. With BibTeX, the bibliography entries are kept in a separate file and then imported into the main document. 
+The μr² editor uses [BibTeX ](http://www.bibtex.org/) file to manage the bibliography. BibTeX is a widely used bibliography management tool that makes it easy to cite sources in a consistent manner by separating bibliographic information from its presentation. Similarly, the separation of content and presentation/style is supported by Markdown and LaTeX itself. With BibTeX, the bibliography entries are kept in a separate file and then imported into the main document. 
 The first step is to create a bib. file with your Bibliography entities. This file is a standard BibTeX file. For example, we can add the [Markdown Guide](https://www.markdownguide.org/getting-started/) like this:
 
 ```
@@ -128,7 +143,7 @@ The first step is to create a bib. file with your Bibliography entities. This fi
 }
 ```
 
-To add this file to your document, click on the <span class="fontawsome fas fa-book"></span> icon in the toolbar. Find the BibTex file on your computer and load. The μr² editor will render this file to HTML code and append to the end of the Markdown code. For example, the entry above will appear like:
+To add this file to your document, click on the <span class="fontawsome fas fa-book"></span> icon in the toolbar. Find the BibTex file on your computer and upload it. The μr² editor will render this file to HTML code and append it to the end of the Markdown code. For example, the entry above will appear like this:
 
 ```
 
@@ -141,22 +156,23 @@ To add this file to your document, click on the <span class="fontawsome fas fa-b
 </div>
 ```
 
-Those will be rendered in the Preview side appear as:
+and be rendered in the Preview side like this:
 
-![Example rendered Bibliography entry](https://mur2.co.uk/_uploads/photos/1/mur_bib_1.png)
+![](https://mur2.co.uk/_uploads/photos/1/mur_bib_1.png)
 
-These bibliography entries don't just appear at the end of the document but also can be referred to from the main text. You can define a reference key in your BibTeX file, and after the rendering, you can use the `ref-<key>` form to link to the specific document.  For example, in the last part, we set the reference to `whatm` for the Markdown Guide, now we can refer to it as: [see. MG](#ref-whatm)
+These bibliography entries don't just appear at the end of the document, they can also be referred to from the main text. You can define a reference key in your BibTeX file, and after the rendering, you can use the `ref-<key>` form to link to the specific document.  For example, in the last part, we set the reference to `whatm` for the Markdown Guide, now we can refer to it as: [see. MG](#ref-whatm)
 
 
 ## Document settings {#docs}
 
-To open the Document settings, click on the toolbar <span class="fontawsome far fa-arrow-alt-circle-down"></span>. This will hide the main editing window and display the settings. You can go back to the main section by clicking again on the <span class="fontawsome far fa-arrow-alt-circle-down"></span>.
+To open the Document settings, click <span class="fontawsome far fa-arrow-alt-circle-down"></span> on the toolbar. This will hide the main editing window and display the settings. You can go back to the main 
+section by clicking again on <span class="fontawsome far fa-arrow-alt-circle-down"></span> again.
 
-Two different types of document you can create: Article and Review. The formal one is designed for longer original text on certain topics. The latter for a shorter summary or evaluation of someone else's writing. You can choose between them by the "Text Type" dropdown:
+{++ Two types of document can be created: Article and Review. The former is designed for longer original text on specific topics. The latter is used for a summary or evaluation of someone else's writing. You can choose between them in the "Text Type" dropdown: ++}
 
-![Text Type dropdown](https://mur2.co.uk/_uploads/photos/1/text_type_review_article.png)
+![](https://mur2.co.uk/_uploads/photos/1/text_type_review_article.png)
 
-These document types have different settings:
+{++ The document types have different settings: ++}
 
 + Article:
   + [Title](#ta)
@@ -175,51 +191,52 @@ These document types have different settings:
 
 
 
-### Title and abstract {#ta}
+### Title and Abstract {#ta}
 
-These files are self-explaining.  If you are a [registered user](#fru), you cannot save a document without a title. This is to prevent possible confusion or repetition in document creation. The Abstract is a short summary of the main text. When you export your document, the Abstract will be placed in front of the main text.
+These fields are self-explanatory.  If you are a [registered user](#fru), you cannot save a document without a title. This is to prevent confusion or repetition in document creation. The Abstract is a summary of the main text. When the document is exported, the Abstract will be placed above the main text.
 
 ### Categories and Keywords {#ck}
 
-These fields are self-explaining too. The difference between them: the Categories is a predefined list, while the Keywords are free to choose.  
+These fields are also self-explanatory. Categories is a predefined list to select from, while users are free to choose useful Keywords.  
 
 ### Canonical URL {#curl}
-When posting content to multiple platforms at the same time (such as your website, [WordPress ](#wp) or [Medium](#medium)), it is important to make sure that a single source of that content is the ultimate authority. Search engines use canonical links to determine and prioritize the ultimate source of content, removing confusion when there are multiple copies of the same document in different locations. Sites that publish an overabundance of duplicate content without indicating a canonical link may be penalized in search engine rankings.
+When posting content to multiple platforms (such as your website, [WordPress ](#wp) or [Medium](#medium)), it is important to make sure that a single source of that content is the ultimate authority. Search engines use canonical links to determine and prioritize the ultimate source of content, removing confusion when there are multiple copies of the same document in different locations. Sites that publish an overabundance of duplicate content without indicating a canonical link can be penalized in search engine rankings.
 
 ### Authors {#authors}
-If you are [registered user](#fru), you can add or remove authors for an Article.  The μr² is a [Collaborative real-time editor](#cor). You can add new Authors by adding their usernames to the bottom of the section and setting they workshare:
+If you are a [registered user](#fru), you can add or remove authors for an Article.  The μr² is a [Collaborative real-time editor](#cor). You can add new Authors by adding their usernames to the bottom of the section and setting their workshare:
 
 ![Add new Author](https://mur2.co.uk/_uploads/photos/1/mur2_addnewauthor.png)
 
-The Workshare measures the individual Authors' contribution to the Article in percentage. The Authors with 0 Workshare won't be accepted as a contributor and are not allowed to save their changes. The μr² recommends this setting for [editors](#ec) model. It is not possible to change the Authors Workshare without removing and adding. So if you would like to update your Author Workshare settings, you need to remove and add them again to the Article.
+The Workshare measures the individual Authors' (Writers?) contribution to the Article as a percentage. The Authors with 0% Workshare won't be accepted as a contributor and are not allowed to save their changes. The μr² recommends this setting for [editors](#ec) model. It is not possible to change the Authors Workshare without removing and adding. So if you would like to update your Author Workshare settings, you need to remove and add them again to the Article.
 
 
 To remove an Author, you should first click the Remove bottom next to his name. Then you need to redistribute the Workshare between the remaining Authors. 
 
 ### Article, Standby and Rebel {#asr}
 
-*Article* is μr² id of the Article which we are reviewing. It is a mandatory attribute for Reviews.
+{++ *Article* is μr² id of the Article which we are reviewing. It is a mandatory attribute for Reviews. ++}
 
-*Standby* is indicating how much the Authors agree with the Article. It's valued between -100 and +100. If it is a positive number the Reviewer Accept the Article.
+{++ *Standby* is indicating how much the Authors agree with the Article. It's valued between -100 and +100. If it is a positive number the Reviewer accepts the Article. ++}
 
-*Rebel* is a flag. It is used to indicate the Reviewer strongly determinant in her/his opinion. It is introduced to the μr² system, as Reviewing is a responsible act in our ecosystem. Every Writer has a score, we call Trusfullness, which depends on his Articles and Reviews. The Article Writer Trusfullness changing regarding the Reviews on her/his Article, but the Review Writer's Trusfullness also change, if they opinion going against other Reviews on the same Article.  If somebody makes biased Reviews either direction they Trustfurness will drop on the μr². But we know a good resource Article can be dividing, the Rebel flag to handle this. If a Review marked with this flag, its Writer won't be affected if the Review going against the general opinion.
+{++ *Rebel* is a flag. It is used to indicate the Reviewer is strongly determinant in their opinion. It is introduced to the μr² system, as Reviewing is a responsible act in our ecosystem. Every Writer has a score which we call 'Trustfullness'. Trusfullness is measured on their Articles and Reviews. An Article Writers Trusfullness changes based on the Reviews of their Articles but the Review Writers Trusfullness can change if, for example; their opinion goes against other Reviews on the same Article.  If someone gives biased Reviews in either direction their Trustfullness score will in μr² will drop. But we know a good resource Article can be dividing, the Rebel flag to handle this. If a Review marked with this flag, its Writer won't be affected if the Review going against the general opinion. ++}
 
 ## Side menu {#sidebar}
 
-To open the side menu, click on the <span class="fontawsome fas fa-bars"></span> icon on the right side of the toolbar. Then you will see this opened menu on the right side:
+To open the side menu, click on the <span class="fontawsome fas fa-bars"></span> icon on the far right side of the toolbar. This will display the following sidebar menu:
 
-![Sidebar](https://mur2.co.uk/_uploads/photos/1/mur2_sidebar.png)
+![](https://mur2.co.uk/_uploads/photos/1/mur2_sidebar.png)
 
-It has six sections:
-+ Navigation
+Which has six sections:
++ Site Navigation
 + [Preview formats](#preview)
 + [Version control](#vc)
 + Finish editing
-+ [Publis and export](#export)
++ [Publish and export](#export)
++ [User guides](#not sure where to link to?)
 
 ### Preview formats {#preview}
 
-This part manages the right side of the main windows. The supported formats are:
+These options affect how the preview looks. Supported formats are:
 
 + Preview -- rendered HTML
 + HTML -- raw HTML code
@@ -228,22 +245,22 @@ This part manages the right side of the main windows. The supported formats are:
 + Markdown + img -- Markdown with rendered LaTeX images
 + H -- habr.com Markdown 
 
-You can download your work locally by clicking on <span class="fontawsome fas fa-file-download"></span> in the toolbar. The content of this file will be the same as in the preview.  So for example: if you want to save the output in Markdown you should switch the preview to Markdown first.
+Work can be downoaded locally by clicking on <span class="fontawsome fas fa-file-download"></span> in the toolbar. The content of the file will be the same as the preview.  So for example; if you want to save the output in Markdown, simply switch the preview to Markdown first.
 
 ### Version control {#vc}
-For saved Article, we keep the last 20 version in our database. So you can roll back to your changes to a specific historical time if needed. 
+For saved Articles, μr² stores the last 20 versions so you can rollback changes to a specific historical time if needed. 
 
 ### Publish and export {#export}
 
 #### Wordpress.com {#wp}
-You can export your work directly to Wordpress.com in the side menu icon. To run the export, you need to set up your username, password and site address. These settings will be saved in cookies on your browser. 
+Work can be exported directly to Wordpress.com in the sidebar menu. To export, you just need to input your username, password and site address. These settings will be saved in cookies on your browser. 
 
 #### Medium.com {#medium}
 
-Inline math formula is not supported. You will need to set your integration token for this to work and it will be saved in cookies on your browser. Unfortunately, Medium.com does not support client-side calls, so this integration token needs to skip the server. 
+Inline math formula is not supported. You will need to set your integration token for this to work and it will be saved in cookies on your browser. Unfortunately, Medium.com does not support client-side calls, so the integration token is needed to skip the server. 
 
 #### LaTeX and PDF {#pdf}
-The HTML standard is improving with time. But honestly speaking, it is still far from meeting the real typography standard. This is why μr² prefer [LaTeX](#pdf) to handle the following tasks:
+The HTML standard is improving with time but speaking honestly, it is still far from meeting the real typography standard. This is why μr² prefers using [LaTeX](#pdf) to handle the following tasks:
 
 + Loading the language-specific hyphenation patterns and other typographical conventions. Babel provides basic line breaking for CJK scripts as well as non-standard hyphenation such as “ff” → “ff-f”, repeated hyphens, and ranked rules.
 + Setting the script and language tags of the current font, if possible. 
@@ -251,11 +268,11 @@ The HTML standard is improving with time. But honestly speaking, it is still far
 + Formatting dates according to language-specific conventions.
 + Formatting numbers for languages with different numbering system.
 
-The μr² use [LaTeX](#pdf) to generate the [PDF](#pdf) output， so these settings are the same in both formats.
+The μr² also uses [LaTeX](#pdf) to generate the [PDF](#pdf) output, so these settings are the same in both formats.
 
-To generate direct PDF output, click on the side menu <span class="fas fa-file-pdf" style="display: unset;"></span>  icon. The PDF generation happens on the μr² server and can be a little slow, don‘t be surprised if it takes around 20 seconds.  
+To generate direct PDF output, click on the side menu <span class="fas fa-file-pdf" style="display: unset;"></span>  icon. The PDF generation happens on the μr² server and can be a little slow so don‘t be surprised if it takes upto 20 seconds.  
 
-When generate PDF or LaTeX document， you need to be careful with your ``$$`` as everything between them will be processed as LaTeX [math ](#math) formula, which means if you use them for something else, the generation will not work.
+When generating a PDF or LaTeX document, you need to be careful when using ``$$`` as everything between them will be processed as LaTeX [math ](#math) formula, if used for something else, the generation will not work.
 
 
 #### ePUB
@@ -264,12 +281,12 @@ ePUB is the most widely supported vendor-independent XML-based (as opposed to PD
 
 #### Microsoft Word
 
-Microsoft Word is a word-processor software launched in 1983 by the Microsoft Corporation. It has become the leading word processor for both Windows and Macintosh users since 1990s. The Microsoft Word is a WYSIWYG (what you see is what you get) editor, meaning that formatting tags were hidden^[Not like in Markdown or [LaTeX](#pdf).] and whatever a document looked like on a user’s computer screen, it was how it would look when printed—or at least semi-WYSIWYG, as screen fonts were not of the same quality as printer fonts.  There is a definite improvement over the years on the Microsoft Word math input, but honestly, it is still far from Markdown or [LaTeX](#pdf) comfort.
+Microsoft Word is a word-processor software launched in 1983 by the Microsoft Corporation. It has become the leading word processor for both Windows and Macintosh users since the 1990s. The Microsoft Word is a WYSIWG (What You See Is What You Get) editor, meaning that formatting tags were hidden^[Not like in Markdown or [LaTeX](#pdf).] and whatever a document looked like on a user’s computer screen, it was how it would look when printed—or at least semi-WYSIWYG, as screen fonts were not of the same quality as printer fonts.  There is a definite improvement over the years on the Microsoft Word math input, but honestly, it is still far from Markdown or [LaTeX](#pdf) comfort.
 
 
 ##  Internationalization and Localization {#loc}
 
-The Internationalization and Localization are important for us and they are happening on multiple levels. 
+Internationalization and Localization are important for us (everyone?) and they are happening on multiple levels. 
 
 ### Input
 
@@ -279,11 +296,11 @@ The preview and HTML rendering is UTF-8 based, so you can type any character:
 
 ### Quotation marks {#qm}
 
-Quotation marks have a variety of forms in different languages. In American writing, quotation marks are normally the double kind (the primary style). If quotation marks are used inside another pair of quotation marks, then single quotation marks are used. For example: "_Didn't she say 'I like red best' when I asked her about wine preferences?_" he asked his guests.  At μr² we follow this marking style on the Markdown input. However, the rendered output is localised. For example: in a Hungarian text the opening `"` will be rendered as: „ and the closing one as: ”.
+Quotation marks have a variety of forms in different languages. In American writing, quotation marks are normally the double kind (the primary style). If quotation marks are used inside another pair of quotation marks, then single quotation marks are used. For example: "_Didn't she say 'I like red best' when I asked her about wine preferences?_" he asked his guests.  At μr² we follow this marking style on the Markdown input. However, the rendered output is localized. For example: in a Hungarian text the opening `"` will be rendered as: „ and the closing one as: ”.
 
 ### Editor frontend
 
-We are constantly working on Internationalization of the editor menu and other settings such as the label of the footnote in the preview. But if we have missed something, please drop us an email and help us do better. 
+We are constantly working on the Internationalization of the editor menu and other settings such as the label of the footnote in the preview. But if we have missed something, please drop us an email and help us do better. 
 
 ## Features for registered users {#fru}
 
@@ -319,7 +336,8 @@ You can delete and Article by clicking on the <span class="fas fa-trash"></span>
 
 ### Collaborative real-time editing between Writers {#cor}
 
-If you are a registered user, you can share your document with another user. The first step is to [create and save a new document](#ca). After it is saved, you can share it with another user by [adding](#authors) him as Writer. Now you are ready to collaborate with others. The Article will appear in the new Author Profile page and you can start to work together. The collaborating is in real-time, so your documents will be synchronised continuously. Example: you will see when they are typing in. Saving is not needed.
+If you are a registered user, you can share your document with another user. The first step is to [create and save a new document](#ca). After it is saved, you can share it with another user by [adding](#authors) him as Writer. Now you are ready to collaborate with others. The Article will appear in the new Author Profile page and you can start to work together. The collaborating is in real-time, so your documents will be synchronised continuously. Example: you will see when they are typing in. Saving is not needed. 
+
 
 # Markdown {#markdown}
 
@@ -491,21 +509,7 @@ To add a table, use three or more hyphens (`---`) to create each column’s head
 | 1   | 2  |
 | 3   | 4  |
 
-You are also able to add a caption to the table and anchor:
-
-|  output format | μr² supporting? |
-| ------ | ----------- |
-| WordPress | yes |
-| Medium | yes |
-| [PDF](#pdf) | yes |
-| ePUB | yes |
-| [LaTeX](#pdf) | yes |
-| Microsoft World| yes |
-
-Table: Demonstration of a simple table with caption, anchoor and footnote[^space] {#tbl:1}
-
-
-You can align text in the columns to the left, right or centre by adding a colon (`:`) to the left, right or on both side of the hyphens within the header row:
+You are able to add a caption and label to the table. You can align your text in the columns to the left, right or centre by adding a colon (`:`) to the left, right or on both side of the hyphens within the header row:
 
 |  output format | μr² supporting? |
 | :------: | -----------: |
@@ -515,13 +519,28 @@ You can align text in the columns to the left, right or centre by adding a colon
 | ePUB | yes |
 | [LaTeX](#pdf) | yes |
 | Microsoft World| yes |
+[Demonstration of centre and right-aligned table.] 
+{#tbl:1}
 
-Table: Demonstration of centre and right-aligned table. {#tbl:2}
+
+The μr² also supporting the [MultiMarkdown syntax for tables](https://fletcher.github.io/MultiMarkdown-6/MMD_Users_Guide.html#tables), which make possible complicated table formating. To indicate that a cell should span multiple columns, then simply add additional pipes (|) at the end of the cell. The number of pipes equals the number of columns the cell should span. A cell with a content of ```^^``` indicates cells being merged above. You can create multiple ```<tbody>``` tags (for HTML)^[It will be translated as ```\midrole``` in the LaTeX and PDF.] within a table by having a single empty line between rows of the table. 
+
+|               |          Grouping             ||         Grouping 2         ||  Not Grouped    |
+| First Header  | Second Header | Third Header   | Forth Header | Fifth Header | Sixth Header    |
+| ------------- | :-----------: | -------------: | :----------: | :----------: | --------------- |
+| Tall Cell     |          *Long Cell*          ||         *Long Long Cell*                    |||
+| ^^            |   **Bold**    | 1. first item  | *Italic*     | 3. third item | + first point  |\
+| ^^            |               | 1. second item |              | 1. forth item | + second point |
+
+| New section   |     More      |         Data   | ... - -- --- |
+| And more      | With an escaped '\|'          || "Quotes in 'quotes'"         |
+[Compicated table]
 
 
-And there is a reference of the table: [first table](#tbl:1)
+And there is a reference of the table: [first table](#tbl:1).
 
-[^space]: The space between the caption and the attribute is important!
+All of the cell formattings are supported in HTML, LaTeX, PDF and ePuB format.  The WordPress support is nearly full, however, do not expect multiple ```<tbody>``` tags. Unfortunately, the Medium does not support tables at all.  
+
 
 ## Links {#links}
 Simple link:
@@ -599,3 +618,4 @@ test.. test... test..... test?..... test!....
 <span>“Getting Started: An Overview of Markdown, How It Works, and What You Can Do with It.”</span> n.d. The Markdown Guide; <a href="https://www.markdownguide.org/getting-started/">https://www.markdownguide.org/getting-started/</a>.
 </div>
 </div>
+

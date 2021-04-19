@@ -1,6 +1,6 @@
 /**
  * Markdown and LaTeX Editor
- * (c) Sajó, Zsolt Attila 2020
+ * (c) Sajó, Zsolt Attila 2021
  * Based on code by Roman Parpalak, 2016-2018 https://github.com/parpalak/upmath.me
  * 
  */
@@ -474,6 +474,7 @@ function g_domFindScrollMarks() {
                 // upload the file in the media directory
                 var fd = new FormData();
                 fd.append("bibliography", filecontent, 'bibliography.bib');
+                fd.append("aid", document.querySelector('meta[name="article_id"]').content);
                 var xhr = new XMLHttpRequest();
                 xhr.open('post', '/bibliography', true);
                 xhr.send(fd);
@@ -485,7 +486,6 @@ function g_domFindScrollMarks() {
                     } else {
                         // the HTML file
                         var response = JSON.parse(xhr.response);
-                        console.log(response);
                         var source = document.getElementById('main-source');
                         // append html toe end of the main source
                         source.value = source.value + "\n" + response.bib;
@@ -667,6 +667,7 @@ function g_domFindScrollMarks() {
                     }
                     break;
                 case 'id_bib':
+                    // BibTeX
                     upload_bib();
                     break;
                 case 'id_head':
@@ -683,7 +684,6 @@ function g_domFindScrollMarks() {
                     break;
                 case 'id_picture':
                     // different handli for free editor and registered users editor  
-                    console.log(window.location.pathname);
                     if (window.location.pathname === '/editor') {
                         var userinput = prompt(_("Please enter a URL for image."), "");
                         if (userinput != null) {                            
