@@ -73,16 +73,13 @@ function ParserCollection(
                
     var _mdPreview = markdownit(defaults)
         .use(markdownitCriticmarkup)
+        .use(markdownItAttrs, {})
         .use(implicitFigures, {
             figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
             tabindex: true // <figure tabindex="1+n">..., default: false
         })        
         .use(markdownitS2Tex)                
         .use(markdownitFootnote)
-        .use(markdownitMultimdTableLaTeX, {
-            rowspan: true,
-            multiline:  true
-        }) 
         .use(markdownitMultimdTable, {
             rowspan: true,
             multiline:  true
@@ -90,7 +87,6 @@ function ParserCollection(
         .use(markdownitSub)
         .use(markdownitSup)
         .use(markdownitIns)
-        .use(markdownItAttrs, {})
         ;
 
     var _mdHtmlAndImages = markdownit(defaults)
@@ -450,7 +446,6 @@ function ParserCollection(
        var source = sourceGetter();
        var result = _mdBackend.render(source);
        // var result = getHabraMarkup(source);
-       console.log(result);
        return result;
    }
 }

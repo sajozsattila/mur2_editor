@@ -23,7 +23,7 @@ from app.auth.email import send_password_reset_email
 # blueprint
 from app.editor import bp
 # bacground thread
-from app.editor.utils import epub_generation, pdf_generation, make_pandoc_md, make_latex, make_tmpdirname, bib_generation
+from app.editor.utils import epub_generation, pdf_generation, make_pandoc_md, make_latex, make_tmpdirname, bib_generation, msworld_generation
 # other
 import requests
 import datetime
@@ -368,8 +368,9 @@ def exportdata():
             article_abstract = (request.form['article_abstract'])
             language = (request.form['language'])
             author = (request.form['author'])
+            aid = (request.form['aid'])
 
-            dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt)
+            dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt, aid)
             if error is None:
                 return send_file(os.path.join(dirname, 'mur2.pdf'))
             else:
@@ -379,15 +380,15 @@ def exportdata():
         elif destination == 'latex':             
             # read the data which was sent from the editor.js
             mdtxt = request.files['mdfile'].read()
-            print(mdtxt)
             # some encoding 
             mdtxt = mdtxt.decode('utf-8')
             article_title = (request.form['article_title'])
             article_abstract = (request.form['article_abstract']) 
             language = (request.form['language']) 
             author = (request.form['author'])
+            aid = (request.form['aid'])
             
-            dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author)
+            dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, aid, extractmedia=False)
             if error is None:
                 # clear up tmp files
                 #   do in cron ass it is troublesome to be sure it was transfared before deleteing           
@@ -403,8 +404,9 @@ def exportdata():
             article_abstract = (request.form['article_abstract']) 
             language = (request.form['language']) 
             author = (request.form['author'])
+            aid = (request.form['aid'])
             
-            dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt)           
+            dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt, aid)           
             if error is None:
                 return send_file(os.path.join(dirname, 'mur2.epub'))
             else:
@@ -418,11 +420,13 @@ def exportdata():
             article_abstract = (request.form['article_abstract']) 
             language = (request.form['language']) 
             author = (request.form['author'])
+            aid = (request.form['aid'])
             
-            dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt, doctype = destination)
+            dirname, error = msworld_generation(article_title, author, language, article_abstract, mdtxt, aid)
             
             if error is None:
                 return send_file(os.path.join(dirname, 'mur2.docx'))
+                # return send_file(os.path.join(dirname, 'mur2.odt'))
             else:
                 return send_file(error, attachment_filename='error.txt')
             
@@ -434,7 +438,12 @@ def exportdata():
 @bp.route('/bibliography', methods=['POST'])
 def bibliography(): 
     bibfile = request.files['bibliography'].read()
-    bibfile = bibfile.decode('utf-8')
+    bibfile = bibfile.decode('utf-8')    
+    
+    # save bibfile to frontend DB
+    a = Article.query.filter_by(id=int(request.form['aid'])).first_or_404()
+    a.bibtex = bibfile
+    db.session.commit()
     
     dirname, error = bib_generation(bibfile)
     if error is None:

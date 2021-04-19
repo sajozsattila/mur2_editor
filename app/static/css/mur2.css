@@ -364,3 +364,25 @@ collapsible divs
   overflow: hidden;
   background-color: #f1f1f1;
 } 
+
+/*****************************
+https://sweetalert.js.org/docs/ javascript alert
+*/
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 0px;
+  background-color: black;
+  font-size: 12px;
+}
+.swal-button:not([disabled]):hover {
+    background-color: #c62641;
+}
+
+.swal-modal {
+    border-radius: 0px;
+}
+
+.swal-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #fff,0 0 0 3px rgb(198,38,65);
+}

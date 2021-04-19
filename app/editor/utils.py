@@ -18,7 +18,8 @@ from html.entities import name2codepoint
 # for multimarkdown tables
 import markdown
 import app.editor.mdx_latex as mdx_latex
-
+# for BibTeX
+from app.models import Article
 
 # - command -- what we are runing
 # - directory -- where we are writing
@@ -44,7 +45,7 @@ def make_tmpdirname():
     letters = string.ascii_letters
     return '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
 
-def make_latex(mdtxt, title, abstract, language, author):
+def make_latex(mdtxt, title, abstract, language, author, article_id, extractmedia=True):
             mdtxt = make_pandoc_md(mdtxt)
             title = title
             abstract = abstract
@@ -56,18 +57,16 @@ def make_latex(mdtxt, title, abstract, language, author):
                 os.mkdir(dirname)
             mdname = os.path.join(dirname,'pdf.md')
             
-            
-            # proces HTML table in the markdown code
-            
+            ##########################
+            # proces HTML table in the markdown code            
             # get the tables from the text 
             if re.search('<span class="mur2_latextable">', mdtxt):
                 # find the tables
-                tables = re.findall(r'<span class="mur2_latextable">(.*?)</span>', mdtxt, flags=re.DOTALL)
-                #tables = re.findall(r'<span class="mur2_latextable">(.*?)</span>(\n\{#tbl:\d+\}?)?', mdtxt, flags=re.DOTALL)
-                print(tables)
+                #tables = re.findall(r'<span class="mur2_latextable">(.*?)</span>', mdtxt, flags=re.DOTALL)
+                tables = re.findall(r'<span class="mur2_latextable">(.*?)</span>(\n\{#tbl:\d+\}?)?', mdtxt, flags=re.DOTALL)
                 
                 # generate the Markdown without the tables
-                mdtxt = re.sub('<span class="mur2_latextable">.*?</span>','\$murlatextable\$', mdtxt , flags=re.DOTALL)
+                mdtxt = re.sub('<span class="mur2_latextable">.*?</span>(\n\{#tbl:\d+\}?)?','\$murlatextable\$', mdtxt , flags=re.DOTALL)
                 
                 # process the tables
                 if len(tables) > 0:
@@ -78,9 +77,11 @@ def make_latex(mdtxt, title, abstract, language, author):
                     # itterate over tables
                     for t in range(len(tables)):                        
                         # the aprox. length of the table
-                        tablewidth = 0                                            
+                        tablewidth = 0
+                        # the label of the table
+                        tablelable = tables[t][1]
                         # dictionary of the table
-                        tables[t] = json.loads(tables[t])
+                        tables[t] = json.loads(tables[t][0])
 
                         # update format
                         tables[t]['format'] = ''.join([ 
@@ -91,8 +92,17 @@ def make_latex(mdtxt, title, abstract, language, author):
                         # create string LaTeX table
                         tablestring = "\n\\begin{table}\n"
                         # if there is caption
-                        if tables[t]['caption'] is not None and len(tables[t]['caption']) > 0:
-                            tablestring += "\n\t\t\\caption{"+tables[t]['caption']+"}\n\t\t\\label{"+tables[t]['caption'].replace(' ','').lower()+"}"
+                        if tables[t]['caption'] is not None and len(tables[t]['caption']) > 0:                            
+                            # label it if there is caption or label
+                            if len(tablelable) > 0:
+                                llabel = tablelable.replace('\n{#','').replace('}','')
+                                tablestring += "\n\t\t\\label{"+llabel+"}\hypertarget{"+llabel+"}{\centering"
+                            else :
+                                tablestring += "\n\t\t\\label{"+tables[t]['caption'].replace(' ','').lower()+"}"
+                            # add caption
+                            tablestring += "\n\t\t\\caption{"+tables[t]['caption']+"}"
+                            if len(tablelable) > 0:
+                                tablestring += "}"
                         # add begining of the table content
                         tablestring += "\n\t\t\\begin{tabular*}{\\textwidth}{@{}"+tables[t]['format']+"@{}}\n\t\t\t\\toprule\n"
                         # itterate over table cells and process the Markdown
@@ -163,10 +173,19 @@ def make_latex(mdtxt, title, abstract, language, author):
                         if tablewidth > 45:
                             tablestring = '\\begin{landscape}\n'+tablestring.replace("\\textwidth", "\\linewidth")+'\\end{landscape}\n'
                         # repace the dict with string
-                        tables[t] = tablestring
+                        tables[t] = tablestring  
                         
-                            
-                    
+            # process BibTeX
+            thereisbibtex = False
+            if int(article_id) > 0:
+                a = Article.query.filter_by(id=int(article_id)).first_or_404()
+                if a.bibtex is not None:
+                    thereisbibtex = True
+                    # save BibTeX data
+                    with open('mur2.bib', 'w') as f:
+                        f.write(a.bibtex)
+                    # remove html bibtex data
+                    mdtxt = re.sub('<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">.*?</div>','\$murbibtex\$', mdtxt , flags=re.DOTALL)
                     
             
             # save madifiled md
@@ -178,8 +197,7 @@ def make_latex(mdtxt, title, abstract, language, author):
             if language == "zh_Hans":
                 language = "zh-CN"
             elif language == "zh_Hant":
-                language = "zh-TW"
-                
+                language = "zh-TW"                
 
             # make latex
             # first make the setting files
@@ -208,7 +226,6 @@ def make_latex(mdtxt, title, abstract, language, author):
                            "\n    - \\usepackage{pdflscape}" + 
                            "\n    - \\usepackage{multirow}" 
                           )
-                    
                 file.write("\n---")
             
             # preprocess
@@ -218,27 +235,35 @@ def make_latex(mdtxt, title, abstract, language, author):
                                         '-m', 'a', 
                                         '-o', os.path.join(dirname,'pancritic.md')], dirname)
             if error is None:
-                result, error = run_os_command(['/usr/bin/pandoc', 
+                pandoccommand = ['/usr/bin/pandoc', 
                                      os.path.join(dirname, 'settings.txt'),
                                      os.path.join(dirname,'pancritic.md'),
                                      '-f', 'markdown', 
                                      '-t',  'latex', 
-                                     '--extract-media='+dirname,
                                      '-V',  '"CJKmainfont=Noto Serif CJK SC"',
                                      '--citeproc',
                                      "-F", "/opt/pandoc-crossref/bin/pandoc-crossref",
                                      '-s',                                      
-                                     '-o', os.path.join(dirname,'mur2.tex')], dirname)                
+                                     '-o', os.path.join(dirname,'mur2.tex')]
+                # do we download the media files?
+                if extractmedia:
+                    pandoccommand.append('--extract-media='+dirname)
+                if thereisbibtex:
+                    pandoccommand += ['--bibliography', 'mur2.bib' ]
+                result, error = run_os_command(pandoccommand, dirname)                
                 
                 
                 # add back the tables
                 latexcode = None
                 with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
-                    latexcode = file.read()            
+                    latexcode = file.read()
                 for t in tables:
                     latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
+                # add back bibtex
+                if thereisbibtex:
+                    latexcode = latexcode.replace('\$murbibtex\$', '\\bibliography{mur2}\n\\bibliographystyle{ieeetr}\n')
                 with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
-                    file.write(latexcode) 
+                    file.write(latexcode)
                 
             return dirname, error
 
@@ -263,12 +288,12 @@ def  make_pandoc_md(mdtxt):
             return mdtxt
 
 # make PDF from final published Article
-def pdf_generation(title, author, language, abstract, body):    
+def pdf_generation(title, author, language, abstract, body, article_id):    
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, article_id)
     
     
     if error is None:
@@ -309,45 +334,14 @@ def pdf_generation(title, author, language, abstract, body):
     return dirname, error
 
 # make EPUB and Microsof Word return the dirname where it is
-def epub_generation(title, author, language, abstract, body, doctype = 'epub'):
+def epub_generation(title, author, language, abstract, body, article_id):
     
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
-
-    """
-    # make epub
-    dirname = make_tmpdirname()
-    os.mkdir(dirname)
-    # save the body text
-    mdname = os.path.join(dirname,'epbub.md')
-    file = open(mdname, 'w')
-    file.write(mdtxt)
-    file.close()
-    # save the settings
-    with open(dirname+'settings.txt', 'w') as file:
-        file.write('---\ntitle: '+article_title.replace("$$", "$")+
-                   "\nlang: " + language +
-                   "\nauthor:\n    - \"" + author + '\"' + 
-                   "\ncsquotes: true" +
-                   "\nheader-includes:\n    - \\usepackage[autostyle=true]{csquotes}" +
-                   "\n---")
-            
-    # save the abstract 
-    with open(dirname+'abstract.txt', 'w') as file:
-        file.write("# {epub:type=abstract}\n"+article_abstract)
-
     
-    # preprocess
-    result, error = run_os_command(['pancritic', 
-                                    mdname, 
-                                    '-t', 'markdown', 
-                                    '-m', 'a', 
-                                    '-o', os.path.join(dirname,'pancritic.md')], dirname)
-
-    """
     # make latex
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, article_id, extractmedia=False)
     
     # remove pagerotating as epub not supporting
     latexcode = None
@@ -358,41 +352,39 @@ def epub_generation(title, author, language, abstract, body, doctype = 'epub'):
         file.write(latexcode) 
 
     if error is None:
-        if doctype == 'epub':
-            """
-            result, error = run_os_command(['/usr/bin/pandoc',
-                                     dirname+'settings.txt',
-                                     dirname+'abstract.txt',
-                                     os.path.join(dirname,'pancritic.md'),
-                                     '-f', 'markdown', 
-                                     '-V',  'CJKmainfont=Noto Serif CJK SC', 
-                                     '--citeproc',
-                                     "-F", "/opt/pandoc-crossref/bin/pandoc-crossref",
-                                     '-s', 
-                                     '-o', dirname + 'mur2.epub'], dirname)
-            """
-            result, error = run_os_command(['/usr/local/texlive/2020/bin/x86_64-linux/tex4ebook',
+        result, error = run_os_command(['/usr/local/texlive/2020/bin/x86_64-linux/tex4ebook',
                                      os.path.join(dirname,'mur2.tex'),
                                      '-d', dirname ], dirname)
-        else:
-            # Microsoft Word
-            """
-            result, error = run_os_command(['/usr/bin/pandoc',
-                                     dirname+'settings.txt',
-                                     dirname+'abstract.txt',
-                                     os.path.join(dirname,'pancritic.md'),
-                                     '-f', 'markdown', 
-                                     '-V',  'CJKmainfont=Noto Serif CJK SC', 
-                                     '--citeproc',
-                                     "-F", "/opt/pandoc-crossref/bin/pandoc-crossref", 
-                                     '-s',                                      
-                                     '-o', dirname + 'mur2.docx'], dirname)
-            """
-            result, error = run_os_command(['/usr/bin/pandoc',
+        
+    
+    return dirname, error
+
+def msworld_generation(title, author, language, abstract, body, article_id):
+    mdtxt = make_pandoc_md(body)
+    article_title = make_pandoc_md(title)
+    article_abstract = make_pandoc_md(abstract)
+    
+    # make latex
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, article_id)
+    
+    if error is None:
+        # Microsoft Word
+        
+        wordcommand = ['/usr/bin/pandoc',
                                      os.path.join(dirname,'mur2.tex'),
                                      '-f', 'latex', 
+                                     '-V',  '"CJKmainfont=Noto Serif CJK SC"',  
                                      '-s',                                      
-                                     '-o', dirname + 'mur2.docx'], dirname)
+                                     '-o', dirname + 'mur2.docx']
+        
+        """
+        wordcommand = ['/usr/local/texlive/2020/bin/x86_64-linux/make4ht', 
+                                            '-uf', 'odt',
+                                            '-d', dirname,
+                                            os.path.join(dirname,'mur2.tex')]
+        """
+        print(" ".join(wordcommand))
+        result, error = run_os_command(wordcommand, dirname)
     
     return dirname, error
 
@@ -425,7 +417,7 @@ nocite: '@*'
                                     '-o', output], dirname)
     if error is None:
         # filter the HTML file
-        maintext = "# "+_l("Bibliography")+"\n\n"
+        maintext = "\n# "+_l("Bibliography")+"\n\n"
         mainflag = False
         with open(output, 'r') as f:
             for line in f:
