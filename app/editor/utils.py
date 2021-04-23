@@ -342,11 +342,16 @@ def epub_generation(title, author, language, abstract, body, bibtex=None):
     # make latex
     dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, extractmedia=False)
     
-    # remove pagerotating as epub not supporting
+    # Some LaTeX preparation
     latexcode = None
     with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
-        latexcode = file.read()                   
+        latexcode = file.read()
+    # remove pagerotating as epub not supporting
     latexcode = latexcode.replace('\\begin{landscape}', '').replace('\\end{landscape}', '')
+    # remove width and height from \includegraphics as ePuB take care about this
+    latexcode = re.sub("\\\\includegraphics\[width=[\d.]+\\\\textwidth,height=\\\\textheight\]", "\\\\includegraphics", latexcode)
+    latexcode = re.sub("\\\\includegraphics", "\\\\includegraphics[width=0.9\\\\textwidth,height=\\\\textheight]", latexcode)
+    print(latexcode)
     with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
         file.write(latexcode) 
 
