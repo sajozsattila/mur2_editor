@@ -27,7 +27,7 @@ def run_os_command(command, directory="/tmp"):
     stdout = None
     stderr = None
     try:
-        stdout = check_output(command, stderr=subprocess.STDOUT).decode('utf-8')
+        stdout = check_output(command, stderr=subprocess.STDOUT, cwd=directory).decode('utf-8')
     except subprocess.CalledProcessError as e:
         msg = str(e)+"\n\n---------------\n\n"+e.output.decode()
         # eror was, we return the logfile filename         
