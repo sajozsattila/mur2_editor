@@ -29,7 +29,6 @@ def run_os_command(command, directory="/tmp"):
     try:
         stdout = check_output(command, stderr=subprocess.STDOUT).decode('utf-8')
     except subprocess.CalledProcessError as e:
-        print("returncode:", e.returncode)
         msg = str(e)+"\n\n---------------\n\n"+e.output.decode()
         # eror was, we return the logfile filename         
         stderr = os.path.join(directory, "error.log")
@@ -45,7 +44,7 @@ def make_tmpdirname():
     letters = string.ascii_letters
     return '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
 
-def make_latex(mdtxt, title, abstract, language, author, article_id, extractmedia=True):
+def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmedia=True):
             mdtxt = make_pandoc_md(mdtxt)
             title = title
             abstract = abstract
@@ -60,6 +59,7 @@ def make_latex(mdtxt, title, abstract, language, author, article_id, extractmedi
             ##########################
             # proces HTML table in the markdown code            
             # get the tables from the text 
+            tables = None
             if re.search('<span class="mur2_latextable">', mdtxt):
                 # find the tables
                 #tables = re.findall(r'<span class="mur2_latextable">(.*?)</span>', mdtxt, flags=re.DOTALL)
@@ -177,13 +177,11 @@ def make_latex(mdtxt, title, abstract, language, author, article_id, extractmedi
                         
             # process BibTeX
             thereisbibtex = False
-            if int(article_id) > 0:
-                a = Article.query.filter_by(id=int(article_id)).first_or_404()
-                if a.bibtex is not None:
+            if bibtex is not None:
                     thereisbibtex = True
                     # save BibTeX data
                     with open('mur2.bib', 'w') as f:
-                        f.write(a.bibtex)
+                        f.write(bibtex)
                     # remove html bibtex data
                     mdtxt = re.sub('<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">.*?</div>','\$murbibtex\$', mdtxt , flags=re.DOTALL)
                     
@@ -257,8 +255,9 @@ def make_latex(mdtxt, title, abstract, language, author, article_id, extractmedi
                 latexcode = None
                 with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
                     latexcode = file.read()
-                for t in tables:
-                    latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
+                if tables is not None:
+                    for t in tables:
+                        latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
                 # add back bibtex
                 if thereisbibtex:
                     latexcode = latexcode.replace('\$murbibtex\$', '\\bibliography{mur2}\n\\bibliographystyle{ieeetr}\n')
@@ -288,12 +287,12 @@ def  make_pandoc_md(mdtxt):
             return mdtxt
 
 # make PDF from final published Article
-def pdf_generation(title, author, language, abstract, body, article_id):    
+def pdf_generation(title, author, language, abstract, body, bibtex=None):    
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, article_id)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex)
     
     
     if error is None:
@@ -334,14 +333,14 @@ def pdf_generation(title, author, language, abstract, body, article_id):
     return dirname, error
 
 # make EPUB and Microsof Word return the dirname where it is
-def epub_generation(title, author, language, abstract, body, article_id):
+def epub_generation(title, author, language, abstract, body, bibtex=None):
     
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
     # make latex
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, article_id, extractmedia=False)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, extractmedia=False)
     
     # remove pagerotating as epub not supporting
     latexcode = None
@@ -359,13 +358,13 @@ def epub_generation(title, author, language, abstract, body, article_id):
     
     return dirname, error
 
-def msworld_generation(title, author, language, abstract, body, article_id):
+def msworld_generation(title, author, language, abstract, body, bibtex=None):
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
     # make latex
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, article_id)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex)
     
     if error is None:
         # Microsoft Word

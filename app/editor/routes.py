@@ -273,7 +273,6 @@ def media():
         userfilesize = sum(os.path.getsize(os.path.join(path, f)) for f in os.listdir(path) if os.path.isfile(os.path.join(path, f)))
         if userfilesize > current_app.config['MAX_USER_FILES_SIZE']:
             flash(_l("No more disk space quota for ")+current_user.username)
-        
         filename = None
         try:
             filename = photos.save(form.photo.data, folder=str(current_user.id) )
@@ -286,12 +285,11 @@ def media():
         image = Images(user_id=current_user.id, addresss=file_url)
         db.session.add(image)
         db.session.commit()
-        
         if form.mediapage.data == "false":
             form.mediapage.data = False
         
         if form.mediapage.data:
-            return redirect(url_for('main.media'))            
+            return redirect(url_for('editor.media'))            
         else: 
             return jsonify({'url': file_url})
            
@@ -357,9 +355,10 @@ def exportdata():
                 return jsonify({"result":"OK", "link": post['data']['url']})  
             else:
                 return post.text, post.status_code
-            
-                        
-        elif destination == 'pdf': 
+                                    
+        elif destination == 'pdf' or destination == 'latex' or  destination == "epub" or  destination == "msw": 
+            # clear up tmp files
+            #   do in cron ass it is troublesome to be sure it was transfared before deleteing  
             # read the data which was sent from the editor.js
             mdtxt = request.files['mdfile'].read()
             # some encoding 
@@ -369,66 +368,42 @@ def exportdata():
             language = (request.form['language'])
             author = (request.form['author'])
             aid = (request.form['aid'])
+            
+            # get BibTeX if there is
+            bibtex = None
+            if int(aid) > 0:
+                a = Article.query.filter_by(id=int(aid)).first_or_404()
+                if a.bibtex is not None:
+                    bibtex = a.bibtex
 
-            dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt, aid)
-            if error is None:
-                return send_file(os.path.join(dirname, 'mur2.pdf'))
-            else:
-                return send_file(error, attachment_filename='error.txt')
+            if destination == 'pdf':
+                dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex)
+                if error is None:
+                    return send_file(os.path.join(dirname, 'mur2.pdf'))
+                else:
+                    return send_file(error, attachment_filename='error.txt')
 
             
-        elif destination == 'latex':             
-            # read the data which was sent from the editor.js
-            mdtxt = request.files['mdfile'].read()
-            # some encoding 
-            mdtxt = mdtxt.decode('utf-8')
-            article_title = (request.form['article_title'])
-            article_abstract = (request.form['article_abstract']) 
-            language = (request.form['language']) 
-            author = (request.form['author'])
-            aid = (request.form['aid'])
+            elif destination == 'latex':                                     
+                dirname, error = make_latex(mdtxt, article_title, article_abstract, 
+                                            language, author, bibtex=bibtex, extractmedia=False)
+                if error is None:         
+                    return send_file(os.path.join(dirname, 'mur2.tex'))
+                else:
+                    return send_file(error, attachment_filename='error.txt')
+            elif destination == "epub":                        
+                dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex)           
+                if error is None:
+                    return send_file(os.path.join(dirname, 'mur2.epub'))
+                else:
+                    return send_file( error, attachment_filename='error.txt')
+            elif destination == "msw":            
+                dirname, error = msworld_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex)
             
-            dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, aid, extractmedia=False)
-            if error is None:
-                # clear up tmp files
-                #   do in cron ass it is troublesome to be sure it was transfared before deleteing           
-                return send_file(os.path.join(dirname, 'mur2.tex'))
-            else:
-                return send_file(error, attachment_filename='error.txt')
-        elif destination == "epub":
-            # read the data which was sent from the editor.js
-            mdtxt = request.files['mdfile'].read()
-            # some encoding 
-            mdtxt = mdtxt.decode('utf-8')
-            article_title = (request.form['article_title'])
-            article_abstract = (request.form['article_abstract']) 
-            language = (request.form['language']) 
-            author = (request.form['author'])
-            aid = (request.form['aid'])
-            
-            dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt, aid)           
-            if error is None:
-                return send_file(os.path.join(dirname, 'mur2.epub'))
-            else:
-                return send_file( error, attachment_filename='error.txt')
-        elif destination == "msw":
-            # read the data which was sent from the editor.js
-            mdtxt = request.files['mdfile'].read()
-            # some encoding 
-            mdtxt = mdtxt.decode('utf-8')
-            article_title = (request.form['article_title'])
-            article_abstract = (request.form['article_abstract']) 
-            language = (request.form['language']) 
-            author = (request.form['author'])
-            aid = (request.form['aid'])
-            
-            dirname, error = msworld_generation(article_title, author, language, article_abstract, mdtxt, aid)
-            
-            if error is None:
-                return send_file(os.path.join(dirname, 'mur2.docx'))
-                # return send_file(os.path.join(dirname, 'mur2.odt'))
-            else:
-                return send_file(error, attachment_filename='error.txt')
+                if error is None:
+                    return send_file(os.path.join(dirname, 'mur2.docx'))
+                else:
+                    return send_file(error, attachment_filename='error.txt')
             
     # return a OK json 
     return jsonify(result="OK")            

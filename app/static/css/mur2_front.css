@@ -552,18 +552,10 @@ td a.control-item {
 .main\.keywords  .article_action,
 .main\.root  .article_action,
 .main\.user .article_action{
-    opacity: 0;
+    opacity: 1;
     display: flex;
     flex-direction: column;
     width: 3.37rem;
-}
-
-.main\.review  .article_action:hover,
-.main\.journal  .article_action:hover,
-.main\.keywords  .article_action:hover,
-.main\.root  .article_action:hover,
-.main\.user .article_action:hover {
-    opacity: 1;
 }
 
 /*

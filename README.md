@@ -4,15 +4,44 @@ The [μr² editor](https://mur2.co.uk/editor) an easy to use, versatile and comp
 
 Reasons to try:
 
-+ It is fast; the simple formatting saves a significant amount of time over other word processors
-+ It is easy to learn; it uses Markdown syntax, which is so simple that one can barely call it “syntax”
 + The user interface is minimal, helping to focus on what you are writing
-+ Fully supports LaTeX math input
-+ Easily export your document to PDF, Microsoft Word, ePuB, LaTeX and HTML
++ Fully supports LaTeX math input as SVG output. It means you can use the output without Javascript, example on Medium.com
++ Easily export your document to PDF, ePuB, LaTeX, HTML and Microsoft Word
 + Alternatively, publish your work directly to Wordpress.com, Medium.com or on our page
 + It is supporting collaborative real-time editing
++ Complicated tables: row and column merge, cells in multiple line, multiple tbody
++ It is fast; the simple formatting saves a significant amount of time over other word processors
++ It is easy to learn; it uses Markdown syntax, which is so simple that one can barely call it “syntax”
+
 
 Most academic articles are the result of shared effort by multiple Writers. To help Writers work together, the μr² supports collaborative real-time editing. Any registered user is welcome to work on your document and you will be able to edit it simultaneously.
+
+# Some example
+
+
+## table
+
+Row and columns merge, with multiple tbody:
+```
+|               |          Grouping             ||         Grouping 2         ||  Not Grouped    |
+| First Header  | Second Header | Third Header   | Forth Header | Fifth Header | Sixth Header    |
+| ------------- | :-----------: | -------------: | :----------: | :----------: | --------------- |
+| Tall Cell     |          *Long Cell*          ||         *Long Long Cell*                    |||
+| ^^            |   **Bold**    | 1. first item  | *Italic*     | 3. third item | + first point  |\
+| ^^            |               | 1. second item |              | 1. forth item | + second point |
+
+| New section   |     More      |         Data   | ... - -- --- |||
+| And more      | With an escaped \|          || "Try 'quotes' in quotes "         |||
+[Compicated table]
+```
+
+Output:
+
+![Table in [μr² editor](https://mur2.co.uk/editor)](https://sajozsattilahome.files.wordpress.com/2021/04/mut2_table_example.png)
+
+
+## math and LaTeX
+
 
 
 # Some details
