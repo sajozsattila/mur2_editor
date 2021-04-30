@@ -18,9 +18,9 @@ Most academic articles are the result of shared effort by multiple Writers. To h
 
 # Some example
 
-## Collaborativve real-time editing
+## Collaborative real-time editing
 
-![Example](https://mur2.co.uk/static/mur2_collaborative_editing.mp4)
+[![Example](https://www.youtube.com/watch?v=hAq17feU1SQ)
 
 
 ## table
