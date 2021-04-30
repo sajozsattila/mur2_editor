@@ -103,10 +103,10 @@ def fixeditor(editortype, articleid):
             author[key] = ( value, key, authorlist[key][0],  authorlist[key][1])
         author = [ value for _, value in author.items() ]
     else:
-        author = [ ("My name is Nobody", 0, 100, False ) ]
+        author = [ ("", 0, 100, False ) ]
     
     # currentuser
-    thisuser = ('My name is Nobody', -1)
+    thisuser = ('', -1)
     owner = False
     edit = False
     if current_user.is_authenticated:
