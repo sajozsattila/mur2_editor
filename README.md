@@ -20,7 +20,7 @@ Most academic articles are the result of shared effort by multiple Writers. To h
 
 ## Collaborativve real-time editing
 
-![Example](https://github.com/sajozsattila/mur2_editor/blob/v1.7.1/app/static/mur2_collaborative_editing.mp4)
+![Example](https://mur2.co.uk/static/mur2_collaborative_editing.mp4)
 
 
 ## table
