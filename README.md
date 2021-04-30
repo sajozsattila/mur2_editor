@@ -20,7 +20,8 @@ Most academic articles are the result of shared effort by multiple Writers. To h
 
 ## Collaborative real-time editing
 
-[![Example](https://www.youtube.com/watch?v=hAq17feU1SQ)
+Article sharing and real-time collaboration between users: 
+[![Example video](https://img.youtube.com/vi/hAq17feU1SQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=hAq17feU1SQ)
 
 
 ## table
