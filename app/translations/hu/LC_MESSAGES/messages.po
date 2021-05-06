@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-03 13:53+0000\n"
+"POT-Creation-Date: 2021-04-30 12:01+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -38,13 +38,13 @@ msgstr "Jelszó"
 msgid "Remember Me"
 msgstr "Emlékezz rám"
 
-#: app/auth/forms.py:12 app/auth/routes.py:64 app/templates/auth/login.html:7
+#: app/auth/forms.py:12 app/auth/routes.py:58 app/templates/auth/login.html:8
 #: app/templates/base_menu.html:20
 msgid "Sign In"
 msgstr "Bejelentkezés"
 
-#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:90
-#: app/main/forms.py:114 app/templates/registerjournal.html:15
+#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:78
+#: app/main/forms.py:102 app/templates/registerjournal.html:15
 msgid "Email"
 msgstr "Email"
 
@@ -52,7 +52,7 @@ msgstr "Email"
 msgid "Repeat Password"
 msgstr "Jelszó megismétlése"
 
-#: app/auth/forms.py:22 app/auth/routes.py:107
+#: app/auth/forms.py:22 app/auth/routes.py:100
 msgid "Register"
 msgstr "Regisztráció"
 
@@ -60,7 +60,7 @@ msgstr "Regisztráció"
 msgid "Please choose a different username."
 msgstr "Válaszon másik felhasználónevet!"
 
-#: app/auth/forms.py:32 app/main/forms.py:102 app/main/forms.py:140
+#: app/auth/forms.py:32 app/main/forms.py:90 app/main/forms.py:128
 msgid "Please use a different email address."
 msgstr "Válasszon másik email címet!"
 
@@ -68,284 +68,284 @@ msgstr "Válasszon másik email címet!"
 msgid "Request Password Reset"
 msgstr "Jelszó visszaállítása"
 
-#: app/auth/routes.py:38
+#: app/auth/routes.py:32
 msgid "Invalid username or password."
 msgstr "A felhasználónév vagy a jelszó nem egyezik."
 
-#: app/auth/routes.py:105
+#: app/auth/routes.py:98
 msgid "Congratulations, you are now registered!"
 msgstr "Gratulálunk ön regisztrált!"
 
-#: app/auth/routes.py:121
+#: app/auth/routes.py:114
 msgid ""
 "Check your email (including junk) for instructions on how to reset your "
 "password."
 msgstr "Emailben elküldtük a jelszó helyreállítási utasításokat."
 
-#: app/auth/routes.py:124 app/templates/auth/reset_password_request.html:4
+#: app/auth/routes.py:117 app/templates/auth/reset_password_request.html:5
 msgid "Reset Password"
 msgstr "Jelszó visszaállítása"
 
-#: app/auth/routes.py:139
+#: app/auth/routes.py:131
 msgid "Your password has been reset."
 msgstr "Az új jelszót beállítottuk."
 
-#: app/main/forms.py:74
+#: app/editor/forms.py:15
 msgid "Images only!"
 msgstr "Csak kép formátum engedélyezett!"
 
-#: app/main/forms.py:74
+#: app/editor/forms.py:15
 msgid "File is empty!"
 msgstr "A fájl üres!"
 
-#: app/main/forms.py:76
+#: app/editor/forms.py:17
 msgid "Upload"
 msgstr "Feltöltés"
 
-#: app/main/forms.py:88 app/main/forms.py:112 app/main/utils.py:303
+#: app/editor/routes.py:94
+msgid "editor"
+msgstr "szerkesztő"
+
+#: app/editor/routes.py:269
+msgid "Can't create Media directory for "
+msgstr "Nem lehet Media könyvtárat létrehozni a felhasználónak:"
+
+#: app/editor/routes.py:275
+msgid "No more disk space quota for "
+msgstr "Nincs több lemez kvótája az "
+
+#: app/editor/routes.py:280
+msgid "Cannot save image!"
+msgstr "Kép nem menthető!"
+
+#: app/editor/utils.py:424
+msgid "Bibliography"
+msgstr "Irodalomjegyzék"
+
+#: app/main/forms.py:76 app/main/forms.py:100 app/main/utils.py:70
 #: app/templates/connections.html:99 app/templates/connections.html:100
-#: app/templates/connections.html:109 app/templates/discovery.html:63
-#: app/templates/discovery.html:90 app/templates/editor.html:71
+#: app/templates/connections.html:109 app/templates/discovery.html:64
+#: app/templates/discovery.html:91 app/templates/editor.html:74
 msgid "Title"
 msgstr "Cím"
 
-#: app/main/forms.py:89 app/main/forms.py:113
+#: app/main/forms.py:77 app/main/forms.py:101
 #: app/templates/registerjournal.html:29
 msgid "About"
 msgstr "Bemutatkozás"
 
-#: app/main/forms.py:91 app/main/forms.py:115 app/main/utils.py:303
+#: app/main/forms.py:79 app/main/forms.py:103 app/main/utils.py:70
 msgid "Address"
 msgstr "Honlap"
 
-#: app/main/forms.py:97 app/main/forms.py:134
+#: app/main/forms.py:85 app/main/forms.py:122
 msgid "Please use a different title."
 msgstr "Kérjük használjon másik címet!"
 
-#: app/main/forms.py:107
+#: app/main/forms.py:95
 msgid "Please use a different URL."
 msgstr "Kérjük használjon másik URL címet."
 
-#: app/main/forms.py:116
+#: app/main/forms.py:104
 msgid "Submit"
 msgstr "Mentés"
 
-#: app/main/forms.py:146
+#: app/main/forms.py:134
 msgid "Please use a different address."
 msgstr "Kérjük használjon másik Url-t."
 
-#: app/main/forms.py:182 app/templates/read2.html:122
+#: app/main/forms.py:166 app/templates/read2.html:122
 msgid "email"
 msgstr "email"
 
-#: app/main/forms.py:188
+#: app/main/forms.py:172
 msgid "Action should be \"on\" or \"off\"!"
 msgstr ""
 
-#: app/main/routes.py:157
+#: app/main/routes.py:174
 msgid "Not a valid journal name!"
 msgstr "Nem létező folyóirat név!"
 
-#: app/main/routes.py:233
+#: app/main/routes.py:250
 msgid "Register Journal"
 msgstr "Online folyóirat regisztrálása"
 
-#: app/main/routes.py:291
-msgid "editor"
-msgstr "szerkesztő"
-
-#: app/main/routes.py:501
+#: app/main/routes.py:324
 #, fuzzy
 msgid "Reviewed Article do not exist!"
 msgstr "Cikk nem létezik!"
 
-#: app/main/routes.py:560
+#: app/main/routes.py:383
 msgid "The author already has Article with this title!"
 msgstr "A szerzőnek már van ilyen című cikke!"
 
-#: app/main/routes.py:755
+#: app/main/routes.py:578
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr "A lehetséges object_type értékek: 'article', 'file' vagy 'user' "
 
-#: app/main/routes.py:766
+#: app/main/routes.py:589
 msgid "User not permitted to delete "
 msgstr "Ezt a felhasználó nem törölheti "
 
-#: app/main/routes.py:766 app/templates/connections.html:46
+#: app/main/routes.py:589 app/templates/connections.html:46
 #: app/templates/connections.html:88 app/templates/discovery.html:28
-#: app/templates/discovery.html:56 app/templates/editor.html:88
-#: app/templates/editor.html:90 app/templates/editor.html:100
-#: app/templates/editor.html:102
+#: app/templates/discovery.html:57 app/templates/editor.html:91
+#: app/templates/editor.html:93 app/templates/editor.html:103
+#: app/templates/editor.html:105
 msgid "Article"
 msgstr "Cikk"
 
-#: app/main/routes.py:837
+#: app/main/routes.py:660
 msgid "User no right to delete this"
 msgstr "Nincs jogosultsága, hogy törölje ezt a "
 
-#: app/main/routes.py:837
+#: app/main/routes.py:660
 msgid "File"
 msgstr "fájlt"
 
-#: app/main/routes.py:875 app/main/routes.py:900 app/main/routes.py:1380
+#: app/main/routes.py:698 app/main/routes.py:723 app/main/routes.py:1031
 msgid "Your changes have been saved."
 msgstr "A változtatások el lettek mentve."
 
-#: app/main/routes.py:1070
-msgid "Can't create Media directory for "
-msgstr "Nem lehet Media könyvtárat létrehozni a felhasználónak:"
-
-#: app/main/routes.py:1076
-msgid "No more disk space quota for "
-msgstr "Nincs több lemez kvótája az "
-
-#: app/main/routes.py:1082
-msgid "Cannot save image!"
-msgstr "Kép nem menthető!"
-
-#: app/main/routes.py:1209
+#: app/main/routes.py:859
 msgid "Article already confimed."
 msgstr "Cikk már meg lett erősítve."
 
-#: app/main/routes.py:1235
+#: app/main/routes.py:885
 msgid "Can't confirm Relationship. "
 msgstr "Nem lehet megerősíteni a Kapcsolatot."
 
-#: app/main/routes.py:1254
+#: app/main/routes.py:904
 msgid "User not permitted to confirm publishing."
 msgstr "Felhasználónak nem engedélyezett a publikálás megerősítése."
 
-#: app/main/routes.py:1351 app/main/routes.py:1714 app/main/routes.py:1721
+#: app/main/routes.py:1002 app/main/routes.py:1355 app/main/routes.py:1362
 msgid "User is not the Author"
 msgstr "Felhasználó nem a szerző."
 
-#: app/main/routes.py:1356
+#: app/main/routes.py:1007
 msgid "The "
 msgstr "A "
 
-#: app/main/routes.py:1356
+#: app/main/routes.py:1007
 msgid " Journal does not exist!"
 msgstr "Folyóirat nem létezik!"
 
-#: app/main/routes.py:1361
+#: app/main/routes.py:1012
 msgid "Article has not been issued."
 msgstr "Cikk nincs \"issued\" állapotban."
 
-#: app/main/routes.py:1393 app/main/routes.py:1648 app/main/routes.py:1662
+#: app/main/routes.py:1044 app/main/routes.py:1289 app/main/routes.py:1303
 msgid "Not a valid objecttype!"
 msgstr "Nem támogatott objectype!"
 
-#: app/main/routes.py:1419
+#: app/main/routes.py:1078
 msgid "User cannot download this Article!"
 msgstr "Felhasználó nem töltheti le a cikket!"
 
-#: app/main/routes.py:1454
+#: app/main/routes.py:1113
 msgid "Facebook account does not exist!"
 msgstr "Facebook fiók nem létezik!"
 
-#: app/main/routes.py:1501
+#: app/main/routes.py:1160
 msgid "User does not exist!"
 msgstr "Felhasználó nem létezik!"
 
-#: app/main/routes.py:1506
+#: app/main/routes.py:1165
 msgid "Article does not exist!"
 msgstr "Cikk nem létezik!"
 
-#: app/main/routes.py:1517
+#: app/main/routes.py:1176
 msgid "The action should be 'add' or 'remove'!"
 msgstr "Az 'action' vagy 'add' vagy 'remove'!"
 
-#: app/main/routes.py:1522
+#: app/main/routes.py:1181
 msgid "You cannot add or remove yourself!"
 msgstr "Nem adhatja vagy törölheti önmagát!"
 
-#: app/main/routes.py:1529
+#: app/main/routes.py:1188
 msgid "The author is already a writer of this Article!"
 msgstr "A szerző már az írója ennek a Cikknek!"
 
-#: app/main/routes.py:1812
+#: app/main/routes.py:1453
 msgid "Not a valid search address."
 msgstr "Nem valós keresési cím."
 
-#: app/main/utils.py:235
-msgid "Bibliography"
-msgstr "Irodalomjegyzék"
-
-#: app/main/utils.py:299 app/templates/article.html:62
+#: app/main/utils.py:66 app/templates/article.html:62
 #: app/templates/article.html:114 app/templates/article.html:141
 #: app/templates/article2.html:30 app/templates/connections.html:40
-#: app/templates/discovery.html:26 app/templates/discovery.html:53
+#: app/templates/discovery.html:26 app/templates/discovery.html:54
 #: app/templates/keywords.html:9 app/templates/keywords.html:10
 #: app/templates/read2.html:72
 msgid "Keyword"
 msgstr "Kulcsszó"
 
-#: app/main/utils.py:299 app/templates/article2.html:20
+#: app/main/utils.py:66 app/templates/article2.html:20
 #: app/templates/connections.html:43 app/templates/connections.html:86
-#: app/templates/discovery.html:27 app/templates/discovery.html:54
+#: app/templates/discovery.html:27 app/templates/discovery.html:55
 #: app/templates/keywords.html:14 app/templates/keywords.html:15
 #: app/templates/read2.html:52 app/templates/user.html:47
 msgid "Journal"
 msgstr "Folyóirat"
 
-#: app/main/utils.py:301
+#: app/main/utils.py:68
 msgid "labels"
 msgstr "címkék"
 
-#: app/main/utils.py:303 app/templates/editor.html:117
+#: app/main/utils.py:70 app/templates/editor.html:120
 msgid "Abstract"
 msgstr "Kivonat"
 
-#: app/main/utils.py:303 app/templates/connections.html:93
-#: app/templates/connections.html:108 app/templates/discovery.html:65
-#: app/templates/discovery.html:89
+#: app/main/utils.py:70 app/templates/connections.html:93
+#: app/templates/connections.html:108 app/templates/discovery.html:66
+#: app/templates/discovery.html:90
 msgid "Name"
 msgstr "Név"
 
-#: app/main/utils.py:303
+#: app/main/utils.py:70
 msgid "Article_number"
 msgstr "Cikkek_száma"
 
-#: app/main/utils.py:303 app/templates/read.html:39 app/templates/read2.html:34
+#: app/main/utils.py:70 app/templates/read.html:39 app/templates/read2.html:34
 msgid "Writer"
 msgstr "Szerző"
 
-#: app/main/utils.py:303
+#: app/main/utils.py:70
 msgid "Publishdate"
 msgstr "Publikálás dátuma"
 
-#: app/main/utils.py:327
+#: app/main/utils.py:94
 msgid "keyword"
 msgstr "kulcsszó"
 
-#: app/main/utils.py:327
+#: app/main/utils.py:94
 msgid "publish"
 msgstr "publikálás"
 
-#: app/main/utils.py:327
+#: app/main/utils.py:94
 msgid "proof"
 msgstr "bizonyítás"
 
-#: app/main/utils.py:328
+#: app/main/utils.py:95
 msgid "type"
 msgstr "típus"
 
-#: app/main/utils.py:331
+#: app/main/utils.py:98
 msgid "published_article_number"
 msgstr "megjelent_cikkek_száma"
 
-#: app/main/utils.py:331
+#: app/main/utils.py:98
 msgid "number_of_article"
 msgstr "cikkek_száma"
 
 #: app/static/js/mur2_editor.js:433 app/static/js/mur2_editor.js:444
-#: app/static/js/mur2_editor.js:483 app/static/js/mur2_editor.js:497
+#: app/static/js/mur2_editor.js:484 app/static/js/mur2_editor.js:497
 #: app/static/js/mur2_editor.min.js:1 app/static/js/mur2_editor_utils.js:199
-#: app/static/js/mur2_editor_utils.js:373
-#: app/static/js/mur2_editor_utils.js:462
-#: app/static/js/mur2_editor_utils.js:514
-#: app/static/js/mur2_editor_utils.js:685
-#: app/static/js/mur2_editor_utils.js:709
+#: app/static/js/mur2_editor_utils.js:372
+#: app/static/js/mur2_editor_utils.js:459
+#: app/static/js/mur2_editor_utils.js:512
+#: app/static/js/mur2_editor_utils.js:710
+#: app/static/js/mur2_editor_utils.js:734
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: "
 msgstr "Hiba: "
@@ -397,29 +397,49 @@ msgstr "Standby-t be kell állítani/"
 msgid "Standby should be between +100 and -100!"
 msgstr "A Standby +100 és -100 közötti érték!"
 
-#: app/static/js/mur2_editor_utils.js:341
+#: app/static/js/mur2_editor_utils.js:340
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Saved!"
 msgstr "Mentve!"
 
-#: app/static/js/mur2_editor_utils.js:377
-#: app/static/js/mur2_editor_utils.js:395
-#: app/static/js/mur2_editor_utils.js:466
+#: app/static/js/mur2_editor_utils.js:376
+#: app/static/js/mur2_editor_utils.js:394
+#: app/static/js/mur2_editor_utils.js:463
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Published on "
 msgstr "Megjelent a "
 
-#: app/static/js/mur2_editor_utils.js:408
+#: app/static/js/mur2_editor_utils.js:406
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: You are not logged into Wordpress.com"
 msgstr "Hiba: Nincs a Wordpress.com-ba bejelentkezve."
 
-#: app/static/js/mur2_editor_utils.js:493
+#: app/static/js/mur2_editor_utils.js:490
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Working..."
 msgstr "Folyamatban..."
 
-#: app/static/js/mur2_editor_utils.js:671
+#: app/static/js/mur2_editor_utils.js:562
+#: app/static/js/mur2_editor_utils.min.js:1
+msgid ""
+"We recommend downloading the PDF version and transform it with the Adobe "
+"online PDF->World tool. This will give you the best result if you use a "
+"lot of mathematical formula or complicated tables. However, we still "
+"happy to generate ourselves also, if you wish."
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:564
+#: app/static/js/mur2_editor_utils.min.js:1
+#, fuzzy
+msgid "Generate here"
+msgstr "ePUB készítése"
+
+#: app/static/js/mur2_editor_utils.js:565
+#: app/static/js/mur2_editor_utils.min.js:1
+msgid "I will do on Adobe"
+msgstr ""
+
+#: app/static/js/mur2_editor_utils.js:696
 msgid "Error: The sum of the workshare is not 100!"
 msgstr "Hiba: Az írok részesedése összeadva nem 100%!"
 
@@ -446,14 +466,14 @@ msgstr "Megjelent"
 
 #: app/templates/article.html:56 app/templates/article.html:108
 #: app/templates/article.html:135 app/templates/article2.html:25
-#: app/templates/editor.html:119 app/templates/read2.html:57
+#: app/templates/editor.html:122 app/templates/read2.html:57
 msgid "Categories"
 msgstr "Kategóriák"
 
 #: app/templates/article.html:56 app/templates/article.html:108
 #: app/templates/article.html:135 app/templates/article2.html:25
 #: app/templates/connections.html:37 app/templates/connections.html:87
-#: app/templates/discovery.html:25 app/templates/discovery.html:55
+#: app/templates/discovery.html:25 app/templates/discovery.html:56
 #: app/templates/keywords.html:6 app/templates/keywords.html:7
 #: app/templates/read2.html:59
 msgid "Category"
@@ -461,7 +481,7 @@ msgstr "Kategória"
 
 #: app/templates/article.html:62 app/templates/article.html:114
 #: app/templates/article.html:141 app/templates/article2.html:30
-#: app/templates/editor.html:155 app/templates/read2.html:70
+#: app/templates/editor.html:158 app/templates/read2.html:70
 msgid "Keywords"
 msgstr "Kulcsszavak"
 
@@ -552,7 +572,7 @@ msgid "Selected article: "
 msgstr "Kiválasztott cikk: "
 
 #: app/templates/edit_journal.html:32 app/templates/edit_profile.html:49
-#: app/templates/editor.html:270 app/templates/test.html:66
+#: app/templates/editor.html:273 app/templates/test.html:66
 msgid "Save"
 msgstr "Mentés"
 
@@ -588,342 +608,358 @@ msgstr "Felhasználó törlése"
 msgid "Endnotes"
 msgstr "Végjegyzetek"
 
-#: app/templates/editor.html:74 app/templates/editor.html:75
-#: app/templates/editor.html:76
+#: app/templates/editor.html:77 app/templates/editor.html:78
+#: app/templates/editor.html:79
 msgid "Set Featured Image"
 msgstr "Nyitókép beállítása"
 
-#: app/templates/editor.html:79 app/templates/editor.html:80
-#: app/templates/editor.html:81
+#: app/templates/editor.html:82 app/templates/editor.html:83
+#: app/templates/editor.html:84
 msgid "Delete Featured Image"
 msgstr "Nyitókép törlése"
 
-#: app/templates/editor.html:85
+#: app/templates/editor.html:88
 msgid "Text Type"
 msgstr "Szöveg típusa"
 
-#: app/templates/editor.html:93 app/templates/editor.html:95
+#: app/templates/editor.html:96 app/templates/editor.html:98
 msgid "Review"
 msgstr "Kritika"
 
-#: app/templates/editor.html:105 app/templates/editor.html:107
+#: app/templates/editor.html:108 app/templates/editor.html:110
 msgid "Standby"
 msgstr ""
 
-#: app/templates/editor.html:110 app/templates/editor.html:112
+#: app/templates/editor.html:113 app/templates/editor.html:115
 msgid "Rebel"
 msgstr "Lázadás"
 
-#: app/templates/editor.html:124
+#: app/templates/editor.html:127
 msgid "Select a category"
 msgstr "Válaszon egy kategóriát"
 
-#: app/templates/editor.html:125
+#: app/templates/editor.html:128
 msgid "Physics"
 msgstr "Fizika"
 
-#: app/templates/editor.html:126
+#: app/templates/editor.html:129
 msgid "Chemistry"
 msgstr "Kémia"
 
-#: app/templates/editor.html:127
+#: app/templates/editor.html:130
 msgid "Earth Science"
 msgstr "Földrajz"
 
-#: app/templates/editor.html:128
+#: app/templates/editor.html:131
 msgid "Space Science"
 msgstr "Űrkutatás"
 
-#: app/templates/editor.html:129
+#: app/templates/editor.html:132
 msgid "Biology"
 msgstr "Biológia"
 
-#: app/templates/editor.html:130
+#: app/templates/editor.html:133
 msgid "Molecular Biology"
 msgstr "Molekuláris biológia"
 
-#: app/templates/editor.html:131
+#: app/templates/editor.html:134
 msgid "Mathematics"
 msgstr "Matematika"
 
-#: app/templates/editor.html:132
+#: app/templates/editor.html:135
 msgid "Logic"
 msgstr "Logika"
 
-#: app/templates/editor.html:133
+#: app/templates/editor.html:136
 msgid "Statistics"
 msgstr "Statisztika"
 
-#: app/templates/editor.html:134
+#: app/templates/editor.html:137
 msgid "History"
 msgstr "Történelem"
 
-#: app/templates/editor.html:135
+#: app/templates/editor.html:138
 msgid "Economy"
 msgstr "Közgazdaságtan"
 
-#: app/templates/editor.html:136
+#: app/templates/editor.html:139
 msgid "Sociology"
 msgstr "Szociológia"
 
-#: app/templates/editor.html:137
+#: app/templates/editor.html:140
 msgid "Law"
 msgstr "Jog"
 
-#: app/templates/editor.html:138
+#: app/templates/editor.html:141
 msgid "Education"
 msgstr "Oktatás"
 
-#: app/templates/editor.html:139
+#: app/templates/editor.html:142
 msgid "Archaeology"
 msgstr "Régészet"
 
-#: app/templates/editor.html:140
+#: app/templates/editor.html:143
 msgid "Politics"
-msgstr ""
+msgstr "Politika"
 
-#: app/templates/editor.html:141
+#: app/templates/editor.html:144
 msgid "Computer science"
 msgstr "Számítástechnika"
 
-#: app/templates/editor.html:142
+#: app/templates/editor.html:145
 msgid "Civil Engineering"
 msgstr "Építészet"
 
-#: app/templates/editor.html:143
+#: app/templates/editor.html:146
 msgid "Electrical Engineering"
 msgstr "Elektronika"
 
-#: app/templates/editor.html:144
+#: app/templates/editor.html:147
 msgid "Genetics"
 msgstr "Genetika"
 
-#: app/templates/editor.html:145
+#: app/templates/editor.html:148
 msgid "Software"
 msgstr "Szoftver"
 
-#: app/templates/editor.html:146
+#: app/templates/editor.html:149
 msgid "Industrial"
 msgstr "Termelés"
 
-#: app/templates/editor.html:147
+#: app/templates/editor.html:150
 msgid "Medicine"
 msgstr "Orvostudomány"
 
-#: app/templates/editor.html:148
+#: app/templates/editor.html:151
 msgid "Pharmacy"
 msgstr "Gyógyszerészet"
 
-#: app/templates/editor.html:149
+#: app/templates/editor.html:152
 msgid "Dental"
 msgstr "Fogászat"
 
-#: app/templates/editor.html:166
+#: app/templates/editor.html:169
 msgid "Canonical URL"
 msgstr "Eredeti URL"
 
-#: app/templates/editor.html:173
+#: app/templates/editor.html:176
 msgid "Authors"
 msgstr "Szerzők"
 
-#: app/templates/editor.html:242 app/templates/test.html:45
+#: app/templates/editor.html:245 app/templates/test.html:45
 msgid "Toolbar"
 msgstr "Eszköztár"
 
-#: app/templates/editor.html:247 app/templates/editor.html:331
+#: app/templates/editor.html:250 app/templates/editor.html:337
 #: app/templates/test.html:111
 msgid "Show Side Menu"
 msgstr "Oldalmenü megnyitása"
 
-#: app/templates/editor.html:258 app/templates/test.html:55
+#: app/templates/editor.html:261 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr "Eszköztár bezárása"
 
-#: app/templates/editor.html:262 app/templates/test.html:59
+#: app/templates/editor.html:265 app/templates/test.html:59
 msgid "Upload file"
 msgstr "Fájl feltöltés"
 
-#: app/templates/editor.html:266 app/templates/test.html:63
+#: app/templates/editor.html:269 app/templates/test.html:63
 msgid "Download result"
 msgstr "Eredmény letöltése"
 
-#: app/templates/editor.html:274
+#: app/templates/editor.html:277
 msgid "Hide input"
 msgstr "Beviteli oldal elrejtése"
 
-#: app/templates/editor.html:277
+#: app/templates/editor.html:280
 msgid "Document settings"
-msgstr ""
+msgstr "Dokumentum beállítások"
 
-#: app/templates/editor.html:280 app/templates/test.html:72
+#: app/templates/editor.html:283 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "Előnézet elrejtése"
 
-#: app/templates/editor.html:283 app/templates/test.html:69
+#: app/templates/editor.html:286 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "Szintakszis kiemelés"
 
-#: app/templates/editor.html:286 app/templates/test.html:78
+#: app/templates/editor.html:289 app/templates/test.html:78
 msgid "Head"
 msgstr "Cimsor"
 
-#: app/templates/editor.html:289 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:292 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr "Kiemelés"
 
-#: app/templates/editor.html:292 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:295 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr "Kövér"
 
-#: app/templates/editor.html:295
+#: app/templates/editor.html:298
 msgid "Picture"
 msgstr "Kép"
 
-#: app/templates/editor.html:298 app/templates/test.html:90
+#: app/templates/editor.html:301 app/templates/test.html:90
 msgid "Link"
 msgstr "Hivatkozás"
 
-#: app/templates/editor.html:301 app/templates/test.html:93
+#: app/templates/editor.html:304 app/templates/test.html:93
 msgid "List"
 msgstr "Lista"
 
-#: app/templates/editor.html:304 app/templates/test.html:96
+#: app/templates/editor.html:307 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "Számozott lista"
 
-#: app/templates/editor.html:307 app/templates/test.html:99
+#: app/templates/editor.html:310 app/templates/test.html:99
 msgid "Footnote"
 msgstr "Lábjegyzet"
 
-#: app/templates/editor.html:310 app/templates/test.html:102
+#: app/templates/editor.html:313 app/templates/test.html:102
 msgid "Table"
 msgstr "Táblázat"
 
-#: app/templates/editor.html:313 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:316 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr "Kód"
 
-#: app/templates/editor.html:316
+#: app/templates/editor.html:319
 msgid "Editorial changes"
 msgstr "Szerkesztői változtatások"
 
-#: app/templates/editor.html:319
+#: app/templates/editor.html:322
 msgid "Add Bibliography "
 msgstr "Irodalomjegyzék hozzáadása"
 
-#: app/templates/editor.html:322 app/templates/test.html:108
+#: app/templates/editor.html:325 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr "LaTeX kód"
 
-#: app/templates/editor.html:326
+#: app/templates/editor.html:328
+msgid "Chat meg arrived"
+msgstr ""
+
+#: app/templates/editor.html:332
 msgid "Embedding"
 msgstr "Beágyazás"
 
-#: app/templates/editor_side_menu.html:10
+#: app/templates/editor_side_menu.html:11
 msgid "Example of rendered HTML"
 msgstr "HTML előnézet"
 
-#: app/templates/editor_side_menu.html:10
+#: app/templates/editor_side_menu.html:11
 msgid "Preview"
 msgstr "Előnézet"
 
-#: app/templates/editor_side_menu.html:15
+#: app/templates/editor_side_menu.html:16
 msgid "HTML with equations images"
 msgstr "HTML, matematikai képekkel"
 
-#: app/templates/editor_side_menu.html:16
+#: app/templates/editor_side_menu.html:17
 msgid "HTML with raw LaTeX equations"
 msgstr "HTML, nyers LaTeX kifejezésekkel"
 
-#: app/templates/editor_side_menu.html:40
+#: app/templates/editor_side_menu.html:41
 msgid "Markdown, same as in the input"
 msgstr "Ugyanaz a Markdown mint a beviteli oldalon"
 
-#: app/templates/editor_side_menu.html:42
+#: app/templates/editor_side_menu.html:43
 msgid "Markdown with equations imgage"
 msgstr "Markdown, matematikai képekkel"
 
-#: app/templates/editor_side_menu.html:42
+#: app/templates/editor_side_menu.html:43
 msgid "Image"
 msgstr "Kép"
 
-#: app/templates/editor_side_menu.html:45
+#: app/templates/editor_side_menu.html:46
 msgid "A kind of HTML markup for habr.com"
 msgstr "Habr.com kompatibilis HTML"
 
-#: app/templates/editor_side_menu.html:55
+#: app/templates/editor_side_menu.html:56
 msgid "Roll back"
 msgstr "Visszaállítás"
 
-#: app/templates/editor_side_menu.html:58
+#: app/templates/editor_side_menu.html:59
 msgid "Last saved"
 msgstr "Utoljára mentett"
 
-#: app/templates/editor_side_menu.html:72
+#: app/templates/editor_side_menu.html:73
 msgid "Finish editing"
 msgstr "Szerkesztés befejezése"
 
-#: app/templates/editor_side_menu.html:84 app/templates/test.html:181
+#: app/templates/editor_side_menu.html:85 app/templates/test.html:181
 msgid "Publish on Wordpress.com"
 msgstr "Publikálás a Wordpress.com-on"
 
-#: app/templates/editor_side_menu.html:84
-#: app/templates/editor_side_menu.html:98 app/templates/test.html:182
+#: app/templates/editor_side_menu.html:85
+#: app/templates/editor_side_menu.html:99 app/templates/test.html:182
 msgid "Publish"
 msgstr "Publikálás"
 
-#: app/templates/editor_side_menu.html:87 app/templates/test.html:185
+#: app/templates/editor_side_menu.html:88 app/templates/test.html:185
 msgid "Clear Wordpress.com cookies"
 msgstr "Wordpress.com süti törlése"
 
-#: app/templates/editor_side_menu.html:87
-#: app/templates/editor_side_menu.html:101 app/templates/test.html:186
+#: app/templates/editor_side_menu.html:88
+#: app/templates/editor_side_menu.html:102 app/templates/test.html:186
 msgid "Clear cookies"
 msgstr "Süti törlése"
 
-#: app/templates/editor_side_menu.html:89
-#: app/templates/editor_side_menu.html:91
-#: app/templates/editor_side_menu.html:103
+#: app/templates/editor_side_menu.html:90
+#: app/templates/editor_side_menu.html:92
+#: app/templates/editor_side_menu.html:104
 msgid "Connect"
 msgstr "Csatlakozás"
 
-#: app/templates/editor_side_menu.html:98
+#: app/templates/editor_side_menu.html:99
 msgid "Publish on Medium.com"
 msgstr "Publikálás a Medium.com-on"
 
-#: app/templates/editor_side_menu.html:101
+#: app/templates/editor_side_menu.html:102
 msgid "Clear Medium.com cookies"
 msgstr "Medium.com sütik törlése"
 
-#: app/templates/editor_side_menu.html:103
+#: app/templates/editor_side_menu.html:104
 msgid "Connect to Medium.com"
 msgstr "Kapcsolodás a Medium.com-hoz"
 
-#: app/templates/editor_side_menu.html:109
+#: app/templates/editor_side_menu.html:110
 msgid "Generate PDF"
 msgstr "PDF létrehozása"
 
-#: app/templates/editor_side_menu.html:114
+#: app/templates/editor_side_menu.html:115
 msgid "Generate ePUB"
 msgstr "ePUB készítése"
 
-#: app/templates/editor_side_menu.html:118
+#: app/templates/editor_side_menu.html:119
 msgid "Generate Microsoft Word"
 msgstr "Microsoft Word készítése"
 
-#: app/templates/editor_side_menu.html:122 app/templates/test.html:201
+#: app/templates/editor_side_menu.html:123 app/templates/test.html:201
 msgid "Generate LaTeX"
 msgstr "LaTeX készítése"
 
-#: app/templates/editor_side_menu.html:148
+#: app/templates/editor_side_menu.html:149
 msgid "Markdown cheatsheet"
 msgstr "Markdown puska"
 
-#: app/templates/editor_side_menu.html:151
+#: app/templates/editor_side_menu.html:152
 msgid "Editor manual"
 msgstr "Szerkesztő kézikönyv"
+
+#: app/templates/editor_side_menu.html:158
+msgid "Chat"
+msgstr ""
+
+#: app/templates/editor_side_menu.html:164
+msgid "Close Chat"
+msgstr ""
+
+#: app/templates/editor_side_menu.html:167
+msgid "Load Chat history"
+msgstr ""
 
 #: app/templates/keywords.html:7 app/templates/keywords.html:10
 #: app/templates/keywords.html:15 app/templates/user.html:47
@@ -1291,19 +1327,19 @@ msgstr "Régebbi cikkek"
 msgid "Please enter the title of the Journal"
 msgstr "Kérjük adja meg az online folyóirat címét"
 
-#: app/templates/auth/login.html:29
+#: app/templates/auth/login.html:30
 msgid "Forgot Your Password?"
 msgstr "Elfelejtette a jelszavát?"
 
-#: app/templates/auth/login.html:30
+#: app/templates/auth/login.html:31
 msgid "Click to Reset"
 msgstr "Kattitson ide, hogy újra megadja!"
 
-#: app/templates/auth/login.html:32
+#: app/templates/auth/login.html:33
 msgid "New User?"
 msgstr "Új felhasználó?"
 
-#: app/templates/auth/login.html:32
+#: app/templates/auth/login.html:33
 msgid "Click to Register"
 msgstr "Regisztráció"
 
