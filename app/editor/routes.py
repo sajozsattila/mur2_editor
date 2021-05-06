@@ -449,3 +449,33 @@ def getarticleversions():
     data['main'] = a.markdown
     
     return jsonify(data)
+
+# process Markdown in the mur2 server
+@bp.route('/processmarkdown', methods=['POST'])
+def processmarkdown():
+    # article id 
+    aid = request.form.get('aid')
+    # markdown
+    md = request.form.get('md')
+    # save to file
+    #   generate random string for dir
+    dirname = make_tmpdirname()
+    if not os.path.exists(dirname):
+        os.mkdir(dirname)
+    mdname = os.path.join(dirname,'raw.md')
+    # save to file
+    with open(mdname, 'w') as f:
+            demo = f.write(md)
+    
+    # send to nodejs server
+    x = requests.get("http://127.0.0.1:3000/", params={'filename': mdname})
+    if x.status_code == 200 :
+        # send back
+        return send_file(os.path.join(dirname, 'processed.html'))
+    else:
+        return x.text, x.status_code
+    
+    
+    
+    
+    

@@ -670,6 +670,10 @@ function g_domFindScrollMarks() {
                     // BibTeX
                     upload_bib();
                     break;
+                case 'id_ren':
+                    // Render on server
+                    render_on_server();
+                    break;
                 case 'id_head':
                     editorToolbarAction("heading");
                     update();

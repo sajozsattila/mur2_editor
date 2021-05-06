@@ -476,6 +476,39 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
     }
 }
 
+// render Markdown on the server
+async function render_on_server() {
+    // get the data deppending what filed we are edditing
+    var field = document.getElementById(g_selectedTextarea).value;
+    // send to the server
+    var fd = new FormData();
+    fd.append("aid", document.querySelector('meta[name="article_id"]').content);
+    fd.append("md", field);
+    var xhr = new XMLHttpRequest();
+    // need to receive file back
+    xhr.responseType = 'blob';
+    xhr.open('post', '/processmarkdown', true);
+    xhr.send(fd)
+    // receive the response
+    xhr.onload = function() {
+        if (xhr.status != 200) { // analyze HTTP status of the response
+            alert(  _("Error: ") + xhr.statusText + " - " + xhr.response );
+        } else { // save the result   
+            var blob = this.response;
+            // update the preview 
+            var viewside = 'article_' + g_selectedTextarea.split("-")[0] ;
+            if (viewside === 'article_abstact' ) {
+                viewside = 'article_abstract_text';
+            }
+            var myReader = new FileReader();
+            myReader.addEventListener("loadend", function(e){
+                g_domSetHighlightedContent(viewside,  e.srcElement.result, 'none')
+            });
+            myReader.readAsText(blob);
+        }
+    }
+}
+
 async function make_export(destination, mainCollection) {
     var article_title = document.getElementById('title-source').value;
     var article_abstract = document.getElementById('abstact-source').value;

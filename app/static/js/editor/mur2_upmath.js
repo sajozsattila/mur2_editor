@@ -153,7 +153,6 @@ function ParserCollection(
         .use(markdownitSup)
         .use(markdownitFootnote)
         .use(markdownitIns)
-        .use(markdownitCitationMur2)
         ;
     var _mdBackend =  markdownit("zero")
         .enable("table")

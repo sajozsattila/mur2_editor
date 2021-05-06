@@ -24,7 +24,7 @@ var defaults = {
 };
 /* make working inline code highlighting */
 defaults.highlight = function(str, lang) {
-    var esc = _mdPreview.utils.escapeHtml;
+    var esc = md.utils.escapeHtml;
 
     try {
         if (!defaults._highlight) {
@@ -96,9 +96,9 @@ app.get('/', (req, res) => {
             mdfile = fs.readFileSync(filepath, 'utf8');
         }
         // get the basename
-        const filename = path.basename(filepath);
+        const dirname = path.dirname(filepath);       
         // create new filename
-        const newfile = "/tmp/"+filename+".html";
+        const newfile = dirname+"/processed.html";
         fs.writeFile( newfile, md.render(mdfile), function(err) {
             if (err) {
                 return console.error(err);
