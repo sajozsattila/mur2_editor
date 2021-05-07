@@ -23,7 +23,7 @@ from app.auth.email import send_password_reset_email
 # blueprint
 from app.editor import bp
 # bacground thread
-from app.editor.utils import epub_generation, pdf_generation, make_pandoc_md, make_latex, make_tmpdirname, bib_generation, msworld_generation
+from app.editor.utils import epub_generation, pdf_generation, make_pandoc_md, make_latex, make_tmpdirname, msworld_generation
 # other
 import requests
 import datetime
@@ -206,6 +206,8 @@ def fixeditor(editortype, articleid):
             article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8')
                                     .replace("'", "\\\'")
                                     .replace('<', '&lt;')), 
+            article_bib = article.bibtex,
+            bibstype = ['apa-6th-edition', 'apa-5th-edition', 'ieee'], 
             title = article.title,
             article_id = int(articleid),
             article_status = article.status,
@@ -406,31 +408,7 @@ def exportdata():
                     return send_file(error, attachment_filename='error.txt')
             
     # return a OK json 
-    return jsonify(result="OK")            
-            
-
-
-@bp.route('/bibliography', methods=['POST'])
-def bibliography(): 
-    bibfile = request.files['bibliography'].read()
-    bibfile = bibfile.decode('utf-8')    
-    
-    # save bibfile to frontend DB
-    a = Article.query.filter_by(id=int(request.form['aid'])).first_or_404()
-    a.bibtex = bibfile
-    db.session.commit()
-    
-    dirname, error = bib_generation(bibfile)
-    if error is None:
-        file = open(os.path.join(dirname, 'articlebib.html'), 'r')
-        text = file.read()
-        file.close()
-        return jsonify( {'bib': text} )
-    else:
-        file = open(error, 'r')
-        msg = {'error': file.read()}   
-        file.close()
-        return  msg, 400 
+    return jsonify(result="OK")
     
 # Get version of the Article
 @bp.route('/getarticleversions', methods=['POST'])
@@ -453,29 +431,36 @@ def getarticleversions():
 # process Markdown in the mur2 server
 @bp.route('/processmarkdown', methods=['POST'])
 def processmarkdown():
-    # article id 
-    aid = request.form.get('aid')
     # markdown
-    md = request.form.get('md')
+    md = request.form.get('md') 
+    # bibtex
+    bib = request.form.get('bib') 
+    # bibstyle
+    bibsyle = request.form.get('bibsyle') 
+    # language
+    language = request.form.get('language')
     # save to file
     #   generate random string for dir
     dirname = make_tmpdirname()
     if not os.path.exists(dirname):
         os.mkdir(dirname)
-    mdname = os.path.join(dirname,'raw.md')
+    mdname = os.path.join(dirname,'raw.md')    
     # save to file
     with open(mdname, 'w') as f:
-            demo = f.write(md)
+        demo = f.write(md)
+    # bibtex
+    bibname = os.path.join(dirname,'raw.bib')
+    with open(bibname, 'w') as f:
+        demo = f.write(bib)
     
     # send to nodejs server
-    x = requests.get("http://127.0.0.1:3000/", params={'filename': mdname})
+    print({'filename': mdname, 'bibtex': bibname, 'bibsyle': bibsyle, 'language': language})
+    x = requests.get("http://127.0.0.1:3000/", params={'filename': mdname, 'bibtex': bibname, 
+                                                       'bibsyle': bibsyle, 'language': language})
     if x.status_code == 200 :
         # send back
         return send_file(os.path.join(dirname, 'processed.html'))
     else:
         return x.text, x.status_code
-    
-    
-    
     
     

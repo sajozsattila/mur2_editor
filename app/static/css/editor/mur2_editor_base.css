@@ -33,6 +33,11 @@
     display: none;
     /* */
 }
+/* hide bib */
+#bibliography {
+    display: none;
+    /* */
+}
 .result-as-html #article_main {
     display: block;
     /* */
@@ -52,7 +57,8 @@
 .result-as-htmltex #article_main,
 .result-as-md #article_main,
 .result-as-mdp #article_main,
-.result-as-habr #article_main {
+.result-as-habr #article_main
+{
     display: none;
     /* */
 }
@@ -202,6 +208,29 @@ textarea,
     height: unset;
 }
 
+/* hide and show bibliography */
+#article_preview_side.bibon #article_main_pre, 
+#article_preview_side.bibon #article_main {
+    display: none;
+}
+#article_preview_side.bibon #bibliography {
+    display: flex;
+    height: calc(100% - var(--verticaldistance));
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    left: calc(-1.5 * var(--verticaldistance));
+}
+#article_preview_side #bibliography #bib-source {
+    height: calc(100% - var(--verticaldistance));
+    width: 100%;
+}
+
+#article_preview_side #bibliography div {
+    margin-bottom: calc(0.5 * var(--verticaldistance));
+}
+
+
 /* hide title and abstract */
 #article_preview_side #article_title,
 #article_preview_side #article_abstract_div,
@@ -252,6 +281,7 @@ textarea,
 #id_hide_preview.previewoff + .far.fa-arrow-alt-circle-right, 
 #id_show_title.titleon + .far.fa-arrow-alt-circle-down, 
 #id_side_menu:checked ~ #menu #editor_toolbar .fas.fa-bars,
+#id_bib.bibon + .fas.fa-book,
 #id_syntax_hl + .fab.fa-markdown {
     color: #C62641;
 }

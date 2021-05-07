@@ -52,32 +52,7 @@ defaults.highlight = function(str, lang) {
     return '<pre class="hljs"><code>' + esc(str) + '</code></pre>';
 };
 
-var md = require('markdown-it')(defaults)
-    .use(require('./markdown-it-criticmarkup.js'))    
-    .use(require('./mur2_markdown-it-bibliography.js'), {
-        bibfile: './src/testbib.bib',
-        style: 'apa-5th-edition',
-        lang: 'en',
-        defaultLocale: 'en-US', 
-        locales: 'en-US'
-    })
-    .use(require('markdown-it-footnote'))
-    .use(require('markdown-it-attrs'), {})
-    .use(require('markdown-it-implicit-figures'), {
-        figcaption: true, // <figcaption>alternative text</figcaption>, default: false
-        tabindex: true // <figure tabindex="1+n">..., default: false
-    })
-    .use(require('./markdown-it-s2-tex.js'))    
-    .use(require('markdown-it-multimd-table'), {
-        rowspan: true,
-        multiline: true
-    })
-    .use(require('markdown-it-sub'))
-    .use(require('markdown-it-sup'))
-    .use(require('markdown-it-ins'))
-    .use(require('markdown-it-cjk-breaks'))
-;
-
+var md;
 
 /////////////////////////////////////////////
 // webserver
@@ -88,8 +63,54 @@ const port = 3000
 
 app.get('/', (req, res) => {
     // receive filename for the original Markdown
-    var filepath = req.query.filename;
+    var filepath = req.query.filename; // markdown filename
+    var bibtex = req.query.bibtex; // BibTeX filename
+    var lang = req.query.language; // language filename
+    // if lang is just two letter we extend
+    // ISO 639-1 -> IETF language tag
+    if (lang.length === 2) {
+         switch(lang) {
+             case "en":
+                 // default english
+                 lang = "en-US"
+                 break;
+             case "es":
+                 
+                 break;
+             default:
+                 lang = lang+"-"+lang.toUpperCase()
+        }        
+    }
+    console.log(lang);
+    var bibsyle = req.query.bibsyle; // bibsyle filename
     if (filepath) {
+        // Markdown-it process
+        md = require('markdown-it')(defaults)
+            .use(require('./markdown-it-criticmarkup.js'))    
+            .use(require('./mur2_markdown-it-bibliography.js'), {
+                bibfile: bibtex,
+                style: bibsyle,
+                lang: lang,
+                defaultLocale: lang, 
+                locales: lang
+            })
+            .use(require('markdown-it-footnote'))
+            .use(require('markdown-it-attrs'), {})
+            .use(require('markdown-it-implicit-figures'), {
+                figcaption: true, // <figcaption>alternative text</figcaption>, default: false
+                tabindex: true // <figure tabindex="1+n">..., default: false
+            })
+            .use(require('./markdown-it-s2-tex.js'))    
+            .use(require('markdown-it-multimd-table'), {
+                rowspan: true,
+                multiline: true
+            })
+            .use(require('markdown-it-sub'))
+            .use(require('markdown-it-sup'))
+            .use(require('markdown-it-ins'))
+            .use(require('markdown-it-cjk-breaks'))
+        ;
+        
         // read file
         var mdfile = "";
         if (fs.existsSync(filepath)) {            

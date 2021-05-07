@@ -195,7 +195,6 @@ function g_domFindScrollMarks() {
 
 
     // debonced updates for resource managment
-
     var updateMain = debounce(mainCollection.updateResult, 300, {
         maxWait: 3000
     });
@@ -345,11 +344,14 @@ function g_domFindScrollMarks() {
             fragment.appendChild( htmlObject ); 
             var article_title = fragment.getElementById("article_title") ;
             var article_abstract = fragment.getElementById("article_abstract") ;
-
-            abstactSource.value = article_abstract.innerHTML;
-            titleSource.value = article_title.innerHTML.replace("\n", "");
-            article_title.parentNode.removeChild(article_title);
-            article_abstract.parentNode.removeChild(article_abstract);
+            if (article_abstract !== null) {
+                abstactSource.value = article_abstract.innerHTML;
+                article_abstract.parentNode.removeChild(article_abstract);
+            }
+            if (article_title !== null) {
+                titleSource.value = article_title.innerHTML.replace("\n", "");
+                article_title.parentNode.removeChild(article_title);
+            }
             
             // upload to the main
             mainSource.value = fragment.textContent.replace(/^\s+/g, '');;
@@ -453,7 +455,7 @@ function g_domFindScrollMarks() {
     });
     
     // add Bibliography 
-    document.getElementById('bibliography').addEventListener('change', function() {
+    document.getElementById('bibliography_file').addEventListener('change', function() {
         // A file has been chosen
         if (!this.files || !FileReader) {
             return;
@@ -470,29 +472,16 @@ function g_domFindScrollMarks() {
                 var filecontent = new Blob([this.result], {
                     type: 'text/plain'
                 });
-            
-                // upload the file in the media directory
-                var fd = new FormData();
-                fd.append("bibliography", filecontent, 'bibliography.bib');
-                fd.append("aid", document.querySelector('meta[name="article_id"]').content);
-                var xhr = new XMLHttpRequest();
-                xhr.open('post', '/bibliography', true);
-                xhr.send(fd);
-    
-                xhr.onload = function() {
-                    if (xhr.status != 200) { // analyze HTTP status of the response
-                        alert( _("Error: ") + xhr.statusText + " - " + xhr.response );
-                        status = xhr.status;
-                    } else {
-                        // the HTML file
-                        var response = JSON.parse(xhr.response);
-                        var source = document.getElementById('main-source');
-                        // append html toe end of the main source
-                        source.value = source.value + "\n" + response.bib;
-                        update();
-                    }
-                };        
-                // return the new file address
+                
+                // update the files
+                var myReader = new FileReader();
+                //handler executed once reading(blob content referenced to a variable) from blob is finished. 
+                myReader.addEventListener("loadend", function(e){
+                    document.getElementById("bib-source").value = e.srcElement.result;
+                    savebib();
+                });
+                //start the reading process.
+                myReader.readAsText(filecontent);                                
             } else {
                 alert( _("Error: ") + _("Not supported file format!" ) );
                 status = 400;
@@ -502,6 +491,16 @@ function g_domFindScrollMarks() {
         reader.readAsArrayBuffer(this.files[0]);
         var filetype = this.files[0].name.split('.').pop().toLowerCase()
     });
+    // monitor bibliography input and save locally the changes
+    function savebib(){
+        console.log("save");
+        try {
+            localStorage.setItem("mur2_bib_content"+article_id, document.getElementById("bib-source").value);
+            localStorage.setItem("mur2_bib_content"+article_id+'_time', +new Date);
+        } catch (e) {}
+    }
+    document.getElementById("bibliography").addEventListener("keypress", savebib)
+    
 
     // other event delegator for menu and toolbar
     let editor_toolbar = document.querySelector('#menu');
@@ -667,8 +666,25 @@ function g_domFindScrollMarks() {
                     }
                     break;
                 case 'id_bib':
-                    // BibTeX
-                    upload_bib();
+                    // hide preview side and display biblio
+                    var preview = document.getElementById('article_preview_side'); // the preview side
+                    var menubottom = document.getElementById('id_bib'); // the bottom of the bib
+                    if (preview.classList.contains('bibon')) {
+                        preview.classList.remove('bibon');
+                        menubottom.classList.remove('bibon');
+                        g_preview_on = true;
+                        // fire up an update
+                        updateMain(mainImageLoader, true);
+                        updateTitle(titleImageLoader, true);
+                        updateAbstract(abstractImageLoader, true);
+                    } else {
+                        preview.classList.add('bibon');
+                        menubottom.classList.add('bibon');
+                        // switching off update on ParseCollection when it is not showed
+                        g_preview_on = false;
+                    }
+                    // upload BibTeX
+                    // upload_bib();
                     break;
                 case 'id_ren':
                     // Render on server

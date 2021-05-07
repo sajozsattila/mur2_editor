@@ -206,8 +206,24 @@
                  </div>
                  <div class="separator"></div>
              </div>
-            <div id="article_main"></div>
-            <pre id="article_main_pre"></pre>
+             <div id="article_main"></div>
+             <pre id="article_main_pre"></pre>
+             <div id="bibliography">
+                 <div id="bib-style">
+                     {{ _("Bibliography style") }}: 
+                     <select id = "bibstyle_select">
+                         {% for bs in bibstype %}
+                         <option value = "{{bs}}">{{bs}}</option>
+                         {% endfor %}
+                     </select>    
+                 </div>
+                 <div><!-- upload bibtex file -->
+                     {{ _("Upload BibTex file") }}:
+                     <input class="choice_toolbar control-input" id="id_upload_bib" type="radio" name="source_type", onclick="upload_bib()" >
+                     <label class="fontawsome fas fa-file-upload" for="id_upload_bib" title="{{ _('Upload BibTeX file') }}" ></label>
+                 </div>
+                 <textarea id="bib-source"></textarea> <!-- input area for the bibtex -->
+             </div>
          </div>
       </div> <!-- maintext -->
         
@@ -256,7 +272,7 @@
                  <div>
                  <div class="toolbar-button" style="display:none"><input type="file" id="fileElem" ></div>
                  <div class="toolbar-button" style="display:none"><input type="file" id="pictureElem" ></div>                     
-                 <div class="toolbar-button" style="display:none"><input type="file" id="bibliography" ></div>
+                 <div class="toolbar-button" style="display:none"><input type="file" id="bibliography_file" ></div>
                  <!-- close editor toolbar -->
                  <label class=" toolbar" for="id_editor_toolbar" title="{{ _('Close Toolbar') }}" >T</label>
                  
@@ -319,7 +335,7 @@
                  <label id="id_echange_botton" class="toolbar fontawsome fas fa-i-cursor" for="id_echange" title="{{ _('Editorial changes') }}" ></label>
                  <!-- bibliography -->
                  <input class="choice_toolbar control-input" id="id_bib" type="checkbox" name="source_type" >
-                 <label class="toolbar fontawsome fas fa-book" for="id_bib" title="{{ _('Add Bibliography ') }}" ></label>
+                 <label class="toolbar fontawsome fas fa-book" for="id_bib" title="{{ _('Bibliography') }}" ></label>
                  <!-- render on server -->
                  <input class="choice_toolbar control-input" id="id_ren" type="checkbox" name="source_type" >
                  <label class="toolbar fontawsome fas fa-server" for="id_ren" title="{{ _('Render on server') }}" ></label>
@@ -353,7 +369,7 @@
                     var data_titleTime = parseInt(localStorage.getItem("{{ "mur2_title_content"+ article_id|string+"_time" }}"))/1000;
                     var data_abstractTime = parseInt(localStorage.getItem("{{"mur2_abstract_content"+ article_id|string+"_time" }}"))/1000;
                     var data_fImageTime = parseInt(localStorage.getItem("{{"mur2_featured_image"+ article_id|string+"_time" }}"))/1000;                    
-
+                    var data_bibTime = parseInt(localStorage.getItem("{{"mur2_bib_content"+ article_id|string+"_time" }}"))/1000;         
                     if ( dataTime > {{ articleTimestamp }} ) {
                         var data = localStorage.getItem("{{ "mur2_main_content"+article_id|string }}");
                     }
@@ -366,6 +382,9 @@
                     if ( data_fImageTime > {{ articleTimestamp }} ) {
                         document.getElementsByClassName("feature_image")[0].src = localStorage.getItem("{{"mur2_featured_image"+ article_id|string }}");
                     }
+                    if ( data_bibTime > {{ articleTimestamp }} ) {
+                        var data_bib = localStorage.getItem("{{ "mur2_bib_content"+article_id|string }}");
+                    }
                 }
                 catch (e) {console.log(e)};
            }
@@ -373,7 +392,7 @@
             document.getElementById('main-source').value = data || '{{ article_markdown }}'.replace(/&lt;/g, '<')  ;
             document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace(/'&lt;/g, '<')  ;
             document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace(/&lt;/g, '<')  ;
-                                    
+            document.getElementById('bib-source').value = data_bib || '{{ article_bib }}'.replace(/&lt;/g, '<')  ;
         }());
                   
        </script> 

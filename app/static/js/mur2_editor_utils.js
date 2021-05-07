@@ -30,7 +30,9 @@ function upload_picture() {
 };
 
 function upload_bib() {
-    var eNode = document.getElementById('bibliography');
+    console.log("start upload");
+    var eNode = document.getElementById('bibliography_file');
+    console.log(eNode);
     // Fire click on file input
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };
@@ -53,9 +55,7 @@ async function download_result(blobs) {
     for (var b = blobs.length; b--;) {        
         var bodytext = blobs[b].getDisplayedResult();
         result += "\n\n" + bodytext;
-    }
-    
-    
+    }    
 
     // get what is the current preview format
     var outputformat = g_view;
@@ -250,6 +250,8 @@ async function save_article(blobs) {
     var markupdata = new Blob([document.getElementById('main-source').value], {
         type: 'text/html; charset=UTF-8'
     });
+    // bibtex data
+    var bibdata = document.getElementById('bib-source').value;
 
     try {
         var htmldatatext = document.getElementById('article_main').innerHTML;
@@ -316,6 +318,7 @@ async function save_article(blobs) {
     }
 
     fd.append("file", markupdata);
+    fd.append("bib", bibdata);
     fd.append("htmlfile", htmldata, "article_text.html");
     fd.append("article_title_html", titledatatext);
     fd.append("article_abstract_html", abstractdatatext);
@@ -478,12 +481,23 @@ async function wordpress_on_fly(titleCollection, abstractCollection, mainCollect
 
 // render Markdown on the server
 async function render_on_server() {
+    // get what is the selected style
+    var bibsyle = document.getElementById("bibstyle_select").value;
+    // default style
+    if (bibsyle === "") {bibsyle='apa-6th-edition' };
+    console.log(bibsyle);
+    // get bibilography
+    var bib = document.getElementById("bib-source").value;
+    // language
+    var language = document.querySelector('meta[name="mur2language"]').content
     // get the data deppending what filed we are edditing
     var field = document.getElementById(g_selectedTextarea).value;
     // send to the server
     var fd = new FormData();
-    fd.append("aid", document.querySelector('meta[name="article_id"]').content);
+    fd.append('bib', bib);
     fd.append("md", field);
+    fd.append("bibsyle", bibsyle);
+    fd.append("language", language);
     var xhr = new XMLHttpRequest();
     // need to receive file back
     xhr.responseType = 'blob';
