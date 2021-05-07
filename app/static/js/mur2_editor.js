@@ -107,7 +107,7 @@ function g_domFindScrollMarks() {
     var scrollMap = new ScrollMap(domFindScrollMarks);
 
     var iprem = new ImagePreloader();
-    // creat the Math imageLoaders we need them because of the debounce destroy the this. object in the ParserCollection
+    // create the Math imageLoaders we need them because of the debounce destroy the this. object in the ParserCollection
     var mainImageLoader = new ImageLoader(iprem, location.protocol === 'https:' ? 'https:' : 'http:', 'm_');    
     var mainCollection = new ParserCollection(
         window.markdownit,

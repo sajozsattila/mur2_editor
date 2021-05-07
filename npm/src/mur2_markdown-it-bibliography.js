@@ -1,5 +1,26 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+// translate
+var i18next = require('i18next');
+i18next.init({
+  lng: ['en', 'hu'],
+  debug: true,
+  resources: {
+    en: {
+      translation: {
+        "Bibliography": "Bibliography"
+      }
+    },
+    hu: {
+      translation: {
+        "Bibliography": "Irodalomjegyzék"
+      }  
+    }
+  }
+}).then(function(t) {
+  // initialized and ready to go!
+  return i18next.t(t);
+});;
 
 /* https://github.com/DerDrodt/markdown-it-bibliography */
 (function(f){if(typeof exports === "object" && typeof module !== "undefined") {
@@ -106,6 +127,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
                     idToKey = _c.idToKey,
                     locales = (_c.locales) ? _c.locales : _c.defaultLocale,
                     defaultLocale = _c.defaultLocale;
+                i18next.changeLanguage(lang);
                 
                 // style                
                 var sys = {
@@ -186,7 +208,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
                     return env.citations.rendered[cit.citationID];
                 };
                 var renderBibOpen = function(_a, _b, options) {
-                    return (options.xhtmlOut ? '<hr class="bib-sep" />\n' : '<hr class="bib-sep">\n') + "<section class=\"bibliography\">\n    <h3>Bibliography</h3>\n";
+                    return (options.xhtmlOut ? '<hr class="bib-sep" />\n' : '') + "<section class=\"bibliography\">\n    <h1>"+i18next.t("Bibliography")+"</h1>\n";
                 };
                 var renderBib = function() {
                     var bib = citeproc.makeBibliography();

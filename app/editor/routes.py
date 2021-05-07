@@ -439,6 +439,8 @@ def processmarkdown():
     bibsyle = request.form.get('bibsyle') 
     # language
     language = request.form.get('language')
+    # footnote on local language
+    footnote = request.form.get('footnote')
     # save to file
     #   generate random string for dir
     dirname = make_tmpdirname()
@@ -456,7 +458,8 @@ def processmarkdown():
     # send to nodejs server
     print({'filename': mdname, 'bibtex': bibname, 'bibsyle': bibsyle, 'language': language})
     x = requests.get("http://127.0.0.1:3000/", params={'filename': mdname, 'bibtex': bibname, 
-                                                       'bibsyle': bibsyle, 'language': language})
+                                                       'bibsyle': bibsyle, 'language': language,
+                                                       'footnote': footnote})
     if x.status_code == 200 :
         # send back
         return send_file(os.path.join(dirname, 'processed.html'))

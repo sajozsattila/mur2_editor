@@ -492,12 +492,15 @@ async function render_on_server() {
     var language = document.querySelector('meta[name="mur2language"]').content
     // get the data deppending what filed we are edditing
     var field = document.getElementById(g_selectedTextarea).value;
+    // what is the local of the footnote
+    var languageFootnote = document.querySelector('meta[name="endnotetext"]').content
     // send to the server
     var fd = new FormData();
     fd.append('bib', bib);
     fd.append("md", field);
     fd.append("bibsyle", bibsyle);
     fd.append("language", language);
+    fd.append("footnote", languageFootnote);
     var xhr = new XMLHttpRequest();
     // need to receive file back
     xhr.responseType = 'blob';

@@ -127,8 +127,7 @@ function ParserCollection(
         .use(markdownitFootnote)
         .use(markdownitIns)
         ;
-    
-    /*
+
     var _mdHtmlHabrAndImages = markdownit(defaults)
         .use(markdownitCriticmarkup)
         .use(markdownitS2Tex, defaults._habr)
@@ -141,19 +140,7 @@ function ParserCollection(
         .use(markdownitFootnote)
         .use(markdownitIns)
         ;
-    */
-    var _mdHtmlHabrAndImages = markdownit(defaults)
-        .use(markdownitCriticmarkup)
-        .use(markdownitS2Tex, defaults._habr)
-        .use(markdownitMultimdTableLaTeX, {
-            rowspan: true,
-            multiline:  true
-        })
-        .use(markdownitSub)
-        .use(markdownitSup)
-        .use(markdownitFootnote)
-        .use(markdownitIns)
-        ;
+
     var _mdBackend =  markdownit("zero")
         .enable("table")
         .use(markdownitMultimdTableLaTeX, {

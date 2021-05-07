@@ -1,4 +1,8 @@
 var fs = require('fs');
+var utils = require('./utils.js');
+var iprem = new utils.ImagePreloader();
+var imageLoader = new utils.ImageLoader(iprem, 'https:', 'm_');
+console.log(imageLoader);
 
 /////////////////////////////////////////////
 // markdown it
@@ -52,47 +56,86 @@ defaults.highlight = function(str, lang) {
     return '<pre class="hljs"><code>' + esc(str) + '</code></pre>';
 };
 
+/**
+ * Detects if the paragraph contains the only formula.
+ * Parser gives the class 'tex-block' to such formulas.
+ *
+ * @param tokens
+ * @param idx
+ * @returns {boolean}
+ */
+function hasBlockFormula(tokens, idx) {
+    if (idx >= 0 && tokens[idx] && tokens[idx].children) {
+        for (var i = tokens[idx].children.length; i--;) {
+            if (tokens[idx].children[i].tag === 'tex-block') {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function injectLineNumbersAndCentering(tokens, idx, options, env, self) {
+    var line;
+    if (tokens[idx].map && tokens[idx].level === 0) {
+        line = tokens[idx].map[0];
+        tokens[idx].attrPush(['class', 'line']);
+        tokens[idx].attrPush(['data-line', line + '']);
+    }
+
+    // Hack (maybe it is better to use block renderers?)
+    if (hasBlockFormula(tokens, idx + 1)) {
+        tokens[idx].attrPush(['align', 'center']);
+        tokens[idx].attrPush(['style', 'text-align: center;']);
+    }
+
+    return self.renderToken(tokens, idx, options, env, self);
+};
+
 var md;
 
 /////////////////////////////////////////////
 // webserver
 const express = require('express')
 const path = require("path");
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
 app.get('/', (req, res) => {
     // receive filename for the original Markdown
     var filepath = req.query.filename; // markdown filename
     var bibtex = req.query.bibtex; // BibTeX filename
-    var lang = req.query.language; // language filename
+    var languageFootnote = req.query.footnote // localised footnote
+    var lang = req.query.language; // language filename    
+    var locale = lang;
     // if lang is just two letter we extend
     // ISO 639-1 -> IETF language tag
-    if (lang.length === 2) {
-         switch(lang) {
-             case "en":
-                 // default english
-                 lang = "en-US"
-                 break;
-             case "es":
-                 
-                 break;
-             default:
-                 lang = lang+"-"+lang.toUpperCase()
-        }        
+    if (locale.length === 2) {
+        switch (locale) {
+            case "en":
+                // default english
+                lang = "en-US"
+                break;
+            case "es":
+
+                break;
+            default:
+                locale = locale + "-" + lang.toUpperCase()
+        }
     }
-    console.log(lang);
+    // the lang is just ISO 639-1
+    lang = lang.slice(0, 2);
     var bibsyle = req.query.bibsyle; // bibsyle filename
     if (filepath) {
         // Markdown-it process
         md = require('markdown-it')(defaults)
-            .use(require('./markdown-it-criticmarkup.js'))    
+            .use(require('./markdown-it-criticmarkup.js'))
             .use(require('./mur2_markdown-it-bibliography.js'), {
                 bibfile: bibtex,
                 style: bibsyle,
                 lang: lang,
-                defaultLocale: lang, 
-                locales: lang
+                defaultLocale: locale,
+                locales: locale
             })
             .use(require('markdown-it-footnote'))
             .use(require('markdown-it-attrs'), {})
@@ -100,7 +143,7 @@ app.get('/', (req, res) => {
                 figcaption: true, // <figcaption>alternative text</figcaption>, default: false
                 tabindex: true // <figure tabindex="1+n">..., default: false
             })
-            .use(require('./markdown-it-s2-tex.js'))    
+            .use(require('./markdown-it-s2-tex.js'))
             .use(require('markdown-it-multimd-table'), {
                 rowspan: true,
                 multiline: true
@@ -108,24 +151,37 @@ app.get('/', (req, res) => {
             .use(require('markdown-it-sub'))
             .use(require('markdown-it-sup'))
             .use(require('markdown-it-ins'))
-            .use(require('markdown-it-cjk-breaks'))
-        ;
+            .use(require('markdown-it-cjk-breaks'));
+        // overwrite footnote
+        md.renderer.rules.footnote_block_open = () => (
+            '<h1 class="mt-1">' + languageFootnote + '</h1>\n' +
+            '<section class="footnotes">\n' +
+            '<ol class="footnotes-list">\n'
+        );
+        md.renderer.rules.paragraph_open = md.renderer.rules.heading_open = injectLineNumbersAndCentering;
+        // Custom image embedding for smooth UX
+        md.renderer.rules.math_inline = function(tokens, idx) {
+            return imageLoader.getHtmlStub(tokens[idx].content);
+        };
         
+
         // read file
         var mdfile = "";
-        if (fs.existsSync(filepath)) {            
+        if (fs.existsSync(filepath)) {
             mdfile = fs.readFileSync(filepath, 'utf8');
         }
         // get the basename
-        const dirname = path.dirname(filepath);       
+        const dirname = path.dirname(filepath);
         // create new filename
-        const newfile = dirname+"/processed.html";
-        fs.writeFile( newfile, md.render(mdfile), function(err) {
+        const newfile = dirname + "/processed.html";
+        imageLoader.reset();
+        fs.writeFile(newfile, md.render(mdfile), function(err) {
             if (err) {
                 return console.error(err);
             }
-            console.log("Data written successfully in: "+newfile);
+            console.log("Data written successfully in: " + newfile);
         });
+         imageLoader.fixDom();
         res.send(newfile);
     } else {
         res.send('Error: No filename!')
@@ -133,6 +189,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Mur2 Makrdow-it server is listening at http://localhost:${port}`)
+    console.log(`Mur2 Makrdow-it server is listening at http://localhost:${port}`)
 })
-
