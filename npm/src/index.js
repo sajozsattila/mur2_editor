@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs = require('fs'); // for read
+var fsp = require('fs').promises; // for write 
 var utils = require('./utils.js');
 var iprem = new utils.ImagePreloader();
 var imageLoader = new utils.ImageLoader(iprem, 'https:', 'm_');
@@ -92,7 +93,11 @@ function injectLineNumbersAndCentering(tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options, env, self);
 };
 
+// Markdown-it global processor
 var md;
+// 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 /////////////////////////////////////////////
 // webserver
@@ -159,7 +164,7 @@ app.get('/', (req, res) => {
             '<ol class="footnotes-list">\n'
         );
         md.renderer.rules.paragraph_open = md.renderer.rules.heading_open = injectLineNumbersAndCentering;
-        // Custom image embedding for smooth UX
+        // add html math images, latter replace them with SVG
         md.renderer.rules.math_inline = function(tokens, idx) {
             return imageLoader.getHtmlStub(tokens[idx].content);
         };
@@ -175,14 +180,18 @@ app.get('/', (req, res) => {
         // create new filename
         const newfile = dirname + "/processed.html";
         imageLoader.reset();
-        fs.writeFile(newfile, md.render(mdfile), function(err) {
-            if (err) {
-                return console.error(err);
-            }
-            console.log("Data written successfully in: " + newfile);
-        });
-         imageLoader.fixDom();
-        res.send(newfile);
+        // render md 
+        var text = '<!DOCTYPE html><body>'+ md.render(mdfile) +'</body></html>';
+        const dom =   new JSDOM(text);
+        var document = dom.window.document;
+        // replace the data with SVG        
+        async function writerdata() {
+            await imageLoader.fixDom(document);
+            await fsp.writeFile(newfile, dom.window.document.body.innerHTML);
+            console.log("finish writer");
+            res.send(newfile);
+        }
+        writerdata();
     } else {
         res.send('Error: No filename!')
     }
