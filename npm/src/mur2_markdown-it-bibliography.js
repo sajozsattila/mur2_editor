@@ -419,7 +419,6 @@ i18next.init({
                         state.pos = end;
                         state.posMax = max;
                         state.md.enable("citation_text");
-                        //console.log(state.env.footnotes);
                         return true;
                     }; // autoCitation
                     var citationBib = function(state) {

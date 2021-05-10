@@ -180,11 +180,8 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
             if bibtex is not None:
                     thereisbibtex = True
                     # save BibTeX data
-                    with open('mur2.bib', 'w') as f:
-                        f.write(bibtex)
-                    # remove html bibtex data
-                    mdtxt = re.sub('<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">.*?</div>','\$murbibtex\$', mdtxt , flags=re.DOTALL)
-                    
+                    with open(os.path.join(dirname,'mur2.bib'), 'w') as f:
+                        f.write(bibtex)                    
             
             # save madifiled md
             file = open(mdname, 'w+')
@@ -201,11 +198,14 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
             # first make the setting files
             # make latex
             # first make the setting files
-            with open(dirname+'settings.txt', 'w') as file:
+            with open(os.path.join(dirname,'settings.txt'), 'w') as file:
                 file.write('---\ntitle: \''+title.replace("$$", "$")+"'"+
                            "\nauthor:" + "".join([ "\n    - "+a for a in author.split(",") ]) +
                            "\nabstract: \n    "+abstract.replace('\n', '\n    ').replace("$$", "$")+
                            "\ncsquotes: true"  )
+                # add settings to pandoc
+                if thereisbibtex:
+                    file.write('\ncsl: /Mur2/Git/mur2/npm/src/csl/apa-5th-edition.csl')
                 
                 if language == "zh-CN" or language == "zh-TW":
                     file.write("\nmainfont: Noto Serif CJK SC"+
@@ -239,7 +239,6 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                                      '-f', 'markdown', 
                                      '-t',  'latex', 
                                      '-V',  '"CJKmainfont=Noto Serif CJK SC"',
-                                     '--citeproc',
                                      "-F", "/opt/pandoc-crossref/bin/pandoc-crossref",
                                      '-s',                                      
                                      '-o', os.path.join(dirname,'mur2.tex')]
@@ -247,7 +246,10 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 if extractmedia:
                     pandoccommand.append('--extract-media='+dirname)
                 if thereisbibtex:
-                    pandoccommand += ['--bibliography', 'mur2.bib' ]
+                    pandoccommand += ['--bibliography',  os.path.join(dirname,'mur2.bib') ]
+                pandoccommand += ['--citeproc' ]
+                print(" ".join(pandoccommand))
+                    
                 result, error = run_os_command(pandoccommand, dirname)                
                 
                 
@@ -258,9 +260,6 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 if tables is not None:
                     for t in tables:
                         latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
-                # add back bibtex
-                if thereisbibtex:
-                    latexcode = latexcode.replace('\$murbibtex\$', '\\bibliography{mur2}\n\\bibliographystyle{ieeetr}\n')
                 with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
                     file.write(latexcode)
                 
