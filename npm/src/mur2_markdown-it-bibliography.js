@@ -1,5 +1,5 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
+const fs = require('fs');
 // translate
 var i18next = require('i18next');
 i18next.init({
@@ -93,7 +93,6 @@ i18next.init({
                 
                 // read BibTLaTeX file
                 var cslFromBibLatex = function (biblatexfilname) {
-                    var fs = require('fs');
                     var biblatex = fs.readFileSync(biblatexfilname, 'utf8');
                     var biblatex_csl_converter_ts_1 = require("biblatex-csl-converter-ts");
                     var parsed = new biblatex_csl_converter_ts_1.BibLatexParser(biblatex).parse();
@@ -116,11 +115,8 @@ i18next.init({
                 var items = _f[0];
                 _c.idToKey = _f[1];                
                 
-                // get style from url
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'https://raw.githubusercontent.com/citation-style-language/styles/master/' + _c.style + '.csl', false);
-                xhr.send(null);
-                var styleAsText = xhr.responseText;                
+                // get style
+                var styleAsText = fs.readFileSync(global.gConfig.CSL_DIR + _c.style + '.csl', 'utf8');
                 
                 var style = styleAsText,
                     lang = _c.lang,

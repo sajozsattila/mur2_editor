@@ -10,9 +10,13 @@
 }
 
 /* bib */
-.csl-entry {
-    text-indent: calc(-1*var(--verticaldistance));
+.csl-entry {    
     padding-left: var(--verticaldistance);
+    display: flex;
+    flex-direction: row;
+}
+.csl-left-margin {
+    margin-right: calc(0.5 * var(--verticaldistance));
 }
 
 #article_main figure img {

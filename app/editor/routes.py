@@ -197,6 +197,12 @@ def fixeditor(editortype, articleid):
     # read the avvailable csl file
     bibstype = [ f.replace(".csl", "") for f in os.listdir(current_app.config['CSL_DIR']) if re.match('.+.csl', f) ]
     bibstype.sort()
+    # bibliography
+    bibtex = None
+    if article.bibtex is not None:
+         bibtex = Markup(article.bibtex.encode('unicode_escape').decode('utf-8')
+                                   .replace("'", "\\\'")
+                                   .replace('<', '&lt;'))
         
     # pictureloading form
     pictureform = UploadForm()
@@ -209,9 +215,7 @@ def fixeditor(editortype, articleid):
             article_abstract = Markup(article.abstract.encode('unicode_escape').decode('utf-8')
                                     .replace("'", "\\\'")
                                     .replace('<', '&lt;')), 
-            article_bib = Markup(article.bibtex.encode('unicode_escape').decode('utf-8')
-                                   .replace("'", "\\\'")
-                                   .replace('<', '&lt;')),
+            article_bib = bibtex,
             bibstype = bibstype, 
             title = article.title,
             article_id = int(articleid),
@@ -431,11 +435,11 @@ def getarticleversions():
 @bp.route('/processmarkdown', methods=['POST'])
 def processmarkdown():
     # markdown
-    md = request.form.get('md') 
+    md = request.form.get('md')
     # bibtex
-    bib = request.form.get('bib') 
+    bib = request.form.get('bib')
     # bibstyle
-    bibsyle = request.form.get('bibsyle') 
+    bibsyle = request.form.get('bibsyle')
     # language
     language = request.form.get('language')
     # footnote on local language
@@ -450,9 +454,13 @@ def processmarkdown():
     with open(mdname, 'w') as f:
         demo = f.write(md)
     # bibtex
-    bibname = os.path.join(dirname,'raw.bib')
-    with open(bibname, 'w') as f:
-        demo = f.write(bib)
+    # if there is None or just whitespace
+    if bib == "None" or len(re.sub(r"\s+", "", bib, flags=re.UNICODE)) == 0:
+        bibname = None
+    else:
+        bibname = os.path.join(dirname,'raw.bib')
+        with open(bibname, 'w') as f:
+            demo = f.write(bib)
     
     # send to nodejs server
     print({'filename': mdname, 'bibtex': bibname, 'bibsyle': bibsyle, 'language': language})
@@ -463,6 +471,7 @@ def processmarkdown():
         # send back
         return send_file(os.path.join(dirname, 'processed.html'))
     else:
+        print(x.text)
         return x.text, x.status_code
     
     

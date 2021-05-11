@@ -3,11 +3,27 @@ var fsp = require('fs').promises; // for write
 var utils = require('./utils.js');
 var iprem = new utils.ImagePreloader();
 var imageLoader = new utils.ImageLoader(iprem, 'https:', 'm_');
-console.log(imageLoader);
+
+/////////////////////////////////////////////
+// configs
+// requires
+const _ = require('lodash');
+
+// module variables
+const config = require('./config.json');
+const defaultConfig = config.production;
+const environment = process.env.NODE_ENV || 'development';
+const environmentConfig = config[environment];
+const finalConfig = _.merge(defaultConfig, environmentConfig);
+// as a best practice
+// all global variables should be referenced via global. syntax
+// and their names should always begin with g
+global.gConfig = finalConfig;
+console.log("Configuration\n" + global.gConfig);
+
 
 /////////////////////////////////////////////
 // markdown it
-
 
 var defaults = {
     html: true, // Enable HTML tags in source
@@ -97,7 +113,9 @@ function injectLineNumbersAndCentering(tokens, idx, options, env, self) {
 var md;
 // 
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const {
+    JSDOM
+} = jsdom;
 
 /////////////////////////////////////////////
 // webserver
@@ -129,43 +147,76 @@ app.get('/', (req, res) => {
     lang = lang.slice(0, 2);
     var bibsyle = req.query.bibsyle; // bibsyle filename
     if (filepath) {
-        // Markdown-it process
-        md = require('markdown-it')(defaults)
-            .use(require('./markdown-it-criticmarkup.js'))
-            .use(require('./mur2_markdown-it-bibliography.js'), {
-                bibfile: bibtex,
-                style: bibsyle,
-                lang: lang,
-                defaultLocale: locale,
-                locales: locale
-            })
-            .use(require('markdown-it-footnote'))
-            .use(require('markdown-it-attrs'), {})
-            .use(require('markdown-it-implicit-figures'), {
-                figcaption: true, // <figcaption>alternative text</figcaption>, default: false
-                tabindex: true // <figure tabindex="1+n">..., default: false
-            })
-            .use(require('./markdown-it-s2-tex.js'))
-            .use(require('markdown-it-multimd-table'), {
-                rowspan: true,
-                multiline: true
-            })
-            .use(require('markdown-it-sub'))
-            .use(require('markdown-it-sup'))
-            .use(require('markdown-it-ins'))
-            .use(require('markdown-it-cjk-breaks'));
-        // overwrite footnote
-        md.renderer.rules.footnote_block_open = () => (
-            '<h1 class="mt-1">' + languageFootnote + '</h1>\n' +
-            '<section class="footnotes">\n' +
-            '<ol class="footnotes-list">\n'
-        );
-        md.renderer.rules.paragraph_open = md.renderer.rules.heading_open = injectLineNumbersAndCentering;
-        // add html math images, latter replace them with SVG
-        md.renderer.rules.math_inline = function(tokens, idx) {
-            return imageLoader.getHtmlStub(tokens[idx].content);
-        };
-        
+        // if there is bibtex
+        if (bibtex) {
+            // Markdown-it process
+            md = require('markdown-it')(defaults)
+                .use(require('./markdown-it-criticmarkup.js'))
+                .use(require('./mur2_markdown-it-bibliography.js'), {
+                    bibfile: bibtex,
+                    style: bibsyle,
+                    lang: lang,
+                    defaultLocale: locale,
+                    locales: locale
+                })
+                .use(require('markdown-it-footnote'))
+                .use(require('markdown-it-attrs'), {})
+                .use(require('markdown-it-implicit-figures'), {
+                    figcaption: true, // <figcaption>alternative text</figcaption>, default: false
+                    tabindex: true // <figure tabindex="1+n">..., default: false
+                })
+                .use(require('./markdown-it-s2-tex.js'))
+                .use(require('markdown-it-multimd-table'), {
+                    rowspan: true,
+                    multiline: true
+                })
+                .use(require('markdown-it-sub'))
+                .use(require('markdown-it-sup'))
+                .use(require('markdown-it-ins'))
+                .use(require('markdown-it-cjk-breaks'));
+            // overwrite footnote
+            md.renderer.rules.footnote_block_open = () => (
+                '<h1 class="mt-1">' + languageFootnote + '</h1>\n' +
+                '<section class="footnotes">\n' +
+                '<ol class="footnotes-list">\n'
+            );
+            md.renderer.rules.paragraph_open = md.renderer.rules.heading_open = injectLineNumbersAndCentering;
+            // add html math images, latter replace them with SVG
+            md.renderer.rules.math_inline = function(tokens, idx) {
+                return imageLoader.getHtmlStub(tokens[idx].content);
+            };
+        } else {
+            // Markdown-it process
+            md = require('markdown-it')(defaults)
+                .use(require('./markdown-it-criticmarkup.js'))
+                .use(require('markdown-it-footnote'))
+                .use(require('markdown-it-attrs'), {})
+                .use(require('markdown-it-implicit-figures'), {
+                    figcaption: true, // <figcaption>alternative text</figcaption>, default: false
+                    tabindex: true // <figure tabindex="1+n">..., default: false
+                })
+                .use(require('./markdown-it-s2-tex.js'))
+                .use(require('markdown-it-multimd-table'), {
+                    rowspan: true,
+                    multiline: true
+                })
+                .use(require('markdown-it-sub'))
+                .use(require('markdown-it-sup'))
+                .use(require('markdown-it-ins'))
+                .use(require('markdown-it-cjk-breaks'));
+            // overwrite footnote
+            md.renderer.rules.footnote_block_open = () => (
+                '<h1 class="mt-1">' + languageFootnote + '</h1>\n' +
+                '<section class="footnotes">\n' +
+                '<ol class="footnotes-list">\n'
+            );
+            md.renderer.rules.paragraph_open = md.renderer.rules.heading_open = injectLineNumbersAndCentering;
+            // add html math images, latter replace them with SVG
+            md.renderer.rules.math_inline = function(tokens, idx) {
+                return imageLoader.getHtmlStub(tokens[idx].content);
+            };
+        }
+
 
         // read file
         var mdfile = "";
@@ -178,14 +229,18 @@ app.get('/', (req, res) => {
         const newfile = dirname + "/processed.html";
         imageLoader.reset();
         // render md 
-        var text = '<!DOCTYPE html><body>'+ md.render(mdfile) +'</body></html>';
-        const dom =   new JSDOM(text);
+        try {
+            var text = '<!DOCTYPE html><body>' + md.render(mdfile) + '</body></html>';
+        } catch(err) {
+            res.send('Error: Can not process data. Reason: '+err)
+        }
+        const dom = new JSDOM(text);
         var document = dom.window.document;
         // replace the data with SVG        
         async function writerdata() {
             await imageLoader.fixDom(document);
             await fsp.writeFile(newfile, dom.window.document.body.innerHTML);
-            console.log("finish writer");
+            console.log("Ready");
             res.send(newfile);
         }
         writerdata();
