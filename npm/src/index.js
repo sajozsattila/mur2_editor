@@ -121,9 +121,6 @@ app.get('/', (req, res) => {
                 // default english
                 lang = "en-US"
                 break;
-            case "es":
-
-                break;
             default:
                 locale = locale + "-" + lang.toUpperCase()
         }

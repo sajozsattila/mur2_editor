@@ -44,7 +44,7 @@ def make_tmpdirname():
     letters = string.ascii_letters
     return '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
 
-def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmedia=True):
+def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmedia=True, bibstyle=None):
             mdtxt = make_pandoc_md(mdtxt)
             title = title
             abstract = abstract
@@ -181,18 +181,32 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                     thereisbibtex = True
                     # save BibTeX data
                     with open(os.path.join(dirname,'mur2.bib'), 'w') as f:
-                        f.write(bibtex)                    
+                        f.write(bibtex)
+                    # add bibtex translatation to the markdown file
+                    mdtxt = mdtxt+"\n# "+_l("Bibliography")+"\n"
+                    
             
             # save madifiled md
             file = open(mdname, 'w+')
             file.write(mdtxt)
             file.close()
             
-            # chinese lang
+            # ISO 639-1 -> IETF language tag
+            lang_ietf = language
             if language == "zh_Hans":
+                # chinese lang
                 language = "zh-CN"
+                lang_ietf = language
             elif language == "zh_Hant":
-                language = "zh-TW"                
+                # chinese lang
+                language = "zh-TW"
+                lang_ietf = language
+            elif len(language) == 2 :
+                # other two letther language forms
+                if language == 'en':
+                    lang_ietf = "en-US"
+                else:
+                    lang_ietf = language + "-" + language.upper()
 
             # make latex
             # first make the setting files
@@ -205,7 +219,10 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                            "\ncsquotes: true"  )
                 # add settings to pandoc
                 if thereisbibtex:
-                    file.write('\ncsl: /Mur2/Git/mur2/npm/src/csl/apa-5th-edition.csl')
+                    if bibstyle is None:
+                        file.write('\ncsl: /Mur2/Git/mur2/npm/src/csl/apa-5th-edition.csl')
+                    else:
+                        file.write(f"\ncsl: /Mur2/Git/mur2/npm/src/csl/{bibstyle}.csl")
                 
                 if language == "zh-CN" or language == "zh-TW":
                     file.write("\nmainfont: Noto Serif CJK SC"+
@@ -214,6 +231,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 else:
                     file.write(
                            "\nlang: " + language +
+                           "\nlanguage: " + lang_ietf +
                            "\nmainfont: LibertinusSerif-Regular.otf\nsansfont: LibertinusSerif-Regular.otf\nmonofont: LibertinusMono-Regular.otf\nmathfont: latinmodern-math.otf" +   
                            "\nmainfontoptions:\n    - BoldFont=LibertinusSerif-Bold.otf"+
                            "\n    - ItalicFont=LibertinusSerif-Italic.otf"+
@@ -286,12 +304,12 @@ def  make_pandoc_md(mdtxt):
             return mdtxt
 
 # make PDF from final published Article
-def pdf_generation(title, author, language, abstract, body, bibtex=None):    
+def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None):    
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, bibstyle=bibstyle)
     
     
     if error is None:
@@ -332,14 +350,14 @@ def pdf_generation(title, author, language, abstract, body, bibtex=None):
     return dirname, error
 
 # make EPUB and Microsof Word return the dirname where it is
-def epub_generation(title, author, language, abstract, body, bibtex=None):
+def epub_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None):
     
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
     # make latex
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, extractmedia=False)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, bibstyle=bibstyle, extractmedia=False)
     
     # Some LaTeX preparation
     latexcode = None
@@ -362,13 +380,13 @@ def epub_generation(title, author, language, abstract, body, bibtex=None):
     
     return dirname, error
 
-def msworld_generation(title, author, language, abstract, body, bibtex=None):
+def msworld_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None):
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
     # make latex
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, bibstyle=bibstyle)
     
     if error is None:
         # Microsoft Word

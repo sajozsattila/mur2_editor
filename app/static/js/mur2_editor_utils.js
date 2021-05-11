@@ -484,8 +484,7 @@ async function render_on_server() {
     // get what is the selected style
     var bibsyle = document.getElementById("bibstyle_select").value;
     // default style
-    if (bibsyle === "") {bibsyle='apa-6th-edition' };
-    console.log(bibsyle);
+    if (bibsyle === "") {bibsyle='apa-6th-edition' };    
     // get bibilography
     var bib = document.getElementById("bib-source").value;
     // language
@@ -534,8 +533,13 @@ async function make_export(destination, mainCollection) {
     });
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
     var language = document.querySelector('meta[name="mur2language"]').content
+    // bibtex data
+    var bibdata = document.getElementById('bib-source').value;
     var fd = new FormData();
-
+    // get what is the selected style
+    var bibsyle = document.getElementById("bibstyle_select").value;
+    // default style
+    if (bibsyle === "") {bibsyle='apa-6th-edition' };
     var msgbox = document.getElementById("msg")
     msgbox.innerHTML = _("Working...");
     msgbox.style.color = "green";
@@ -550,7 +554,8 @@ async function make_export(destination, mainCollection) {
     fd.append('endnotetext', endnotetext);
     fd.append('language', language);
     fd.append('author', author);
-    fd.append("aid", document.querySelector('meta[name="article_id"]').content);
+    fd.append('bib', bibdata);
+    fd.append('bibsyle', bibsyle);
     var xhr = new XMLHttpRequest();
     /* need to receive file back */
     xhr.responseType = 'blob';

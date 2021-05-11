@@ -194,6 +194,9 @@ def fixeditor(editortype, articleid):
         }
         instance = jwt.JWT()
         cjwt = instance.encode(options, privateKey, alg='RS256', optional_headers=header)
+    # read the avvailable csl file
+    bibstype = [ f.replace(".csl", "") for f in os.listdir(current_app.config['CSL_DIR']) if re.match('.+.csl', f) ]
+    bibstype.sort()
         
     # pictureloading form
     pictureform = UploadForm()
@@ -203,11 +206,13 @@ def fixeditor(editortype, articleid):
             article_title = Markup(article.title.encode('unicode_escape').decode('utf-8')
                                    .replace("'", "\\\'")
                                    .replace('<', '&lt;')),
-            article_abstract=Markup(article.abstract.encode('unicode_escape').decode('utf-8')
+            article_abstract = Markup(article.abstract.encode('unicode_escape').decode('utf-8')
                                     .replace("'", "\\\'")
                                     .replace('<', '&lt;')), 
-            article_bib = article.bibtex,
-            bibstype = ['apa-6th-edition', 'apa-5th-edition', 'ieee'], 
+            article_bib = Markup(article.bibtex.encode('unicode_escape').decode('utf-8')
+                                   .replace("'", "\\\'")
+                                   .replace('<', '&lt;')),
+            bibstype = bibstype, 
             title = article.title,
             article_id = int(articleid),
             article_status = article.status,
@@ -369,17 +374,11 @@ def exportdata():
             article_abstract = (request.form['article_abstract'])
             language = (request.form['language'])
             author = (request.form['author'])
-            aid = (request.form['aid'])
+            bibtex = (request.form['bib'])
+            bibstyle = (request.form['bibsyle'])
             
-            # get BibTeX if there is
-            bibtex = None
-            if int(aid) > 0:
-                a = Article.query.filter_by(id=int(aid)).first_or_404()
-                if a.bibtex is not None:
-                    bibtex = a.bibtex
-
             if destination == 'pdf':
-                dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex)
+                dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex, bibstyle=bibstyle)
                 if error is None:
                     return send_file(os.path.join(dirname, 'mur2.pdf'))
                 else:
@@ -394,13 +393,13 @@ def exportdata():
                 else:
                     return send_file(error, attachment_filename='error.txt')
             elif destination == "epub":                        
-                dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex)           
+                dirname, error = epub_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex, bibstyle=bibstyle)           
                 if error is None:
                     return send_file(os.path.join(dirname, 'mur2.epub'))
                 else:
                     return send_file( error, attachment_filename='error.txt')
             elif destination == "msw":            
-                dirname, error = msworld_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex)
+                dirname, error = msworld_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex, bibstyle=bibstyle)
             
                 if error is None:
                     return send_file(os.path.join(dirname, 'mur2.docx'))
