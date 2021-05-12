@@ -490,6 +490,7 @@ async function render_on_server() {
     // language
     var language = document.querySelector('meta[name="mur2language"]').content
     // get the data deppending what filed we are edditing
+    console.log(g_selectedTextarea);
     var field = document.getElementById(g_selectedTextarea).value;
     // what is the local of the footnote
     var languageFootnote = document.querySelector('meta[name="endnotetext"]').content
@@ -507,21 +508,24 @@ async function render_on_server() {
     xhr.send(fd)
     // receive the response
     xhr.onload = function() {
+        var myReader = new FileReader(); 
+        var blob = this.response;
         if (xhr.status != 200) { // analyze HTTP status of the response
-            alert(  _("Error: ") + xhr.statusText + " - " + xhr.response );
-        } else { // save the result   
-            var blob = this.response;
+            // we expecting a blob even if the returned error is                        
+            myReader.addEventListener("loadend", function(e){
+                swal(  _("Error: ") + JSON.parse(e.srcElement.result).Error );
+            });            
+        } else { // save the result               
             // update the preview 
             var viewside = 'article_' + g_selectedTextarea.split("-")[0] ;
             if (viewside === 'article_abstact' ) {
                 viewside = 'article_abstract_text';
             }
-            var myReader = new FileReader();
             myReader.addEventListener("loadend", function(e){
                 g_domSetHighlightedContent(viewside,  e.srcElement.result, 'none')
-            });
-            myReader.readAsText(blob);
+            });            
         }
+        myReader.readAsText(blob);
     }
 }
 
@@ -563,10 +567,15 @@ async function make_export(destination, mainCollection) {
     xhr.send(fd)   
     
     xhr.onload = function() {
+        var blob = this.response;
         if (xhr.status != 200) { // analyze HTTP status of the response
-            alert(  _("Error: ") + xhr.statusText + " - " + xhr.response );
-        } else { // save the result   
-            var blob = this.response;
+            // as we expect blob as response we need to handle like this this json error
+            var myReader = new FileReader();
+            myReader.addEventListener("loadend", function(e){
+                swal(  _("Error: ") + JSON.parse(e.srcElement.result).Error );
+            });
+            myReader.readAsText(blob);
+        } else { // save the result               
             window.URL = window.URL || window.webkitURL;
             var fileURL = window.URL.createObjectURL(blob);
             if (destination === "latex" || destination === "epub" || destination === "msw" ) {

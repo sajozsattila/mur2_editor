@@ -506,7 +506,7 @@ class Img2Latex(object):
                 src = filename
 
         alt = img.getAttribute('alt')
-	# Using graphicx and ajustbox package for *max width*
+    # Using graphicx and ajustbox package for *max width*
         out = \
             """
             \\begin{figure}[H]

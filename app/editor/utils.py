@@ -42,7 +42,7 @@ def run_os_command(command, directory="/tmp"):
 
 def make_tmpdirname():
     letters = string.ascii_letters
-    return '/tmp/mur2_export_'+''.join(random.choice(letters) for i in range(16))+'/'
+    return '/tmp/mur2_export_'+''.join(random.choice(letters) for _ in range(16))+'/'
 
 def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmedia=True, bibstyle=None):
             mdtxt = make_pandoc_md(mdtxt)
@@ -324,7 +324,7 @@ def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyl
                                      '-o', os.path.join(dirname,'mur2.pdf')], dirname)
         
         """
-        result, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex', 
+        run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex',
                                          "-output-directory="+dirname,
                                          "-interaction=nonstopmode",
                                          "--no-pdf",

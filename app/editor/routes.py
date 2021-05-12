@@ -472,7 +472,6 @@ def processmarkdown():
             f.write(bib)
 
     # send to nodejs server
-    print({'filename': mdname, 'bibtex': bibname, 'bibsyle': bibsyle, 'language': language})
     x = requests.get("http://127.0.0.1:3000/", params={'filename': mdname, 'bibtex': bibname,
                                                        'bibsyle': bibsyle, 'language': language,
                                                        'footnote': footnote})

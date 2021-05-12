@@ -71,7 +71,7 @@ Using Javascript helps μr² to better answer these questions. The editor can on
 ## Academic writing and publishing
 We aim to support academic quality writing which is a huge task that very few publication platforms offer.  We support LaTeX type mathematical input, footnotes, crossreference, equation numbering and editorial changes to name a few.
 
-In the  μr² editor, you can create HTML, PDF, ePUB, LaTeX or Microsoft Word with one-click. You can also directly publish your document in [Wordpress.com](https:wordpress.com) or [Medium](https://medium.com). If you don't have to place to publish it, the project has a free to use [webpage](https://mur2.co.uk) where work can publish.  There we also provide extra features for registered users. 
+In the  μr² editor, you can create HTML, PDF, ePUB, LaTeX or Microsoft Word with one-click. You can also directly publish your document in [Wordpress.com](https://wordpress.com) or [Medium](https://medium.com). If you don't have to place to publish it, the project has a free to use [webpage](https://mur2.co.uk) where work can publish.  There we also provide extra features for registered users. 
 
 # Thanks
 
