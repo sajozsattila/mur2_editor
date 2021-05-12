@@ -1,4 +1,8 @@
-
+/*
+* This file has taken from the: https://github.com/DerDrodt/markdown-it-bibliography project at 2021-05 
+*    The markdown-it-bibliography  is Daniel Drodt (daniel@drodt.info) works and published under MIT license 
+*
+*/
 "use strict";
 exports.__esModule = true;
 exports.getLocator = void 0;

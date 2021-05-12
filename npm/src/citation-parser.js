@@ -1,3 +1,9 @@
+/*
+* This file has taken from the: https://github.com/DerDrodt/markdown-it-bibliography project at 2021-05 
+*    The markdown-it-bibliography  is Daniel Drodt (daniel@drodt.info) works and published under MIT license 
+*
+*/
+
 "use strict";
 exports.__esModule = true;
 exports.parsePreSuffix = exports.parseCitationLabel = exports.parseCitationKey = exports.parseCitationItem = exports.parseCitationItems = void 0;

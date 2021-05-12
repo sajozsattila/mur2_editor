@@ -1,3 +1,9 @@
+/* 
+* This file is a modificated version of the https://github.com/GerHobbelt/markdown-it-criticmarkup. 
+*    The original file was published under @license ISC
+*
+*/
+
 (function(f) {
     if (typeof exports === "object" && typeof module !== "undefined") {
         module.exports = f()

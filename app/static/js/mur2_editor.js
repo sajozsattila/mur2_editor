@@ -12,7 +12,7 @@ var g_focusmode_switch = false;
 // preview show?
 var g_preview_on = true;
 // which textareai is selected
-var g_selectedTextarea = null;
+var g_selectedTextarea = 'main-source';
 // editor changes show 
 var g_echange_on = false;
 

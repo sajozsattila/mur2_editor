@@ -1,3 +1,9 @@
+/*
+* This file based on the citations.ts file in the the https://github.com/DerDrodt/markdown-it-bibliography project 
+*    The markdown-it-bibliography  is Daniel Drodt (daniel@drodt.info) works and published under MIT license 
+*
+*/
+
 var fs = require('fs'); // for read
 var fsp = require('fs').promises; // for write 
 var utils = require('./utils.js');
@@ -122,6 +128,7 @@ const {
 const express = require('express')
 const path = require("path");
 const app = express();
+app.set('json spaces', 40);
 const port = 3000;
 
 app.get('/', (req, res) => {
@@ -148,8 +155,10 @@ app.get('/', (req, res) => {
     var bibsyle = req.query.bibsyle; // bibsyle filename
     if (filepath) {
         // if there is bibtex
+        try {
         if (bibtex) {
             // Markdown-it process
+            
             md = require('markdown-it')(defaults)
                 .use(require('./markdown-it-criticmarkup.js'))
                 .use(require('./mur2_markdown-it-bibliography.js'), {
@@ -216,6 +225,10 @@ app.get('/', (req, res) => {
                 return imageLoader.getHtmlStub(tokens[idx].content);
             };
         }
+        } catch(err) {
+            res.status(404).send({"Error": "Markdown-it error! Reason: "+err });
+            return;
+        }
 
 
         // read file
@@ -232,7 +245,8 @@ app.get('/', (req, res) => {
         try {
             var text = '<!DOCTYPE html><body>' + md.render(mdfile) + '</body></html>';
         } catch(err) {
-            res.send('Error: Can not process data. Reason: '+err)
+            res.status(404).json({"Error": "Can not process data. Reason: "+err })
+            return;
         }
         const dom = new JSDOM(text);
         var document = dom.window.document;
@@ -250,5 +264,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Mur2 Makrdow-it server is listening at http://localhost:${port}`)
+    console.log(`Mur2 Makrdown-it server is listening at http://localhost:${port}`)
 })

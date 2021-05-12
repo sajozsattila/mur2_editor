@@ -218,10 +218,11 @@
                      </select>    
                  </div>
                  <div><!-- upload bibtex file -->
-                     {{ _("Upload BibTex file") }}:
+                     {{ _("Upload BibLaTeX file") }}:
                      <input class="choice_toolbar control-input" id="id_upload_bib" type="radio" name="source_type", onclick="upload_bib()" >
                      <label class="fontawsome fas fa-file-upload" for="id_upload_bib" title="{{ _('Upload BibTeX file') }}" ></label>
                  </div>
+                 {{ _("Bibliography") }}:
                  <textarea id="bib-source"></textarea> <!-- input area for the bibtex -->
              </div>
          </div>

@@ -86,6 +86,7 @@ This editor based on multiple open source project, we would like to say many tha
   + [markdown-it-ins](https://github.com//markdown-it/markdown-it-ins )
   + [markdown-it-multimd-table](https://github.com/RedBug312/markdown-it-multimd-table)
   + [markdown-it-sub](https://github.com//markdown-it/markdown-it-sub)
+  + [markdown-it-bibliography](https://github.com/DerDrodt/markdown-it-bibliography)
 + [UpMath](https://github.com/parpalak/upmath.me)
 + [pandoc](https://pandoc.org/)
 + [Convergence](https://github.com/convergencelabs/)
