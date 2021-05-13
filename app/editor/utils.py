@@ -66,7 +66,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 tables = re.findall(r'<span class="mur2_latextable">(.*?)</span>(\n\{#tbl:\d+\}?)?', mdtxt, flags=re.DOTALL)
                 
                 # generate the Markdown without the tables
-                mdtxt = re.sub('<span class="mur2_latextable">.*?</span>(\n\{#tbl:\d+\}?)?','\$murlatextable\$', mdtxt , flags=re.DOTALL)
+                mdtxt = re.sub('<span class="mur2_latextable">.*?</span>(\n\{#tbl:\d+\}?)?','\$murlatextable\$\n\n', mdtxt , flags=re.DOTALL)
                 
                 # process the tables
                 if len(tables) > 0:
@@ -171,7 +171,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                         tablestring += "\n\t\t\t\\bottomrule\n\t\t\\end{tabular*}\n\n\\end{table}\n"
                         # if table widt rotate
                         if tablewidth > 45:
-                            tablestring = '\\begin{landscape}\n'+tablestring.replace("\\textwidth", "\\linewidth")+'\\end{landscape}\n'
+                            tablestring = '\\begin{landscape}\n'+tablestring.replace("\\textwidth", "\\linewidth")+'\\end{landscape}\n\n'
                         # repace the dict with string
                         tables[t] = tablestring  
                         
@@ -184,7 +184,6 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                         f.write(bibtex)
                     # add bibtex translatation to the markdown file
                     mdtxt = mdtxt+"\n# "+_l("Bibliography")+"\n"
-                    
             
             # save madifiled md
             file = open(mdname, 'w+')
@@ -220,9 +219,9 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 # add settings to pandoc
                 if thereisbibtex:
                     if bibstyle is None:
-                        file.write('\ncsl: /Mur2/Git/mur2/npm/src/csl/apa-5th-edition.csl')
+                        file.write('\ncsl: '+current_app.config['CSL_DIR']+'apa-6th-edition.csl')
                     else:
-                        file.write(f"\ncsl: /Mur2/Git/mur2/npm/src/csl/{bibstyle}.csl")
+                        file.write(f"\ncsl: "+current_app.config['CSL_DIR']+{bibstyle}+".csl")
                 
                 if language == "zh-CN" or language == "zh-TW":
                     file.write("\nmainfont: Noto Serif CJK SC"+
@@ -266,20 +265,19 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 if thereisbibtex:
                     pandoccommand += ['--bibliography',  os.path.join(dirname,'mur2.bib') ]
                 pandoccommand += ['--citeproc' ]
-                print(" ".join(pandoccommand))
                     
-                result, error = run_os_command(pandoccommand, dirname)                
+                result, error = run_os_command(pandoccommand, dirname)
                 
-                
-                # add back the tables
-                latexcode = None
-                with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
-                    latexcode = file.read()
-                if tables is not None:
-                    for t in tables:
-                        latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
-                with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
-                    file.write(latexcode)
+                if error is None:
+                    # add back the tables
+                    latexcode = None
+                    with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
+                        latexcode = file.read()
+                    if tables is not None:
+                        for t in tables:
+                            latexcode = latexcode.replace('\$murlatextable\$', f'\n\n{t}\n\n', 1)
+                    with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
+                        file.write(latexcode)
                 
             return dirname, error
 
@@ -324,28 +322,27 @@ def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyl
                                      '-o', os.path.join(dirname,'mur2.pdf')], dirname)
         
         """
-        run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex',
+        _, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex',
                                          "-output-directory="+dirname,
                                          "-interaction=nonstopmode",
                                          "--no-pdf",
                                          os.path.join(dirname,'mur2.tex'),                                         
                                          ], dirname)
-        # run twice because of the indexing
-        result, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex', 
+        if error is None:
+            # run twice because of the indexing
+            _, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex',
                                          "-output-directory="+dirname,
                                          "-interaction=nonstopmode",
                                          "--no-pdf",
                                          os.path.join(dirname,'mur2.tex'),                                         
                                          ], dirname)
-        # make the actuall pdf
-        if os.path.isfile(os.path.join(dirname,'mur2.xdv')):            
-            result, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xdvipdfmx', 
-                                         "-o", os.path.join(dirname,'mur2.pdf'),
-                                         os.path.join(dirname,'mur2.xdv'),                                         
-                                         ], dirname)
-        print(error)
-        
-        
+            if error is None:
+                # make the actuall pdf
+                if os.path.isfile(os.path.join(dirname,'mur2.xdv')):
+                    result, error = run_os_command(['/usr/local/texlive/2020/bin/x86_64-linux/xdvipdfmx',
+                                                    "-o", os.path.join(dirname, 'mur2.pdf'),
+                                                    os.path.join(dirname, 'mur2.xdv'),
+                                                    ], dirname)
         
     return dirname, error
 

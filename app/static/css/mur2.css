@@ -322,8 +322,7 @@ table {
 }
 
 iframe {
-    width: 100%;
-    height: auto;
+    width: 90%;
     border: unset;
     border-left: solid 1px #c62641;
     overflow: hidden; 

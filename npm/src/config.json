@@ -1,5 +1,8 @@
 {
-    "production": {
-         "CSL_DIR": "/Mur2/Git/mur2/npm/src/csl/"
-    }    
+  "test": {
+    "CSL_DIR": "/Mur2/Git/mur2/npm/src/csl/"
+  },
+  "production": {
+         "CSL_DIR": "/home/mur2/npm/src/csl/"
+  }
 }

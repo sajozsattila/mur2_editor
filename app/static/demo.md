@@ -1,47 +1,146 @@
+# Overview of the μr² editor
+
+The [μr² editor](https://mur2.co.uk/editor) an easy to use, a versatile and comprehensive text editor for academic writing.
+
+Reasons to try:
+
++ Complicated tables: row and column merge, cells in multiple lines, multiple tbody  [Example](#tables)
++ Collaborative *real-time* editing. [Example](#collaborat).
++ Citation and Bibliography support.  [Example](#bib)
++ Comments, Editor notes [Example](#editorial)
++ Fully supports LaTeX math input as SVG output. It means you can use the output without Javascript, for example on Medium.com. [Example](#math)
++ The user interface is minimal, helping to focus on what you are writing
++ Easily export your document to PDF, ePuB, LaTeX, HTML and Microsoft Word
++ Alternatively, publish your work directly to Wordpress.com, Medium.com or on our page
++ It is fast; the simple formatting saves a significant amount of time over other word processors
++ It is easy to learn; it uses Markdown syntax, which is so simple that one can barely call it “syntax”
 
 
-# Why the μr² editor?
-## Designed for long-form
+Most academic articles are the result of shared effort by multiple Writers. To help Writers work together, the μr² supports collaborative real-time editing. Any registered user is welcome to work on your document and you will be able to edit it simultaneously.
 
-The aim of this project to provide a lightweight online editor for long-form bloggers, journalists and academic writers by clearly separating the content and the format of your document.
+# Examples
 
-The allows the writer to focus on the “_what_”, the creative part of the work, rather than the “_how_” is it going to look on the webpage or final paper. The μr² creates a clean, simple and distraction-free writing environment for when you need to focus on your words:
 
- ![μr² in focus mode](https://mur2.co.uk/_uploads/photos/1/mur2_focuse_mode_en.png) 
+## Tables {#tables}
 
-## Markdown and more
+Row and columns merge, with multiple tbody:
 
-What is Markdown? Markdown is a plain text formatting syntax aimed at making writing easy. The philosophy behind it is that documents should be readable without confusing tags, but still allow for text modifiers such as lists, bold, italics to be added. It is a great alternative to WYSIWYG (what you see is what you get) editors.^[Like Microsoft Word, Apple’s Pages or Google Docs]
+|               |          Grouping             ||         Grouping 2         ||  Not Grouped    |
+| First Header  | Second Header | Third Header   | Forth Header | Fifth Header | Sixth Header    |
+| ------------- | :-----------: | -------------: | :----------: | :----------: | --------------- |
+| Tall Cell     |          *Long Cell*          ||         *Long Long Cell*                    |||
+| ^^            |   **Bold**    | 1. first item  | *Italic*     | 3. third item | + first point  |\
+| ^^            |               | 1. second item |              | 1. forth item | + second point |
 
-Here’s a quick example: to emphasize words using Markdown enclose them in * (asterisks). So, *\*emphasize word\** would look like *emphasize word* in the live preview.
+| New section   |     More      |         Data   | ... - -- --- |||
+| And more      | With an escaped \|          || "Try 'quotes' in quotes "         |||
+[Compicated table]
 
-Why should I try Markdown?:
-+ It's easy to learn; the syntax is so easy it can barely be called “syntax”
-+ It’s fast; the simple formatting saves significant amounts of time over using a word processor or WYSIWYG editor
-+ It’s portable; your documents are cross-platform by nature. Edit them in any text-capable application on any operating system. Transporting files does not require zipping or archiving as the file size is very small 
-+ It’s futureproof; for as long as plain text is the standard, Markdown will be usable by modern programs. Compare this to Microsoft (r) Word, which has 8 filetypes. Keeping things plain text ensures it will never be outdated (the software doesn’t need to update to keep up with the format).
+## Mathematical expressions {#math}
 
-But that's not everything. The μr² is more than a basic Markdown editor. There's also a “Live preview” in the editor to see instant results, a menu containing common writing functions and a Markdown cheatsheet.
+The μr² renders mathematics from LaTeX expressions inside your markdown file. You can use inline:  $$ \mu r^2 $$, block:
 
-## Mathematical expressions in $$\mu r^2$$
+$$ \text{Bayes' theorem: } P(A\mid B) = \frac{P(B \mid A) P(A)}{P(B)} $$ 
 
-Do you want a block formatted mathematical expression which is automatically numbered and linkable? [Here](#eq:1) you are:
-$$ \text{Euler's identity: } e^{i \pi } + 1 = 0 $$
+Or numbered and [linked](#eq:1) blocks:
 
-It is a simple task in μr² but in most editors it would not be possible or take multiple steps to achieve. In μr² just write the expression:
+$$ \text{Euler's identity: } e^{i \pi } + 1 = 0 $${#eq:1}
+
+The output is rendered as SVG images, this means you can use them everywhere, even when you have no JavaScript. 
+
+## Citations and Bibliography {#bib}
+
+The citations are very simple: this is a citation [@knuthwebsite], and another one with page info  [@einstein{p. 900}], one with a prefix [@knuthfa{See}{chapter 1.2}]. The bibliography information you can write in standard [BibLaTeX](https://github.com/plk/biblatex/) format:
+
+
 ```
-$$ \text{Euler's identity: } e^{i \pi } + 1 = 0 $$
+@article{einstein,
+    author =       "Albert Einstein",
+    title =        "{Zur Elektrodynamik bewegter K{\"o}rper}. ({German})
+    [{On} the electrodynamics of moving bodies]",
+    journal =      "Annalen der Physik",
+    volume =       "322",
+    number =       "10",
+    pages =        "891--921",
+    year =         "1905",
+    DOI =          "http://dx.doi.org/10.1002/andp.19053221004",
+    keywords =     "physics"
+}
 ```
-As easy as that. Of course, you can write inline math code also: $$ \mu r^2 $$, even in the headers, as above.
 
-## Publish
-Your work is finished and it's time to publish. At the moment you are definitely reading one of the published versions of this document. Probably the [original post](https://mur2.co.uk/reader/18), on  Wordpress or on Medium republishing. In μr² you can post directly onto these platforms. Maybe you want to publish in an Academic Journal and need [LaTeX]()?^[Lot of Academic Journals are happy to receive your paper in LaTeX. You can see a selection of them [here](https://fr.overleaf.com/latex/templates/tagged/academic-journal). ]  All of these methods are as easy as creating a [PDF]() or an [ePUB](): one-click.
+And you can choose [Citation Style Language](https://citationstyles.org) styles to render them, for example, you can use APA:
 
-## Internationalization and Localization
-We are different and proud. Not only do we speak different languages but we also think differently about beauty. A big part of μr² is to translate and format the text in the correct way. This is just the beginning the all frontend fully supporting translation but there are automatic localisations in the Markdown processing. One example is the quotation mark.
+![APA^[The 6th edition.] formatted citations](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.47.51.png)
 
-Quotation marks take a variety of forms in different languages. In American writing, quotation marks are normally the double kind on a primary level. On the μr² we follow this marking style on the Markdown input. However, the rendered output is localised. For example in Hungarian, the output quotations will be rendered as „ and ”.
+Or IEEE:
 
-If you publish work on the μr² server, there is more localisation happening. When a reader opens a post, the server loads the best display settings for the Article language meaning different fonts, paragraph indents etc...
+![IEEE formatted citations](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.48.15.png)
 
-At μr² we also take care of the PDF, ePUB and LaTeX localization. In these files all of the keywords^[Like Abstract, Table, Picture etc., which exact section of the document.] will be translated to the language of the document. It also loads the best typographical rules for the language.
+The Bibliography will be automatically included at the end of the generated output, like for the above example in IEEE style:
+
+![IEEE formatted Bibliography](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.53.06.png)
+
+## Collaborative real-time editing {#collaborat}
+
+With μr², you can share collaborative documents, thanks to the synchronization mechanism.  The collaborating is *real-time*, so there is no merge mechanism. Simple multiple writers can work on the same document at the same time. 
+For a recorded example check out the bellow video:
+
+<iframe width="560" height="600" src="https://www.youtube.com/embed/hAq17feU1SQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Editorial changes {#editorial}
+
+If multiple people are working on the same document, track changes are necessary. This is not part of the standard Markdown but it is especially useful. The μr² editor uses [CriticMarkup](http://criticmarkup.com) syntax for this. It is very easy, just switch on in the {==toolbar==}. 
+{>>You can use it for comments also.<<}
+
+# Some details
+
+For detailed usage of the editor please [read our manual](https://mur2.co.uk/editormanual). 
+
+## Why Markdown?
+Markdown uses a plain text formatting syntax aimed at making writing easier. The philosophy behind it; a document should be readable without tags everywhere but still be able to add text modifiers such as lists, bold text and italics quickly. It's an alternative to WYSIWYG (what you see is what you get) editors.^[Like Microsoft Word, Apple’s Pages or Google Docs]
+
+Here’s a quick example of how to emphasize words with Markdown, you simply enclose them in * (asterisks). So, \*emphasize word* would look like *emphasize word* in the final document.
+
+We also help if you are new to markdown or can't remember any of the syntaxes. You can use the toolbar controls within the editor or open up the Markdown cheatsheet in the menu.
+
+## Why Javascript?
+There is usually a tradeoff between security and usability with two general approaches:
+
++ The data in digital publications are stored on a remote server and delivered over the internet via a web browser. Is this secure? At μr² we say that it isn't and we are not just referring to 'man-in-the-middle' attacks. If your provider goes offline, all of your work will be lost. It is useable?  Yes, you can access your data from anywhere with an internet connection.
++ Download and install the platform locally. It is secure? Yes, it is more secure than the previous option, however, you need to install the platform on every device.
+
+Using Javascript helps μr² to better answer these questions. The editor can only be accessed via HTTPS (secure communication over a computer network) from anywhere with an internet connection, so you do not need to install anything.  However, your work is stored locally.  
+
+## Academic writing and publishing
+We aim to support academic quality writing which is a huge task that very few publication platforms offer.  We support LaTeX type mathematical input, footnotes, cross-reference, equation numbering, citations and bibliography and editorial changes to name a few.
+
+In the  μr² editor, you can create HTML, PDF, ePUB, LaTeX or Microsoft Word with one click. You can also directly publish your document in [Wordpress.com](https://wordpress.com) or [Medium](https://medium.com). If you don't have to place to publish it, the project has a free to use [webpage](https://mur2.co.uk) where work can publish.  There we also provide extra features for registered users. 
+
+## How you can help?
+If you would like to help, there is plenty of things to do. The most simple one: use the editor and if you find some error or you just have a good idea, do not keep it for yourself. 
+If you can program on JavaScript or Python you can collaborate in the development also. I am not a frontend developer, so I am sure there is plenty of place for improvement there. Also, a lot of tests is waiting to be written.  
+I am also looking for translators of the frontend. For this do not need any IT knowledge. If you speak English and any other language just have a look a messages.po files on the [Gihub](https://github.com/sajozsattila/mur2_editor/tree/master/app/translations).   
+
+# Thanks
+
+This editor based on multiple open source project, we would like to say many thanks to them:
+
++ [markdown-it](https://github.com/markdown-it/markdown-it)
+  + [markdown-it-attrs](https://github.com/arve0/markdown-it-attrs)
+  + [markdown-it-cjk-breaks](https://github.com/markdown-it/markdown-it-cjk-breaks)
+  + [markdown-it-criticmarkup](https://github.com/GerHobbelt/markdown-it-criticmarkup)
+  + [markdown-it-footnote](https://github.com//markdown-it/markdown-it-footnote)
+  + [markdown-it-implicit-figures](https://github.com/arve0/markdown-it-implicit-figures)
+  + [markdown-it-ins](https://github.com//markdown-it/markdown-it-ins )
+  + [markdown-it-multimd-table](https://github.com/RedBug312/markdown-it-multimd-table)
+  + [markdown-it-sub](https://github.com//markdown-it/markdown-it-sub)
+  + [markdown-it-bibliography](https://github.com/DerDrodt/markdown-it-bibliography)
++ [UpMath](https://github.com/parpalak/upmath.me)
++ [pandoc](https://pandoc.org/)
++ [Convergence](https://github.com/convergencelabs/)
++ [CriticMarkup](http://criticmarkup.com/)
++ [markdown2latex](https://github.com/rufuspollock/markdown2latex)
++ [tex4ebook](https://github.com/michal-h21/tex4ebook)
++ [SweetAlert](https://sweetalert.js.org/)
++ [FileSaver.js](https://github.com/eligrey/FileSaver.js)
++ [Draggabilly](https://draggabilly.desandro.com)

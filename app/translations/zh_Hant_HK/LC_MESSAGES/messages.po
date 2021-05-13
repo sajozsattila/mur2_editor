@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-30 12:01+0000\n"
+"POT-Creation-Date: 2021-05-13 08:21+0000\n"
 "PO-Revision-Date: 2020-05-29 06:45+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: app/__init__.py:27
+#: app/__init__.py:25
 msgid "Please login to access this page."
 msgstr ""
 
@@ -38,13 +38,13 @@ msgstr "密碼"
 msgid "Remember Me"
 msgstr "記住我"
 
-#: app/auth/forms.py:12 app/auth/routes.py:58 app/templates/auth/login.html:8
+#: app/auth/forms.py:12 app/auth/routes.py:61 app/templates/auth/login.html:8
 #: app/templates/base_menu.html:20
 msgid "Sign In"
 msgstr "登錄"
 
-#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:78
-#: app/main/forms.py:102 app/templates/registerjournal.html:15
+#: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:75
+#: app/main/forms.py:99 app/templates/registerjournal.html:15
 msgid "Email"
 msgstr "電郵地址"
 
@@ -52,7 +52,7 @@ msgstr "電郵地址"
 msgid "Repeat Password"
 msgstr "確定密碼"
 
-#: app/auth/forms.py:22 app/auth/routes.py:100
+#: app/auth/forms.py:22 app/auth/routes.py:104
 msgid "Register"
 msgstr "註冊"
 
@@ -60,7 +60,7 @@ msgstr "註冊"
 msgid "Please choose a different username."
 msgstr ""
 
-#: app/auth/forms.py:32 app/main/forms.py:90 app/main/forms.py:128
+#: app/auth/forms.py:32 app/main/forms.py:87 app/main/forms.py:125
 msgid "Please use a different email address."
 msgstr "請使用別的電郵地址"
 
@@ -68,97 +68,106 @@ msgstr "請使用別的電郵地址"
 msgid "Request Password Reset"
 msgstr "申請密碼重置"
 
-#: app/auth/routes.py:32
+#: app/auth/routes.py:34
 msgid "Invalid username or password."
 msgstr ""
 
-#: app/auth/routes.py:98
+#: app/auth/routes.py:58
+msgid "There was problem with the user creation in RestAPI. "
+msgstr ""
+
+#: app/auth/routes.py:102
 msgid "Congratulations, you are now registered!"
 msgstr ""
 
-#: app/auth/routes.py:114
+#: app/auth/routes.py:118
 msgid ""
 "Check your email (including junk) for instructions on how to reset your "
 "password."
 msgstr ""
 
-#: app/auth/routes.py:117 app/templates/auth/reset_password_request.html:5
+#: app/auth/routes.py:121 app/templates/auth/reset_password_request.html:5
 msgid "Reset Password"
 msgstr "重置密碼"
 
-#: app/auth/routes.py:131
+#: app/auth/routes.py:135
 msgid "Your password has been reset."
 msgstr "密碼已重置"
 
-#: app/editor/forms.py:15
+#: app/editor/forms.py:14
 msgid "Images only!"
 msgstr ""
 
-#: app/editor/forms.py:15
+#: app/editor/forms.py:14
 msgid "File is empty!"
 msgstr ""
 
-#: app/editor/forms.py:17
+#: app/editor/forms.py:16
 msgid "Upload"
 msgstr ""
 
-#: app/editor/routes.py:94
+#: app/editor/routes.py:92
 msgid "editor"
 msgstr "編輯器"
 
-#: app/editor/routes.py:269
+#: app/editor/routes.py:281
 msgid "Can't create Media directory for "
 msgstr ""
 
-#: app/editor/routes.py:275
+#: app/editor/routes.py:288
 msgid "No more disk space quota for "
 msgstr "空間配額不足"
 
-#: app/editor/routes.py:280
+#: app/editor/routes.py:293
 msgid "Cannot save image!"
 msgstr ""
 
-#: app/editor/utils.py:424
+#: app/editor/routes.py:293
+msgid "Reason"
+msgstr ""
+
+#: app/editor/utils.py:186 app/templates/editor.html:225
+#: app/templates/editor.html:339
 msgid "Bibliography"
 msgstr ""
 
-#: app/main/forms.py:76 app/main/forms.py:100 app/main/utils.py:70
+#: app/main/forms.py:73 app/main/forms.py:97 app/main/utils.py:70
 #: app/templates/connections.html:99 app/templates/connections.html:100
 #: app/templates/connections.html:109 app/templates/discovery.html:64
 #: app/templates/discovery.html:91 app/templates/editor.html:74
 msgid "Title"
 msgstr "標題"
 
-#: app/main/forms.py:77 app/main/forms.py:101
+#: app/main/forms.py:74 app/main/forms.py:98
 #: app/templates/registerjournal.html:29
 msgid "About"
 msgstr ""
 
-#: app/main/forms.py:79 app/main/forms.py:103 app/main/utils.py:70
+#: app/main/forms.py:76 app/main/forms.py:100 app/main/utils.py:70
 msgid "Address"
 msgstr ""
 
-#: app/main/forms.py:85 app/main/forms.py:122
+#: app/main/forms.py:82 app/main/forms.py:119
 msgid "Please use a different title."
 msgstr ""
 
-#: app/main/forms.py:95
+#: app/main/forms.py:92
 msgid "Please use a different URL."
 msgstr ""
 
-#: app/main/forms.py:104
+#: app/main/forms.py:101
 msgid "Submit"
 msgstr ""
 
-#: app/main/forms.py:134
+#: app/main/forms.py:131
 msgid "Please use a different address."
 msgstr ""
 
-#: app/main/forms.py:166 app/templates/read2.html:122
+#: app/main/forms.py:163 app/templates/read2.html:122
 msgid "email"
 msgstr ""
 
-#: app/main/forms.py:172
+#: app/main/forms.py:169
 msgid "Action should be \"on\" or \"off\"!"
 msgstr ""
 
@@ -170,23 +179,23 @@ msgstr ""
 msgid "Register Journal"
 msgstr ""
 
-#: app/main/routes.py:324
+#: app/main/routes.py:325
 msgid "Reviewed Article do not exist!"
 msgstr ""
 
-#: app/main/routes.py:383
+#: app/main/routes.py:384
 msgid "The author already has Article with this title!"
 msgstr ""
 
-#: app/main/routes.py:578
+#: app/main/routes.py:583
 msgid "Object type should be 'article', 'file' or 'user'!"
 msgstr ""
 
-#: app/main/routes.py:589
+#: app/main/routes.py:594
 msgid "User not permitted to delete "
 msgstr ""
 
-#: app/main/routes.py:589 app/templates/connections.html:46
+#: app/main/routes.py:594 app/templates/connections.html:46
 #: app/templates/connections.html:88 app/templates/discovery.html:28
 #: app/templates/discovery.html:57 app/templates/editor.html:91
 #: app/templates/editor.html:93 app/templates/editor.html:103
@@ -194,79 +203,79 @@ msgstr ""
 msgid "Article"
 msgstr "文章"
 
-#: app/main/routes.py:660
+#: app/main/routes.py:665
 msgid "User no right to delete this"
 msgstr "用戶無權刪除此文章"
 
-#: app/main/routes.py:660
+#: app/main/routes.py:665
 msgid "File"
 msgstr "文件"
 
-#: app/main/routes.py:698 app/main/routes.py:723 app/main/routes.py:1031
+#: app/main/routes.py:703 app/main/routes.py:728 app/main/routes.py:1036
 msgid "Your changes have been saved."
 msgstr "改變已保存"
 
-#: app/main/routes.py:859
+#: app/main/routes.py:864
 msgid "Article already confimed."
 msgstr ""
 
-#: app/main/routes.py:885
+#: app/main/routes.py:890
 msgid "Can't confirm Relationship. "
 msgstr ""
 
-#: app/main/routes.py:904
+#: app/main/routes.py:909
 msgid "User not permitted to confirm publishing."
 msgstr ""
 
-#: app/main/routes.py:1002 app/main/routes.py:1355 app/main/routes.py:1362
+#: app/main/routes.py:1007 app/main/routes.py:1360 app/main/routes.py:1367
 msgid "User is not the Author"
 msgstr ""
 
-#: app/main/routes.py:1007
+#: app/main/routes.py:1012
 msgid "The "
 msgstr ""
 
-#: app/main/routes.py:1007
+#: app/main/routes.py:1012
 msgid " Journal does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1012
+#: app/main/routes.py:1017
 msgid "Article has not been issued."
 msgstr ""
 
-#: app/main/routes.py:1044 app/main/routes.py:1289 app/main/routes.py:1303
+#: app/main/routes.py:1049 app/main/routes.py:1294 app/main/routes.py:1308
 msgid "Not a valid objecttype!"
 msgstr ""
 
-#: app/main/routes.py:1078
+#: app/main/routes.py:1083
 msgid "User cannot download this Article!"
 msgstr ""
 
-#: app/main/routes.py:1113
+#: app/main/routes.py:1118
 msgid "Facebook account does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1160
+#: app/main/routes.py:1165
 msgid "User does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1165
+#: app/main/routes.py:1170
 msgid "Article does not exist!"
 msgstr ""
 
-#: app/main/routes.py:1176
+#: app/main/routes.py:1181
 msgid "The action should be 'add' or 'remove'!"
 msgstr ""
 
-#: app/main/routes.py:1181
+#: app/main/routes.py:1186
 msgid "You cannot add or remove yourself!"
 msgstr ""
 
-#: app/main/routes.py:1188
+#: app/main/routes.py:1193
 msgid "The author is already a writer of this Article!"
 msgstr ""
 
-#: app/main/routes.py:1453
+#: app/main/routes.py:1458
 msgid "Not a valid search address."
 msgstr ""
 
@@ -337,32 +346,33 @@ msgstr ""
 msgid "number_of_article"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:433 app/static/js/mur2_editor.js:444
-#: app/static/js/mur2_editor.js:484 app/static/js/mur2_editor.js:497
-#: app/static/js/mur2_editor.min.js:1 app/static/js/mur2_editor_utils.js:199
-#: app/static/js/mur2_editor_utils.js:372
-#: app/static/js/mur2_editor_utils.js:459
-#: app/static/js/mur2_editor_utils.js:512
-#: app/static/js/mur2_editor_utils.js:710
-#: app/static/js/mur2_editor_utils.js:734
+#: app/static/js/mur2_editor.js:435 app/static/js/mur2_editor.js:446
+#: app/static/js/mur2_editor.js:486 app/static/js/mur2_editor.min.js:1
+#: app/static/js/mur2_editor_utils.js:199
+#: app/static/js/mur2_editor_utils.js:375
+#: app/static/js/mur2_editor_utils.js:462
+#: app/static/js/mur2_editor_utils.js:516
+#: app/static/js/mur2_editor_utils.js:575
+#: app/static/js/mur2_editor_utils.js:774
+#: app/static/js/mur2_editor_utils.js:798
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: "
 msgstr ""
 
-#: app/static/js/mur2_editor.js:444 app/static/js/mur2_editor.min.js:1
+#: app/static/js/mur2_editor.js:446 app/static/js/mur2_editor.min.js:1
 msgid "Not supported image format!"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:497 app/static/js/mur2_editor.min.js:1
+#: app/static/js/mur2_editor.js:486 app/static/js/mur2_editor.min.js:1
 msgid "Not supported file format!"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:628 app/static/js/mur2_editor.min.js:1
+#: app/static/js/mur2_editor.js:627 app/static/js/mur2_editor.min.js:1
 #: app/templates/read2.html:82
 msgid "Full text"
 msgstr ""
 
-#: app/static/js/mur2_editor.js:688 app/static/js/mur2_editor.min.js:1
+#: app/static/js/mur2_editor.js:708 app/static/js/mur2_editor.min.js:1
 msgid "Please enter a URL for image."
 msgstr ""
 
@@ -376,49 +386,49 @@ msgstr ""
 msgid "No field selected!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:262
+#: app/static/js/mur2_editor_utils.js:264
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "You can only save in Preview mode!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:277
+#: app/static/js/mur2_editor_utils.js:279
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Choose the Article which you are reviewing!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:282
+#: app/static/js/mur2_editor_utils.js:284
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Need to set the Standby!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:286
+#: app/static/js/mur2_editor_utils.js:288
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Standby should be between +100 and -100!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:340
+#: app/static/js/mur2_editor_utils.js:343
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Saved!"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:376
-#: app/static/js/mur2_editor_utils.js:394
-#: app/static/js/mur2_editor_utils.js:463
+#: app/static/js/mur2_editor_utils.js:379
+#: app/static/js/mur2_editor_utils.js:397
+#: app/static/js/mur2_editor_utils.js:466
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Published on "
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:406
+#: app/static/js/mur2_editor_utils.js:409
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Error: You are not logged into Wordpress.com"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:490
+#: app/static/js/mur2_editor_utils.js:548
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "Working..."
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:562
+#: app/static/js/mur2_editor_utils.js:626
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid ""
 "We recommend downloading the PDF version and transform it with the Adobe "
@@ -427,18 +437,18 @@ msgid ""
 "happy to generate ourselves also, if you wish."
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:564
+#: app/static/js/mur2_editor_utils.js:628
 #: app/static/js/mur2_editor_utils.min.js:1
 #, fuzzy
 msgid "Generate here"
 msgstr "生成ePUB"
 
-#: app/static/js/mur2_editor_utils.js:565
+#: app/static/js/mur2_editor_utils.js:629
 #: app/static/js/mur2_editor_utils.min.js:1
 msgid "I will do on Adobe"
 msgstr ""
 
-#: app/static/js/mur2_editor_utils.js:696
+#: app/static/js/mur2_editor_utils.js:760
 msgid "Error: The sum of the workshare is not 100!"
 msgstr ""
 
@@ -512,19 +522,19 @@ msgstr ""
 msgid "Browser"
 msgstr ""
 
-#: app/templates/base_menu.html:13
+#: app/templates/base_menu.html:13 app/templates/base_menu.html:18
 msgid "Editor"
 msgstr "編輯器"
 
-#: app/templates/base_menu.html:15
+#: app/templates/base_menu.html:14
 msgid "Profile"
 msgstr "用戶資料"
 
-#: app/templates/base_menu.html:16
+#: app/templates/base_menu.html:15
 msgid "Media"
 msgstr "媒體"
 
-#: app/templates/base_menu.html:17
+#: app/templates/base_menu.html:16
 msgid "Sign out"
 msgstr "退出"
 
@@ -571,7 +581,7 @@ msgid "Selected article: "
 msgstr ""
 
 #: app/templates/edit_journal.html:32 app/templates/edit_profile.html:49
-#: app/templates/editor.html:273 app/templates/test.html:66
+#: app/templates/editor.html:290 app/templates/test.html:66
 msgid "Save"
 msgstr "保存"
 
@@ -745,102 +755,116 @@ msgstr ""
 msgid "Authors"
 msgstr ""
 
-#: app/templates/editor.html:245 app/templates/test.html:45
+#: app/templates/editor.html:213
+msgid "Bibliography style"
+msgstr ""
+
+#: app/templates/editor.html:221
+#, fuzzy
+msgid "Upload BibLaTeX file"
+msgstr "上傳文件"
+
+#: app/templates/editor.html:223
+#, fuzzy
+msgid "Upload BibTeX file"
+msgstr "上傳文件"
+
+#: app/templates/editor.html:262 app/templates/test.html:45
 msgid "Toolbar"
 msgstr "工具欄"
 
-#: app/templates/editor.html:250 app/templates/editor.html:337
+#: app/templates/editor.html:267 app/templates/editor.html:357
 #: app/templates/test.html:111
 msgid "Show Side Menu"
 msgstr ""
 
-#: app/templates/editor.html:261 app/templates/test.html:55
+#: app/templates/editor.html:278 app/templates/test.html:55
 msgid "Close Toolbar"
 msgstr "關閉工具欄"
 
-#: app/templates/editor.html:265 app/templates/test.html:59
+#: app/templates/editor.html:282 app/templates/test.html:59
 msgid "Upload file"
 msgstr "上傳文件"
 
-#: app/templates/editor.html:269 app/templates/test.html:63
+#: app/templates/editor.html:286 app/templates/test.html:63
 msgid "Download result"
 msgstr "下載文件"
 
-#: app/templates/editor.html:277
+#: app/templates/editor.html:294
 msgid "Hide input"
 msgstr "隱藏輸入"
 
-#: app/templates/editor.html:280
+#: app/templates/editor.html:297
 msgid "Document settings"
 msgstr ""
 
-#: app/templates/editor.html:283 app/templates/test.html:72
+#: app/templates/editor.html:300 app/templates/test.html:72
 msgid "Hide preview"
 msgstr "隱藏預覽"
 
-#: app/templates/editor.html:286 app/templates/test.html:69
+#: app/templates/editor.html:303 app/templates/test.html:69
 msgid "Syntax highlighting"
 msgstr "語法凸顯"
 
-#: app/templates/editor.html:289 app/templates/test.html:78
+#: app/templates/editor.html:306 app/templates/test.html:78
 msgid "Head"
 msgstr "標題"
 
-#: app/templates/editor.html:292 app/templates/md_cheatsheet.html:8
+#: app/templates/editor.html:309 app/templates/md_cheatsheet.html:8
 msgid "Emphasize"
 msgstr "強調"
 
-#: app/templates/editor.html:295 app/templates/md_cheatsheet.html:10
+#: app/templates/editor.html:312 app/templates/md_cheatsheet.html:10
 #: app/templates/test.html:84
 msgid "Strong"
 msgstr "黑體"
 
-#: app/templates/editor.html:298
+#: app/templates/editor.html:315
 msgid "Picture"
 msgstr "圖片"
 
-#: app/templates/editor.html:301 app/templates/test.html:90
+#: app/templates/editor.html:318 app/templates/test.html:90
 msgid "Link"
 msgstr "鏈接"
 
-#: app/templates/editor.html:304 app/templates/test.html:93
+#: app/templates/editor.html:321 app/templates/test.html:93
 msgid "List"
 msgstr "列表"
 
-#: app/templates/editor.html:307 app/templates/test.html:96
+#: app/templates/editor.html:324 app/templates/test.html:96
 msgid "Numbered list"
 msgstr "標號列表"
 
-#: app/templates/editor.html:310 app/templates/test.html:99
+#: app/templates/editor.html:327 app/templates/test.html:99
 msgid "Footnote"
 msgstr "註腳"
 
-#: app/templates/editor.html:313 app/templates/test.html:102
+#: app/templates/editor.html:330 app/templates/test.html:102
 msgid "Table"
 msgstr "表格"
 
-#: app/templates/editor.html:316 app/templates/md_cheatsheet.html:34
+#: app/templates/editor.html:333 app/templates/md_cheatsheet.html:34
 #: app/templates/test.html:105
 msgid "Code"
 msgstr "代碼"
 
-#: app/templates/editor.html:319
+#: app/templates/editor.html:336
 msgid "Editorial changes"
 msgstr ""
 
-#: app/templates/editor.html:322
-msgid "Add Bibliography "
+#: app/templates/editor.html:342
+msgid "Render on server"
 msgstr ""
 
-#: app/templates/editor.html:325 app/templates/test.html:108
+#: app/templates/editor.html:345 app/templates/test.html:108
 msgid "LaTeX code"
 msgstr "LaTex碼"
 
-#: app/templates/editor.html:328
-msgid "Chat meg arrived"
+#: app/templates/editor.html:348
+msgid "Chat message arrived"
 msgstr ""
 
-#: app/templates/editor.html:332
+#: app/templates/editor.html:352
 msgid "Embedding"
 msgstr ""
 
@@ -1537,5 +1561,11 @@ msgstr "已通知網站管理員。抱歉給您帶來的不便"
 #~ "t,n,s=e.pos,o=e.src.charCodeAt(s);if(r)return!1;if(95!==o&&42!==o)return!1;for(n=e.scanDelims(e.pos,42===o),t=0;t<n.length;t++)e.push(\"text\",\"\",0).content=String.fromCharCode(o),e.delimiters.push({marker:o,length:n.length,jump:t,token:e.tokens.length-1,end:-1,open:n.can_open,close:n.can_close});return"
 #~ " e.pos+=n.length,!0},postProcess:function(e){var "
 #~ "r,t=e.tokens_meta,n=e.tokens_meta.length;for(Pe(e,e.delimiters),r=0;r<n;r++)t[r]&&t[r].delimiters&&Pe(e,t[r].delimiters)}},Ue=E.normalizeReference,Ve=E.isSpace,Ze=E.normalizeReference,Ge=E.isSpace,$e=/^([a-zA-Z0-9.!#$%&'*+/=?^_"
+#~ msgstr ""
+
+#~ msgid "Add Bibliography "
+#~ msgstr ""
+
+#~ msgid "Chat meg arrived"
 #~ msgstr ""
 

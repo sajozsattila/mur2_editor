@@ -50,7 +50,8 @@ def before_request():
         db.session.commit()
 
     g.locale = get_locale()  # for international languages
-
+    print(request.accept_languages)
+    print(g.locale)
 
 # markdown editor 
 def fixeditor(editortype, articleid):
@@ -89,6 +90,9 @@ def fixeditor(editortype, articleid):
         with current_app.open_resource("static/demo.md", 'r') as file:
             demo = file.read()
         article.markdown = demo
+        with current_app.open_resource("static/demo.bib", 'r') as file:
+            demobib = file.read()
+        article.bibtex = demobib
         article.title = "μr² " + _l('editor')
 
     # get authors details
@@ -395,7 +399,7 @@ def exportdata():
 
             elif destination == 'latex':
                 dirname, error = make_latex(mdtxt, article_title, article_abstract,
-                                            language, author, bibtex=bibtex, extractmedia=False)
+                                            language, author, bibstyle=bibstyle, bibtex=bibtex, extractmedia=False)
                 if error is None:
                     return send_file(os.path.join(dirname, 'mur2.tex'))
                 else:
