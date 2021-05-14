@@ -221,7 +221,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                     if bibstyle is None:
                         file.write('\ncsl: '+current_app.config['CSL_DIR']+'apa-6th-edition.csl')
                     else:
-                        file.write(f"\ncsl: "+current_app.config['CSL_DIR']+{bibstyle}+".csl")
+                        file.write(f"\ncsl: "+current_app.config['CSL_DIR']+f"{bibstyle}.csl")
                 
                 if language == "zh-CN" or language == "zh-TW":
                     file.write("\nmainfont: Noto Serif CJK SC"+
