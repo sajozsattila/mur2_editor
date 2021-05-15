@@ -484,7 +484,7 @@ async function render_on_server() {
     // get what is the selected style
     var bibsyle = document.getElementById("bibstyle_select").value;
     // default style
-    if (bibsyle === "") {bibsyle='apa-6th-edition' };    
+    if (bibsyle === "") {bibsyle='apa' };
     // get bibilography
     var bib = document.getElementById("bib-source").value;
     // language

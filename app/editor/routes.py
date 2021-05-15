@@ -63,6 +63,8 @@ def fixeditor(editortype, articleid):
         with current_app.open_resource("static/manual.md", 'r') as file:
             demo = file.read()
         article.markdown = demo
+        article.title = "μr² -- User Manual"
+        article.abstract = "The main user manual for the μr² Markdown editor."
     elif editortype == "articleeditor":
         # if it is not a new article
         if int(articleid) != -1:
@@ -174,7 +176,7 @@ def fixeditor(editortype, articleid):
     versions = ArticleArchive.query.filter_by(article_id=int(articleid)).order_by(
         ArticleArchive.timestamp.desc()).add_columns(ArticleArchive.version, ArticleArchive.timestamp).all()
 
-    # jwt for convegrence 
+    # jwt for convegrence
     cjwt = None
     if int(articleid) > 0:
         # private key for convergence

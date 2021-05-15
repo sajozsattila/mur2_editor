@@ -1,19 +1,5 @@
 
 
-<span id="article_title">
-
-Editor Manual
-
-</span>
-
-
-<span id="article_abstract">
-
-The manual for the μr² Markdown editor.
-
-</span>
-
-
 # Table of content
 
 + [Guide for μr² editor](#mur2)
@@ -129,38 +115,45 @@ Comments: This is a test.{>>What is a test for?<<}
 
 These marks are hidden by default in the Preview side. If you would like to see them, click on the <span class="fontawsome  fas fa-i-cursor" style="display: unset;"></span> symbol on the toolbar. These marks can be accepted or rejected. In export file generation it is assumed that the writers are aware of these marks in the document and just leave those he accepted unindicated. In the exported file, all of these marks are in "accept" status and will appear as in the Preview side when the <span class="fontawsome  fas fa-i-cursor" style="display: unset;"></span> is switched off.
 
-### Bibliography {#bib}
+## Citations and Bibliography {#bib}
 
-The μr² editor uses [BibTeX ](http://www.bibtex.org/) file to manage the bibliography. BibTeX is a widely used bibliography management tool that makes it easy to cite sources in a consistent manner by separating bibliographic information from its presentation. Similarly, the separation of content and presentation/style is supported by Markdown and LaTeX itself. With BibTeX, the bibliography entries are kept in a separate file and then imported into the main document. 
-The first step is to create a bib. file with your Bibliography entities. This file is a standard BibTeX file. For example, we can add the [Markdown Guide](https://www.markdownguide.org/getting-started/) like this:
+The citations are very simple: this is a citation [@knuthwebsite], and another one with page info  [@einstein{p. 900}], one with a prefix [@knuthfa{See}{chapter 1.2}]. 
+
+The bibliography information is stored in a separated field in the editor. To access click on the  <span class="fontawsome  fas fa-book" style="display: unset;"></span> in the toolbar. This will open for you the Bibliography settings: 
+
+![Bibliography settings](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-14_-_14.46.52.png)
+
+
+You can write in the "Bibliography" field your sources, in [BibLaTeX](https://github.com/plk/biblatex/) format, for example:
+
 
 ```
-@misc{whatm,
-    howpublished = {\url{https://www.markdownguide.org/getting-started/}},
-    title={Getting Started: 
-           An overview of Markdown, how it works, and what you can do with it.},
-    organization={The Markdown Guide}
+@article{einstein,
+    author =       "Albert Einstein",
+    title =        "{Zur Elektrodynamik bewegter K{\"o}rper}. ({German})
+    [{On} the electrodynamics of moving bodies]",
+    journal =      "Annalen der Physik",
+    volume =       "322",
+    number =       "10",
+    pages =        "891--921",
+    year =         "1905",
+    DOI =          "http://dx.doi.org/10.1002/andp.19053221004",
+    keywords =     "physics"
 }
 ```
 
-To add this file to your document, click on the <span class="fontawsome fas fa-book"></span> icon in the toolbar. Find the BibTex file on your computer and upload it. The μr² editor will render this file to HTML code and append it to the end of the Markdown code. For example, the entry above will appear like this:
+In the "Bibliography style" dropdown menu you can choose [Citation Style Language](https://citationstyles.org) styles to render them, for example, you can use APA:
 
-```
+![APA^[The 7th edition.] formatted citations](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.47.51.png)
 
-# Bibliography
+Or IEEE:
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-whatm" class="csl-entry" role="doc-biblioentry">
-<span>“Getting Started: An Overview of Markdown, How It Works, and What You Can Do with It.”</span> n.d. The Markdown Guide; <a href="https://www.markdownguide.org/getting-started/">https://www.markdownguide.org/getting-started/</a>.
-</div>
-</div>
-```
+![IEEE formatted citations](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.48.15.png)
 
-and be rendered in the Preview side like this:
+The Citation rendering is a heavy process, unfortunately, it is not possible to do on the client-side.  So to generate you Bibliography click on the <span class="fontawsome  fas fa-server" style="display: unset;"></span> item in the menu. This will render you Markdown on our server.
+The Bibliography will be automatically included a the end of the generated output, like for the above example in IEEE style:
 
-![](https://mur2.co.uk/_uploads/photos/1/mur_bib_1.png)
-
-These bibliography entries don't just appear at the end of the document, they can also be referred to from the main text. You can define a reference key in your BibTeX file, and after the rendering, you can use the `ref-<key>` form to link to the specific document.  For example, in the last part, we set the reference to `whatm` for the Markdown Guide, now we can refer to it as: [see. MG](#ref-whatm)
+![IEEE formatted Bibliography](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.53.06.png)
 
 
 ## Document settings {#docs}
@@ -281,7 +274,7 @@ ePUB is the most widely supported vendor-independent XML-based (as opposed to PD
 
 #### Microsoft Word
 
-Microsoft Word is a word-processor software launched in 1983 by the Microsoft Corporation. It has become the leading word processor for both Windows and Macintosh users since the 1990s. The Microsoft Word is a WYSIWG (What You See Is What You Get) editor, meaning that formatting tags were hidden^[Not like in Markdown or [LaTeX](#pdf).] and whatever a document looked like on a user’s computer screen, it was how it would look when printed—or at least semi-WYSIWYG, as screen fonts were not of the same quality as printer fonts.  There is a definite improvement over the years on the Microsoft Word math input, but honestly, it is still far from Markdown or [LaTeX](#pdf) comfort.
+Microsoft Word is a word-processor software launched in 1983 by the Microsoft Corporation. It has become the leading word processor for both Windows and Macintosh users since the 1990s. The Microsoft Word is a WYSIWG (What You See Is What You Get) editor, meaning that formatting tags were hidden^[Not like in Markdown or [LaTeX](#pdf).] and whatever a document looked like on a user’s computer screen, it was how it would look when printed—or at least semi-WYSIWYG, as screen fonts were not of the same quality as printer fonts.  There is a definite improvement over the years on the Microsoft Word math input, but honestly, it is still far from Markdown or [LaTeX](#pdf) comfort.{>> This needs to be rewritten in the way to sound positive. why? Because it looks like we telling somebody it is stupid to use World.<<}
 
 
 ##  Internationalization and Localization {#loc}
@@ -336,8 +329,7 @@ You can delete and Article by clicking on the <span class="fas fa-trash"></span>
 
 ### Collaborative real-time editing between Writers {#cor}
 
-If you are a registered user, you can share your document with another user. The first step is to [create and save a new document](#ca). After it is saved, you can share it with another user by [adding](#authors) him as Writer. Now you are ready to collaborate with others. The Article will appear in the new Author Profile page and you can start to work together. The collaborating is in real-time, so your documents will be synchronised continuously. Example: you will see when they are typing in. Saving is not needed. 
-
+If you are a registered user, you can share your document with another user. The first step is to [create and save a new document](#ca). After it is saved, you can share it with another user by [adding](#authors) him as Writer. Now you are ready to collaborate with others. The Article will appear in the new Author Profile page and you can start to work together. The collaborating is in real-time, so your documents will be synchronised continuously. Example: you will see when they are typing in. Saving is not needed. {>> Too many use the "Collaborative" in this section. <<}
 
 # Markdown {#markdown}
 
@@ -611,11 +603,5 @@ test.. test... test..... test?..... test!....
 "Smartypants, double quotes" and 'single quotes'
 
 
-# Bibliography
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-whatm" class="csl-entry" role="doc-biblioentry">
-<span>“Getting Started: An Overview of Markdown, How It Works, and What You Can Do with It.”</span> n.d. The Markdown Guide; <a href="https://www.markdownguide.org/getting-started/">https://www.markdownguide.org/getting-started/</a>.
-</div>
-</div>
 

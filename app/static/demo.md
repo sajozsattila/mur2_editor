@@ -68,9 +68,9 @@ The citations are very simple: this is a citation [@knuthwebsite], and another o
 }
 ```
 
-And you can choose [Citation Style Language](https://citationstyles.org) styles to render them, for example, you can use APA:
+You can choose [Citation Style Language](https://citationstyles.org) styles to render them, for example, you can use APA:
 
-![APA^[The 6th edition.] formatted citations](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.47.51.png)
+![APA^[The 7th edition.] formatted citations](https://mur2.co.uk/_uploads/photos/1/Kepernyofoto_2021-05-13_-_21.47.51.png)
 
 Or IEEE:
 
@@ -89,8 +89,11 @@ For a recorded example check out the bellow video:
 
 ## Editorial changes {#editorial}
 
-If multiple people are working on the same document, track changes are necessary. This is not part of the standard Markdown but it is especially useful. The μr² editor uses [CriticMarkup](http://criticmarkup.com) syntax for this. It is very easy, just switch on in the {==toolbar==}. 
-{>>You can use it for comments also.<<}
+If multiple people are working on the same document, track changes are necessary. 
+This is not part of the standard Markdown but it is especially useful. 
+The μr² editor uses [CriticMarkup](http://criticmarkup.com) syntax for this. 
+It is very easy, just switch on in the toolbar, and you can create {==highlights==},  
+{>>comments,<<} {++additions++}, {--deletions--} or {~~bad~>good~~} substitutation.
 
 # Some details
 
@@ -109,7 +112,8 @@ There is usually a tradeoff between security and usability with two general appr
 + The data in digital publications are stored on a remote server and delivered over the internet via a web browser. Is this secure? At μr² we say that it isn't and we are not just referring to 'man-in-the-middle' attacks. If your provider goes offline, all of your work will be lost. It is useable?  Yes, you can access your data from anywhere with an internet connection.
 + Download and install the platform locally. It is secure? Yes, it is more secure than the previous option, however, you need to install the platform on every device.
 
-Using Javascript helps μr² to better answer these questions. The editor can only be accessed via HTTPS (secure communication over a computer network) from anywhere with an internet connection, so you do not need to install anything.  However, your work is stored locally.  
+Using Javascript helps μr² to better answer these questions. The editor can only be accessed via HTTPS (secure communication over a computer network) from anywhere with an internet connection, so you do not need to install anything.  However, as it is a client-side technology, after the first load it can work even when you drop your connection in the meantime.^[Which is unfortunately common in our mobile World.] 
+However, your work can be stored *only* locally.^[But if you wish to store them online, and access them from everywhere. Currently, we have some space on the demo server, so after registration, you can store them there.]     
 
 ## Academic writing and publishing
 We aim to support academic quality writing which is a huge task that very few publication platforms offer.  We support LaTeX type mathematical input, footnotes, cross-reference, equation numbering, citations and bibliography and editorial changes to name a few.

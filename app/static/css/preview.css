@@ -14,9 +14,15 @@
     padding-left: var(--verticaldistance);
     display: flex;
     flex-direction: row;
+    max-width: 40rem;
+    text-indent: calc(-0.5 * var(--verticaldistance));
+}
+/* everything except div */
+.csl-entry *:not(div) {
+    display: contents;
 }
 .csl-left-margin {
-    margin-right: calc(0.5 * var(--verticaldistance));
+    margin-right: calc(1 * var(--verticaldistance));
 }
 
 #article_main figure img {

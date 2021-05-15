@@ -219,7 +219,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 # add settings to pandoc
                 if thereisbibtex:
                     if bibstyle is None:
-                        file.write('\ncsl: '+current_app.config['CSL_DIR']+'apa-6th-edition.csl')
+                        file.write('\ncsl: '+current_app.config['CSL_DIR']+'apa.csl')
                     else:
                         file.write(f"\ncsl: "+current_app.config['CSL_DIR']+f"{bibstyle}.csl")
                 
