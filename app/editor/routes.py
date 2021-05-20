@@ -38,6 +38,8 @@ import gjwt as jwt
 from flask_babel import get_locale
 # DB local DB to know what file for which user
 import os
+# for language detection
+import cld3
 
 mobils = ["Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini", "Mobile", "mobile",
           "CriOS"]
@@ -50,7 +52,9 @@ def before_request():
         db.session.commit()
 
     g.locale = get_locale()  # for international languages
-    print(request.accept_languages)
+    matchinlanguages = [ l for l in str(request.accept_languages).split(',') if re.search(str(g.locale), l)]
+    if len(matchinlanguages) > 0:
+        g.locale = matchinlanguages[0]
     print(g.locale)
 
 # markdown editor 
@@ -387,6 +391,12 @@ def exportdata():
             article_title = (request.form['article_title'])
             article_abstract = (request.form['article_abstract'])
             language = (request.form['language'])
+            # detect language
+            langdetection = cld3.get_language(mdtxt)
+            print(langdetection.language, language )
+            if langdetection.probability > 0.990 and not re.search(f"^{langdetection.language}", language):
+                print("change language")
+                language = langdetection.language
             author = (request.form['author'])
             bibtex = (request.form['bib'])
             bibstyle = (request.form['bibsyle'])

@@ -7,7 +7,7 @@ import string
 import random
 import os
 from flask import make_response, send_file, current_app
-from flask_babel import lazy_gettext as _l
+from flask_babel import force_locale, gettext
 # for pandoc
 import subprocess
 from subprocess import Popen, PIPE
@@ -173,23 +173,8 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                         if tablewidth > 45:
                             tablestring = '\\begin{landscape}\n'+tablestring.replace("\\textwidth", "\\linewidth")+'\\end{landscape}\n\n'
                         # repace the dict with string
-                        tables[t] = tablestring  
-                        
-            # process BibTeX
-            thereisbibtex = False
-            if bibtex is not None:
-                    thereisbibtex = True
-                    # save BibTeX data
-                    with open(os.path.join(dirname,'mur2.bib'), 'w') as f:
-                        f.write(bibtex)
-                    # add bibtex translatation to the markdown file
-                    mdtxt = mdtxt+"\n# "+_l("Bibliography")+"\n"
-            
-            # save madifiled md
-            file = open(mdname, 'w+')
-            file.write(mdtxt)
-            file.close()
-            
+                        tables[t] = tablestring
+
             # ISO 639-1 -> IETF language tag
             lang_ietf = language
             if language == "zh_Hans":
@@ -200,12 +185,28 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                 # chinese lang
                 language = "zh-TW"
                 lang_ietf = language
-            elif len(language) == 2 :
+            elif len(language) == 2:
                 # other two letther language forms
                 if language == 'en':
                     lang_ietf = "en-US"
                 else:
                     lang_ietf = language + "-" + language.upper()
+
+            # process BibTeX
+            thereisbibtex = False
+            if bibtex is not None:
+                    thereisbibtex = True
+                    # save BibTeX data
+                    with open(os.path.join(dirname,'mur2.bib'), 'w') as f:
+                        f.write(bibtex)
+                    # add bibtex translatation to the markdown file
+                    with force_locale(lang_ietf.replace("-", "_")):
+                        mdtxt = mdtxt+"\n# "+gettext("Bibliography")+"\n"
+            
+            # save madifiled md
+            file = open(mdname, 'w+')
+            file.write(mdtxt)
+            file.close()
 
             # make latex
             # first make the setting files

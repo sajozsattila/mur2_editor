@@ -598,8 +598,10 @@ async function make_export(destination, mainCollection) {
                 delete a;
             } else {
                 // ipad pdf need to open different way
-                if (navigator.userAgent.indexOf("iPad") != -1 || navigator.userAgent.indexOf("Macintosh") != -1) {
+                if (navigator.userAgent.indexOf("iPad") != -1 ) {
                     // on iPad we open in same window
+                    window.location.href = fileURL;
+                } else if (navigator.userAgent.indexOf("Macintosh") != -1) {
                     window.location.href = fileURL;
                 } else {
                     window.open(fileURL);
