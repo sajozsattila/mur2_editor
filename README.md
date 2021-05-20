@@ -20,7 +20,7 @@ Most academic articles are the result of shared effort by multiple Writers. To h
 
 # Examples
 
-## Tables {#tables}
+## Tables
 
 Row and columns merge, with multiple tbody:
 ```

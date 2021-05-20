@@ -383,12 +383,14 @@ You can use math formulas inline such as $$ \mu r^2 $$ or you can use in a block
 
 
 
-$$ T^{\mu\nu}=\begin{pmatrix}
+$$ 
+T^{\mu\nu}=\begin{pmatrix}
 \varepsilon&0&0&0\\
-0&\varepsilon/3&0&0\\
-0&0&\varepsilon/3&0\\
-0&0&0&\varepsilon/3\\
-\end{pmatrix}, $$
+0&\frac{\varepsilon}{3}&0&0\\
+0&0&\varepsilon&0\\
+0&0&0&\varepsilon\\
+\end{pmatrix} 
+$$
 
 If you label block formula, it will be automatically numbered:
 
