@@ -11,8 +11,8 @@
 
 .topmenu {
     height: 2.8rem;
-    background-color: white;
-    border-bottom: 1px solid black;
+    background-color: var(--fcolor);
+    border-bottom: 1px solid var(--bcolor);
 }
 
 #mur2menutop .toolbar {
@@ -79,11 +79,11 @@
 }
 
 #maintext .control-item {
-    color: black;    
+    color: var(--bcolor);
 }
 #maintext .control-item:hover {
     /* */
-    border-bottom: solid black 1px;
+    border-bottom: solid var(--bcolor) 1px;
 }
 .main\.searchstart #maintext .control-item:hover {
     /* */
@@ -105,7 +105,7 @@
 
 td a.control-item {
     height: unset;
-    fill: black;
+    fill: var(--bcolor);
 }
 
 
@@ -122,24 +122,24 @@ td a.control-item {
 
 
 #side_menu{  
-    color: #666;
-    background-color: white;
+    color: var(--fontcolor);
+    background-color: var(--fcolor);
 }
 
 #side_menu .control-item {
-    color: #666;
+    color: var(--fontcolor);
 }
 
 #side_menu .control-item:hover {
-    border-bottom: solid #666 1px;
+    border-bottom: solid var(--fontcolor) 1px;
 }
 
 #side_menu #mur2menutop {
-    border-bottom: solid 1px #666;
+    border-bottom: solid 1px var(--fontcolor);
 }
 
 #side_menu #side_top {
-    border-left: 1px solid #666;
+    border-left: 1px solid var(--fontcolor);
 }
 
 .topmenu {
@@ -181,7 +181,7 @@ td a.control-item {
     position: relative;
     top: 36%;
     text-decoration: none;
-    color: white;
+    color: var(--fcolor);
     letter-spacing: 0.7px;
 }
 
@@ -197,7 +197,7 @@ td a.control-item {
 .main\.root #side_menu {
     display: none;
     min-width: calc(50% - 5rem) ; 
-    border-left: 1px solid #666;
+    border-left: 1px solid var(--fontcolor);
     z-index: 2;
     flex-direction: column;
 }
@@ -393,7 +393,7 @@ td a.control-item {
 .auth\.login #maintext,
 .auth\.register #maintext, 
 .auth\.reset_password_request #maintext {
-    border-right: 1px solid #666;
+    border-right: 1px solid var(--fontcolor);
     z-index: 30;
     padding-right: 1.685rem;
     text-align: right;
@@ -403,7 +403,7 @@ td a.control-item {
 .auth\.register #maintext  h1, 
 .auth\.reset_password_request #maintext  h1, 
 .auth\.login #maintext h1 {
-    border-top: solid 1px #666;
+    border-top: solid 1px var(--fontcolor);
     padding-right: 3.37rem;
     padding-top: 1.685rem;
     margin-top: 1.5rem;
@@ -414,7 +414,7 @@ td a.control-item {
 .auth\.register #foot, 
 .auth\.reset_password_request #foot,
 .auth\.login #foot {
-    border-left: 1px solid #666; 
+    border-left: 1px solid var(--fontcolor);
     padding-left: 1.685rem;
 }
 
@@ -427,7 +427,7 @@ td a.control-item {
 .auth\.register #side_menu #mur2menutop, 
 .auth\.reset_password_request #side_menu #mur2menutop,
 .auth\.login #side_menu #mur2menutop {
-    border-bottom: solid 1px #666;
+    border-bottom: solid 1px var(--fontcolor);
 }
 
 
@@ -447,7 +447,7 @@ td a.control-item {
     display: inline-block;
     line-height: 1;
     font-weight: bold;
-    color: #333;   
+    color: var(--fontcolor);
     position: fixed;
     left: 0.845rem;
     top: calc( 2.8rem + 0.8425rem );
@@ -481,7 +481,7 @@ td a.control-item {
     font-weight: bold;
     text-decoration: none;
     line-height: 1;
-    border-left: 1px solid #666;
+    border-left: 1px solid var(--fontcolor);
 
     position: relative;
     top: -1.685rem;
@@ -495,7 +495,7 @@ td a.control-item {
 .main\.root .usertitle a,
 .main\.user .usertitle a {
     text-decoration: none;
-    color: #333;
+    color: var(--fontcolor);
 }
 
 .main\.review .usertitle,
@@ -528,7 +528,7 @@ td a.control-item {
 .main\.root   .user_articles, 
 .main\.user .user_articles {
     padding-bottom: 3.37rem;
-    border-top: 1px solid #666;
+    border-top: 1px solid var(--fontcolor);
     direction: ltr;
 }
 
@@ -563,7 +563,7 @@ td a.control-item {
  */
 .main\.edit_journal #maintext h1,
 .main\.edit_profile #maintext h1 {
-    border-top: solid 1px #666;
+    border-top: solid 1px var(--fontcolor);
     padding-right: 1.685rem;
     padding-top: 1.685rem;
     margin-top: 1.5rem;
@@ -581,7 +581,7 @@ td a.control-item {
     margin: unset;
     left: 1.685rem;
     max-width: unset;
-    border-top: 1px solid #666;
+    border-top: 1px solid var(--fontcolor);
     padding-left: 2.5275rem;
     padding-top: 0.8465rem;
     width: calc(100% + 1.685rem);
@@ -595,7 +595,7 @@ td a.control-item {
 #maintitle {
     max-width: unset;
     margin-left: calc( 1.685rem + 1px);
-    border-left: 1px solid #666;
+    border-left: 1px solid var(--fontcolor);
     padding-left: 0.8425rem;
     margin-bottom: 1.685rem;
     position: relative;
@@ -607,11 +607,11 @@ td a.control-item {
 
 #maintitle div {
     padding-left: 3.5rem;
-    color: #666;
+    color: var(--fontcolor);
 }
 
 #lapozo {
-    border-top: 1px solid #666;
+    border-top: 1px solid var(--fontcolor);
     flex-direction: row;
     justify-content: space-between;    
     display: -webkit-flex ; /* for 9 > Safari */
@@ -740,7 +740,7 @@ and (max-device-width : 767px){
     }
     .main\.root #side_menu {        
         min-width: calc(97% - 10rem);
-        background-color: white;
+        background-color: var(--fcolor);
     }
     
     #side_menu {

@@ -37,6 +37,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@convergence/input-element-bindings@0.3.4/browser/convergence-input-element-bindings.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@convergence/html-text-collab-ext/umd/html-text-collab-ext.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/@convergence/color-assigner/umd/color-assigner.js"></script> -->
+        <script src="/static/js/mur2.js"></script> <!-- general mur2 javascripts -->
         
         <!-- alerting -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -360,6 +361,9 @@
                  <!-- LaTeX -->
                  <input class="choice_toolbar control-input" id="id_latex" type="radio" name="source_type" >
                  <label class="toolbar menufont" for="id_latex" title="{{ _('LaTeX code') }}" >Σ</label>
+                 <!-- dark theme -->
+                 <input class="choice_toolbar control-input" id="id_dark" type="checkbox" name="source_type" >
+                 <label class="toolbar fontawsome fas fa-moon" for="id_dark" title="{{ _('Switch theme') }}" ></label>
                  <!-- Chat msg arrived -->
                  <input class="choice_toolbar control-input" id="id_chat" type="radio" name="source_type" >
                  <label class="toolbar fontawsome fa fa-comment" id="chatsign" for="id_chat" title="{{ _('Chat message arrived') }}" ></label>
@@ -378,7 +382,10 @@
             
       <!-- set the markdown editor contents -->
       <script>
-        (function () {
+        (async function () {
+            var data;
+            var data_title;
+            var data_abstract;
             if ( {{ article_id }} !== -1 ) {
                 // load the local files
                 try {
@@ -390,38 +397,73 @@
                     var data_bibTime = parseInt(localStorage.getItem("{{"mur2_bib_content"+ article_id|string+"_time" }}"))/1000;
                     console.log(data_bibTime);
                     if ( dataTime > {{ articleTimestamp }} ) {
-                        var data = localStorage.getItem("{{ "mur2_main_content"+article_id|string }}");
+                        data = localStorage.getItem("{{ "mur2_main_content"+article_id|string }}");
                     }
                     if ( data_titleTime > {{ articleTimestamp }} ) {
-                        var data_title = localStorage.getItem("{{ "mur2_title_content"+ article_id|string }}");
+                        data_title = localStorage.getItem("{{ "mur2_title_content"+ article_id|string }}");
                     }
                     if ( data_abstractTime > {{ articleTimestamp }} ) {
-                        var data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id|string }}");
+                        data_abstract = localStorage.getItem("{{"mur2_abstract_content"+ article_id|string }}");
                     }
                     if ( data_fImageTime > {{ articleTimestamp }} ) {
                         document.getElementsByClassName("feature_image")[0].src = localStorage.getItem("{{"mur2_featured_image"+ article_id|string }}");
                     }
                     if ( data_bibTime > {{ articleTimestamp }} ) {
-                        console.log("local bib");
                         var data_bib = localStorage.getItem("{{ "mur2_bib_content"+article_id|string }}");
-                        console.log(data_bib);
                     }
                 }
                 catch (e) {console.log(e)};
            }
-            // the document is basically the all editor
-            // the element before the || is the localStorage value
-            // the one after is come from the DB
-            document.getElementById('main-source').value = data || '{{ article_markdown }}'.replace(/&lt;/g, '<')  ;
-            document.getElementById('title-source').value = data_title || '{{ article_title }}'.replace(/'&lt;/g, '<')  ;
-            document.getElementById('abstact-source').value = data_abstract || '{{ article_abstract }}'.replace(/&lt;/g, '<')  ;
-            document.getElementById('bib-source').value = data_bib || '{{ article_bib }}'.replace(/&lt;/g, '<')  ;
+           if ( data && data.replace(/\s/g,'').lenght === 0 ) {
+               data = "";
+           }
+
+           if ( !data ) {
+               console.log("in");
+               let datafile = await new Promise(resolve => {
+                   var xhr = new XMLHttpRequest();
+                   xhr.responseType = 'blob';
+                   xhr.open('get', '{{ url_for('editor.downloadmarkdown', articleid=article_id ) }}', true);
+                   xhr.onload = function() {
+                       var blob = this.response;
+                       var myReader = new FileReader();
+
+                       if (xhr.status != 200) { // analyze HTTP status of the response
+                           console.log("error");
+                           // as we expect blob as response we need to handle like this this json error
+                           myReader.addEventListener("loadend", function(e){
+                               swal(  _("Error: ") + JSON.parse(e.srcElement.result).Error );
+                           });
+                       } else {
+                           console.log("no problem");
+                           myReader.addEventListener("loadend", function(e){
+                               resolve(e.srcElement.result);
+                           });
+                       }
+                       myReader.readAsText(blob);
+                   };
+                   xhr.send();
+               });
+               if (!data_title) {
+                   data_title = datafile.match(/span\s(?:id="article_title")>([^]+?)<\/span\>/)[1];
+               }
+               if (!data_abstract) {
+                   data_abstract = datafile.match(/span\s(?:id="article_abstract")>([^]+?)<\/span\>/)[1];
+               }
+               data = datafile.match(/span\s(?:id="article_abstract")>([^]+?)<\/span\>([^]+)/)[2];
+               document.getElementById('main-source').value = data  ;
+               document.getElementById('title-source').value = data_title   ;
+               document.getElementById('abstact-source').value = data_abstract  ;
+           } else {
+               document.getElementById('main-source').value = data  ;
+               document.getElementById('title-source').value = data_title   ;
+               document.getElementById('abstact-source').value = data_abstract  ;
+           }
+           document.getElementById('bib-source').value = data_bib || '{{ article_bib }}'.replace(/&lt;/g, '<')  ;
         }());
                   
        </script> 
        <script src="{{ url_for("babel_catalog") }}"></script> <!-- internation of javascript -->
-       <script src="/static/js/mur2.min.js"></script> <!-- general mur2 javascripts -->
-       
        <script src="/static/js/editor/markdown-it.min.js"></script>
        <script src="/static/js/editor/markdown-it-sub.min.js"></script>
        <script src="/static/js/editor/markdown-it-sup.min.js"></script>
@@ -441,7 +483,7 @@
        <script src="/static/js/editor/parser.min.js"></script>       
        <script src="/static/js/editor/mur2_upmath.min.js"></script>
        <script src="/static/js/mur2_editor_utils.js"></script>
-       <script src="/static/js/mur2_editor.min.js"></script>
+       <script src="/static/js/mur2_editor.js"></script>
        
        
        <script>
@@ -472,10 +514,6 @@
                data.setAttribute("selectedvalue", data.value); 
            }           
        </script>
-       <!-- collaborative editing --> 
-       <script src="/static/js/mur2_editor_collaborative.min.js"></script>
-       <script>collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")</script>
-        
        <script>
            // add focuse on the main area
             var field = document.getElementById('main-source');
@@ -484,6 +522,11 @@
             field.selectionStart = 0;
             field.selectionEnd = 0
        </script>
+       <!-- collaborative editing -->
+       <script src="/static/js/mur2_editor_collaborative.min.js"></script>
+       <script>collaborative("{{cjwt}}", "{{title}}", "{{article_id|string}}")</script>
+        
+
        </div><!-- horizontal_box -->
     </body>        
 </html>

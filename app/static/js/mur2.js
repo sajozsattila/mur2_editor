@@ -98,3 +98,41 @@ function validateEmail(mail) {
     alert("You have entered an invalid email address!")
     return (false)
 }
+
+// set theme
+function settheme(){
+   var theme = getCookie('mur2_theme');
+   if (theme == "Dark") {
+       document.documentElement.style.setProperty('--bcolor', 'white');
+       document.documentElement.style.setProperty('--fcolor', '#555');
+       document.documentElement.style.setProperty('--fontcolor', 'white');
+       document.documentElement.style.setProperty('--fencecolor', '#222');
+       document.documentElement.style.setProperty('--acolor', '#53c3f0');
+       document.documentElement.style.setProperty('--menucolor', '#999');
+   } else {
+       document.documentElement.style.removeProperty('--bcolor');
+       document.documentElement.style.removeProperty('--fcolor');
+       document.documentElement.style.removeProperty('--fontcolor');
+       document.documentElement.style.removeProperty('--fencecolor');
+       document.documentElement.style.removeProperty('--acolor');
+       document.documentElement.style.removeProperty('--menucolor');
+       // set cookie for latter usage
+       if (!theme) {
+           console.log("sethtme");
+           setCookie('mur2_theme', 'Light', 365);
+       }
+   }
+}
+function switchtheme(){
+    var theme = getCookie('mur2_theme');
+    var menubottom = document.getElementById('id_dark'); // the bottom of the theme
+    if (theme.replace(/\s/g,'') == "Dark") {
+        setCookie('mur2_theme', 'Light', 365);
+        if (menubottom) {menubottom.classList.remove('darktheme');}
+    } else {
+        setCookie('mur2_theme', 'Dark', 365);
+        if (menubottom) {menubottom.classList.add('darktheme');}
+    };
+    settheme();
+}
+settheme();

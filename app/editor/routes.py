@@ -57,18 +57,34 @@ def before_request():
         g.locale = matchinlanguages[0]
     print(g.locale)
 
-# markdown editor 
-def fixeditor(editortype, articleid):
-    # empty article
+def createfixarticle(editortype):
     article = Article(title="", abstract='', markdown='', html="")
-    authorlist = {}
     if editortype == 'usermanual':
-        # fix the article content to a demo text 
+        # fix the article content to a demo text
         with current_app.open_resource("static/manual.md", 'r') as file:
             demo = file.read()
         article.markdown = demo
         article.title = "μr² -- User Manual"
         article.abstract = "The main user manual for the μr² Markdown editor."
+    elif editortype == 'editor':
+        # fix the article content to a "why mur2 editor" text
+        with current_app.open_resource("static/demo.md", 'r') as file:
+            demo = file.read()
+        article.markdown = demo
+        with current_app.open_resource("static/demo.bib", 'r') as file:
+            demobib = file.read()
+        article.bibtex = demobib
+        article.title = "μr² " + _l('editor')
+
+    return article
+
+# markdown editor 
+def fixeditor(editortype, articleid):
+    # empty article
+    article = None
+    authorlist = {}
+    if editortype == 'usermanual':
+        article = createfixarticle(editortype)
     elif editortype == "articleeditor":
         # if it is not a new article
         if int(articleid) != -1:
@@ -91,15 +107,10 @@ def fixeditor(editortype, articleid):
             # Article not in editing status we redirect to reading
             if article.status != 'editing':
                 return redirect(url_for('main.reader', articleid=article.id))
+        else:
+            article = createfixarticle(editortype)
     else:
-        # fix the article content to a "why mur2 editor" text 
-        with current_app.open_resource("static/demo.md", 'r') as file:
-            demo = file.read()
-        article.markdown = demo
-        with current_app.open_resource("static/demo.bib", 'r') as file:
-            demobib = file.read()
-        article.bibtex = demobib
-        article.title = "μr² " + _l('editor')
+        article = createfixarticle(editortype)
 
     # get authors details
     author = {}
@@ -158,7 +169,7 @@ def fixeditor(editortype, articleid):
     except:
         pass
 
-        # canonicalUrlText
+    # canonicalUrlText
     canonicalUrlText = ""
     if article.url is not None and article.url != "":
         canonicalUrlText = article.url
@@ -393,8 +404,8 @@ def exportdata():
             language = (request.form['language'])
             # detect language
             langdetection = cld3.get_language(mdtxt)
-            print(langdetection.language, language )
-            if langdetection.probability > 0.990 and not re.search(f"^{langdetection.language}", language):
+            if langdetection is not None and langdetection.probability > 0.990 \
+                    and not re.search(f"^{langdetection.language}", language):
                 print("change language")
                 language = langdetection.language
             author = (request.form['author'])
@@ -496,3 +507,56 @@ def processmarkdown():
         return send_file(os.path.join(dirname, 'processed.html'))
     else:
         return jsonify(json.loads(x.text)), x.status_code
+
+
+# downloading Markdown file
+@bp.route('/downloadmarkdown/<articleid>')
+@login_required
+def downloadmarkdown(articleid):
+    # get Article
+    if int(articleid) > 0:
+        a = Article.query.filter_by(id=articleid)\
+            .join(WriterRelationship).join(User)\
+            .add_columns((User.id).label("uid"),
+                         Article.markdown,
+                         Article.title,
+                         Article.abstract).first_or_404()
+    else:
+        if int(articleid) == -3:
+            print("manula")
+            a = createfixarticle('usermanual')
+        elif int(articleid) == -1:
+            a = createfixarticle('newarticle')
+        else:
+            print("editor")
+            a = createfixarticle('editor')
+
+    # all author
+    authors = Article.query.filter_by(id=articleid).join(WriterRelationship).join(User).add_columns(User.username).all()
+    # check user is have the right to download markdown file
+    author = False
+    if current_user.is_authenticated:
+        for writer in authors:
+            if current_user.username == writer.username:
+                author = True
+                break
+    if int(articleid) > 0 and not author:
+        msg = _l("User cannot download this Article!")
+        print(msg)
+        return str(msg), 401
+
+    # the markdown code
+    content = '<span id="article_title">\n' + a.title + '</span>\n\n<span id="article_abstract">' + a.abstract + '\n</span>\n\n' + a.markdown
+
+    # write to file the content
+    #  generate a random folder
+    dirname = make_tmpdirname()
+    os.mkdir(dirname)
+    filename = os.path.join(dirname, "_".join(a.title.split()) + '.md')
+    with open(filename, 'a') as the_file:
+        the_file.write(content)
+
+    return send_file(filename,
+                     mimetype='text/markdown',
+                     attachment_filename=os.path.basename(filename),
+                     as_attachment=True)

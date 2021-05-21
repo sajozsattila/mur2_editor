@@ -22,7 +22,7 @@
 	font-size: 14px;
 	/* resize algorithm depends on a monospaced font */
 	font-family: monospace;
-	color: black;
+	color: var(--bcolor);
 }
 
 .ldt textarea {

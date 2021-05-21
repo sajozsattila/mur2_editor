@@ -1,7 +1,16 @@
+:root {
+  --bcolor: black;
+  --fcolor: white;
+  --menucolor: #c62641;
+  --fontcolor: #333;
+  --acolor: #115B7A;
+}
+
 body, button input, select {
     /* */
-    color: #333;
-    scrollbar-color: #c62641 white;   
+    color: var(--fontcolor);
+    background-color: var(--fcolor);
+    scrollbar-color: var(--menucolor) var(--fcolor);
 }
 
 body h1,
@@ -76,13 +85,13 @@ ins {
 }
 mark {
     background-color: unset;
-    color: #333;
+    color: var(--fontcolor);
 }
 
 
 a {
     background: 0 0;
-    color: #115B7A;
+    color: var(--acolor);
     transition: all .2s;
     text-decoration: underline;
 }
@@ -126,7 +135,7 @@ table {
 }
 
 .control-item {
-    color: #fff;
+    color: var(--fcolor);
     background-clip: padding-box;
     min-width: 1.8em;
     padding: 0.3rem 2rem 0.3rem 0;
@@ -134,7 +143,7 @@ table {
     display: inline-block;
     box-sizing: border-box;
     /* */
-    fill: white;
+    fill: var(--fcolor);
     text-decoration: none;
     text-align: left;
     height: 1.6em;
@@ -142,7 +151,7 @@ table {
 }
 .control-item:hover {
     /* */
-    border-bottom: solid white 1px;
+    border-bottom: solid var(--fcolor) 1px;
 }
 
 .topmenu {
@@ -157,7 +166,7 @@ table {
     top: 0;
     height: 3.5rem;    
     /* */    
-    background-color: black;
+    background-color: var(--bcolor);
     padding-left: 2em;
     padding-top: 0.7em;
 }
@@ -172,7 +181,7 @@ table {
     top: 0;
     height: 100% ;
     /* */
-    background-color: #c62641;
+    background-color: var(--menucolor);
     padding-top: 0.8425rem;
     padding-left: 1.685rem;
     padding-right: 0.8425rem;
@@ -216,7 +225,7 @@ table {
     /* */
     width: calc( 100% + 1rem);
     height: calc( 2.8rem - 2px);
-    border-bottom: solid 1px white;
+    border-bottom: solid 1px var(--fcolor);
     text-align: right;
     position: relative;
     left: calc( -1.685rem + 1px);
@@ -299,12 +308,12 @@ table {
     float: left;    
     -webkit-shape-outside: circle();    
     shape-outside: circle();
-    border: solid 1px #333;
+    border: solid 1px var(--fontcolor);
 }
 
 /* Cookien police */
 #cookie-bar-button {
-    background-color:  #c62641 !important;
+    background-color:  var(--menucolor) !important;
     border-radius: 0px !important;
 }
 
@@ -324,9 +333,9 @@ table {
 iframe {
     width: 90%;
     border: unset;
-    border-left: solid 1px #c62641;
+    border-left: solid 1px var(--menucolor);
     overflow: hidden; 
-    scrollbar-color: #c62641 white;
+    scrollbar-color: var(--menucolor) var(--fcolor);
     scrollbar-width: thin;
     left: calc( var(--verticaldistance) * -2);
     position: relative;
@@ -370,11 +379,11 @@ https://sweetalert.js.org/docs/ javascript alert
 .swal-button {
   padding: 7px 19px;
   border-radius: 0px;
-  background-color: black;
+  background-color: var(--bcolor);
   font-size: 12px;
 }
 .swal-button:not([disabled]):hover {
-    background-color: #c62641;
+    background-color: var(--menucolor);
 }
 
 .swal-modal {

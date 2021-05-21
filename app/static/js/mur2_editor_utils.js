@@ -301,6 +301,11 @@ async function save_article(blobs) {
     var article_id = document.querySelector('meta[name="article_id"]').content
     // the article abstract and title, later this need to change as they need to be editable
     var article_title = document.getElementById("title-source").value
+    if ( !article_title || article_title.replace(/\s/g,'').length === 0 ) {
+        swal(_("The document title should not be empty!"));
+        return;
+    }
+
     var article_abstract = document.getElementById("abstact-source").value
     var featuredImagesSrc = "";
     var featuredimages = document.getElementsByClassName("feature_image")[0];
@@ -531,6 +536,10 @@ async function render_on_server() {
 
 async function make_export(destination, mainCollection) {
     var article_title = document.getElementById('title-source').value;
+    if ( !article_title || article_title.replace(/\s/g,'').length === 0 ) {
+        swal(_("The document title should not be empty!"));
+        return;
+    }
     var article_abstract = document.getElementById('abstact-source').value;
     var mddata = new Blob([mainCollection.getMdBackend()], {
         type: 'text/markdown;charset=utf-8'
@@ -539,7 +548,6 @@ async function make_export(destination, mainCollection) {
     var language = document.querySelector('meta[name="mur2language"]').content
     // bibtex data
     var bibdata = document.getElementById('bib-source').value;
-    var fd = new FormData();
     // get what is the selected style
     var bibsyle = document.getElementById("bibstyle_select").value;
     // default style
@@ -551,6 +559,7 @@ async function make_export(destination, mainCollection) {
     // author
     var author = document.querySelector('meta[name="author"]').content
 
+    var fd = new FormData();
     fd.append("destination", destination);
     fd.append("mdfile", mddata, "article_text.md");
     fd.append('article_title', article_title);

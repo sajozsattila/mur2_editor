@@ -87,7 +87,7 @@
 }
 
 .editor_toolbar #editor_toolbar {
-    padding-right: 1.685rem;
+    padding-right: var(--verticaldistance);
 }
 
 /* the main objcet of the page */
@@ -274,7 +274,7 @@ textarea,
 #id_syntax_hl.focusmode + .fab.fa-markdown
  {
     /* */
-    color: white;
+    color: var(--fcolor);
 }
 
 #id_hide_input.inputoff + .far.fa-arrow-alt-circle-left, 
@@ -282,25 +282,26 @@ textarea,
 #id_show_title.titleon + .far.fa-arrow-alt-circle-down, 
 #id_side_menu:checked ~ #menu #editor_toolbar .fas.fa-bars,
 #id_bib.bibon + .fas.fa-book,
+#id_dark.darktheme + .fas.fa-moon,
 #id_syntax_hl + .fab.fa-markdown {
-    color: #C62641;
+    color: var(--menucolor);
 }
 
 
 .toolbar:hover {
     /* */
-    border-bottom: solid white 1px;
+    border-bottom: solid var(--fcolor) 1px;
 }
 
 .toolbar {
-    color: #fff;
+    color: var(--fcolor);
     background-clip: padding-box;
     padding: 0.3rem ;
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
     /* */
-    fill: white;
+    fill: var(--fcolor);
     text-decoration: none;
     text-align: center;
     height: 1.6em;
@@ -308,11 +309,12 @@ textarea,
 }
 
 #choicemenu {
-    background-color: white;
+    background-color: var(--fcolor);
+    padding-right: var(--verticaldistance);
 }
 #choicemenu label {
-    color: black;
-    background-color: white;
+    color: var(--bcolor);
+    background-color: var(--fcolor);
 }
 
 .result-as-html div#article_title {
@@ -349,7 +351,7 @@ textarea,
 }
 
 .focused {
-    color: black;
+    color: var(--bcolor);
     font-weight: bold;
     /* */
 }
@@ -357,8 +359,8 @@ textarea,
 .headsidebar {
     position: relative;
     left: -0.61rem;
-    border-left: 1px white solid;
-    border-top: 1px solid white;
+    border-left: 1px var(--fcolor) solid;
+    border-top: 1px solid var(--fcolor);
     padding-left: 0.61rem;
 }
 
@@ -367,11 +369,11 @@ textarea,
  */
 
 #id_featureImage * {
-    color: black;
+    color: var(--bcolor);
 }
 
 #id_featureImage .toolbar:hover {
-    border-bottom: solid black 1px;
+    border-bottom: solid var(--bcolor) 1px;
 }
 
 /**********************************
@@ -387,7 +389,7 @@ textarea,
 }
 #id_mcs:checked ~ #markdown_cheat_sheet {
     display: block;
-    color: white;
+    color: var(--fcolor);
     opacity: 1;
 }
 #id_mcs:checked ~ #first_menu {
@@ -396,8 +398,8 @@ textarea,
 #markdown_cheat_sheet h3 {
     font-family: 'DM Mono', sans-serif !important; 
     line-height: 1.4; 
-    border-top: solid white 1px;
-    border-left: solid white 1px;
+    border-top: solid var(--fcolor) 1px;
+    border-left: solid var(--fcolor) 1px;
     padding-left: 0.61rem;
     position: relative;
     left: -.61rem;
@@ -432,7 +434,7 @@ textarea,
 
 #id_ec:checked ~ #editorchat {
     display: block;
-    color: black;
+    color: var(--bcolor);
     opacity: 1;
     max-height: 80%;
 }
@@ -456,7 +458,7 @@ textarea,
 }
 
 #chatposts {
-    background: white;
+    background: var(--fcolor);
     list-style-type: none; /* switch off bulletpoints */
 }
 
@@ -469,7 +471,7 @@ textarea,
 
 #chatsign {
     visibility: hidden;
-    color: #c62641;
+    color: var(--menucolor);
 }
 
 
@@ -477,7 +479,7 @@ textarea,
  * keywords from https://stackoverflow.com/questions/59636362/how-to-make-a-text-input-field-take-in-keywords
  */
 .multi-search-filter{
-    border: 1px solid black;
+    border: 1px solid var(--bcolor);
     padding:3px;
 }
 .multi-search-filter > input {
@@ -492,8 +494,8 @@ textarea,
     padding: 2px 24px 2px 8px;
     float: left;
     display: flex;
-    background-color: #c62641 ;
-    color: white;
+    background-color: var(--menucolor) ;
+    color: var(--fcolor);
     border-radius: 3px;
     position: relative;
 }
@@ -556,7 +558,7 @@ textarea,
 
 /* The Close Button */
 .close {
-  color: white;
+  color: var(--fcolor);
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -572,7 +574,7 @@ textarea,
 .modal-header {
   padding: 2px 16px;
   background-color: #5cb85c;
-  color: white;
+  color: var(--fcolor);
   height: 4.5rem;
 }
 

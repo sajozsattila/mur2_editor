@@ -563,6 +563,9 @@ function g_domFindScrollMarks() {
                         g_preview_on = false;
                     }
                     break;
+                case 'id_dark':
+                    switchtheme();
+                    break;
                 case 'id_hide_input':
                     var preview = document.getElementById('article_preview_side');
                     var input = document.getElementById('article_input_side');

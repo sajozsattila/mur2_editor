@@ -1,22 +1,26 @@
+:root {
+   --fencecolor: #eee;
+}
+
 
 /* Markdown block highlight styles */
 .ldt .header,
 .ldt .header2 {
-	color: #268bd2;
+	color: var(--acolor);
 }
 .ldt .quote {
 	background: #fff3ea;
     color: #93a1a1;
 }
 .ldt .list {
-	background: #f2ffef;
+	/* background: #f2ffef; */
 }
 .ldt .list-mark {
 	font-weight: bold;
     color: #cb4b16;
 }
 .ldt .fence {
-	background: #eee;
+	background: var(--fencecolor);
 }
 
 
@@ -25,7 +29,7 @@
 	color: goldenrod;
 }
 .ldt .code {
-	background: #eee;
+	background: var(--fencecolor);
 }
 .ldt .link {
 	/* color: #fdf6e3; */
