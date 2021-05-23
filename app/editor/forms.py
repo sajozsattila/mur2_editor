@@ -27,3 +27,11 @@ class DeleteProfileForm(FlaskForm):
     object_id = HiddenField('object_id', validators=[DataRequired()])
     object_type = HiddenField('object_type', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+# form for status settings
+#   if status is "ready" make publishing
+class UpdateArticleForm(FlaskForm):
+    articleid = HiddenField('articleid', validators=[Length(min=1, max=140), DataRequired() ])
+    # what is the current status
+    status = HiddenField('status', validators=[Length(min=1, max=140), DataRequired()])
+    submit = SubmitField('Submit')

@@ -149,6 +149,10 @@ app.get('/', (req, res) => {
             default:
                 locale = locale + "-" + lang.toUpperCase()
         }
+    } else {
+        if (locale.length === 5) {
+            locale = locale.slice(0, 3)+locale.slice(3).toUpperCase();
+        }
     }
     // the lang is just ISO 639-1
     lang = lang.slice(0, 2);
@@ -226,6 +230,7 @@ app.get('/', (req, res) => {
             };
         }
         } catch(err) {
+            console.log(err.stack);
             res.status(404).send({"Error": "Markdown-it error! Reason: "+err });
             return;
         }
@@ -245,6 +250,7 @@ app.get('/', (req, res) => {
         try {
             var text = '<!DOCTYPE html><body>' + md.render(mdfile) + '</body></html>';
         } catch(err) {
+            console.log(err.stack);
             res.status(404).json({"Error": "Can not process data. Reason: "+err })
             return;
         }

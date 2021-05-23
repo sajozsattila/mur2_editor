@@ -4,6 +4,7 @@
  * Inspired by https://github.com/runarberg/markdown-it-math
  *
  * @copyright 2015 Roman Parpalak
+ * modifiled by Attila Zsolt Sajó 2021
  */
 
 (function (w) {
@@ -158,8 +159,7 @@
 
 		md.inline.ruler.before('escape', 'math_inline', math_inline);
 
-		md.renderer.rules.math_inline = (function (protocol) {
-			protocol = typeof options.protocol !== 'undefined' ? options.protocol : protocol;
+		md.renderer.rules.math_inline = (function () {
 			return function (tokens, idx) {
 				var formula = tokens[idx].content;
 
@@ -173,14 +173,14 @@
 					;
 				}
 
-				var url      = protocol + '//mur2.co.uk/math/svg/' + encodeURIComponent(formula),
+				var url      = 'https://mur2.co.uk/math/svg/' + encodeURIComponent(formula),
 					isInline = "tex-inline" === tokens[idx].tag;
 
 				return isInline
 						? '<img src="' + url + '" alt="' + md.utils.escapeHtml(formula) + '" />'
 						: '<img align="center" src="' + url + '" alt="' + md.utils.escapeHtml(formula) + '" />';
 			}
-		}(location.protocol == "https:" ? "https:" : 'http:')); // support for file: protocol
+		}()); // just https protocol supported
 
 		md.renderer.rules.math_number = function (tokens, idx) {
             

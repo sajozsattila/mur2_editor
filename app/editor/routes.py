@@ -10,15 +10,13 @@ from flask import abort
 from flask_babel import lazy_gettext as _l
 
 # the part of the applications
-from app.auth import bp
 # the databse types
-from app.models import User, Article, WriterRelationship, Images, \
+from app.models_editor import User, Article, WriterRelationship, Images, \
     ReviewRelationship, ArticleArchive
 # the db
 from app import db
 # forms
-from app.editor.forms import UploadForm, photos, ArticleVersion, DeleteProfileForm
-from app.main.forms import UpdateArticleForm
+from app.editor.forms import UploadForm, photos, ArticleVersion, DeleteProfileForm, UpdateArticleForm
 # blueprint
 from app.editor import bp
 # bacground thread
@@ -152,7 +150,7 @@ def fixeditor(editortype, articleid):
     if any(phone in useragent.lower() for phone in mobils):
         desktop = False
 
-        # form to publish the article
+    # form to publish the article
     updateform = UpdateArticleForm()
 
     # article keywords 
@@ -511,7 +509,6 @@ def processmarkdown():
 
 # downloading Markdown file
 @bp.route('/downloadmarkdown/<articleid>')
-@login_required
 def downloadmarkdown(articleid):
     # get Article
     if int(articleid) > 0:
