@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Libertinus Serif';
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/LibertinusSerif-Regular.woff2");
+}
+
+@font-face {
+   font-family: 'Ibarra Real Nova';
+   font-style: normal;
+   font-weight: normal;
+   src: url("../fonts/IbarraRealNova-Regular.ttf" ) format("truetype");
+}
+@font-face {
+   font-family: 'Ibarra Real Nova';
+   font-style: italic;
+   font-weight: normal;
+   src: url("../fonts/IbarraRealNova-Italic.ttf" ) format("truetype");
+}
+@font-face {
+   font-family: 'Ibarra Real Nova';
+   font-style: normal;
+   font-weight: 400;
+   src: url("../fonts/IbarraRealNova-SemiBold.ttf" ) format("truetype");
+}
+@font-face {
+   font-family: 'Ibarra Real Nova';
+   font-style: normal;
+   font-weight: bold;
+   src: url("../fonts/IbarraRealNova-Bold.ttf") format("truetype");
+}
+@font-face {
+   font-family: 'Ibarra Real Nova';
+   font-style: italic;
+   font-weight: bold;
+   src: url("../fonts/IbarraRealNova-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+   font-family: 'Ibarra Real Nova';
+   font-style: italic;
+   font-weight: bolder;
+   src: url("../fonts/IbarraRealNova-SemiBoldItalic.ttf" ) format("truetype");
+}
+
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Ibarra Real Nova', sans-serif;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+    font-kerning: normal;
+}
+
+body {
+    font-family: 'Libertinus Serif', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-feature-settings: "liga" 1;
+}
+
+sup {
+   font-size: small;
+   line-height: 0;
+}
+
+/* bib */
+.csl-entry {    
+    padding-left: var(--verticaldistance);
+    display: flex;
+    flex-direction: row;
+    max-width: 40rem;
+    text-indent: calc(-0.5 * var(--verticaldistance));
+}
+/* everything except div */
+.csl-entry *:not(div) {
+    display: contents;
+}
+.csl-left-margin {
+    margin-right: calc(1 * var(--verticaldistance));
+}
+
+figure img {
+    max-width: 100%;
+}
+
+p img {
+    float: left;
+    padding-right: 1ex;
+    max-width: 50%;        
+}
+
+table + p[id^='tbl'] ,
+figcaption {
+    font-style: italic;
+    padding-left: var(--verticaldistance);
+}
+
+p,
+hr,
+li,
+h1 {
+    max-width: 41rem;    
+}
+
+table {
+    border-top: 2px solid #666;
+    border-bottom: 2px solid #666;
+    margin-top: var(--verticaldistance);
+    border-collapse: collapse;
+}
+
+td, 
+th {
+    margin-right: 1rem;
+    padding-left: 1.68rem;
+    text-align: left;
+}
+tbody {
+    border-top: 1px solid #666;
+}
+
+table + p[id^='tbl'] {
+    margin-bottom: var(--verticaldistance);
+}
+p[id^='eq:'] + p[id^='eq:'],
+table + p:not([id^='tbl']) {
+    margin-top: var(--verticaldistance);
+}
+table + p[id^='tbl'] + p {
+    text-indent: 0;
+}
+
+
+
+p[id^='eq:'] {
+    text-align: center;
+    margin-top: var(--verticaldistance);
+    margin-bottom: var(--verticaldistance);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+p[id^='eq:'] + p[id^='eq:'] {
+    text-indent: var(--verticaldistance);
+}
+
+p,
+li {
+    margin: auto 0;
+}
+
+p + p {
+    text-indent: var(--verticaldistance);
+}
+
+blockquote p {
+    hanging-punctuation: first; /* this should wokr with safary only */
+}
+
+/* p after block LaTeX code */
+p[style] + p {
+    text-indent: 0rem;
+}
+/* block LaTeX codes */
+p[style] {
+    padding-top: var(--verticaldistance);
+    padding-bottom: var(--verticaldistance);
+}
+
+p + ul, 
+p + ol {
+    margin-top: var(--verticaldistance);
+    margin-bottom: var(--verticaldistance);
+}
+
+body h2,
+body h2 + div,
+body h1,
+body h1 + div {
+    position: relative;
+    left: calc( var(--verticaldistance) * -4 );
+}
+
+body h1,
+body h2 {
+    line-height: calc( var(--verticaldistance) * 3 );
+    font-size: 4.2999em;
+}
+
+
+
+body h2 + div,
+body h1 + div {
+    color: #666;
+    margin-bottom: var(--verticaldistance);
+}
+
+body h1, 
+body h1 p,
+body h2, 
+body h2 p {
+    max-width: 47.74rem;
+}
