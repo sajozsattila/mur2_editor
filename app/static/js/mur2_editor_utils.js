@@ -246,7 +246,7 @@ function categorylist() {
 
 /* save Article content */
 async function save_article(blobs) {
-    // the markdonw article body text
+    // the markdown article body text
     var markupdata = new Blob([document.getElementById('main-source').value], {
         type: 'text/html; charset=UTF-8'
     });
@@ -299,6 +299,8 @@ async function save_article(blobs) {
     // values just for Article type
     // the article id
     var article_id = document.querySelector('meta[name="article_id"]').content
+    // article language
+    var language = document.querySelector('meta[name="textlanguage"]').content
     // the article abstract and title, later this need to change as they need to be editable
     var article_title = document.getElementById("title-source").value
     if ( !article_title || article_title.replace(/\s/g,'').length === 0 ) {
@@ -321,9 +323,12 @@ async function save_article(blobs) {
     if ( canonicalUrlText.trim().length === 0 ) {
         canonicalUrlText = "https://mur2.co.uk/reader/"+article_id;
     }
+    var bibsyle = document.getElementById("bibstyle_select").value;
+    if (bibsyle === "") {bibsyle='apa' };
 
     fd.append("file", markupdata);
     fd.append("bib", bibdata);
+    fd.append("bibstyle", bibsyle);
     fd.append("htmlfile", htmldata, "article_text.html");
     fd.append("article_title_html", titledatatext);
     fd.append("article_abstract_html", abstractdatatext);
@@ -335,6 +340,7 @@ async function save_article(blobs) {
     fd.append('categories', categories.toString());
     fd.append('article_url', canonicalUrlText);
     fd.append('article_textype', texttype);
+    fd.append('language', language);
     if (texttype === 'Review' ) {
         fd.append('reviewed', reviewed.value);
         fd.append('standby', standby.value);
@@ -493,9 +499,8 @@ async function render_on_server() {
     // get bibilography
     var bib = document.getElementById("bib-source").value;
     // language
-    var language = document.querySelector('meta[name="mur2language"]').content
+    var language = document.querySelector('meta[name="mur2textlanguage"]').content
     // get the data deppending what filed we are edditing
-    console.log(g_selectedTextarea);
     var field = document.getElementById(g_selectedTextarea).value;
     // what is the local of the footnote
     var languageFootnote = document.querySelector('meta[name="endnotetext"]').content
@@ -540,12 +545,21 @@ async function make_export(destination, mainCollection) {
         swal(_("The document title should not be empty!"));
         return;
     }
-    var article_abstract = document.getElementById('abstact-source').value;
-    var mddata = new Blob([mainCollection.getMdBackend()], {
-        type: 'text/markdown;charset=utf-8'
-    });
+    var mddata;
+    var article_abstract;
+    if (destination === "epub") {
+        mddata = new Blob([document.getElementById('article_main').innerHTML], {
+            type: 'text/html; charset=UTF-8'
+        });
+        article_abstract = document.getElementById('article_abstract').innerHTML;
+    } else {
+        mddata = new Blob([mainCollection.getMdBackend()], {
+                type: 'text/markdown;charset=utf-8'
+        });
+        article_abstract = document.getElementById('abstact-source').value;
+    }
     var endnotetext = document.querySelector('meta[name="endnotetext"]').content
-    var language = document.querySelector('meta[name="mur2language"]').content
+    var language = document.querySelector('meta[name="mur2textlanguage"]').content
     // bibtex data
     var bibdata = document.getElementById('bib-source').value;
     // get what is the selected style
@@ -584,9 +598,8 @@ async function make_export(destination, mainCollection) {
                 swal(  _("Error: ") + JSON.parse(e.srcElement.result).Error );
             });
             myReader.readAsText(blob);
-        } else { // save the result               
+        } else { // save the result
             window.URL = window.URL || window.webkitURL;
-            var fileURL = window.URL.createObjectURL(blob);
             if (destination === "latex" || destination === "epub" || destination === "msw" ) {
                 var a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
@@ -606,12 +619,16 @@ async function make_export(destination, mainCollection) {
                 a.click(); //this is probably the key - simulating a click on a download link
                 delete a;
             } else {
+                var fileURL = window.URL.createObjectURL(blob);
                 // ipad pdf need to open different way
                 if (navigator.userAgent.indexOf("iPad") != -1 ) {
                     // on iPad we open in same window
                     window.location.href = fileURL;
                 } else if (navigator.userAgent.indexOf("Macintosh") != -1) {
-                    window.location.href = fileURL;
+                    window.open(fileURL, article_title+".pdf");
+                    setTimeout(function() {
+                        newTab.document.title = blob.name;
+                    }, 10);
                 } else {
                     window.open(fileURL);
                 }
@@ -812,9 +829,10 @@ function getArticleversion() {
                 document.getElementById('title-source').value = versiondata.title;
                 document.getElementById('abstact-source').value = versiondata.abstract;
                 document.getElementById('main-source').value = versiondata.main;
-                var textArea = document.getElementById("main-source");
-                var inputevent2 = new Event("input");
-                textArea.dispatchEvent(inputevent2);
+                var mainSource = document.getElementById('main-source');
+                var decorator = new TextareaDecorator(mainSource, mdParser);
+                decorator.update();
+                mainSource.dispatchEvent(new Event('input', { bubbles: true }));
             }
     }
 }

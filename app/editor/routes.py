@@ -21,15 +21,13 @@ from app.editor.forms import UploadForm, photos, ArticleVersion, DeleteProfileFo
 from app.editor import bp
 # bacground thread
 from app.editor.utils import epub_generation, pdf_generation, make_latex, make_tmpdirname, \
-    msworld_generation
+    msworld_generation, isolanguage
 # other
 import requests
 import datetime
 import json
 import re
 from flask import make_response, send_file
-# for RSS
-from feedgen.feed import FeedGenerator
 # convergence
 import gjwt as jwt
 # recordin last user logging
@@ -52,7 +50,7 @@ def before_request():
     g.locale = get_locale()  # for international languages
     matchinlanguages = [ l for l in str(request.accept_languages).split(',') if re.search(str(g.locale), l)]
     if len(matchinlanguages) > 0:
-        g.locale = matchinlanguages[0]
+        g.locale = isolanguage(matchinlanguages[0])
     print(g.locale)
 
 def createfixarticle(editortype):
@@ -150,7 +148,7 @@ def fixeditor(editortype, articleid):
     if any(phone in useragent.lower() for phone in mobils):
         desktop = False
 
-    # form to publish the article
+        # form to publish the article
     updateform = UpdateArticleForm()
 
     # article keywords 
@@ -222,12 +220,20 @@ def fixeditor(editortype, articleid):
                         .replace("'", "\\\'")
                         .replace('<', '&lt;'))
 
+    mainarticle = article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'").replace('<', '&lt;')
+
+    # language of the text
+    textlanguage = g.locale
+    langdetection = cld3.get_language(mainarticle)
+    if langdetection is not None and langdetection.probability > 0.990 \
+            and not re.search(f"^{langdetection.language}", textlanguage):
+        print(f"change textlanguage: {langdetection.language}")
+        textlanguage = langdetection.language
+
     # pictureloading form
     pictureform = UploadForm()
     return render_template('editor.html',
-                           article_markdown=Markup(article.markdown.encode('unicode_escape').decode('utf-8')
-                                                   .replace("'", "\\\'")
-                                                   .replace('<', '&lt;')),
+                           article_markdown=Markup(mainarticle),
                            article_title=Markup(article.title.encode('unicode_escape').decode('utf-8')
                                                 .replace("'", "\\\'")
                                                 .replace('<', '&lt;')),
@@ -241,6 +247,7 @@ def fixeditor(editortype, articleid):
                            article_status=article.status,
                            updateform=updateform,
                            language=g.locale,
+                           textlanguage=textlanguage,
                            wordpresslogin=wordpresslogin,
                            mediumlogin=mediumlogin,
                            desktop=desktop,
@@ -414,7 +421,13 @@ def exportdata():
                 dirname, error = pdf_generation(article_title, author, language, article_abstract, mdtxt, bibtex=bibtex,
                                                 bibstyle=bibstyle)
                 if error is None:
-                    return send_file(os.path.join(dirname, 'mur2.pdf'))
+                    result = send_file(os.path.join(dirname, 'mur2.pdf'),
+                                       mimetype="application/pdf",  # use appropriate type based on file
+                                       as_attachment=True,
+                                       conditional=False)
+                    result.headers["x-suggested-filename"] = "test.pdf"
+                    return result
+                    # return send_file(os.path.join(dirname, 'mur2.pdf'))
                 else:
                     return send_file(error, attachment_filename='error.txt')
 

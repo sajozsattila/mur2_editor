@@ -173,6 +173,7 @@ function g_domFindScrollMarks() {
 
     // start the decorator we just decorate the main
     var decorator = new TextareaDecorator(mainSource, mdParser);
+    decorator.update();
     // .source has been changed after TextareaDecorator call
     var eNodeSource = document.getElementsByClassName("ldt")[0];
 
@@ -241,7 +242,6 @@ function g_domFindScrollMarks() {
                 case 'main-source':
                     if (preview_on) {
                         updateMain(mainImageLoader, false);
-                        
                     }
                     break;
             }
@@ -322,7 +322,6 @@ function g_domFindScrollMarks() {
         } else if (selectedTextarea === 'abstact-source') {
             updateAbstract(abstractImageLoader, false);
         }
-        
     }
 
     // file upload event

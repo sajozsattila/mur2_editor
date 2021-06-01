@@ -18,8 +18,31 @@ from html.entities import name2codepoint
 # for multimarkdown tables
 import markdown
 import app.editor.mdx_latex as mdx_latex
-# for BibTeX
-from app.models import Article
+from bs4 import BeautifulSoup
+
+# ISO 639-1 -> IETF language tag
+def isolanguage(language):
+    lang_ietf = language
+    if language == "zh_Hans":
+        # chinese lang
+        language = "zh-CN"
+        lang_ietf = language
+    elif language == "zh_Hant":
+        # chinese lang
+        language = "zh-TW"
+        lang_ietf = language
+    elif len(language) == 2:
+        # other two letter language forms
+        if language == 'en':
+            lang_ietf = "en-US"
+        else:
+            lang_ietf = language + "-" + language.upper()
+    elif len(language) == 5:
+        # be sure the country code is uppercase (just for two letter country code as there is other standards)
+        lang_ietf = language.split("-")
+        lang_ietf = lang_ietf[0]+"-"+lang_ietf[1].upper()
+
+    return lang_ietf
 
 # - command -- what we are runing
 # - directory -- where we are writing
@@ -176,21 +199,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                         tables[t] = tablestring
 
             # ISO 639-1 -> IETF language tag
-            lang_ietf = language
-            if language == "zh_Hans":
-                # chinese lang
-                language = "zh-CN"
-                lang_ietf = language
-            elif language == "zh_Hant":
-                # chinese lang
-                language = "zh-TW"
-                lang_ietf = language
-            elif len(language) == 2:
-                # other two letther language forms
-                if language == 'en':
-                    lang_ietf = "en-US"
-                else:
-                    lang_ietf = language + "-" + language.upper()
+            lang_ietf = isolanguage(language)
 
             # process BibTeX
             thereisbibtex = False
@@ -312,17 +321,6 @@ def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyl
     
     
     if error is None:
-        """
-        # make pdf
-        result, error = run_os_command( ['/usr/bin/pandoc', 
-                                     os.path.join(dirname,'mur2.tex'), 
-                                     '-f', 'latex', 
-                                     '-t',  'pdf', 
-                                     '--pdf-engine=xelatex',                                     
-                                     '-s',                                      
-                                     '-o', os.path.join(dirname,'mur2.pdf')], dirname)
-        
-        """
         _, error = run_os_command( ['/usr/local/texlive/2020/bin/x86_64-linux/xelatex',
                                          "-output-directory="+dirname,
                                          "-interaction=nonstopmode",
@@ -349,31 +347,50 @@ def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyl
 
 # make EPUB and Microsof Word return the dirname where it is
 def epub_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None):
-    
-    mdtxt = make_pandoc_md(body)
-    article_title = make_pandoc_md(title)
-    article_abstract = make_pandoc_md(abstract)
-    
-    # make latex
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, bibstyle=bibstyle, extractmedia=False)
-    
-    # Some LaTeX preparation
-    latexcode = None
-    with open(os.path.join(dirname,'mur2.tex'), 'r') as file:
-        latexcode = file.read()
-    # remove pagerotating as epub not supporting
-    latexcode = latexcode.replace('\\begin{landscape}', '').replace('\\end{landscape}', '')
-    # remove width and height from \includegraphics as ePuB take care about this
-    latexcode = re.sub("\\\\includegraphics\[width=[\d.]+\\\\textwidth,height=\\\\textheight\]", "\\\\includegraphics", latexcode)
-    latexcode = re.sub("\\\\includegraphics", "\\\\includegraphics[width=0.9\\\\textwidth,height=\\\\textheight]", latexcode)
-    print(latexcode)
-    with open(os.path.join(dirname,'mur2.tex'), 'w') as file:
-        file.write(latexcode) 
+    # generate random string for dir
+    dirname = make_tmpdirname()
+    if not os.path.exists(dirname):
+        os.mkdir(dirname)
 
-    if error is None:
-        result, error = run_os_command(['/usr/local/texlive/2020/bin/x86_64-linux/tex4ebook',
-                                     os.path.join(dirname,'mur2.tex'),
-                                     '-d', dirname ], dirname)
+    # change html to xhtml
+    bodysoup = BeautifulSoup(body)
+
+    # save Article body
+    mainhtml = os.path.join(dirname, 'mur2.html')
+    file = open(mainhtml, 'w+')
+    file.write(bodysoup.prettify())
+    file.close()
+    # save article abstract
+    abstracthtml = ''
+    if len(abstract) > 0:
+        abstractsoup = BeautifulSoup(abstract)
+        abstracthtml = os.path.join(dirname, 'abstract.html')
+        file = open(abstracthtml, 'w+')
+        file.write(abstractsoup.prettify())
+        file.close()
+
+    lang_ietf = isolanguage(language)
+    # save settings
+    with open(os.path.join(dirname, 'settings.txt'), 'w') as file:
+        file.write('---\ntitle: \'' + title.replace("$$", "$") + "'" +
+                   "\nauthor:" + "".join(["\n    - " + a for a in author.split(",")]) +
+                   "\nlang: " + language +
+                   "\nlanguage: " + lang_ietf
+        )
+        file.write("\n---")
+
+    # make epub
+    command = ['/usr/bin/pandoc',
+               '-t',  'epub',
+               '--css', os.path.join(current_app.root_path, 'static', 'css', 'epub.css'),
+               '--epub-embed-font', '/usr/share/fonts/truetype/ibarrareal/fonts/ttf/*',
+               '--epub-embed-font', "/usr/share/fonts/opentype/Libertinus-7.040/static/WOFF2/LibertinusSerif-*",
+               os.path.join(dirname, 'settings.txt'),
+               abstracthtml,
+               mainhtml,
+               '-o', os.path.join(dirname,'mur2.epub')]
+    print(" ".join(command))
+    result, error = run_os_command(command, dirname)
         
     
     return dirname, error

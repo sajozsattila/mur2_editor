@@ -1,8 +1,47 @@
+:root {
+   --verticaldistance: 1.685rem;
+   --bcolor: black;
+   --fcolor: white;
+   --menucolor: #c62641;
+   --fontcolor: #333;
+   --acolor: #115B7A;
+}
+
 @font-face {
     font-family: 'Libertinus Serif';
     font-style: normal;
     font-weight: normal;
-    src: url("../fonts/LibertinusSerif-Regular.woff2");
+    src: url("../fonts/LibertinusSerif-Regular.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Libertinus Serif';
+    font-style: normal;
+    font-weight: bold;
+    src: url("../fonts/LibertinusSerif-Bold.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Libertinus Serif';
+    font-style: italic;
+    font-weight: bold;
+    src: url("../fonts/LibertinusSerif-BoldItalic.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Libertinus Serif';
+    font-style: italic;
+    font-weight: normal;
+    src: url("../fonts/LibertinusSerif-Italic.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Libertinus Serif';
+    font-style: normal;
+    font-weight: bolder;
+    src: url("../fonts/LibertinusSerif-Semibold.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Libertinus Serif';
+    font-style: italic;
+    font-weight: bolder;
+    src: url("../fonts/LibertinusSerif-SemiboldItalic.woff2") format('woff2');
 }
 
 @font-face {
@@ -20,7 +59,7 @@
 @font-face {
    font-family: 'Ibarra Real Nova';
    font-style: normal;
-   font-weight: 400;
+   font-weight: bolder;
    src: url("../fonts/IbarraRealNova-SemiBold.ttf" ) format("truetype");
 }
 @font-face {
@@ -53,10 +92,10 @@ h1, h2, h3, h4, h5 {
 body {
     font-family: 'Libertinus Serif', sans-serif;
     font-weight: 400;
-    font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0;
     font-feature-settings: "liga" 1;
+    color: var(--fontcolor);
 }
 
 sup {
@@ -174,21 +213,11 @@ p + ol {
     margin-bottom: var(--verticaldistance);
 }
 
-body h2,
-body h2 + div,
-body h1,
-body h1 + div {
-    position: relative;
-    left: calc( var(--verticaldistance) * -4 );
-}
-
 body h1,
 body h2 {
     line-height: calc( var(--verticaldistance) * 3 );
-    font-size: 4.2999em;
+    font-size: 2em;
 }
-
-
 
 body h2 + div,
 body h1 + div {
@@ -201,4 +230,37 @@ body h1 p,
 body h2, 
 body h2 p {
     max-width: 47.74rem;
+}
+
+body h1 {
+    font-size: 2.488em;
+    line-height: 3.2rem;
+}
+body h2 {
+    font-size: 2.074em !important;
+    line-height: 2.5275rem !important;
+}
+body h3 {
+    font-size: 1.728em;
+    line-height: 2.5275rem;
+}
+body h4 {
+    font-size: 1.44em;
+    line-height: 1.685rem;
+}
+
+body h5 {
+    font-size: 1.2em;
+    line-height: 1.685rem;
+}
+
+del, aside {
+    display: none;
+}
+ins {
+    text-decoration: none;
+}
+
+mark {
+    background-color: unset;
 }

@@ -58,16 +58,18 @@ function ParserCollection(
     var domSetHighlightedContent = g_domSetHighlightedContent;
         var imageLoader = imageLoader;
         
-    var browserlanguage = document.querySelector('meta[name="mur2language"]').content;       
-    switch (browserlanguage) {
+    var browserlanguage = document.querySelector('meta[name="mur2textlanguage"]').content;
+    switch (browserlanguage.slice(0, 2)) {
         case 'hu':
             defaults.quotes = '„”»«';
             break;
-        case 'zh_Hant':
-            defaults.quotes = '「」『』';
-            break;
         case 'es':
             defaults.quotes = '«»“”';
+            break;
+    };
+    switch (browserlanguage) {
+    case 'zh_Hant':
+            defaults.quotes = '「」『』';
             break;
     };
                
@@ -430,7 +432,7 @@ function ParserCollection(
             case 'mdp':
                 return source;
             default:
-                return _mdHtmlAndImages.render(source);
+                return  document.getElementById(result_destination).innerHTML;
         }
     };
 

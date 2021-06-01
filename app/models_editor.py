@@ -200,6 +200,8 @@ class Article(db.Model):
     doi = db.Column(db.String(40))
     # bibtex
     bibtex = db.Column(db.String(500))
+    # bibtex style
+    bibstyle = db.Column(db.String(20))
 
     def __repr__(self):
         return '<Article {}>'.format(self.html)

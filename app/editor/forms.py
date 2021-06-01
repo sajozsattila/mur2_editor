@@ -2,8 +2,6 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, Integ
 from wtforms.validators import DataRequired, NumberRange, URL, Email, ValidationError, Length     
 from flask_babel import lazy_gettext as _l
 
-from app.models import User, Journal
-
 # Form for upload file
 from flask_uploads import UploadSet, IMAGES
 from flask_wtf.file import FileField,  FileAllowed, FileRequired
@@ -15,8 +13,7 @@ class UploadForm(FlaskForm):
     mediapage = HiddenField('mediapage', default=True)
     submit = SubmitField(_l('Upload'))  
 
-
-# versioning Articles    
+# versioning Articles
 class ArticleVersion(FlaskForm):
     article = IntegerField('article', validators=[NumberRange(min=1), DataRequired()])
     version = IntegerField('version', validators=[NumberRange(min=0), DataRequired()])
