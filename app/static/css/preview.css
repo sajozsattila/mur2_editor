@@ -9,6 +9,10 @@
     max-width: 47rem;
 }
 
+.svg-preview {
+   fill:  var(--fontcolor);
+}
+
 /* hyphenate */
 #article_main p {
      -webkit-hyphens: auto;
