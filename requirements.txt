@@ -1,5 +1,6 @@
 alembic==1.5.8
 Babel==2.9.0
+beautifulsoup4==4.9.1
 blinker==1.4
 certifi==2020.12.5
 chardet==4.0.0
