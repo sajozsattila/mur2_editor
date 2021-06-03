@@ -30,9 +30,7 @@ function upload_picture() {
 };
 
 function upload_bib() {
-    console.log("start upload");
     var eNode = document.getElementById('bibliography_file');
-    console.log(eNode);
     // Fire click on file input
     (eNode.onclick || eNode.click || function() {}).call(eNode);
 };

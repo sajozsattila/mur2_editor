@@ -5,16 +5,7 @@
  * 
  */
 
-// what is the actuall preview type 
-var g_view = 'html';
-// focusmode on?   
-var g_focusmode_switch = false;
-// preview show?
-var g_preview_on = true;
-// which textareai is selected
-var g_selectedTextarea = 'main-source';
-// editor changes show 
-var g_echange_on = false;
+
 
 //////////
 // set a DOM content, with highlighting or not 
@@ -492,7 +483,6 @@ function g_domFindScrollMarks() {
     });
     // monitor bibliography input and save locally the changes
     function savebib(){
-        console.log("save");
         try {
             localStorage.setItem("mur2_bib_content"+article_id, document.getElementById("bib-source").value);
             localStorage.setItem("mur2_bib_content"+article_id+'_time', +new Date);

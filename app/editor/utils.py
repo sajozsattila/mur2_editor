@@ -353,7 +353,7 @@ def epub_generation(title, author, language, abstract, body, bibtex=None, bibsty
         os.mkdir(dirname)
 
     # change html to xhtml
-    bodysoup = BeautifulSoup(body)
+    bodysoup = BeautifulSoup(body, 'html5lib')
 
     # save Article body
     mainhtml = os.path.join(dirname, 'mur2.html')
@@ -362,9 +362,13 @@ def epub_generation(title, author, language, abstract, body, bibtex=None, bibsty
     file.close()
     # save article abstract
     abstracthtml = ''
-    if len(abstract) > 0:
-        abstractsoup = BeautifulSoup(abstract)
+    abstracttxt = ""
+    pattern = re.compile(r'\s+')
+    abstractlen = len(re.sub(pattern, '', abstract))
+    if abstractlen > 0:
+        abstractsoup = BeautifulSoup(abstract, 'html5lib')
         abstracthtml = os.path.join(dirname, 'abstract.html')
+        abstracttxt = abstractsoup.get_text()
         file = open(abstracthtml, 'w+')
         file.write(abstractsoup.prettify())
         file.close()
@@ -372,23 +376,33 @@ def epub_generation(title, author, language, abstract, body, bibtex=None, bibsty
     lang_ietf = isolanguage(language)
     # save settings
     with open(os.path.join(dirname, 'settings.txt'), 'w') as file:
-        file.write('---\ntitle: \'' + title.replace("$$", "$") + "'" +
-                   "\nauthor:" + "".join(["\n    - " + a for a in author.split(",")]) +
-                   "\nlang: " + language +
-                   "\nlanguage: " + lang_ietf
+        file.write(
+            f"<dc:language>{lang_ietf}</dc:language>\n"+
+            f"<dc:title>{title}</dc:title>\n" +
+            f"<dc:description>{abstracttxt}</dc:description>\n"+
+            f"<dc:publisher>μr² editor</dc:publisher>\n"+
+            f"<dc:subject></dc:subject>\n"
         )
-        file.write("\n---")
+        for a in author.split(", "):
+            file.write(
+                f"<dc:creator>{a}</dc:creator>\n"
+            )
+    with open(os.path.join(dirname, 'dummy.txt'), 'w') as file:
+        file.write("\n")
 
     # make epub
     command = ['/usr/bin/pandoc',
-               '-t',  'epub',
+               '-t',  'epub3',
                '--css', os.path.join(current_app.root_path, 'static', 'css', 'epub.css'),
                '--epub-embed-font', '/usr/share/fonts/truetype/ibarrareal/fonts/ttf/*',
                '--epub-embed-font', "/usr/share/fonts/opentype/Libertinus-7.040/static/WOFF2/LibertinusSerif-*",
-               os.path.join(dirname, 'settings.txt'),
-               abstracthtml,
-               mainhtml,
-               '-o', os.path.join(dirname,'mur2.epub')]
+               '--epub-metadata='+os.path.join(dirname, 'settings.txt'),
+               '-o', os.path.join(dirname, 'mur2.epub'),
+               os.path.join(dirname, 'dummy.txt')
+               ]
+    if abstractlen > 0:
+        command.append(abstracthtml)
+    command.append(mainhtml)
     print(" ".join(command))
     result, error = run_os_command(command, dirname)
         

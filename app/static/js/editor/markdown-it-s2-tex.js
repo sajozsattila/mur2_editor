@@ -70,7 +70,6 @@
 				max = state.posMax,
 				start = state.pos,
 				openDelim = state.src.slice(start, start + open.length);
-            
 			if (openDelim !== open) {
 				return false;
 			}
@@ -183,7 +182,6 @@
 		}()); // just https protocol supported
 
 		md.renderer.rules.math_number = function (tokens, idx) {
-            
 			return '<span style="float:right">' + tokens[idx].content + '</span>';
 		};
 	};

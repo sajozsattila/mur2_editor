@@ -1,5 +1,4 @@
 
-
 # Table of content
 
 + [Guide for μr² editor](#mur2)
@@ -43,7 +42,7 @@
 
 The Toolbar is the top section of the editor, and looks like this:
 
-![](https://mur2.co.uk/_uploads/photos/1/mur2_toolbar_2.png)
+![The toolbar](https://mur2.co.uk/_uploads/photos/1/mur2_toolbar_2.png)
 
 ### Document saving and loading
 
@@ -163,7 +162,7 @@ section by clicking again on <span class="fontawsome far fa-arrow-alt-circle-dow
 
 {++ Two types of document can be created: Article and Review. The former is designed for longer original text on specific topics. The latter is used for a summary or evaluation of someone else's writing. You can choose between them in the "Text Type" dropdown: ++}
 
-![](https://mur2.co.uk/_uploads/photos/1/text_type_review_article.png)
+![Text types](https://mur2.co.uk/_uploads/photos/1/text_type_review_article.png)
 
 {++ The document types have different settings: ++}
 
@@ -217,7 +216,7 @@ To remove an Author, you should first click the Remove bottom next to his name. 
 
 To open the side menu, click on the <span class="fontawsome fas fa-bars"></span> icon on the far right side of the toolbar. This will display the following sidebar menu:
 
-![](https://mur2.co.uk/_uploads/photos/1/mur2_sidebar.png)
+![Sidebar](https://mur2.co.uk/_uploads/photos/1/mur2_sidebar.png)
 
 Which has six sections:
 + Site Navigation
@@ -265,7 +264,7 @@ The μr² also uses [LaTeX](#pdf) to generate the [PDF](#pdf) output, so these s
 
 To generate direct PDF output, click on the side menu <span class="fas fa-file-pdf" style="display: unset;"></span>  icon. The PDF generation happens on the μr² server and can be a little slow so don‘t be surprised if it takes upto 20 seconds.  
 
-When generating a PDF or LaTeX document, you need to be careful when using ``$$`` as everything between them will be processed as LaTeX [math ](#math) formula, if used for something else, the generation will not work.
+When generating a PDF or LaTeX document, you need to be careful when using double $ as everything between them will be processed as LaTeX [math](#math) formula, if used for something else, the generation will not work.
 
 
 #### ePUB
@@ -407,7 +406,7 @@ Block equations are numbered on the left side. This numbering is added automatic
 
 You can cross-reference to these equalisations as links. For example, the [integrals](#eq:1).^[If you repeat a formula multiple times, the link is ambiguous and it's browser dependant on where the link leads. But it's usually the first occurrence. ]
 
-Beware of dragons living in the  [*PDF*](#pdf) or [*LaTeX*](#pdf) generation! They render everything between the `$$` as a *math formula* which means `\LaTeX` and similar non-math mode commands will break the export. Except if you handle them in `\text{}`.[^1] ^[Unfortunatelly with ePUB this is not true. It can handle `\text{some text}`, but text commands such as `\LaTeX`, will fail.] The tikz-pictures will also break. If you need this kind of things in [PDF](#pdf), insert them as SVG.^[You can generate example on [i.Upmath](https://i.upmath.me/).]
+Beware of dragons living in the  [*PDF*](#pdf) or [*LaTeX*](#pdf) generation! They render everything between the double $ as a *math formula* which means `\LaTeX` and similar non-math mode commands will break the export. Except if you handle them in `\text{}`.[^1] ^[Unfortunatelly with ePUB this is not true. It can handle `\text{some text}`, but text commands such as `\LaTeX`, will fail.] The tikz-pictures will also break. If you need this kind of things in [PDF](#pdf), insert them as SVG.^[You can generate example on [i.Upmath](https://i.upmath.me/).]
 
 [^1]: E.g: `\text{\LaTeX}`
 

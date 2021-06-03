@@ -81,6 +81,7 @@
    src: url("../fonts/IbarraRealNova-SemiBoldItalic.ttf" ) format("truetype");
 }
 
+/* mur2 */
 
 h1, h2, h3, h4, h5 {
     font-family: 'Ibarra Real Nova', sans-serif;
@@ -96,6 +97,7 @@ body {
     letter-spacing: 0;
     font-feature-settings: "liga" 1;
     color: var(--fontcolor);
+    font-size: 18px;
 }
 
 sup {
@@ -254,6 +256,34 @@ body h5 {
     line-height: 1.685rem;
 }
 
+/* LaTeX SVG images resize in titles */
+h1 .svg-preview{
+    vertical-align: calc( 2.488 * var(--latex_align) ) !important ;
+    height:  calc( 2.488 * var(--latex_height) ) !important ;
+    width: auto !important ;
+}
+h2 .svg-preview{
+    vertical-align: calc( 2.074 * var(--latex_align) ) !important ;
+    height:  calc( 2.074 * var(--latex_height) ) !important ;
+    width: auto !important ;
+}
+h3 .svg-preview{
+    vertical-align: calc( 1.728 * var(--latex_align) ) !important ;
+    height:  calc( 1.728 * var(--latex_height) ) !important ;
+    width: auto !important ;
+}
+h4 .svg-preview{
+    vertical-align: calc( 1.44 * var(--latex_align) ) !important ;
+    height:  calc( 1.44 * var(--latex_height) ) !important ;
+    width: auto !important ;
+}
+h5 .svg-preview{
+    vertical-align: calc( 1.2 * var(--latex_align) ) !important ;
+    height:  calc( 1.2 * var(--latex_height) ) !important ;
+    width: auto !important ;
+}
+
+/* criticmarkup */
 del, aside {
     display: none;
 }

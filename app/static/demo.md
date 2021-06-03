@@ -1,3 +1,4 @@
+
 # Overview of the μr² editor
 
 The [μr² editor](https://mur2.co.uk/editor) an easy to use, a versatile and comprehensive text editor for academic writing.
@@ -40,13 +41,17 @@ Row and columns merge, with multiple tbody:
 
 The μr² renders mathematics from LaTeX expressions inside your markdown file. You can use inline:  $$ \mu r^2 $$, block:
 
-$$ \text{Bayes' theorem: } P(A\mid B) = \frac{P(B \mid A) P(A)}{P(B)} $$ 
+$$
+\text{Bayes' theorem: } P(A\mid B) = \frac{P(B \mid A) P(A)}{P(B)}
+$$ 
 
 Or numbered and [linked](#eq:1) blocks:
 
-$$ \text{Euler's identity: } e^{i \pi } + 1 = 0 $${#eq:1}
+$$ 
+\text{Euler's identity: } e^{i \pi } + 1 = 0 
+$${#eq:1}
 
-The output is rendered as SVG images, this means you can use them everywhere, even when you have no JavaScript. 
+The output is rendered as SVG images, this means you can use them everywhere, even when you have no JavaScript.
 
 ## Citations and Bibliography {#bib}
 
@@ -85,7 +90,6 @@ The Bibliography will be automatically included at the end of the generated outp
 With μr², you can share collaborative documents, thanks to the synchronization mechanism.  The collaborating is *real-time*, so there is no merge mechanism. Simple multiple writers can work on the same document at the same time. 
 For a recorded example check out the bellow video:
 
-<iframe width="560" height="600" src="https://www.youtube.com/embed/hAq17feU1SQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Editorial changes {#editorial}
 

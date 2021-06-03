@@ -368,7 +368,22 @@
       </div> <!-- menu -->            
             
       <!-- set the markdown editor contents -->
+      <script src="/static/js/editor/TextareaDecorator.min.js"></script>
+      <script src="/static/js/editor/parser.min.js"></script>
+      <script src="/static/js/editor/utils.min.js"></script>
       <script>
+      /* global valuables */
+      // what is the actuall preview type
+      var g_view = 'html';
+      // focusmode on?
+      var g_focusmode_switch = false;
+      // preview show?
+      var g_preview_on = true;
+      // which textarea is selected
+      var g_selectedTextarea = 'main-source';
+      // editor changes show
+      var g_echange_on = false;
+      // load the content of the Article
         (async function () {
             var data;
             var data_title;
@@ -450,7 +465,6 @@
            decorator.update();
            mainSource.dispatchEvent(new Event('input', { bubbles: true }));
         }());
-                  
        </script> 
        <script src="{{ url_for("babel_catalog") }}"></script> <!-- internation of javascript -->
        <script src="/static/js/editor/markdown-it.min.js"></script>
@@ -458,21 +472,18 @@
        <script src="/static/js/editor/markdown-it-sup.min.js"></script>
        <script src="/static/js/editor/FileSaver.min.js"></script>
        <script src="/static/js/editor/draggabilly.pkgd.min.js"></script>
-       <script src="/static/js/editor/TextareaDecorator.js"></script>
        <script src="/static/js/highlight.js/highlight.pack.js"></script>
-       <script src="/static/js/editor/utils.min.js"></script>
        <script src="/static/js/editor/markdown-it-s2-tex.min.js"></script>
        <script src="/static/js/editor/markdown-it-footnote.min.js"></script>
        <script src="/static/js/editor/markdown-it-ins.min.js"></script>
-       <script src="/static/js/editor/markdown-it-implicit-figures.js"></script>
+       <script src="/static/js/editor/markdown-it-implicit-figures.min.js"></script>
        <script src="/static/js/editor/markdown-it-attrs.browser.min.js"></script>
        <script src="/static/js/editor/markdown-it-criticmarkup.min.js"></script>
        <script src="/static/js/editor/markdown-it-multimd-table.min.js"></script>
        <script src="/static/js/mur2_markdown-it-multimd-table-latex.min.js"></script>
-       <script src="/static/js/editor/parser.min.js"></script>       
-       <script src="/static/js/editor/mur2_upmath.js"></script>
-       <script src="/static/js/mur2_editor_utils.js"></script>
-       <script src="/static/js/mur2_editor.js"></script>
+       <script src="/static/js/editor/mur2_upmath.min.js"></script>
+       <script src="/static/js/mur2_editor_utils.min.js"></script>
+       <script src="/static/js/mur2_editor.min.js"></script>
        
        
        <script>

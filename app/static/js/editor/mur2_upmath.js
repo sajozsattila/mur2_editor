@@ -75,17 +75,22 @@ function ParserCollection(
                
     var _mdPreview = markdownit(defaults)
         .use(markdownitCriticmarkup)
+        /*
+        .use(markdownItAttrs, {
+            leftDelimiter: '[[',
+            rightDelimiter: ']]'})
+        */
         .use(markdownItAttrs, {})
+        .use(markdownitS2Tex)
         .use(implicitFigures, {
             figcaption: true,  // <figcaption>alternative text</figcaption>, default: false
             tabindex: true // <figure tabindex="1+n">..., default: false
-        })        
-        .use(markdownitS2Tex)                
+        })
         .use(markdownitFootnote)
         .use(markdownitMultimdTable, {
             rowspan: true,
             multiline:  true
-        }) 
+        })
         .use(markdownitSub)
         .use(markdownitSup)
         .use(markdownitIns)
@@ -132,6 +137,7 @@ function ParserCollection(
 
     var _mdHtmlHabrAndImages = markdownit(defaults)
         .use(markdownitCriticmarkup)
+        .use(markdownItAttrs, {})
         .use(markdownitS2Tex, defaults._habr)
         .use(markdownitMultimdTableLaTeX, {
             rowspan: true,
