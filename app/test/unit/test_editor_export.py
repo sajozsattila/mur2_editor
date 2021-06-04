@@ -6,9 +6,10 @@ from io import BytesIO
 def test_landing(client):
 
     with open('./app/test/unit/test.md', 'rb') as f:
-        export = client.post("/export_data",
+        for format in ['pdf']:
+             export = client.post("/export_data",
                          data=dict(
-                             destination="pdf",
+                             destination=format,
                              article_title="cim",
                              article_abstract="valami",
                              language="es",
@@ -17,4 +18,5 @@ def test_landing(client):
                              bibsyle="apa",
                              mdfile=(f, 'test_file.txt')
                          ))
-        assert export.status_code == 200
+             assert export.status_code == 200
+
