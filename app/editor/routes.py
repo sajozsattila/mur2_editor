@@ -35,7 +35,8 @@ from flask_babel import get_locale
 # DB local DB to know what file for which user
 import os
 # for language detection
-import cld3
+import gcld3
+detector = gcld3.NNetLanguageIdentifier(min_num_bytes=0, max_num_bytes=1000)
 
 mobils = ["Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini", "Mobile", "mobile",
           "CriOS"]
@@ -223,11 +224,11 @@ def fixeditor(editortype, articleid):
     mainarticle = article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'").replace('<', '&lt;')
 
     # language of the text
-    textlanguage = g.locale
-    langdetection = cld3.get_language(mainarticle)
+    textlanguage = str(g.locale)
+    langdetection = detector.FindLanguage(text=mainarticle)
     if langdetection is not None and langdetection.probability > 0.990 \
-            and not re.search(f"^{langdetection.language}", textlanguage):
-        print(f"change textlanguage: {langdetection.language}")
+            and not re.search("^"+langdetection.language, textlanguage):
+        current_app.logger.info(f"change textlanguage: {langdetection.language}")
         textlanguage = langdetection.language
 
     # pictureloading form
@@ -408,7 +409,7 @@ def exportdata():
             article_abstract = (request.form['article_abstract'])
             language = (request.form['language'])
             # detect language
-            langdetection = cld3.get_language(mdtxt)
+            langdetection = detector.FindLanguage(text=mdtxt)
             if langdetection is not None and langdetection.probability > 0.990 \
                     and not re.search(f"^{langdetection.language}", language):
                 print("change language")

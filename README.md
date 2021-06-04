@@ -160,6 +160,7 @@ This editor based on multiple open source project, we would like to say many tha
   + [markdown-it-bibliography](https://github.com/DerDrodt/markdown-it-bibliography)
 + [UpMath](https://github.com/parpalak/upmath.me)
 + [pandoc](https://pandoc.org/)
+  + [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref)
 + [Convergence](https://github.com/convergencelabs/)
 + [CriticMarkup](http://criticmarkup.com/)
 + [markdown2latex](https://github.com/rufuspollock/markdown2latex)
@@ -167,6 +168,8 @@ This editor based on multiple open source project, we would like to say many tha
 + [SweetAlert](https://sweetalert.js.org/)
 + [FileSaver.js](https://github.com/eligrey/FileSaver.js)
 + [Draggabilly](https://draggabilly.desandro.com)
++ [Libertinus Fonts](https://github.com/alerque/libertinus)
++ [Ibarra Real Fonts](https://github.com/googlefonts/ibarrareal)
 
 <h1 class="mt-1">Endnotes</h1>
 <section class="footnotes">
