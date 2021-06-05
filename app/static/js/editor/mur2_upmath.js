@@ -63,9 +63,28 @@ function ParserCollection(
         case 'hu':
             defaults.quotes = '„”»«';
             break;
+        case 'ro':
+            defaults.quotes = '„”«»';
+            break;
+        case 'ca': // Catalan
         case 'es':
             defaults.quotes = '«»“”';
             break;
+        case 'de':
+        case 'cs': // Czech
+            defaults.quotes = '„”‚‘';
+            break;
+        case 'it':
+        case 'gr':
+            defaults.quotes = '«»“”';
+            break;
+        case 'fr':
+            defaults.quotes = '«»‹›';
+            break;
+        case 'jp':
+            defaults.quotes = '「」『』';
+            break;
+
     };
     switch (browserlanguage) {
     case 'zh_Hant':

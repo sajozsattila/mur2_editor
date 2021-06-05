@@ -139,9 +139,14 @@ We aim to support academic quality writing which is a huge task that very few pu
 
 In the  μr² editor, you can create HTML, PDF, ePUB, LaTeX or Microsoft Word with one click. You can also directly publish your document in [Wordpress.com](https://wordpress.com) or [Medium](https://medium.com). If you don't have to place to publish it, the project has a free to use [webpage](https://mur2.co.uk) where work can publish.  There we also provide extra features for registered users. 
 
+## Self hosting
+If you would like to self hosting the editor the easiest to dowload [mur2_docker](https://github.com/sajozsattila/mur2_docker). 
+
 ## How you can help?
 If you would like to help, there is plenty of things to do. The most simple one: use the editor and if you find some error or you just have a good idea, do not keep it for yourself. 
-If you can program on JavaScript or Python you can collaborate in the development also. I am not a frontend developer, so I am sure there is plenty of place for improvement there. Also, a lot of tests is waiting to be written.  
+
+If you know JavaScript, Python, HTML or CSS you can collaborate in the development also. I am not a frontend developer, so I am sure there is plenty of place for improvement there. Also, a lot of tests is waiting to be written.
+
 I am also looking for translators of the frontend. For this do not need any IT knowledge. If you speak English and any other language just have a look a messages.po files on the [Gihub](https://github.com/sajozsattila/mur2_editor/tree/master/app/translations).   
 
 # Thanks
