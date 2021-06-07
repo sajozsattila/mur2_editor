@@ -67,7 +67,8 @@ def make_tmpdirname():
     letters = string.ascii_letters
     return '/tmp/mur2_export_'+''.join(random.choice(letters) for _ in range(16))+'/'
 
-def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmedia=True, bibstyle=None):
+def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmedia=True, bibstyle=None, csldir=None):
+
             mdtxt = make_pandoc_md(mdtxt)
             title = title
             abstract = abstract
@@ -228,10 +229,12 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
                            "\ncsquotes: true"  )
                 # add settings to pandoc
                 if thereisbibtex:
+                    if csldir is None:
+                        csldir = current_app.config['CSL_DIR']
                     if bibstyle is None:
-                        file.write('\ncsl: '+current_app.config['CSL_DIR']+'apa.csl')
+                        file.write('\ncsl: '+csldir+'apa.csl')
                     else:
-                        file.write(f"\ncsl: "+current_app.config['CSL_DIR']+f"{bibstyle}.csl")
+                        file.write(f"\ncsl: "+csldir+f"{bibstyle}.csl")
                 
                 if language == "zh-CN" or language == "zh-TW":
                     file.write("\nmainfont: Noto Serif CJK SC"+
@@ -312,12 +315,12 @@ def  make_pandoc_md(mdtxt):
             return mdtxt
 
 # make PDF from final published Article
-def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None):    
+def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None, csldir=None):
     mdtxt = make_pandoc_md(body)
     article_title = make_pandoc_md(title)
     article_abstract = make_pandoc_md(abstract)
     
-    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, bibstyle=bibstyle)
+    dirname, error = make_latex(mdtxt, article_title, article_abstract, language, author, bibtex=bibtex, bibstyle=bibstyle, csldir=csldir)
     
     
     if error is None:
@@ -346,7 +349,7 @@ def pdf_generation(title, author, language, abstract, body, bibtex=None, bibstyl
     return dirname, error
 
 # make EPUB and Microsof Word return the dirname where it is
-def epub_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None):
+def epub_generation(title, author, language, abstract, body, bibtex=None, bibstyle=None, rootpath=None):
     # generate random string for dir
     dirname = make_tmpdirname()
     if not os.path.exists(dirname):
@@ -372,28 +375,33 @@ def epub_generation(title, author, language, abstract, body, bibtex=None, bibsty
         file = open(abstracthtml, 'w+')
         file.write(abstractsoup.prettify())
         file.close()
+    titlesoup =  BeautifulSoup(title, 'html5lib')
+    titletex = titlesoup.get_text()
 
     lang_ietf = isolanguage(language)
     # save settings
     with open(os.path.join(dirname, 'settings.txt'), 'w') as file:
         file.write(
             f"<dc:language>{lang_ietf}</dc:language>\n"+
-            f"<dc:title>{title}</dc:title>\n" +
+            f"<dc:title>{titletex}</dc:title>\n" +
             f"<dc:description>{abstracttxt}</dc:description>\n"+
             f"<dc:publisher>μr² editor</dc:publisher>\n"+
             f"<dc:subject></dc:subject>\n"
         )
-        for a in author.split(", "):
+        for a in author.split(","):
             file.write(
-                f"<dc:creator>{a}</dc:creator>\n"
+                "<dc:creator>" + a.strip(" ").strip("'") + "</dc:creator>\n"
             )
     with open(os.path.join(dirname, 'dummy.txt'), 'w') as file:
         file.write("\n")
 
+    if rootpath is None:
+        rootpath = current_app.root_path
+
     # make epub
     command = ['/usr/bin/pandoc',
                '-t',  'epub3',
-               '--css', os.path.join(current_app.root_path, 'static', 'css', 'epub.css'),
+               '--css', os.path.join(rootpath, 'static', 'css', 'epub.css'),
                '--epub-embed-font', '/usr/share/fonts/truetype/ibarrareal/fonts/ttf/*',
                '--epub-embed-font', "/usr/share/fonts/opentype/Libertinus-7.040/static/WOFF2/LibertinusSerif-*",
                '--epub-metadata='+os.path.join(dirname, 'settings.txt'),

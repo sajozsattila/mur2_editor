@@ -298,7 +298,7 @@ async function save_article(blobs) {
     // the article id
     var article_id = document.querySelector('meta[name="article_id"]').content
     // article language
-    var language = document.querySelector('meta[name="textlanguage"]').content
+    var language = document.querySelector('meta[name="mur2textlanguage"]').content
     // the article abstract and title, later this need to change as they need to be editable
     var article_title = document.getElementById("title-source").value
     if ( !article_title || article_title.replace(/\s/g,'').length === 0 ) {

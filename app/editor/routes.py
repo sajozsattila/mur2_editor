@@ -224,6 +224,7 @@ def fixeditor(editortype, articleid):
     mainarticle = article.markdown.encode('unicode_escape').decode('utf-8').replace("'", "\\\'").replace('<', '&lt;')
 
     # language of the text
+    endnote = _l("Endnotes")
     textlanguage = str(g.locale)
     langdetection = detector.FindLanguage(text=mainarticle)
     if langdetection is not None and langdetection.probability > 0.990 \
