@@ -6,6 +6,11 @@ i18next.init({
   lng: ['en', 'hu'],
   debug: true,
   resources: {
+    es: {
+      translation: {
+        "Bibliography": "Bibliografía"
+      }
+    },
     en: {
       translation: {
         "Bibliography": "Bibliography"

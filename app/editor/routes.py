@@ -7,7 +7,7 @@ from flask import render_template, flash, redirect, url_for, request, g, \
 from flask_login import current_user, login_required, logout_user
 # errors
 from flask import abort
-from flask_babel import lazy_gettext as _l
+from flask_babel import lazy_gettext as _l, force_locale, gettext
 
 # the part of the applications
 # the databse types
@@ -230,6 +230,9 @@ def fixeditor(editortype, articleid):
             and not re.search("^"+langdetection.language, textlanguage):
         current_app.logger.info(f"change textlanguage: {langdetection.language}")
         textlanguage = langdetection.language
+        # change endnotes
+        with force_locale(textlanguage):
+            endnote = gettext("Endnotes")
 
     # pictureloading form
     pictureform = UploadForm()
@@ -267,7 +270,8 @@ def fixeditor(editortype, articleid):
                            versions=versions,
                            edit=edit,
                            cjwt=cjwt,
-                           pictureform=pictureform
+                           pictureform=pictureform,
+                           endnotetext = endnote
                            )
 
 
