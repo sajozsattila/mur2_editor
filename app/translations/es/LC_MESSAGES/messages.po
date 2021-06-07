@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-05 20:00+0000\n"
+"POT-Creation-Date: 2021-06-07 09:42+0000\n"
 "PO-Revision-Date: 2020-04-29 20:54+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -46,7 +46,7 @@ msgstr "Iniciar sesión"
 #: app/auth/forms.py:17 app/auth/forms.py:36 app/main/forms.py:66
 #: app/main/forms.py:90 app/templates/registerjournal.html:15
 msgid "Email"
-msgstr "Correo electrónico""
+msgstr "Correo electrónico\""
 
 #: app/auth/forms.py:20 app/auth/forms.py:43
 msgid "Repeat Password"
@@ -84,7 +84,9 @@ msgstr "¡Enhorabuena, ya está registrado!"
 msgid ""
 "Check your email (including junk) for instructions on how to reset your "
 "password."
-msgstr "Consulte su correo electrónico (incluido el correo no deseado) para obtener instrucciones sobre cómo restablecer su contraseña."
+msgstr ""
+"Consulte su correo electrónico (incluido el correo no deseado) para "
+"obtener instrucciones sobre cómo restablecer su contraseña."
 
 #: app/auth/routes.py:123 app/templates/auth/reset_password_request.html:5
 msgid "Reset Password"
@@ -409,7 +411,9 @@ msgstr "¡El modo de Espera debe estar entre +100 y -100!"
 #: app/static/js/mur2_editor_utils.js:305
 #: app/static/js/mur2_editor_utils.js:543
 #: app/static/js/mur2_editor_utils.min.js:1
-msgid "The document title should not be empty!"
+msgid ""
+"The document title should not be empty! You can add in the 'Documents "
+"settings' (5th icon in the tollbar from left)."
 msgstr ""
 
 #: app/static/js/mur2_editor_utils.js:352
@@ -1389,11 +1393,16 @@ msgstr "Ha ocurrido un error inesperado"
 
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr "Se ha notificado al administrador. ¡Lo siento por los inconvenientes ocasionados!"
+msgstr ""
+"Se ha notificado al administrador. ¡Lo siento por los inconvenientes "
+"ocasionados!"
 
 #~ msgid "Add Bibliography "
 #~ msgstr ""
 
 #~ msgid "Chat meg arrived"
+#~ msgstr ""
+
+#~ msgid "The document title should not be empty!"
 #~ msgstr ""
 

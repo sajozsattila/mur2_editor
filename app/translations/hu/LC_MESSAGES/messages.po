@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-05 20:00+0000\n"
+"POT-Creation-Date: 2021-06-07 09:42+0000\n"
 "PO-Revision-Date: 2020-05-04 19:57+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -410,8 +410,12 @@ msgstr "A Standby +100 és -100 közötti érték!"
 #: app/static/js/mur2_editor_utils.js:305
 #: app/static/js/mur2_editor_utils.js:543
 #: app/static/js/mur2_editor_utils.min.js:1
-msgid "The document title should not be empty!"
+msgid ""
+"The document title should not be empty! You can add in the 'Documents "
+"settings' (5th icon in the tollbar from left)."
 msgstr ""
+"A cím nem lehet üres. A „Dokumentum beállításai” menüpontban lehet "
+"megadni (5-ik ikon balról az eszköztárban)."
 
 #: app/static/js/mur2_editor_utils.js:352
 #: app/static/js/mur2_editor_utils.min.js:1
@@ -550,7 +554,7 @@ msgstr "Kijelentkezés"
 
 #: app/templates/base_menu.html:24 app/templates/editor.html:353
 msgid "Switch theme"
-msgstr ""
+msgstr "Téma változtatása"
 
 #: app/templates/base_menu.html:28 app/templates/base_menu.html:37
 #: app/templates/connections.html:60 app/templates/discovery.html:31
@@ -1599,5 +1603,8 @@ msgstr "Az adminisztrátort értesítettük, bocsánat a kellemetlenségért!"
 #~ msgstr "Irodalomjegyzék hozzáadása"
 
 #~ msgid "Chat meg arrived"
+#~ msgstr ""
+
+#~ msgid "The document title should not be empty!"
 #~ msgstr ""
 
