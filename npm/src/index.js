@@ -174,7 +174,7 @@ app.get('/', (req, res) => {
                 })
                 .use(require('markdown-it-footnote'))
                 .use(require('markdown-it-attrs'), {})
-                .use(require('markdown-it-implicit-figures'), {
+                .use(require('./markdown-it-implicit-figures.js'), {
                     figcaption: true, // <figcaption>alternative text</figcaption>, default: false
                     tabindex: true // <figure tabindex="1+n">..., default: false
                 })
