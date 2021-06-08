@@ -175,6 +175,7 @@ This editor based on multiple open source project, we would like to say many tha
 + [Draggabilly](https://draggabilly.desandro.com)
 + [Libertinus Fonts](https://github.com/alerque/libertinus)
 + [Ibarra Real Fonts](https://github.com/googlefonts/ibarrareal)
++ [Compact Language Detector v3](https://github.com/google/cld3)
 
 <h1 class="mt-1">Endnotes</h1>
 <section class="footnotes">
