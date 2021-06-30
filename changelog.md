@@ -1,5 +1,9 @@
 # Revision history
 
+## v1.7.3
+
++ Bugfixes
+
 ## v1.7.2
 
 + Local install via Docker
