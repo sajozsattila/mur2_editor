@@ -204,7 +204,7 @@ def make_latex(mdtxt, title, abstract, language, author, bibtex=None, extractmed
 
             # process BibTeX
             thereisbibtex = False
-            if bibtex is not None:
+            if bibtex is not None and bibtex != "None":
                     thereisbibtex = True
                     # save BibTeX data
                     with open(os.path.join(dirname,'mur2.bib'), 'w') as f:

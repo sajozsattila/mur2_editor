@@ -237,10 +237,7 @@ def fixeditor(editortype, articleid):
 
     # pictureloading form
     pictureform = UploadForm()
-    print(Markup(article.title.encode('unicode_escape').decode('utf-8')
-                                                .replace("'", "\\\'")
-                                                .replace('<', '&lt;')).replace("\n", ""))
-    print(article.title.replace("\n", ""))
+
     return render_template('editor.html',
                            article_markdown=Markup(mainarticle),
                            article_title=Markup(article.title.encode('unicode_escape').decode('utf-8')
@@ -251,7 +248,7 @@ def fixeditor(editortype, articleid):
                                                    .replace('<', '&lt;')),
                            article_bib=bibtex,
                            bibstype=bibstype,
-                           title=article.title.replace("\n", ""),
+                           title=article.title.replace("\n", "").strip(),
                            article_id=int(articleid),
                            article_status=article.status,
                            updateform=updateform,
