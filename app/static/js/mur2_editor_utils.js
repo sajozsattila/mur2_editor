@@ -300,7 +300,7 @@ async function save_article(blobs) {
     // article language
     var language = document.querySelector('meta[name="mur2textlanguage"]').content
     // the article abstract and title, later this need to change as they need to be editable
-    var article_title = document.getElementById("title-source").value
+    var article_title = document.getElementById("title-source").value.replace(/[\n\r]/g, '')
     if ( !article_title || article_title.replace(/\s/g,'').length === 0 ) {
         swal(_("The document title should not be empty! You can add in the 'Documents settings' (5th icon in the tollbar from left)."));
         return;
@@ -538,7 +538,7 @@ async function render_on_server() {
 }
 
 async function make_export(destination, mainCollection) {
-    var article_title = document.getElementById('title-source').value.replace(/\s/g,'');
+    var article_title = document.getElementById('title-source').value.replace(/[\n\r]/g, '');
     if ( !article_title || article_title.length === 0 ) {
         swal(_("The document title should not be empty! You can add in the 'Documents settings' (5th icon in the tollbar from left)."));
         return;
