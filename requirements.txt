@@ -44,7 +44,7 @@ requests==2.31.0
 requests-toolbelt==1.0.0
 requests-unixsocket==0.2.0
 six==1.16.0
-SQLAlchemy==2.0.9
+SQLAlchemy==1.4.48
 urllib3==1.26.5
 waitress==2.1.2
 Werkzeug==2.3.6
