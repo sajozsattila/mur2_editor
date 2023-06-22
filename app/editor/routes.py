@@ -27,11 +27,11 @@ import requests
 import datetime
 import json
 import re
-from flask import make_response, send_file
+from flask import g, request, make_response, send_file
 # convergence
 import gjwt as jwt
-# recordin last user logging
-from flask_babel import get_locale
+# depricated see beloow function
+# from flask_babel import get_locale
 # DB local DB to know what file for which user
 import os
 # for language detection
@@ -40,6 +40,17 @@ detector = gcld3.NNetLanguageIdentifier(min_num_bytes=0, max_num_bytes=1000)
 
 mobils = ["Android", "webOS", "iPhone", "iPad", "iPod", "BlackBerry", "IEMobile", "Opera Mini", "Mobile", "mobile",
           "CriOS"]
+
+# From Flask-Babel 3.1.0 documentation: https://python-babel.github.io/flask-babel/#configuration
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    # otherwise try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    return request.accept_languages.best_match(['de', 'fr', 'en'])
 
 
 @bp.before_request
